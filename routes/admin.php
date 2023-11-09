@@ -133,7 +133,10 @@ Route::middleware(['setup-locale', "verify-role:" . implode(',', [AppConst::UNIV
                 Route::view('social-media', 'pages.university.social-media')->name('socialMedia');
                 Route::view('academics', 'pages.university.academics')->name('academics');
                 Route::view('conference', 'pages.university.university-conferences')->name('university-conferences');
-
+                Route::view('research-output-data', 'pages.university.research-output-data')->name('research-output-data');
+                Route::view('confirm-one-to-one-meeting', 'pages.university.confirm-one-to-one-meeting')->name('confirm-one-to-one-meeting');
+                Route::view('location-and-branches', 'pages.university.location-and-branches')->name('location-and-branches');
+                
             });
 
             Route::prefix('facilities')->group(function () {

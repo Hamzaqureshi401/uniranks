@@ -12,7 +12,6 @@
             </div>
             <!-- end main content -->
             <!-- RIGHT SIDEBAR START -->
-          {{--   <livewire:pages.components.sidebar.right-sidebar/> --}} 
             <!-- RIGHT SIDEBAR CLOSED -->
         </div>
     </x-shared.general.main>

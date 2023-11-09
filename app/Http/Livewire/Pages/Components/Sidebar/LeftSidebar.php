@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Pages\Components\Sidebar;
 
 use Livewire\Component;
-
+ 
 class LeftSidebar extends Component
 {
     public $routes;
@@ -23,7 +23,11 @@ class LeftSidebar extends Component
                     'Social Media Links'=>'admin.university.socialMedia',
                     'Galleries'=>'admin.media.show',
                     'Academics'=>'admin.university.academics',
-                    'University Conference' => 'admin.university.university-conferences'
+                    'University Conference' => 'admin.university.university-conferences',
+                    'Research Output Data' => 'admin.university.research-output-data',
+                    'Confirm 1 to 1 Meeting' => 'admin.university.confirm-one-to-one-meeting',
+                    'Location and Branches' => 'admin.university.location-and-branches',
+                    
                 ]
             ],
             'University Facilities' => [

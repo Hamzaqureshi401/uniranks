@@ -46,5 +46,6 @@
 <script src="https://kit.fontawesome.com/9487d74d1e.js" crossorigin="anonymous" defer></script>
 <script src="https://kit.fontawesome.com/2c1e5308ba.js" crossorigin="anonymous" defer></script>
 <!-- Scripts -->
+@stack('styles')
 @vite(['resources/js/app.js'])
 @livewireStyles
