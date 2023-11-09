@@ -22,6 +22,8 @@ class PageNavigation extends Component
                         'Front Videos'=>'admin.university.frontVideos',
                         'Social Media Links'=>'admin.university.socialMedia',
                         'Galleries'=>'admin.media.show',
+                        'Academics'=>'admin.university.academics',
+                        'University Conference' => 'admin.university.university-conferences'
                     ]
                 ],
                 'University Facilities' => [
@@ -41,6 +43,7 @@ class PageNavigation extends Component
                     'links'=>[
                         'Admission Requirements'=>'admin.university.admissionRequirements.show',
                         'Semesters'=>'admin.university.semesters',
+                        'Admission Semesters & Admission Sessions'=>'admin.university.admissionsSemestersAdmissionSessions',
                         'Sessions'=>'admin.university.sessions',
                         'Programs'=>'admin.university.programs',
                         'Fee Structure'=>'admin.university.feeStructure',

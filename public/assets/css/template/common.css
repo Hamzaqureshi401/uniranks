@@ -321,9 +321,13 @@ button {
 .top-menu-container {
     padding-left: 0;
     padding-right: 0;
+    margin-left: 0px;
     border: none;
     display: flex;
     background-color: transparent;
+}
+.mr-l{
+    margin-left: -4px;
 }
 
 .has-radius {
@@ -2001,7 +2005,7 @@ select option:hover {
 .card {
     background-color: white;
     border-radius: 0.25rem;
-    box-shadow: 0 0.5rem 0.5rem rgb(255 255 255 / 85%);
+    box-shadow: 0 0.15rem 0.5rem rgb(255 255 255 / 85%);
 
 
 }
@@ -2113,7 +2117,7 @@ tr {
 }
 
 .university-img-div {
-    width: 15%;
+    width: 12%;
 }
 
 .regsiter-content-div {

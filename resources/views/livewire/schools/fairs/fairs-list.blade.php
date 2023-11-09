@@ -16,7 +16,7 @@
                    aria-hidden="true"></i>
             </div>
         </div>
-        <div class="align-items-center my-3 d-md-flex small5" :class="showFilters ? '':'d-none' ">
+        <div class="align-items-center my-3 d-md-flex mr-l small5" :class="showFilters ? '':'d-none' ">
             <div class="col mobile-marg-2 col-marg mx-1">
                 <select wire:model="filter_by_country" class="input-field form-control" aria-label=""
                         wire:change="loadFilteredData">
@@ -76,7 +76,7 @@
         </div>
     </div>
     @forelse($fairs as $fair)
-        <div class="card mt-3">
+        <div class="card mt-2">
             <div class="p-3">
                 <div class="row">
                     <a href="{{route('admin.schoolFairs.fair.view',$fair->id)}}" class="col-12 col-lg-2 university-img-div">

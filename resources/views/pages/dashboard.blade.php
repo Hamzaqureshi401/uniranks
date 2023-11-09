@@ -11,13 +11,17 @@
 {{--    <livewire:dashboard.statistics-cards/>--}}
 {{--    <livewire:dashboard.latest-events/>--}}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/nosleep.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function() {
+             var noSleep = new NoSleep();
+             noSleep.enable();
             // Refresh the page every 10 seconds (10000 milliseconds)
             console.log(1);
             setInterval(function() {
                 location.reload();
-            }, 50000);
+            }, 5000);
         });
     </script>
 </x-right-sidebar-layout>

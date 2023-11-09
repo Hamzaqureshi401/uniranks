@@ -41,7 +41,7 @@ class UniversityAdmissionContact extends Component
     }
 
     public function save(){
-        $inputs = $this->validate();;
+        $inputs = $this->validate();
         $inputs['created_by_id']= \Auth::id();
         \Auth::user()->selected_university->contactNumbers()->create($inputs);
         $this->initForm();

@@ -131,6 +131,9 @@ Route::middleware(['setup-locale', "verify-role:" . implode(',', [AppConst::UNIV
                 Route::view('front-banners', 'pages.university.front-banners')->name('frontBanners');
                 Route::view('front-videos', 'pages.university.front-videos')->name('frontVideos');
                 Route::view('social-media', 'pages.university.social-media')->name('socialMedia');
+                Route::view('academics', 'pages.university.academics')->name('academics');
+                Route::view('conference', 'pages.university.university-conferences')->name('university-conferences');
+
             });
 
             Route::prefix('facilities')->group(function () {
@@ -147,6 +150,7 @@ Route::middleware(['setup-locale', "verify-role:" . implode(',', [AppConst::UNIV
             Route::prefix('admissions')->group(function () {
                 Route::get('/', fn() => redirect()->route('admin.university.mainBuilding'))->name('show');
                 Route::view('semesters', 'pages.university-admissions.semesters')->name('semesters');
+                Route::view('semesters-And-Admission-Sessions', 'pages.university-admissions.admissions-semesters-and-admission-sessions')->name('admissionsSemestersAdmissionSessions');
                 Route::view('sessions', 'pages.university-admissions.sessions')->name('sessions');
                 Route::view('fee-structure', 'pages.university-admissions.fee-structure')->name('feeStructure');
                 Route::view('accreditation-agencies', 'pages.university-admissions.accreditation-agencies')->name('accreditationAgencies');
