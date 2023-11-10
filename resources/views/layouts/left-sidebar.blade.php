@@ -4,10 +4,10 @@
         <livewire:pages.page-navigation/>
         <div class="row mt-3 mx-0 px-0">
             <!-- Left Sidebar start -->
-            <livewire:pages.components.sidebar.left-sidebar/>
+            <livewire:pages.components.sidebar.left-sidebar/> 
             <!-- Left Sidebar End -->
             <!-- Main Content -->
-            <div class="col-12 col-md-7  px-0">
+            <div class="col-12 col-md-9  px-0">
                 {{ $slot }}
             </div>
             <!-- end main content -->

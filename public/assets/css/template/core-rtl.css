@@ -4291,9 +4291,9 @@ svg {
 @media only screen
 and (min-width: 1025px)
 and (max-width: 3000px) {
-    .mobile-nav {
-        display: none !important;
-    }
+    /*.mobile-nav {*/
+    /*    display: none !important;*/
+    /*}*/
 }
 
 @media only screen
@@ -4988,25 +4988,6 @@ and (max-width: 720px) {
 
 
 /*end auth card*/
-
-/*Breadcrumb bar*/
-
-.breadcrumb-bar {
-    margin-top: 7.2rem;
-    background: var(--light-primary);
-    color: white;
-    height: 80px;
-    display: flex;
-    align-items: center;
-}
-
-@media only screen and (max-width: 1000px) {
-    .breadcrumb-bar {
-        /*margin-top: 5rem;*/
-        display: none;
-    }
-}
-
 
 /*/form input end*/
 

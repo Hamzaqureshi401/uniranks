@@ -70,15 +70,15 @@
 
 .currency-select {
     /* margin-left: auto !important; */
-    background: white;
-    width: 100%;
+   /* background: white;
+    width: 100%;*/
     display: flex;
     justify-content: end;
-    height: 3.8rem;
-    border-bottom-right-radius: 0.25rem;
+   /* height: 3.8rem;
+    border-bottom-right-radius: 15px;
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.25) !important;
-    padding-right: 10px;
-} 
+    padding-right: 10px;*/
+}
 
 /*.currency-select-button {*/
 /*    border: none;*/
@@ -128,7 +128,7 @@
 
 .border-right {
     border-right: 1px solid #e7e5e5 !important;
-    /*height: 35px;*/
+    height: 35px;
 }
 
 
@@ -238,33 +238,3 @@
 /*---------------------------------------------------------*/
 /*--------------------- End Global.css --------------------*/
 /*---------------------------------------------------------*/
-
-.has-search .form-control {
-    padding-left: 2.375rem !important;
-}
-
-.discreteProgress3 {
-    width: 117px;
-    height: 10px;
-    background: repeating-linear-gradient( to right, #ddd, #ddd 4%, transparent 4%, transparent 5% ), repeating-linear-gradient( to right, #04aa6d, #04aa6d 8%, transparent 8%, transparent 10% );
-    background-size: 200%, 100%;
-    background-position: -100%;
-    background-repeat: repeat-y;
-}
-
-.form-floating > label {
-    left: 1.2%;
-}
-
-
-.file-upload i {
-    font-size: 9rem;
-}
-
-.invoices-table td:first-child {
-    padding-left: 2rem;
-}
-
-.invoices-table td:last-child {
-    padding-right: 2rem;
-}

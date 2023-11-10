@@ -1,3 +1,3 @@
-<x-both-sidebar-layout>
+<x-left-sidebar-layout>
     <livewire:university.confirm-one-to-one-meeting/>
-</x-both-sidebar-layout>
+</x-left-sidebar-layout>

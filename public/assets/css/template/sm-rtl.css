@@ -125,7 +125,7 @@
 
 .border-right {
     border-left: 1px solid #e7e5e5 !important;
-    /*height: 35px;*/
+    height: 35px;
 }
 
 
@@ -236,21 +236,13 @@
 
 .fa-angle-right::before {
     content: "\f104" !important;
-
 }
 
-.has-search .form-control {
-    padding-right: 2.375rem !important;
-}
+/*---------------------------------------------------------*/
+/*--------------------- OVER RIDE CSS --------------------*/
+/*---------------------------------------------------------*/
 
-.form-floating > label {
-    right: 1.2%;
-}
-
-.invoices-table td:first-child {
-    padding-right: 2rem;
-}
-
-.invoices-table td:last-child {
-    padding-left: 2rem;
+html[dir="rtl"] [type="email"], [type="number"], [type="tel"], [type="url"] {
+    direction: ltr;
+    text-align: right;
 }

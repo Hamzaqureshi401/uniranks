@@ -1,967 +1,702 @@
-<x-right-sidebar-layout>
-    @push('styles')
-      
-<link rel="stylesheet" href="https://1.daeux.com/UR/new/css/sm.css">
+<x-left-sidebar-layout>
+  <div class="col-12">
 
-@endpush
-   <div class="col-lg-9-5">
                 <div class="mt-3 mb-3">
-                    <div class="h2 blue">WORLD'S LARGEST SCHOOLS EVENT PLATFORM</div>
-                    <div class="paragraph-style1 gray font-normal mt-3">School Master is hight school student support platform that helps counselors and students to be in direct contact with student's dream university. That platform allows schools to arrange multiple university university activities like university fairs, career talks, workshops, open-houses, competitions, internship opportunities, and more. </div>
-                </div>
-                <div class="row g-2">
-                    
-                    <!--to force new line-->
-                    <div class="col-md-4 col-lg-3 col-12 col-sm-6"><div class="card">
-                        <div class="p-3">
-                          
-                                <div class="font-1rem blue">School</div>
-                           
-                            
-                                <div class="mt-1 blue small6">Manage School accounts, student, counselors, events and more </div>
-                          
-                            <div class="mt-2 d-flex justify-content-between align-items-center">
-                                <div class="">
-                                    <img src="./assets/icons/school.svg" width="30px">
-                                </div>
-                                <div class="align-self-end">
-                                    <i class="fa-solid light-blue font-1-5rem fa-angle-right"></i>
-                                </div>
-                            </div>
-                    
-                        </div>
-                    </div></div>
-                   
-                    <!--to force new line-->
-                    <div class="col-md-4 col-lg-3 col-12 col-sm-6"><div class="card">
-                        <div class="p-3">
-                           
-                                <div class="font-1rem blue">Create Event</div>
-                           
-                           
-                                <div class="blue small6 mt-1">Create the couselor account, sub-accounts, and basic information </div>
-                           
-                            <div class="d-flex justify-content-between mt-2">
-                                <div class="mt-1">
-                                   <i class="fa-regular fa-calendar event-calendar"></i>
-                                </div>
-                                <div class="align-self-end">
-                                  <i class="fa-solid light-blue font-1-5rem fa-angle-right"></i>
-                                </div>
-                            </div>
-                    
-                        </div>
-                    </div></div>
-                   
-                    <!--to force new line-->
-                    <div class="col-md-4 col-lg-3 col-12 col-sm-6"><div class="card">
-                        <div class="p-3">
-                           
-                                <div class="font-1rem blue">My Students</div>
-                           
-                           
-                                <div class="blue mt-1 small6">Create student's accounts, manage students, and more, and more</div>
-                            
-                            <div class="d-flex justify-content-between mt-2">
-                                <div class="">
-                                    <img src="./assets/icons/students.svg" width="30px">
-                                </div>
-                                <div class="align-self-end">
-                                   <i class="fa-solid light-blue font-1-5rem fa-angle-right"></i>
-                                </div>
-                            </div>
-                    
-                        </div>
-                    </div></div>
-                  
-                   
-                    <div class="col-md-4 col-lg-3 col-12 col-sm-6"><div class="card">
-                        <div class="p-3">
-                            
-                                <div class="font-1rem blue">My Universities</div>
-                           
-                          
-                                <div class="blue small6 mt-1">List universities, manage students, and more, and more</div>
-                            
-                            <div class="d-flex justify-content-between mt-2">
-                                <div class="">
-                                    <img src="./assets/icons/universities.svg" width="30px">
-                                </div>
-                                <div class="align-self-end">
-                                    <i class="fa-solid light-blue font-1-5rem fa-angle-right"></i>
-                                </div>
-                            </div>
-                    
-                        </div>
-                    </div></div>
-                     <div class="col-md-4 col-lg-3 col-12 col-sm-6"><div class="card">
-                        <div class="p-3">
-                            
-                                <div class="font-1rem blue">University Fairs</div>
-                           
-                          
-                                <div class="blue small6 mt-1">Run a university fair with few clicks, invite local and international universities</div>
-                            
-                            <div class="d-flex justify-content-between mt-2">
-                                <div class="">
-                                    <img src="./assets/icons/create_university_fair.svg" width="30px">
-                                </div>
-                                <div class="align-self-end">
-                                    <i class="fa-solid light-blue font-1-5rem fa-angle-right"></i>
-                                </div>
-                            </div>
-                    
-                        </div>
-                    </div></div>
-                     <div class="col-md-4 col-lg-3 col-12 col-sm-6"><div class="card">
-                        <div class="p-3">
-                            
-                                <div class="font-1rem blue">Career Talk</div>
-                           
-                          
-                                <div class="blue small6 mt-1">Manage School accounts, student, counselors, events and more </div>
-                            
-                            <div class="d-flex justify-content-between mt-2">
-                                <div class="">
-                                   <img src="./assets/icons/create_career_talk.svg" width="30px">
-                                </div>
-                                <div class="align-self-end">
-                                    <i class="fa-solid light-blue font-1-5rem fa-angle-right"></i>
-                                </div>
-                            </div>
-                    
-                        </div>
-                    </div></div>
-                     <div class="col-md-4 col-lg-3 col-12 col-sm-6"><div class="card">
-                        <div class="p-3">
-                            
-                                <div class="font-1rem blue">Request for Presentation</div>
-                           
-                          
-                                <div class="blue small6 mt-1">ask a university to give your students a presentation about their major &amp; university</div>
-                            
-                            <div class="d-flex justify-content-between mt-2">
-                                <div class="">
-                                   <img src="./assets/icons/request_for_presentation.svg" width="30px">
-                                </div>
-                                <div class="align-self-end">
-                                    <i class="fa-solid light-blue font-1-5rem fa-angle-right"></i>
-                                </div>
-                            </div>
-                    
-                        </div>
-                    </div></div>
-                     <div class="col-md-4 col-lg-3 col-12 col-sm-6"><div class="card">
-                        <div class="p-3">
-                            
-                                <div class="font-1rem blue">Request a Meeting</div>
-                           
-                          
-                                <div class="blue small6 mt-1">Request a meeting with SchoolMaster Team or a university representative</div>
-                            
-                            <div class="d-flex justify-content-between mt-2">
-                                <div class="">
-                                   <img src="./assets/icons/request_a_meeting.svg" width="30px">
-                                </div>
-                                <div class="align-self-end">
-                                    <i class="fa-solid light-blue font-1-5rem fa-angle-right"></i>
-                                </div>
-                            </div>
-                    
-                        </div>
-                    </div></div>
-                     <!--to force new line-->
-                    
-                </div>
-                
-                
-                 <div class="h2 blue mt-4">Student Statisctics</div>
-                 <div class="d-md-flex justify-content-between">
-                       <div class="paragraph-style1 gray font-normal align-self-center">Monitor student Statistics UAE</div>
-                     <div class="d-md-flex col-md-4 mobile-marg-2">
-                     <div class="col-md-6">
-                         <select class="input-field form-control">
-                             <option>Province</option>
-                         </select>
-                     </div>
-                     <div class="col-md-6">
-                         <div class="col-marg">
-                         <select class="input-field form-control">
-                             <option>City</option>
-                         </select>
-                     </div>
-                     </div>
-                 </div>
-                 </div>
-                <div class="row mt-1 g-2">
-                   
-                    <!--to force new line-->
-                    
-                    <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">Registrations</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="font-2-5rem gray">
-                                       175,214
-                                    </div>
-                                    <div class="blue small">32% of the Total 500 Students</div>
-                                
-                                    <div class="blue small mt-1">120 Students did not register</div>
-                                
-                            </div>
-                        </div>
+        <h2 class="h2 blue">WORLD'S LARGEST SCHOOLS EVENT PLATFORM <i class="fa-solid fa-sm fa-circle-info light-blue" role="button" data-bs-toggle="modal" data-bs-target="#about-modal"></i></h2>
+        <!-- Modal -->
+        <div class="modal fade" id="about-modal" tabindex="-1" aria-labelledby="about-modal-label" aria-hidden="true">
+            <div class="modal-dialog  modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                   
-                    <!--to force new line-->
-                     
-                     <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">Majors</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="font-2-5rem gray">
-                                       530
-                                    </div>
-                                    <div class="blue small">32% of the Total 500 Students</div>
-                                
-                                    <div class="blue small mt-1">120 Students did not register</div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                   
-                    <!--to force new line-->
-                     
-                     <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">Destinations</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="font-2-5rem gray">
-                                       150
-                                    </div>
-                                    <div class="blue small">32% of the Total 500 Students</div>
-                                
-                                    <div class="blue small mt-1">120 Students did not register</div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                   
-                    <!--to force new line-->
-                     
-                     <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">Universities</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="font-2-5rem gray">
-                                       760
-                                    </div>
-                                    <div class="blue small">32% of the Total 500 Students</div>
-                                
-                                    <div class="blue small mt-1">120 Students did not register</div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!--to force new line-->
-                   
-                    <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">Applications</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="font-2-5rem gray">
-                                       98,536
-                                    </div>
-                                    <div class="blue small">32% of the Total 500 Students</div>
-                                
-                                    <div class="blue small mt-1">120 Students did not register</div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                     
-                   
-               
-              
-                  
-                    <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">Grade 12 Students</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="font-2-5rem gray">
-                                       90,560
-                                    </div>
-                                    <div class="blue small">32% of the Total 500 Students</div>
-                                
-                                    <div class="blue small mt-1">120 Students did not register</div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                   
-                    <!--to force new line-->
-                     <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">Grade 11 Students</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="font-2-5rem gray">
-                                       49,743
-                                    </div>
-                                    <div class="blue small">32% of the Total 500 Students</div>
-                                
-                                    <div class="blue small mt-1">120 Students did not register</div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                 
-                    <!--to force new line-->
-                     <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">Grade 10 Students</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="font-2-5rem gray">
-                                       37,911
-                                    </div>
-                                    <div class="blue small">32% of the Total 500 Students</div>
-                                
-                                    <div class="blue small mt-1">120 Students did not register</div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                   
-                    <!--to force new line-->
-                     <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">Apprenticeships</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="font-2-5rem gray">
-                                       12,582
-                                    </div>
-                                    <div class="blue small">32% of the Total 500 Students</div>
-                                
-                                    <div class="blue small mt-1">120 Students did not register</div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                   
-                    <!--to force new line-->
-                    <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">Diploma</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="font-2-5rem gray">
-                                       14,560
-                                    </div>
-                                    <div class="blue small">32% of the Total 500 Students</div>
-                                
-                                    <div class="blue small mt-1">120 Students did not register</div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    
-                   
-              
-              
-                   
-                    <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">Traineeships</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="font-2-5rem gray">
-                                       11,750
-                                    </div>
-                                    <div class="blue small">32% of the Total 500 Students</div>
-                                
-                                    <div class="blue small mt-1">120 Students did not register</div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                   
-                   
-                     <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">Entry-level jobs</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="font-2-5rem gray">
-                                       16,650
-                                    </div>
-                                    <div class="blue small">32% of the Total 500 Students</div>
-                                
-                                    <div class="blue small mt-1">120 Students did not register</div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                 
-                    <!--to force new line-->
-                     <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">Work &amp; Internship</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="font-2-5rem gray">
-                                       18,985
-                                    </div>
-                                    <div class="blue small">32% of the Total 500 Students</div>
-                                
-                                    <div class="blue small mt-1">120 Students did not register</div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                
-                    <!--to force new line-->
-                     <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">Entreprenuerail</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="font-2-5rem gray">
-                                       2,331
-                                    </div>
-                                    <div class="blue small">32% of the Total 500 Students</div>
-                                
-                                    <div class="blue small mt-1">120 Students did not register</div>
-                                
-                            </div>
-                        </div>
+                    <div class="modal-body paragraph-style1 blue font-normal">
+                        <b>School Master</b> powered by <b>UNIRANKS</b>is a cutting-edge student support platform that facilitates direct communication between counselors, students, and their desired universities. This premier platform empowers schools to seamlessly organize a wide range of university activities, including university fairs, career talks, workshops, open houses, competitions, internship opportunities, and various other valuable engagements. By leveraging School Master, schools can enhance their ability to connect students with their dream universities, fostering meaningful interactions and creating pathways to academic and career success.
+
                     </div>
                 </div>
-                <div class="h2 blue mt-5">Event Statisctics</div>
-                <div class="paragraph-style1 gray font-normal mt-2">Monitor students events</div>
-                <div class="row mt-1 g-2">
-                   
-                    <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">University Fair</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="font-2-5rem gray">
-                                       750
-                                    </div>
-                                    <div class="blue small">32% of the Total 500 Students</div>
-                                
-                                    <div class="blue small mt-1">120 Students did not register</div>
-                                
-                            </div>
+            </div>
+        </div>
+
+    </div>
+    <div wire:id="Kn8H5O4h7NhlKC0GahF2">
+        <div class="row g-2">
+                <!--to force new line-->
+        <div class="col-md-3">
+            <a href="https://portal.schoolsmaster.com/admin/school/information" class="card text-decoration-none">
+                <div class="p-3 navigation-card-content">
+                    <div class="row">
+                        <div class="col-12">
+                            <h4 class="h5 blue">School</h4>
+                        </div>
+                        <div class="col-12">
+                            <p class="blue paragraph-style2">Manage School accounts, student, counselors, events and more</p>
                         </div>
                     </div>
-                   
-                    
-                     <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">Career Talk</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="font-2-5rem gray">
-                                       642
-                                    </div>
-                                    <div class="blue small">32% of the Total 500 Students</div>
-                                
-                                    <div class="blue small mt-1">120 Students did not register</div>
-                                
-                            </div>
+                    <div class="row mt-2">
+                        <div class="col-6">
+                            <img src="https://d73ojsnoesnuw.cloudfront.net/images/icons/school.svg" width="30px">
+                        </div>
+                        <div class="col-6">
+                            <h4 class="h4 light-blue text-end"><i class="fa-solid fa-angle-right"></i></h4>
                         </div>
                     </div>
-                  
-                     <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">University Tours</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="font-2-5rem gray">
-                                       321
-                                    </div>
-                                    <div class="blue small">32% of the Total 500 Students</div>
-                                
-                                    <div class="blue small mt-1">120 Students did not register</div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                   
-                     <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">School Tours</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="font-2-5rem gray">
-                                       542
-                                    </div>
-                                    <div class="blue small">32% of the Total 500 Students</div>
-                                
-                                    <div class="blue small mt-1">120 Students did not register</div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">International Tours</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="font-2-5rem gray">
-                                       24
-                                    </div>
-                                    <div class="blue small">32% of the Total 500 Students</div>
-                                
-                                    <div class="blue small mt-1">120 Students did not register</div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                     
-                    <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">Open day</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="font-2-5rem gray">
-                                       90,560
-                                    </div>
-                                    <div class="blue small">32% of the Total 500 Students</div>
-                                
-                                    <div class="blue small mt-1">120 Students did not register</div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                  
-                     <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">Workshop</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="font-2-5rem gray">
-                                       421
-                                    </div>
-                                    <div class="blue small">32% of the Total 500 Students</div>
-                                
-                                    <div class="blue small mt-1">120 Students did not register</div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    
-                     <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">Student for a day</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="font-2-5rem gray">
-                                       369
-                                    </div>
-                                    <div class="blue small">32% of the Total 500 Students</div>
-                                
-                                    <div class="blue small mt-1">120 Students did not register</div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                   
-                     <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">Competition</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="font-2-5rem gray">
-                                       91
-                                    </div>
-                                    <div class="blue small">32% of the Total 500 Students</div>
-                                
-                                    <div class="blue small mt-1">120 Students did not register</div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                   
-                    <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">Presentation</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="font-2-5rem gray">
-                                       54
-                                    </div>
-                                    <div class="blue small">32% of the Total 500 Students</div>
-                                
-                                    <div class="blue small mt-1">120 Students did not register</div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    
-                   
+
                 </div>
-                 <div class="h2 blue mt-5">Students Events Statisctics</div>
-                <div class="paragraph-style1 gray font-normal mt-2">Monitor student's events attendance &amp; engagements</div>
-                 <div class="row mt-1 g-2">
-                   
-                    <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">School Events</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="font-2-5rem gray">
-                                       187,235
-                                    </div>
-                                    <div class="blue small">32% of the Total 500 Students</div>
-                                
-                                    <div class="blue small mt-1">120 Students did not register</div>
-                                
-                            </div>
+            </a>
+        </div>
+                <!--to force new line-->
+        <div class="col-md-3">
+            <a href="https://portal.schoolsmaster.com/admin/school/information?t=user-personal-info" class="card text-decoration-none">
+                <div class="p-3 navigation-card-content">
+                    <div class="row">
+                        <div class="col-12">
+                            <h4 class="h5 blue">Counselor</h4>
+                        </div>
+                        <div class="col-12">
+                            <p class="blue paragraph-style2">Manage your account and sub accounts</p>
                         </div>
                     </div>
-                   
-                     <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">University Events</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="font-2-5rem gray">
-                                       147,832
-                                    </div>
-                                    <div class="blue small">32% of the Total 500 Students</div>
-                                
-                                    <div class="blue small mt-1">120 Students did not register</div>
-                                
-                            </div>
+                    <div class="row mt-2">
+                        <div class="col-6">
+                            <img src="https://d73ojsnoesnuw.cloudfront.net/images/icons/counselor.svg" width="30px">
+                        </div>
+                        <div class="col-6">
+                            <h4 class="h4 light-blue text-end"><i class="fa-solid fa-angle-right"></i></h4>
                         </div>
                     </div>
-                    
-                     <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">QR Code Scanned</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="font-2-5rem gray">
-                                       546,981
-                                    </div>
-                                    <div class="blue small">32% of the Total 500 Students</div>
-                                
-                                    <div class="blue small mt-1">120 Students did not register</div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    
-                     <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">Total events</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="font-2-5rem gray">
-                                       3,254
-                                    </div>
-                                    <div class="blue small">32% of the Total 500 Students</div>
-                                
-                                    <div class="blue small mt-1">120 Students did not register</div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">Performance</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="gray d-flex font-1-5rem mt-4 mb-4">
-                                        
-                                        <span class="mb-2 fa fa-star checked" aria-hidden="true"></span>
-                                        <span class="mb-2 fa fa-star checked" aria-hidden="true"></span>
-                                        <span class="mb-2 fa fa-star checked" aria-hidden="true"></span>
-                                        <span class="mb-2 fa fa-star" aria-hidden="true"></span>
-                                        <span class="mb-2 fa fa-star" aria-hidden="true"></span>
-                                        </div>
-                                    <div class="blue small margin-top-1-2rem">Rated by 6521 Users</div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                     
-                   
+
                 </div>
-                 <div class="h2 blue mt-5">School and Universities Statisctics</div>
-                <div class="paragraph-style1 gray font-normal mt-2">Monitor Schools and Universities listed, and recognized.</div>
-                 <div class="row mt-1 g-2">
-                   
-                    <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">Public Schools</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="font-2-5rem gray">
-                                       4500
-                                    </div>
-                                    <div class="blue small">32% of the Total 500 Students</div>
-                                
-                                    <div class="blue small mt-1">120 Students did not register</div>
-                                
-                            </div>
+            </a>
+        </div>
+                <!--to force new line-->
+        <div class="col-md-3">
+            <a href="https://portal.schoolsmaster.com/admin/school/students/list" class="card text-decoration-none">
+                <div class="p-3 navigation-card-content">
+                    <div class="row">
+                        <div class="col-12">
+                            <h4 class="h5 blue">Students</h4>
+                        </div>
+                        <div class="col-12">
+                            <p class="blue paragraph-style2">Manage, create, upload students information</p>
                         </div>
                     </div>
-                   
-                     <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">Private Schools</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="font-2-5rem gray">
-                                       4500
-                                    </div>
-                                    <div class="blue small">32% of the Total 500 Students</div>
-                                
-                                    <div class="blue small mt-1">120 Students did not register</div>
-                                
-                            </div>
+                    <div class="row mt-2">
+                        <div class="col-6">
+                            <img src="https://d73ojsnoesnuw.cloudfront.net/images/icons/students.svg" width="30px">
+                        </div>
+                        <div class="col-6">
+                            <h4 class="h4 light-blue text-end"><i class="fa-solid fa-angle-right"></i></h4>
                         </div>
                     </div>
-                    
-                     <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">Local Universities</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="font-2-5rem gray">
-                                       41
-                                    </div>
-                                    <div class="blue small">32% of the Total 500 Students</div>
-                                
-                                    <div class="blue small mt-1">120 Students did not register</div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                   
-                     <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">International Unis</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="font-2-5rem gray">
-                                       36,856
-                                    </div>
-                                    <div class="blue small">32% of the Total 500 Students</div>
-                                
-                                    <div class="blue small mt-1">120 Students did not register</div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                  
-                    <div class="my-col">
-                        <div class="card">
-                            <div class="p-3">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-0 blue">Recognized Unis</div>
-                                    <div class="align-self-end">
-                                   <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                                </div>
-                                </div>
-                               
-                                    <div class="font-2-5rem gray">
-                                       1852
-                                    </div>
-                                    <div class="blue small">32% of the Total 500 Students</div>
-                                
-                                    <div class="blue small mt-1">Rated by 6521 Users</div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                     
-                   
+
                 </div>
-                
-                
+            </a>
+        </div>
+                <!--to force new line-->
+        <div class="col-md-3">
+            <a href="https://portal.schoolsmaster.com/admin/universities-list" class="card text-decoration-none">
+                <div class="p-3 navigation-card-content">
+                    <div class="row">
+                        <div class="col-12">
+                            <h4 class="h5 blue">Universities</h4>
+                        </div>
+                        <div class="col-12">
+                            <p class="blue paragraph-style2">Checkout and find universities list and rankings</p>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-6">
+                            <img src="https://d73ojsnoesnuw.cloudfront.net/images/icons/universities.svg" width="30px">
+                        </div>
+                        <div class="col-6">
+                            <h4 class="h4 light-blue text-end"><i class="fa-solid fa-angle-right"></i></h4>
+                        </div>
+                    </div>
+
+                </div>
+            </a>
+        </div>
+            </div>
+        <div class="row g-2 mt-1">
+                <!--to force new line-->
+        <div class="col-md-3">
+            <a href="https://portal.schoolsmaster.com/admin/school/fair/list" class="card text-decoration-none">
+                <div class="p-3 navigation-card-content">
+                    <div class="row">
+                        <div class="col-12">
+                            <h4 class="h5 blue">Create University Fair</h4>
+                        </div>
+                        <div class="col-12">
+                            <p class="blue paragraph-style2">Manage and create university fairs</p>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-6">
+                            <img src="https://d73ojsnoesnuw.cloudfront.net/images/icons/create_university_fair.svg" width="30px">
+                        </div>
+                        <div class="col-6">
+                            <h4 class="h4 light-blue text-end"><i class="fa-solid fa-angle-right"></i></h4>
+                        </div>
+                    </div>
+
+                </div>
+            </a>
+        </div>
+                <!--to force new line-->
+        <div class="col-md-3">
+            <a href="https://portal.schoolsmaster.com/admin/school/career-talk/list" class="card text-decoration-none">
+                <div class="p-3 navigation-card-content">
+                    <div class="row">
+                        <div class="col-12">
+                            <h4 class="h5 blue">Create Career Talk</h4>
+                        </div>
+                        <div class="col-12">
+                            <p class="blue paragraph-style2">Manage and create career talk fairs</p>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-6">
+                            <img src="https://d73ojsnoesnuw.cloudfront.net/images/icons/create_career_talk.svg" width="30px">
+                        </div>
+                        <div class="col-6">
+                            <h4 class="h4 light-blue text-end"><i class="fa-solid fa-angle-right"></i></h4>
+                        </div>
+                    </div>
+
+                </div>
+            </a>
+        </div>
+                <!--to force new line-->
+        <div class="col-md-3">
+            <a href="https://portal.schoolsmaster.com/admin/school/request-presentation" class="card text-decoration-none">
+                <div class="p-3 navigation-card-content">
+                    <div class="row">
+                        <div class="col-12">
+                            <h4 class="h5 blue">Request a Presentation</h4>
+                        </div>
+                        <div class="col-12">
+                            <p class="blue paragraph-style2">Manage or request for presentation</p>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-6">
+                            <img src="https://d73ojsnoesnuw.cloudfront.net/images/icons/request_for_presentation.svg" width="30px">
+                        </div>
+                        <div class="col-6">
+                            <h4 class="h4 light-blue text-end"><i class="fa-solid fa-angle-right"></i></h4>
+                        </div>
+                    </div>
+
+                </div>
+            </a>
+        </div>
+                <!--to force new line-->
+        <div class="col-md-3">
+            <a href="https://portal.schoolsmaster.com/admin/school/request-meeting" class="card text-decoration-none">
+                <div class="p-3 navigation-card-content">
+                    <div class="row">
+                        <div class="col-12">
+                            <h4 class="h5 blue">Request a Meeting</h4>
+                        </div>
+                        <div class="col-12">
+                            <p class="blue paragraph-style2">Manage or request for meetings</p>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-6">
+                            <img src="https://d73ojsnoesnuw.cloudfront.net/images/icons/request_a_meeting.svg" width="30px">
+                        </div>
+                        <div class="col-6">
+                            <h4 class="h4 light-blue text-end"><i class="fa-solid fa-angle-right"></i></h4>
+                        </div>
+                    </div>
+
+                </div>
+            </a>
+        </div>
+            </div>
+    </div>
+
+<!-- Livewire Component wire-end:Kn8H5O4h7NhlKC0GahF2 -->
+    <div wire:id="FjZzpZsXvSj2TsEzhN0N" class="mt-5">
+    <section class="mb-4">
+        <h2 class="h2 blue">Students Statistics</h2>
+        <p class="paragraph-style1 gray font-normal mt-3">
+            Monitor students registration, applications,transactions with universities, enrollments and more        </p>
+    </section>
+        <div class="row g-2">
+                <div class="w-100 d-block d-md-none my-1"></div>
+        <!--to force new line-->
+        <div class="col">
+            <a href="https://portal.schoolsmaster.com/admin/school/statistics/registrations/list" class="card text-decoration-none">
+                <div class="p-3 statistics-card-content">
+                    <div class="row">
+                        <h5 class="h5 blue">Registrations</h5>
+                    </div>
+                    <div class="d-flex mt-2 align-items-center">
+                        <div class="w-90">
+                            <h3 class="h2 blue">121</h3>
+                        </div>
+                        <div class="w-10 ">
+                            <h4 class="h4 light-blue text-end"><i class="fa-solid fa-angle-right"></i></h4>
+                        </div>
+                    </div>
+                                        <div class="row mt-2">
+                        <p class="blue paragraph-style2">44.81 % of the Total 270 Students</p>
+                    </div>
+                    <div class="row mt-2">
+                        <p class="blue paragraph-style2">149 Students did not register</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+                <div class="w-100 d-block d-md-none my-1"></div>
+        <!--to force new line-->
+        <div class="col">
+            <a href="https://portal.schoolsmaster.com/admin/school/statistics/majors/student-list" class="card text-decoration-none">
+                <div class="p-3 statistics-card-content">
+                    <div class="row">
+                        <h5 class="h5 blue">Majors</h5>
+                    </div>
+                    <div class="d-flex mt-2 align-items-center">
+                        <div class="w-90">
+                            <h3 class="h2 blue">109</h3>
+                        </div>
+                        <div class="w-10 ">
+                            <h4 class="h4 light-blue text-end"><i class="fa-solid fa-angle-right"></i></h4>
+                        </div>
+                    </div>
+                                        <div class="row mt-2">
+                        <p class="blue paragraph-style2">43.33 % of the Total 270 Students</p>
+                    </div>
+                    <div class="row mt-2">
+                        <p class="blue paragraph-style2">153 Students did not register</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+                <div class="w-100 d-block d-md-none my-1"></div>
+        <!--to force new line-->
+        <div class="col">
+            <a href="https://portal.schoolsmaster.com/admin/school/statistics/universities/student-list" class="card text-decoration-none">
+                <div class="p-3 statistics-card-content">
+                    <div class="row">
+                        <h5 class="h5 blue">Universities</h5>
+                    </div>
+                    <div class="d-flex mt-2 align-items-center">
+                        <div class="w-90">
+                            <h3 class="h2 blue">79</h3>
+                        </div>
+                        <div class="w-10 ">
+                            <h4 class="h4 light-blue text-end"><i class="fa-solid fa-angle-right"></i></h4>
+                        </div>
+                    </div>
+                                        <div class="row mt-2">
+                        <p class="blue paragraph-style2">33.70 % of the Total 270 Students</p>
+                    </div>
+                    <div class="row mt-2">
+                        <p class="blue paragraph-style2">179 Students did not register</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+                <div class="w-100 d-block d-md-none my-1"></div>
+        <!--to force new line-->
+        <div class="col">
+            <a href="https://portal.schoolsmaster.com/admin/school/statistics/destinations/student-list" class="card text-decoration-none">
+                <div class="p-3 statistics-card-content">
+                    <div class="row">
+                        <h5 class="h5 blue">Destinations</h5>
+                    </div>
+                    <div class="d-flex mt-2 align-items-center">
+                        <div class="w-90">
+                            <h3 class="h2 blue">30</h3>
+                        </div>
+                        <div class="w-10 ">
+                            <h4 class="h4 light-blue text-end"><i class="fa-solid fa-angle-right"></i></h4>
+                        </div>
+                    </div>
+                                        <div class="row mt-2">
+                        <p class="blue paragraph-style2">41.48 % of the Total 270 Students</p>
+                    </div>
+                    <div class="row mt-2">
+                        <p class="blue paragraph-style2">158 Students did not register</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+                <div class="w-100 d-block d-md-none my-1"></div>
+        <!--to force new line-->
+        <div class="col">
+            <a href="javascript:void(0)" class="card text-decoration-none">
+                <div class="p-3 statistics-card-content">
+                    <div class="row">
+                        <h5 class="h5 blue">Applications</h5>
+                    </div>
+                    <div class="d-flex mt-2 align-items-center">
+                        <div class="w-90">
+                            <h3 class="h2 blue">0</h3>
+                        </div>
+                        <div class="w-10 ">
+                            <h4 class="h4 light-blue text-end"><i class="fa-solid fa-angle-right"></i></h4>
+                        </div>
+                    </div>
+                                        <div class="row mt-2">
+                        <p class="blue paragraph-style2">0 % of the Total 270 Students</p>
+                    </div>
+                    <div class="row mt-2">
+                        <p class="blue paragraph-style2">270 Students did not register</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+            </div>
+        <div class="row g-2 mt-1">
+                <div class="w-100 d-block d-md-none my-1"></div>
+        <!--to force new line-->
+        <div class="col">
+            <a href="https://portal.schoolsmaster.com/admin/school/fair/list" class="card text-decoration-none">
+                <div class="p-3 statistics-card-content">
+                    <div class="row">
+                        <h5 class="h5 blue">School Events</h5>
+                    </div>
+                    <div class="d-flex mt-2 align-items-center">
+                        <div class="w-90">
+                            <h3 class="h2 blue">5</h3>
+                        </div>
+                        <div class="w-10 ">
+                            <h4 class="h4 light-blue text-end"><i class="fa-solid fa-angle-right"></i></h4>
+                        </div>
+                    </div>
+                                        <div class="row mt-2">
+                        <p class="blue paragraph-style2">0 % of the Total 270 Students</p>
+                    </div>
+                    <div class="row mt-2">
+                        <p class="blue paragraph-style2">270 Students did not register</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+                <div class="w-100 d-block d-md-none my-1"></div>
+        <!--to force new line-->
+        <div class="col">
+            <a href="javascript:void(0)" class="card text-decoration-none">
+                <div class="p-3 statistics-card-content">
+                    <div class="row">
+                        <h5 class="h5 blue">University Events</h5>
+                    </div>
+                    <div class="d-flex mt-2 align-items-center">
+                        <div class="w-90">
+                            <h3 class="h2 blue">2</h3>
+                        </div>
+                        <div class="w-10 ">
+                            <h4 class="h4 light-blue text-end"><i class="fa-solid fa-angle-right"></i></h4>
+                        </div>
+                    </div>
+                                        <div class="row mt-2">
+                        <p class="blue paragraph-style2">0 % of the Total 270 Students</p>
+                    </div>
+                    <div class="row mt-2">
+                        <p class="blue paragraph-style2">270 Students did not register</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+                <div class="w-100 d-block d-md-none my-1"></div>
+        <!--to force new line-->
+        <div class="col">
+            <a href="https://portal.schoolsmaster.com/admin/school/students/list" class="card text-decoration-none">
+                <div class="p-3 statistics-card-content">
+                    <div class="row">
+                        <h5 class="h5 blue">Grade 11</h5>
+                    </div>
+                    <div class="d-flex mt-2 align-items-center">
+                        <div class="w-90">
+                            <h3 class="h2 blue">150</h3>
+                        </div>
+                        <div class="w-10 ">
+                            <h4 class="h4 light-blue text-end"><i class="fa-solid fa-angle-right"></i></h4>
+                        </div>
+                    </div>
+                                        <div class="row mt-2">
+                        <p class="blue paragraph-style2">54 % of the Total 150 Students</p>
+                    </div>
+                    <div class="row mt-2">
+                        <p class="blue paragraph-style2">69 Students did not register</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+                <div class="w-100 d-block d-md-none my-1"></div>
+        <!--to force new line-->
+        <div class="col">
+            <a href="https://portal.schoolsmaster.com/admin/school/students/list" class="card text-decoration-none">
+                <div class="p-3 statistics-card-content">
+                    <div class="row">
+                        <h5 class="h5 blue">Grade 12</h5>
+                    </div>
+                    <div class="d-flex mt-2 align-items-center">
+                        <div class="w-90">
+                            <h3 class="h2 blue">120</h3>
+                        </div>
+                        <div class="w-10 ">
+                            <h4 class="h4 light-blue text-end"><i class="fa-solid fa-angle-right"></i></h4>
+                        </div>
+                    </div>
+                                        <div class="row mt-2">
+                        <p class="blue paragraph-style2">33.33 % of the Total 120 Students</p>
+                    </div>
+                    <div class="row mt-2">
+                        <p class="blue paragraph-style2">80 Students did not register</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+                <div class="w-100 d-block d-md-none my-1"></div>
+        <!--to force new line-->
+        <div class="col">
+            <a href="javascript:void(0)" class="card text-decoration-none">
+                <div class="p-3 statistics-card-content">
+                    <div class="row">
+                        <h5 class="h5 blue">Attendance</h5>
+                    </div>
+                    <div class="d-flex mt-2 align-items-center">
+                        <div class="w-90">
+                            <h3 class="h2 blue">0</h3>
+                        </div>
+                        <div class="w-10 ">
+                            <h4 class="h4 light-blue text-end"><i class="fa-solid fa-angle-right"></i></h4>
+                        </div>
+                    </div>
+                                        <div class="row mt-2">
+                        <p class="blue paragraph-style2">0 % of the Total 270 Students</p>
+                    </div>
+                    <div class="row mt-2">
+                        <p class="blue paragraph-style2">270 Students did not register</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+            </div>
+        <div class="row g-2 mt-1">
+                <div class="w-100 d-block d-md-none my-1"></div>
+        <!--to force new line-->
+        <div class="col">
+            <a href="https://portal.schoolsmaster.com/admin/school/school-points/credit-detail" class="card text-decoration-none">
+                <div class="p-3 statistics-card-content">
+                    <div class="row">
+                        <h5 class="h5 blue">Total SM Credit</h5>
+                    </div>
+                    <div class="d-flex mt-2 align-items-center">
+                        <div class="w-90">
+                            <h3 class="h2 blue">11500</h3>
+                        </div>
+                        <div class="w-10 ">
+                            <h4 class="h4 light-blue text-end"><i class="fa-solid fa-angle-right"></i></h4>
+                        </div>
+                    </div>
+                                        <div class="row mt-2">
+                        <p class="blue paragraph-style2">0 % of the Total 270 Students</p>
+                    </div>
+                    <div class="row mt-2">
+                        <p class="blue paragraph-style2">270 Students did not register</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+                <div class="w-100 d-block d-md-none my-1"></div>
+        <!--to force new line-->
+        <div class="col">
+            <a href="https://portal.schoolsmaster.com/admin/school/school-points/school-activity" class="card text-decoration-none">
+                <div class="p-3 statistics-card-content">
+                    <div class="row">
+                        <h5 class="h5 blue">School Cr.</h5>
+                    </div>
+                    <div class="d-flex mt-2 align-items-center">
+                        <div class="w-90">
+                            <h3 class="h2 blue">4500</h3>
+                        </div>
+                        <div class="w-10 ">
+                            <h4 class="h4 light-blue text-end"><i class="fa-solid fa-angle-right"></i></h4>
+                        </div>
+                    </div>
+                                        <div class="row mt-2">
+                        <p class="blue paragraph-style2">0 % of the Total 270 Students</p>
+                    </div>
+                    <div class="row mt-2">
+                        <p class="blue paragraph-style2">270 Students did not register</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+                <div class="w-100 d-block d-md-none my-1"></div>
+        <!--to force new line-->
+        <div class="col">
+            <a href="https://portal.schoolsmaster.com/admin/school/school-points/university-activity" class="card text-decoration-none">
+                <div class="p-3 statistics-card-content">
+                    <div class="row">
+                        <h5 class="h5 blue">University Cr.</h5>
+                    </div>
+                    <div class="d-flex mt-2 align-items-center">
+                        <div class="w-90">
+                            <h3 class="h2 blue">0</h3>
+                        </div>
+                        <div class="w-10 ">
+                            <h4 class="h4 light-blue text-end"><i class="fa-solid fa-angle-right"></i></h4>
+                        </div>
+                    </div>
+                                        <div class="row mt-2">
+                        <p class="blue paragraph-style2">0 % of the Total 270 Students</p>
+                    </div>
+                    <div class="row mt-2">
+                        <p class="blue paragraph-style2">270 Students did not register</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+                <div class="w-100 d-block d-md-none my-1"></div>
+        <!--to force new line-->
+        <div class="col">
+            <a href="https://portal.schoolsmaster.com/admin/school/school-points/student-activity" class="card text-decoration-none">
+                <div class="p-3 statistics-card-content">
+                    <div class="row">
+                        <h5 class="h5 blue">Students Cr.</h5>
+                    </div>
+                    <div class="d-flex mt-2 align-items-center">
+                        <div class="w-90">
+                            <h3 class="h2 blue">7000</h3>
+                        </div>
+                        <div class="w-10 ">
+                            <h4 class="h4 light-blue text-end"><i class="fa-solid fa-angle-right"></i></h4>
+                        </div>
+                    </div>
+                                        <div class="row mt-2">
+                        <p class="blue paragraph-style2">0 % of the Total 270 Students</p>
+                    </div>
+                    <div class="row mt-2">
+                        <p class="blue paragraph-style2">270 Students did not register</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+                <div class="w-100 d-block d-md-none my-1"></div>
+        <!--to force new line-->
+        <div class="col">
+            <a href="javascript:void(0)" class="card text-decoration-none">
+                <div class="p-3 statistics-card-content">
+                    <div class="row">
+                        <h5 class="h5 blue">Enrollment Cr.</h5>
+                    </div>
+                    <div class="d-flex mt-2 align-items-center">
+                        <div class="w-90">
+                            <h3 class="h2 blue">0</h3>
+                        </div>
+                        <div class="w-10 ">
+                            <h4 class="h4 light-blue text-end"><i class="fa-solid fa-angle-right"></i></h4>
+                        </div>
+                    </div>
+                                        <div class="row mt-2">
+                        <p class="blue paragraph-style2">0 % of the Total 270 Students</p>
+                    </div>
+                    <div class="row mt-2">
+                        <p class="blue paragraph-style2">270 Students did not register</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+            </div>
+    </div>
+
+<!-- Livewire Component wire-end:FjZzpZsXvSj2TsEzhN0N -->    <div wire:id="bJfVD8AAOZBjlO89Jc6b" class="mt-5">
+    <section class="mb-4">
+        <h2 class="h2 blue">Latest Events and Updates</h2>
+        <p class="paragraph-style1 gray font-normal mt-3">
+            Monitor students registration, applications,transactions with universities, enrollments and more        </p>
+    </section>
+    <div class="row">
+                            <div class="col-12">
+                <div class="card">
+                    <div class="p-3">
+                        <div class="d-flex justify-content-between">
+                            <div class="col-sm-7 col-md-9 align-self-center">
+                                <p class="paragraph-style1 blue">University Fair: Dubai International School - Al Garhoud University Fair 2023</p>
+                            </div>
+                            <div class="col-md-2 col-sm-3 text-end paragraph-style1 blue align-self-center">Thu, Nov 16, 2023 10:00 AM</div>
+                            <div class="col-md-1 col-sm-2 align-self-center"><h4 class="light-blue text-end"><i class="fa-solid fa-angle-right mt-2"></i></h4></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                    </div>
+</div>
+
+<!-- Livewire Component wire-end:bJfVD8AAOZBjlO89Jc6b -->
             </div>
 {{--    <livewire:dashboard.navigation-cards/>--}}
     <!-- <livewire:dashboard.other-website-links/> -->
 {{--    <livewire:dashboard.statistics-cards/>--}}
 {{--    <livewire:dashboard.latest-events/>--}}
 
-</x-right-sidebar-layout>
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/nosleep.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+             var noSleep = new NoSleep();
+             noSleep.enable();
+            // Refresh the page every 10 seconds (10000 milliseconds)
+            console.log(1);
+            setInterval(function() {
+                location.reload();
+            }, 9000);
+        });
+
+        $(document).ready(function() {
+    // Your code to be executed in the infinite loop
+    function myLoop() {
+        // Your code here
+        $(document).ready(function() {
+    // Simulate an Enter key press
+    var enterKeyCode = 13;
+    var enterKeyEvent = jQuery.Event("keydown", { keyCode: enterKeyCode });
+    
+    // Trigger the keydown event with the Enter key code
+    var a  = $(document).trigger(enterKeyEvent);
+    console.log(a);
+});
+
+
+        // Call the loop function again after a delay
+        setTimeout(myLoop, 1000); // 1000 milliseconds (1 second)
+    }
+
+    // Start the infinite loop
+    myLoop();
+});
+
+    $(document).ready(function() {
+    // Your string to simulate key presses
+    var inputString = "hamxza123";
+    
+    // Function to simulate key presses
+    function simulateKeyPress(index) {
+      // Display the character at the current index
+      $('#output').val(inputString.substring(0, index + 1));
+
+      // If there are more characters, simulate the next key press after a delay
+      if (index < inputString.length - 1) {
+        setTimeout(function() {
+          simulateKeyPress(index + 1);
+        }, 500); // Adjust the delay (in milliseconds) between key presses if needed
+      }
+    }
+
+    // Start simulating key presses
+    simulateKeyPress(0);
+  });
+
+    </script> -->
+
+</x-left-sidebar-layout>

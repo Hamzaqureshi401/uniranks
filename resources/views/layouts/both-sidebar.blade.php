@@ -7,12 +7,12 @@
             <livewire:pages.components.sidebar.left-sidebar/>
             <!-- Left Sidebar End -->
             <!-- Main Content -->
-            <div class="col-12 col-md-7  px-0">
+            <div class="col-12 col-md-9  px-0">
                 {{ $slot }}
             </div>
             <!-- end main content -->
             <!-- RIGHT SIDEBAR START -->
-          {{--   <livewire:pages.components.sidebar.right-sidebar/> --}} 
+          {{--   <livewire:pages.components.sidebar.right-sidebar/> --}}  
             <!-- RIGHT SIDEBAR CLOSED -->
         </div>
     </x-shared.general.main>

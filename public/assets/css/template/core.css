@@ -109,9 +109,9 @@
 }
 
 
-/*.nav-link {*/
-/*    color: var(--light) !important;*/
-/*}*/
+.nav-link {
+    color: var(--light) !important;
+}
 
 .shadow-sm {
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.25);
@@ -1333,8 +1333,8 @@ input:checked + .switch-slider:before {
 }
 
 /* .sort-table td i{
-	position: absolute;
-	right:0.25rem;
+    position: absolute;
+    right:0.25rem;
     color:#666;
     cursor: pointer;
 } */
@@ -1348,10 +1348,10 @@ input:checked + .switch-slider:before {
 }
 
 /* .sort-table td i.fa-caret-up{
-	top: 0.3rem
+    top: 0.3rem
 }
 .sort-table td i.fa-caret-down{
-	bottom: 0.3rem;
+    bottom: 0.3rem;
 } */
 .row-listing-new .tags {
     background-color: lightgray;
@@ -3403,8 +3403,8 @@ input:checked + .switch-slider:before {
 }
 
 /*.compare-universities-2 .card {*/
-/*	border: 1px solid lightgrey;*/
-/*	margin-top: 2rem;*/
+/*  border: 1px solid lightgrey;*/
+/*  margin-top: 2rem;*/
 /*}*/
 
 .compare-table span {
@@ -3528,8 +3528,8 @@ input:checked + .switch-slider:before {
 }
 
 /*.compare_div .compare-card-logo-div img {*/
-/*	width: 100%;*/
-/*	height: 6rem;*/
+/*  width: 100%;*/
+/*  height: 6rem;*/
 /*}*/
 
 .compare_div .card-body p {
@@ -3834,8 +3834,6 @@ input:checked + .switch-slider:before {
     justify-content: center;
     align-content: center;
 }
-
-
 
 @-webkit-keyframes blinker {
     from {
@@ -4341,7 +4339,7 @@ and (max-width: 1398px) {
     }
 
     .menu-item {
-        /*min-width: 250px !important;*/
+/*        min-width: 250px !important;*/
     }
 
     .exhibition-img {
@@ -4405,7 +4403,7 @@ and (max-width: 1200px) {
     }
 
     .menu-item {
-        /*min-width: 220px !important;*/
+/*        min-width: 220px !important;*/
     }
 
     .exhibition-img {
@@ -4416,6 +4414,13 @@ and (max-width: 1200px) {
         width: 260px !important;
     }
 
+}
+
+@media only screen
+and (max-width: 750px){
+.col-2.dropdown.menu-item{
+    display: none;
+}
 }
 
 
@@ -4992,25 +4997,7 @@ and (max-width: 720px) {
 
 /*end auth card*/
 
-/*Breadcrumb bar*/
 
-.breadcrumb-bar {
-    margin-top: 4.35rem;
-    background: var(--light-primary);
-    color: white;
-    height: 80px;
-    display: flex;
-    align-items: center;
-}
-
-@media only screen and (max-width: 1000px) {
-    .breadcrumb-bar {
-        /*margin-top: 5rem;*/
-        display: none;
-    }
-}
-
-/*Breadcrumb bar*/
 
 
 
