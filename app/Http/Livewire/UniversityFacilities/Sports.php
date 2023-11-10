@@ -10,7 +10,7 @@ use App\Models\University\Facility\UniversityFacilityAthletic;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-class Sports extends Component
+class Sports extends Component 
 {
     use WithFileUploads;
     public $photos = [];
@@ -34,6 +34,7 @@ class Sports extends Component
     public $sports;
     public $update_details = 0;
     protected $queryString = ['item_id' => ['except' => '', 'as' => 'facility'], 'update_details' => ['except' => 0]];
+    
 
     public function mount()
     {

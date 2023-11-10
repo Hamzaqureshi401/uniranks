@@ -50,6 +50,16 @@ body {
 .primary-text {
     color: var(--primary) !important;
 }
+ .full-width-divider {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        height: 1px;
+    }
+
+    .menu-item a {
+        white-space: normal !important;
+    }
 
 .secondary-text {
     color: var(--secondary-blue) !important;
@@ -1648,6 +1658,9 @@ small {
 .low-footer {
     margin-left: 20px !important;
     margin-right: 20px !important;
+}
+.mr-8{
+    margin-left: 8px;
 }
 
 .option-color {
