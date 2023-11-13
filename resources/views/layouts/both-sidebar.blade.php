@@ -7,7 +7,10 @@
             <livewire:pages.components.sidebar.left-sidebar/>
             <!-- Left Sidebar End -->
             <!-- Main Content -->
-            <div class="col-12 col-md-9  px-0">
+            <div class="col-12 col-md-9  px-0"> 
+                <!-- disable above if want to use right side bar -->
+                <!-- <div class="col-12 px-0"> -->
+            
                 {{ $slot }}
             </div>
             <!-- end main content -->

@@ -1537,6 +1537,16 @@ select {
     padding: .7rem !important;
 }
 
+.row-h {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(var(--bs-gutter-y) * -1);
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
 .small,
 small {
     font-size: 0.7em;
