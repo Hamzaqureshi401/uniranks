@@ -107,8 +107,8 @@
                         </div>
                     </div>
                     <div class="col-md-5 mt-3">
-                        <div class="form-floating w-100" wire:ignore wire:key="created_date">
-                            <input x-model="created_date" x-ref="created_date" class="form-control input-field"
+                        <div class="form-floating w-100">
+                            <input type="date" wire:model.defer="lab_information.created_date" x-ref="created_date" class="form-control input-field"
                                    placeholder="@lang('Created or Renewed Date')">
                             <label for="floatingInput">@lang('Created or Renewed Date')</label>
                         </div>

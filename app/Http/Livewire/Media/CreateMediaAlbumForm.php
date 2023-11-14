@@ -22,7 +22,8 @@ class CreateMediaAlbumForm extends Component
         $this->initForm();
     }
 
-    private function initForm(){
+    public function initForm(){
+        
         $this->names = [];
         $this->translations = [];
         $this->details = [];

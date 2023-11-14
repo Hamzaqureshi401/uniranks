@@ -71,6 +71,9 @@ class Labs extends Component
             'descriptions' => ['array', 'required', 'min:1'],
             'lab_information' => ['array', 'required'],
             'lab_information.*' => ['present'],
+            'lab_information.student_capacity' => ['required'],
+            'lab_information.size' => ['required'],
+            'lab_information.created_date' => ['required'],
         ];
     }
 
@@ -78,14 +81,17 @@ class Labs extends Component
     {
         $this->validate();
         $data = ['name' => $this->names[0], 'translated_name' => [], 'created_by_id' => \Auth::id(), 'description' => []];
+
         foreach ($this->translations as $key => $lang) {
             $data['description'][$lang] = $this->descriptions[$key];
             $data['translated_name'][$lang] = $this->names[$key];
         }
+
         $data = array_merge($data, $this->lab_information);
         if ($this->update_details == 1) {
             $this->selected_item->update($data);
         } else {
+            //dd($data);
             \Auth::user()->selected_university->facilityLabs()->create($data);
         }
         $this->update_details = 0;

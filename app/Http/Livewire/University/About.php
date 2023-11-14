@@ -19,8 +19,9 @@ class About extends Component
         $this->initForm();
     }
 
-    private function initForm()
+    public function initForm()
     {
+        //dd(1);
         $uni = \Auth::user()->selected_university;
         $uni->refresh();
 //        dd($uni->getTranslations('description'));
@@ -31,7 +32,7 @@ class About extends Component
     }
 
     public function addDetailsInOtherLanguage()
-    {
+    { 
         ++$this->details_in_langs;
     }
 

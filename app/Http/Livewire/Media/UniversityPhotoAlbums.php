@@ -32,6 +32,10 @@ class UniversityPhotoAlbums extends Component
         $this->loadAlbumData();
     }
 
+    public function initForm(){
+        
+    }
+
     public function render()
     {
         return view('livewire.media.university-photo-albums');
