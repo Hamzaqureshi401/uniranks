@@ -31,6 +31,7 @@ use App\Models\User\UserPreference;
 use App\Models\User\UserRecommendationLetter;
 use App\Models\User\UserRole;
 use App\Models\User\UserSchool;
+use App\Models\User\UserApplication;
 use App\Models\User\UserSessionsHistory;
 use App\Models\User\UserStudyDestination;
 use App\Notifications\User\RestPasswordNotification;
@@ -257,6 +258,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function selected_university(): BelongsTo
     {
         return $this->belongsTo(University::class, 'campus_id');
+    }
+
+    public function userApplication(){
+        return $this->hasMany(UserApplication::class);
     }
 
 

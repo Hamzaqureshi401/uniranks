@@ -72,6 +72,9 @@ body {
 .secondary-bg {
     background: var(--secondary-blue) !important;
 }
+.my-col {
+    flex: 0 0 20%;
+}
 
 
 html {
@@ -278,6 +281,10 @@ button {
 .h2 {
     font-size: 2rem;
     line-height: 2rem;
+}
+.h22 {
+    font-size: 2rem;
+    line-height: 1rem;
 }
 
 .h3 {
@@ -1552,9 +1559,12 @@ small {
     font-size: 0.7em;
 }
 
+.small20 {
+    font-size: 0.6rem;
+}
 
 .small6 {
-    font-size: 0.9em;
+    font-size: 0.65rem;
 }
 
 .small4 {
