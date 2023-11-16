@@ -309,6 +309,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Major::class, UserMajor::class);
     }
 
+    public function UserMajors(): HasMany
+    {
+        return $this->hasMany(UserMajor::class);
+    }
+
     /**
      * @return BelongsToMany
      */
@@ -323,6 +328,16 @@ class User extends Authenticatable implements MustVerifyEmail
     public function preferredUniversities(): BelongsToMany
     {
         return $this->belongsToMany(University::class, UserPossibleUniversity::class);
+    }
+
+     public function UserPossibleUniversities(): HasMany
+    {
+        return $this->hasMany(UserPossibleUniversity::class);
+    }
+
+    public function UserStudyDestination(): HasMany
+    {
+        return $this->hasMany(UserStudyDestination::class);
     }
 
     public function roles(): BelongsToMany
