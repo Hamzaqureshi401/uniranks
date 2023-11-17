@@ -1,7 +1,7 @@
 <div class="col-lg-12">
    <div class="mt-3 mb-3">
-      <div class="h2 blue">WORLD'S LARGEST SCHOOLS EVENT PLATFORM<span class="badge rounded-pill align-right" style="background-color: #039be5;">i</span></div>
-      <div class="paragraph-style1 gray font-normal mt-3">School Master is hight school student support platform that helps counselors and students to be in direct contact with student's dream university. That platform allows schools to arrange multiple university university activities like university fairs, career talks, workshops, open-houses, competitions, internship opportunities, and more. </div>
+      <div class="h2 blue">WORLD'S LARGEST SCHOOLS EVENT PLATFORM<i class="fa-solid fa-sm fa-circle-info light-blue" role="button" data-bs-toggle="modal" data-bs-target="#about-modal"></i></div>
+      <!-- <div class="paragraph-style1 gray font-normal mt-3"></div> -->
    </div>
    <div class="row g-2">
       <!--to force new line-->
@@ -267,28 +267,17 @@
          </div>
       </div>
    </div>
-   @if (!function_exists('calculatePercentage'))
-   @php
-   function calculatePercentage($value, $total): string {
-   if ($total > 0) {
-   return number_format(($value / $total) * 100, 1);
-   } else {
-   return '0';
-   }
-   }
-   @endphp
-   @endif
    <!-- Your HTML content using the calculatePercentage function -->
    <!-- ... -->
    <div class="row mt-1 g-2">
       <!--to force new line-->
-      @foreach($data as $value)
+      @foreach($student_statistics as $value)
       <div class="col-3">
          <div class="card">
             <div class="p-3 statistics-card-content">
                <div class="d-flex justify-content-between">
                   <h5 class="h5 blue">{{ $value['title'] }}</h5>
-                  <h4 class="h4 light-Registrations text-end"><i class="fa-solid fa-angle-right"></i></h4>
+                  
                </div>
                <div class="row mt-2 align-items-center">
                   <div class="col-12">
@@ -300,492 +289,206 @@
                      $value['percentage'] }} 
                   </p>
                </div>
-               <div class="blue small mt-1">
+               <div class="row">
+                  <div class="col-10">
+                      <div class="blue small mt-1">
                   {{ $value['sub-title'] }}
+
                </div>
+                  </div>
+                  <div class="col-2">
+                     <div class="align-self-end">
+                     <i class="fa-solid light-blue font-1-5rem fa-angle-right"></i>
+                  </div>
+                     
+                  </div>
+               </div>
+              
+               
             </div>
          </div>
       </div>
 
       @endforeach
       <!--to force new line-->
-      <div class="my-col">
-         <div class="card">
-            <div class="p-3">
-               <div class="d-flex justify-content-between">
-                  <div class="mb-0 blue">Grade 10 Students</div>
-                  <div class="align-self-end">
-                     <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                  </div>
-               </div>
-               <div class="font-2-5rem gray">
-                  0
-               </div>
-               <div class="blue small">0% of the Total 0 Students</div>
-               <div class="blue small mt-1">0 Students did not register</div>
-            </div>
-         </div>
-      </div>
-      <!--to force new line-->
-      <div class="my-col">
-         <div class="card">
-            <div class="p-3">
-               <div class="d-flex justify-content-between">
-                  <div class="mb-0 blue">Apprenticeships</div>
-                  <div class="align-self-end">
-                     <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                  </div>
-               </div>
-               <div class="font-2-5rem gray">
-                  0
-               </div>
-               <div class="blue small">0% of the Total 0 Students</div>
-               <div class="blue small mt-1">0 Students did not register</div>
-            </div>
-         </div>
-      </div>
-      <!--to force new line-->
-      <div class="my-col">
-         <div class="card">
-            <div class="p-3">
-               <div class="d-flex justify-content-between">
-                  <div class="mb-0 blue">Diploma</div>
-                  <div class="align-self-end">
-                     <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                  </div>
-               </div>
-               <div class="font-2-5rem gray">
-                  0
-               </div>
-               <div class="blue small">0% of the Total 0 Students</div>
-               <div class="blue small mt-1">0 Students did not register</div>
-            </div>
-         </div>
-      </div>
-      <div class="my-col">
-         <div class="card">
-            <div class="p-3">
-               <div class="d-flex justify-content-between">
-                  <div class="mb-0 blue">Traineeships</div>
-                  <div class="align-self-end">
-                     <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                  </div>
-               </div>
-               <div class="font-2-5rem gray">
-                  0
-               </div>
-               <div class="blue small">0% of the Total 0 Students</div>
-               <div class="blue small mt-1">0 Students did not register</div>
-            </div>
-         </div>
-      </div>
-      <div class="my-col">
-         <div class="card">
-            <div class="p-3">
-               <div class="d-flex justify-content-between">
-                  <div class="mb-0 blue">Entry-level jobs</div>
-                  <div class="align-self-end">
-                     <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                  </div>
-               </div>
-               <div class="font-2-5rem gray">
-                  0
-               </div>
-               <div class="blue small">0% of the Total 0 Students</div>
-               <div class="blue small mt-1">0 Students did not register</div>
-            </div>
-         </div>
-      </div>
-      <!--to force new line-->
-      <div class="my-col">
-         <div class="card">
-            <div class="p-3">
-               <div class="d-flex justify-content-between">
-                  <div class="mb-0 blue">Work &amp; Internship</div>
-                  <div class="align-self-end">
-                     <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                  </div>
-               </div>
-               <div class="font-2-5rem gray">
-                  0
-               </div>
-               <div class="blue small">0% of the Total 0 Students</div>
-               <div class="blue small mt-1">0 Students did not register</div>
-            </div>
-         </div>
-      </div>
-      <!--to force new line-->
-      <div class="my-col">
-         <div class="card">
-            <div class="p-3">
-               <div class="d-flex justify-content-between">
-                  <div class="mb-0 blue">Entreprenuerail</div>
-                  <div class="align-self-end">
-                     <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                  </div>
-               </div>
-               <div class="font-2-5rem gray">
-                  0
-               </div>
-               <div class="blue small">0% of the Total 0 Students</div>
-               <div class="blue small mt-1">0 Students did not register</div>
-            </div>
-         </div>
-      </div>
-   </div>
+      
    <div class="h22 blue mt-5">Event Statisctics</div>
    <div class="paragraph-style1 gray font-normal mt-2">Monitor students events</div>
    <div class="row mt-1 g-2">
-      <div class="my-col">
+       @foreach($event_statistics as $value)
+      <div class="col-3">
          <div class="card">
-            <div class="p-3">
+            <div class="p-3 statistics-card-content">
                <div class="d-flex justify-content-between">
-                  <div class="mb-0 blue">University Fair</div>
-                  <div class="align-self-end">
-                     <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
+                  <h5 class="h5 blue">{{ $value['title'] }}</h5>
+                  <!-- <h4 class="h4 light-Registrations text-end"><i class="fa-solid fa-angle-right"></i></h4>
+                --></div>
+               <div class="row mt-2 align-items-center">
+                  <div class="col-12">
+                     <h3 class="h2 blue">{{ $value['title_count'] }}</h3>
                   </div>
                </div>
-               <div class="font-2-5rem gray">
-                  750
+               <div class="row mt-2">
+                  <p class="blue paragraph-style2"> {{ 
+                     $value['percentage'] }} 
+                  </p>
                </div>
-               <div class="blue small">32% of the Total 500 Students</div>
-               <div class="blue small mt-1">120 Students did not register</div>
+              <div class="row">
+                  <div class="col-10">
+                      <div class="blue small mt-1">
+                  {{ $value['sub-title'] }}
+
+               </div>
+                  </div>
+                  <div class="col-2">
+                     <div class="align-self-end">
+                     <i class="fa-solid light-blue font-1-5rem fa-angle-right"></i>
+                  </div>
+                     
+                  </div>
+               </div>
             </div>
          </div>
       </div>
-      <div class="my-col">
-         <div class="card">
-            <div class="p-3">
-               <div class="d-flex justify-content-between">
-                  <div class="mb-0 blue">Career Talk</div>
-                  <div class="align-self-end">
-                     <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                  </div>
-               </div>
-               <div class="font-2-5rem gray">
-                  642
-               </div>
-               <div class="blue small">32% of the Total 500 Students</div>
-               <div class="blue small mt-1">120 Students did not register</div>
-            </div>
-         </div>
-      </div>
-      <div class="my-col">
-         <div class="card">
-            <div class="p-3">
-               <div class="d-flex justify-content-between">
-                  <div class="mb-0 blue">University Tours</div>
-                  <div class="align-self-end">
-                     <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                  </div>
-               </div>
-               <div class="font-2-5rem gray">
-                  321
-               </div>
-               <div class="blue small">32% of the Total 500 Students</div>
-               <div class="blue small mt-1">120 Students did not register</div>
-            </div>
-         </div>
-      </div>
-      <div class="my-col">
-         <div class="card">
-            <div class="p-3">
-               <div class="d-flex justify-content-between">
-                  <div class="mb-0 blue">School Tours</div>
-                  <div class="align-self-end">
-                     <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                  </div>
-               </div>
-               <div class="font-2-5rem gray">
-                  542
-               </div>
-               <div class="blue small">32% of the Total 500 Students</div>
-               <div class="blue small mt-1">120 Students did not register</div>
-            </div>
-         </div>
-      </div>
-      <div class="my-col">
-         <div class="card">
-            <div class="p-3">
-               <div class="d-flex justify-content-between">
-                  <div class="mb-0 blue">International Tours</div>
-                  <div class="align-self-end">
-                     <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                  </div>
-               </div>
-               <div class="font-2-5rem gray">
-                  24
-               </div>
-               <div class="blue small">32% of the Total 500 Students</div>
-               <div class="blue small mt-1">120 Students did not register</div>
-            </div>
-         </div>
-      </div>
-      <div class="my-col">
-         <div class="card">
-            <div class="p-3">
-               <div class="d-flex justify-content-between">
-                  <div class="mb-0 blue">Open day</div>
-                  <div class="align-self-end">
-                     <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                  </div>
-               </div>
-               <div class="font-2-5rem gray">
-                  90,560
-               </div>
-               <div class="blue small">32% of the Total 500 Students</div>
-               <div class="blue small mt-1">120 Students did not register</div>
-            </div>
-         </div>
-      </div>
-      <div class="my-col">
-         <div class="card">
-            <div class="p-3">
-               <div class="d-flex justify-content-between">
-                  <div class="mb-0 blue">Workshop</div>
-                  <div class="align-self-end">
-                     <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                  </div>
-               </div>
-               <div class="font-2-5rem gray">
-                  421
-               </div>
-               <div class="blue small">32% of the Total 500 Students</div>
-               <div class="blue small mt-1">120 Students did not register</div>
-            </div>
-         </div>
-      </div>
-      <div class="my-col">
-         <div class="card">
-            <div class="p-3">
-               <div class="d-flex justify-content-between">
-                  <div class="mb-0 blue">Student for a day</div>
-                  <div class="align-self-end">
-                     <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                  </div>
-               </div>
-               <div class="font-2-5rem gray">
-                  369
-               </div>
-               <div class="blue small">32% of the Total 500 Students</div>
-               <div class="blue small mt-1">120 Students did not register</div>
-            </div>
-         </div>
-      </div>
-      <div class="my-col">
-         <div class="card">
-            <div class="p-3">
-               <div class="d-flex justify-content-between">
-                  <div class="mb-0 blue">Competition</div>
-                  <div class="align-self-end">
-                     <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                  </div>
-               </div>
-               <div class="font-2-5rem gray">
-                  91
-               </div>
-               <div class="blue small">32% of the Total 500 Students</div>
-               <div class="blue small mt-1">120 Students did not register</div>
-            </div>
-         </div>
-      </div>
-      <div class="my-col">
-         <div class="card">
-            <div class="p-3">
-               <div class="d-flex justify-content-between">
-                  <div class="mb-0 blue">Presentation</div>
-                  <div class="align-self-end">
-                     <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                  </div>
-               </div>
-               <div class="font-2-5rem gray">
-                  54
-               </div>
-               <div class="blue small">32% of the Total 500 Students</div>
-               <div class="blue small mt-1">120 Students did not register</div>
-            </div>
-         </div>
-      </div>
+
+      @endforeach
    </div>
    <div class="h22 blue mt-5">Students Events Statisctics</div>
    <div class="paragraph-style1 gray font-normal mt-2">Monitor student's events attendance &amp; engagements</div>
    <div class="row mt-1 g-2">
-      <div class="my-col">
+      
+        @foreach($students_events_statisctics as $value)
+      <div class="col-3">
          <div class="card">
-            <div class="p-3">
+            <div class="p-3 statistics-card-content">
                <div class="d-flex justify-content-between">
-                  <div class="mb-0 blue">School Events</div>
-                  <div class="align-self-end">
-                     <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
+                  <h5 class="h5 blue">{{ $value['title'] }}</h5>
+                  <!-- <h4 class="h4 light-Registrations text-end"><i class="fa-solid fa-angle-right"></i></h4>
+                --></div>
+               <div class="row mt-2 align-items-center">
+                  <div class="col-12">
+                     <h3 class="h2 blue">{{ $value['title_count'] }}</h3>
                   </div>
                </div>
-               <div class="font-2-5rem gray">
-                  187,235
+               <div class="row mt-2">
+                  <p class="blue paragraph-style2"> {{ 
+                     $value['percentage'] }} 
+                  </p>
                </div>
-               <div class="blue small">32% of the Total 500 Students</div>
-               <div class="blue small mt-1">120 Students did not register</div>
+               <div class="row">
+                  <div class="col-10">
+                      <div class="blue small mt-1">
+                  {{ $value['sub-title'] }}
+
+               </div>
+                  </div>
+                  <div class="col-2">
+                     <div class="align-self-end">
+                     <i class="fa-solid light-blue font-1-5rem fa-angle-right"></i>
+                  </div>
+                     
+                  </div>
+               </div>
             </div>
          </div>
       </div>
-      <div class="my-col">
+
+      @endforeach
+
+
+       <div class="col-3">
          <div class="card">
-            <div class="p-3">
+            <div class="p-3 statistics-card-content">
                <div class="d-flex justify-content-between">
-                  <div class="mb-0 blue">University Events</div>
-                  <div class="align-self-end">
-                     <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                  </div>
-               </div>
-               <div class="font-2-5rem gray">
-                  147,832
-               </div>
-               <div class="blue small">32% of the Total 500 Students</div>
-               <div class="blue small mt-1">120 Students did not register</div>
-            </div>
-         </div>
-      </div>
-      <div class="my-col">
-         <div class="card">
-            <div class="p-3">
-               <div class="d-flex justify-content-between">
-                  <div class="mb-0 blue">QR Code Scanned</div>
-                  <div class="align-self-end">
-                     <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                  </div>
-               </div>
-               <div class="font-2-5rem gray">
-                  546,981
-               </div>
-               <div class="blue small">32% of the Total 500 Students</div>
-               <div class="blue small mt-1">120 Students did not register</div>
-            </div>
-         </div>
-      </div>
-      <div class="my-col">
-         <div class="card">
-            <div class="p-3">
-               <div class="d-flex justify-content-between">
-                  <div class="mb-0 blue">Total events</div>
-                  <div class="align-self-end">
-                     <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                  </div>
-               </div>
-               <div class="font-2-5rem gray">
-                  3,254
-               </div>
-               <div class="blue small">32% of the Total 500 Students</div>
-               <div class="blue small mt-1">120 Students did not register</div>
-            </div>
-         </div>
-      </div>
-      <div class="my-col">
-         <div class="card">
-            <div class="p-3">
-               <div class="d-flex justify-content-between">
-                  <div class="mb-0 blue">Performance</div>
-                  <div class="align-self-end">
-                     <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                  </div>
-               </div>
-               <div class="gray d-flex font-1-5rem mt-4 mb-4">
-                  <span class="mb-2 fa fa-star checked" aria-hidden="true"></span>
+                  <h5 class="h5 blue">{{ 'Performance' }}</h5>
+                 <!--  <h4 class="h4 light-Registrations text-end"><i class="fa-solid fa-angle-right"></i></h4>
+                --></div>
+               <div class="row mt-2 align-items-center">
+                  <div class="col-12">
+                     <span class="mb-2 fa fa-star checked" aria-hidden="true"></span>
                   <span class="mb-2 fa fa-star checked" aria-hidden="true"></span>
                   <span class="mb-2 fa fa-star checked" aria-hidden="true"></span>
                   <span class="mb-2 fa fa-star" aria-hidden="true"></span>
-                  <span class="mb-2 fa fa-star" aria-hidden="true"></span>
+                  <span class="mb-2 fa fa-star" aria-hidden="true"></span> 
                </div>
-               <div class="blue small margin-top-1-2rem">Rated by 6521 Users</div>
+               </div>
+               <!-- <div class="row mt-2">
+                  <p class="blue paragraph-style2"> 
+                  </p>
+               </div> -->
+                <div class="row">
+                  <div class="col-10">
+                      <div class="blue small mt-1">
+                   {{ 'Rated by 6521 Users' }}
+               
+
+               </div>
+                  </div>
+                  <div class="col-2">
+                     <div class="align-self-end">
+                     <i class="fa-solid light-blue font-1-5rem fa-angle-right"></i>
+                  </div>
+                     
+                  </div>
+               </div>
             </div>
          </div>
       </div>
+
+      
    </div>
    <div class="h2 blue mt-5">School and Universities Statisctics</div>
    <div class="paragraph-style1 gray font-normal mt-2">Monitor Schools and Universities listed, and recognized.</div>
    <div class="row mt-1 g-2">
-      <div class="my-col">
+      @foreach($school_and_universities_statisctics as $value)
+      <div class="col-3">
          <div class="card">
-            <div class="p-3">
+            <div class="p-3 statistics-card-content">
                <div class="d-flex justify-content-between">
-                  <div class="mb-0 blue">Public Schools</div>
-                  <div class="align-self-end">
-                     <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
+                  <h5 class="h5 blue">{{ $value['title'] }}</h5>
+                 <!--  <h4 class="h4 light-Registrations text-end"><i class="fa-solid fa-angle-right"></i></h4>
+                --></div>
+               <div class="row mt-2 align-items-center">
+                  <div class="col-12">
+                     <h3 class="h2 blue">{{ $value['title_count'] }}</h3>
                   </div>
                </div>
-               <div class="font-2-5rem gray">
-                  4500
+               <div class="row mt-2">
+                  <p class="blue paragraph-style2"> {{ 
+                     $value['percentage'] }} 
+                  </p>
                </div>
-               <div class="blue small">32% of the Total 500 Students</div>
-               <div class="blue small mt-1">120 Students did not register</div>
+               <div class="row">
+                  <div class="col-10">
+                      <div class="blue small mt-1">
+                  {{ $value['sub-title'] }}
+
+               </div>
+                  </div>
+                  <div class="col-2">
+                     <div class="align-self-end">
+                     <i class="fa-solid light-blue font-1-5rem fa-angle-right"></i>
+                  </div>
+                     
+                  </div>
+               </div>
             </div>
          </div>
       </div>
-      <div class="my-col">
-         <div class="card">
-            <div class="p-3">
-               <div class="d-flex justify-content-between">
-                  <div class="mb-0 blue">Private Schools</div>
-                  <div class="align-self-end">
-                     <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                  </div>
-               </div>
-               <div class="font-2-5rem gray">
-                  4500
-               </div>
-               <div class="blue small">32% of the Total 500 Students</div>
-               <div class="blue small mt-1">120 Students did not register</div>
-            </div>
-         </div>
-      </div>
-      <div class="my-col">
-         <div class="card">
-            <div class="p-3">
-               <div class="d-flex justify-content-between">
-                  <div class="mb-0 blue">Local Universities</div>
-                  <div class="align-self-end">
-                     <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                  </div>
-               </div>
-               <div class="font-2-5rem gray">
-                  41
-               </div>
-               <div class="blue small">32% of the Total 500 Students</div>
-               <div class="blue small mt-1">120 Students did not register</div>
-            </div>
-         </div>
-      </div>
-      <div class="my-col">
-         <div class="card">
-            <div class="p-3">
-               <div class="d-flex justify-content-between">
-                  <div class="mb-0 blue">International Unis</div>
-                  <div class="align-self-end">
-                     <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                  </div>
-               </div>
-               <div class="font-2-5rem gray">
-                  36,856
-               </div>
-               <div class="blue small">32% of the Total 500 Students</div>
-               <div class="blue small mt-1">120 Students did not register</div>
-            </div>
-         </div>
-      </div>
-      <div class="my-col">
-         <div class="card">
-            <div class="p-3">
-               <div class="d-flex justify-content-between">
-                  <div class="mb-0 blue">Recognized Unis</div>
-                  <div class="align-self-end">
-                     <i class="fa-solid light-gray font-1-5rem fa-angle-right"></i>
-                  </div>
-               </div>
-               <div class="font-2-5rem gray">
-                  1852
-               </div>
-               <div class="blue small">32% of the Total 500 Students</div>
-               <div class="blue small mt-1">Rated by 6521 Users</div>
-            </div>
-         </div>
-      </div>
+
+      @endforeach
    </div>
+</div>
+
+<div class="modal fade" id="about-modal" tabindex="-1" aria-labelledby="about-modal-label" aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body paragraph-style1 blue font-normal">
+                <b>School Master</b> powered by <b>UNIRANKS</b> is hight school student support platform that helps counselors and students to be in direct contact with student's dream university. That platform allows schools to arrange multiple university university activities like university fairs, career talks, workshops, open-houses, competitions, internship opportunities, and more. 
+            </div>
+        </div>
+    </div>
 </div>
