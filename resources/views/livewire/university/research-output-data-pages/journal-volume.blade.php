@@ -10,13 +10,13 @@
          <div class="row mt-3">
             <div class="col-md-6">
                <div class="form-floating w-100">
-                  <input class="form-control input-field" placeholder="Volume Name">
+                  <input wire:model.defer="research.volume_name-{{$i}}" class="form-control input-field" placeholder="Volume Name">
                   <label for="floatingInput">Volume Name</label>
                </div>
             </div>
             <div class="col-md-6 mobile-marg-2">
                <div class="form-floating w-100">
-                  <input type="text" class="input-field basicDate form-control flatpickr-input" placeholder="Volume Issue Date" data-input="" readonly="readonly">
+                  <input wire:model.defer="research.volume_issue_date-{{$i}}" type="text" class="input-field basicDate form-control flatpickr-input" placeholder="Volume Issue Date" data-input="" readonly="readonly">
                   <label for="floatingInput">Volume Issue Date</label>
                </div>
             </div>

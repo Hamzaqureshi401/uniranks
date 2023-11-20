@@ -5,46 +5,46 @@
             <div class="row">
                <div class="col-md-3">
                   <div class="form-floating">
-                     <select class="form-select input-field" aria-label="">
+                     <select wire:model.defer="lc_b.country" class="form-select input-field" aria-label="">
                         <option>Select Country</option>
                      </select>
-                     <label for="floatingSelectGrid">Select Country</label>
+                     <label for="floatingSelectGrid">@lan('Select Country')</label>
                   </div>
                </div>
                <div class="col-md-3">
                   <div class="form-floating">
-                     <select class="form-select input-field" aria-label="">
+                     <select wire:model.defer="lc_b.city" class="form-select input-field" aria-label="">
                         <option>Select City</option>
                      </select>
-                     <label for="floatingSelectGrid">Select City</label>
+                     <label for="floatingSelectGrid">@lan('Select City')</label>
                   </div>
                </div>
                <div class="col-md-6">
                   <div class="form-floating">
-                     <input class="form-control input-field" id="floatingInput" placeholder="branch a name or just University Name">
-                     <label for="floatingInput">branch a name or just University Name</label>
+                     <input wire:model.defer="lc_b.br_un_name" class="form-control input-field" placeholder="branch a name or just University Name">
+                     <label for="floatingInput">@lang('branch a name or just University Name')</label>
                   </div>
                </div>
             </div>
             <div class="row  mt-3">
                <div class="col-md-12">
                   <div class="form-floating">
-                     <input class="form-control input-field" id="floatingInput" placeholder="University Address as Text">
-                     <label for="floatingInput">University Address as Text</label>
+                     <input wire:model.defer="lc_b.un_address" class="form-control input-field" placeholder="University Address as Text">
+                     <label for="floatingInput">@lang('University Address as Text')</label>
                   </div>
                </div>
             </div>
             <div class="row  mt-3">
                <div class="col-md-12">
                   <div class="form-floating">
-                     <input class="form-control input-field" id="floatingInput" placeholder="University Address as Google Map Link">
-                     <label for="floatingInput">University Address as Google Map Link</label>
+                     <input wire:model.defer="lc_b.un_google_link" class="form-control input-field" placeholder="University Address as Google Map Link">
+                     <label for="floatingInput">@lang('University Address as Google Map Link')</label>
                   </div>
                </div>
             </div>
             <div class="row mt-3 mb-3">
                <div class="col-md-5 d-flex align-items-center">
-                  <input type="checkbox" class=" mt-0 form-check-input"> <span class="blue ms-2">This is the Main Branch</span>
+                  <input wire:model.defer="lc_b.main_branch" type="checkbox" class=" mt-0 form-check-input"> <span class="blue ms-2">This is the Main Branch</span>
                </div>
             </div>
             <div class="row mb-3">
@@ -65,22 +65,22 @@
              <div class="language-div-1">
             <div class="col-md-5">
                <div class="form-floating w-100">
-                  <select class="form-select input-field" aria-label="">
+                  <select wire:model.defer="lc_b.language" class="form-select input-field" aria-label="">
                      <option>Language(English)</option>
                   </select>
-                  <label for="floatingSelectGrid">Select Language</label>
+                  <label for="floatingSelectGrid">@lan('Select Language')</label>
                </div>
             </div>
             <div class="mt-3">
                <div class="form-floating w-100">
-                  <input class="form-control input-field" placeholder="branch name or just University Name in Arabic Language">
-                  <label for="floatingInput">branch name or just University Name in Arabic Language</label>
+                  <input wire:model.defer="lc_b.br_un_other_lang" class="form-control input-field" placeholder="branch name or just University Name in Arabic Language">
+                  <label for="floatingInput">@lang('branch name or just University Name in Arabic Language')</label>
                </div>
             </div>
             <div class="mt-3">
                <div class="form-floating w-100">
-                  <input class="form-control input-field" placeholder="University Addresses as text in Arabic Language">
-                  <label for="floatingInput">University Addresses as text in Arabic Language</label>
+                  <input wire:model.defer="lc_b.un_address_other_lang" class="form-control input-field" placeholder="University Addresses as text in Arabic Language">
+                  <label for="floatingInput">@lang('University Addresses as text in Arabic Language')</label>
                </div>
             </div>
          </div>

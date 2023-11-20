@@ -38,12 +38,16 @@ class About extends Component
 
     public function deleteTranslation($key)
     {
-        $this->about_translations[$key] = null;
-        unset($this->about_translations[$key]);
-        \Auth::user()->selected_university->update(['description'=>$this->about_translations]);
-        $this->initForm();
-        session()->flash('status', 'Operation Successful!');
+        $uni = \Auth::user()->selected_university;
+
+        if ($uni->hasTranslation('description', $key)) {
+            $uni->forgetTranslation('description', $key);
+            $uni->save();
+            $this->initForm();
+            session()->flash('status', 'Operation Successful!');
+        }
     }
+
 
     protected function rules()
     {
