@@ -241,7 +241,7 @@
             <div class="d-md-flex h6 mt-4 text-place-end blue justify-content-end">
                 <div class="col-md-3">Created on 15 Jan 2022</div>
                 <div class="col-md-3 mobile-marg-2">By David Scott</div>
-                <div class="col-md-2 mobile-marg-2"><a href="" class="red ">Delete</a></div>
+                <div class="col-md-2 mobile-marg-2"><a href="" wire:click="delete" class="red ">Delete</a></div>
             </div>
         </div>
     </div>

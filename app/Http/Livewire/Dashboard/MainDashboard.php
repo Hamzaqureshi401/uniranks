@@ -25,8 +25,7 @@ use Livewire\Component;
 
 class MainDashboard extends Component
 {
-    public $schools , 
-    $students_register,
+    public $students_register,
     $event_statistics,
     $students_events_statisctics,
     $school_and_universities_statisctics,
@@ -46,7 +45,7 @@ class MainDashboard extends Component
 
     public function getData(){
 
-        $this->schools           = School::select('number_students' ,'number_grade11' , 'number_grade12' , 'id' ,'school_type_id')->get();
+        $schools                 = School::select('number_students' ,'number_grade11' , 'number_grade12' , 'id' ,'school_type_id')->get();
         $this->students_register = User::where('role_id' , 13)->select('id')->get();
         $user_id                 = $this->students_register->pluck('id')->toArray();
         $userMajor_query         = UserMajor::whereIn('user_id' , $user_id)->select('user_id' , 'major_id')->get();
@@ -55,12 +54,29 @@ class MainDashboard extends Component
         $university_ids          = $university_query->pluck('university_id')->unique()->toArray();
         $userApplication_query   = UserApplication::whereIn('user_id', $user_id)->select('user_id')->get();
 
-        $UserBio_query = UserBio::whereIn('user_id', $user_id)->select('user_id' , 'study_level_id')->get();
+        $UserBio_query           = UserBio::whereIn('user_id', $user_id)->select('user_id' , 'study_level_id')->get();
+         $school_id                = $schools->pluck('id')->toArray();
+         $university_fairs_total   = Fair::whereIn('school_id', $school_id);
+         $fair_ids                 = $university_fairs_total->pluck('id')->toArray();
+         $event_statistics[]       = $this->prepaerDataEventData( 'University Fair',$university_fairs_total->count(),$university_fairs_total->simpleFair()->count(), 0);
+         $event_statistics[]       = $this->prepaerDataEventData( 'Career Talk',$university_fairs_total->count(),$university_fairs_total->careerTalk()->count(), 0);
+         $open_days_total          = UniversityEvent::whereIn('university_id', $university_ids);
+         $university_events_ids    = $open_days_total->pluck('id')->toArray();
 
-          $student_statistics[] = $this->prepaerDataForSchool(
+         $this->studentStatistics($user_id , $userMajor_query ,$destionation_query , $university_query , $userApplication_query , $schools , $UserBio_query);
+         $this->eventStatisctics();
+         $this->studentEventsStatistics($fair_ids , $university_events_ids , $open_days_total , $university_fairs_total);
+         $this->SchoolAndUniversitiesStatisctics($schools);
+
+
+    }
+
+    public function studentStatistics($user_id , $userMajor_query ,$destionation_query , $university_query , $userApplication_query , $schools , $UserBio_query){
+
+        $student_statistics[] = $this->prepaerDataForSchool(
                     'Registrations' ,
                     count($user_id) , 
-                    $this->schools->sum('number_students') , 
+                    $schools->sum('number_students') , 
                     count($user_id));
 
           $student_statistics[] = $this->prepaerDataForMajorAndApplication(
@@ -88,12 +104,12 @@ class MainDashboard extends Component
                     count($user_id));
          $student_statistics[] = $this->prepaerDataForGrade(
                     'Grade 12 Students' ,
-                    $this->schools->sum('number_grade12'),
+                    $schools->sum('number_grade12'),
                     $UserBio_query->where('study_level_id' , 1)->count(), 
                     count($user_id));
          $student_statistics[] = $this->prepaerDataForGrade(
                     'Grade 11 Students' ,
-                    $this->schools->sum('number_grade11'),
+                    $schools->sum('number_grade11'),
                     $UserBio_query->where('study_level_id' , 2)->count(), 
                     count($user_id));
 
@@ -110,28 +126,6 @@ class MainDashboard extends Component
          }
 
          $this->student_statistics = $student_statistics;
-         $school_id = $this->schools->pluck('id')->toArray();
-         $university_fairs_total = Fair::whereIn('school_id', $school_id);
-         $fair_ids = $university_fairs_total->pluck('id')->toArray();
-
-         $event_statistics[] = $this->prepaerDataEventData( 'University Fair',$university_fairs_total->count(),$university_fairs_total->simpleFair()->count(), 0);
-         
-         $event_statistics[] = $this->prepaerDataEventData( 'Career Talk',$university_fairs_total->count(),$university_fairs_total->careerTalk()->count(), 0);
-
-         $open_days_total = UniversityEvent::whereIn('university_id', $university_ids);
-
-         $university_events_ids = $open_days_total->pluck('id')->toArray();
-
-
-
-        
-         $this->eventStatisctics();
-
-         $this->studentEventsStatistics($fair_ids , $university_events_ids , $open_days_total , $university_fairs_total);
-
-         $this->SchoolAndUniversitiesStatisctics($this->schools);
-
-
     }
 
     public function eventStatisctics(){
