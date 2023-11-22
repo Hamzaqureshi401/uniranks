@@ -10,7 +10,7 @@
              if(value){end_date = value;
              addPickerToElement($refs.end_date,value)
              }
-             })" >
+             })" > 
             <x-jet-validation-errors class="mb-4 alert alert-danger"/>
             @if (session('status'))
                 <div class="mb-4 font-medium alert alert-success">
@@ -93,7 +93,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="text-center mt-3">
-                            <button wire:click="save" class="button-dark-blue width-25 button-sm mobile-btn">@lang("Confirm and Create")</button>
+                            <button wire:click="save" class="button-dark-blue width-25 button-sm mobile-btn">@lang("Confirm and")@if($title == 'Edit Competition') Update @else {{ $title }}@endif</button>
                             <button wire:click="cancel" class="button-red width-25  button-sm  mobile-btn">@lang("Cancel")</button>
                         </div>
                     </div>

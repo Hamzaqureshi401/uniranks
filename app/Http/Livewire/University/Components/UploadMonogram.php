@@ -35,8 +35,10 @@ class UploadMonogram extends Component
 
     public function removeLogo(){
         $university = \Auth::user()->selected_university;
-        \Storage::disk('s3')->delete($university->monogram);
-        $university->update(['monogram'=>null]);
+        if($university->monogram){
+            \Storage::disk('s3')->delete($university->monogram);
+            $university->update(['monogram'=>null]);
+        }
     }
 
     public function render()
