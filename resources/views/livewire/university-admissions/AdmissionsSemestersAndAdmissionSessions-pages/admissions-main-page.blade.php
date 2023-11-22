@@ -2,7 +2,7 @@
    <div class="row mt-3">
       <div class="col-md-6 col-12">
          <div class="form-floating w-100">
-            <select wire:model.defer="admission." class="form-select input-field" id="floatingSelectGrid" aria-label="">
+            <select wire:model.defer="admission.semester" class="form-select input-field" id="floatingSelectGrid" aria-label="">
                <option>Select semesters</option>
             </select>
             <label for="floatingSelectGrid">@lang('Select semesters')</label>

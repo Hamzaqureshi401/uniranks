@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models; 
 
 use AmrShawky\LaravelCurrency\Facade\Currency;
 use App\Models\Fairs\Fair;
@@ -47,6 +47,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Academic\Academic;
+
 
 /**
  * App\Models\User
@@ -488,6 +490,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(UserPreference::class,'user_id');
     }
+    public function academics(): BelongsTo
+    {
+        return $this->belongsTo(Academic::class);
+    }
+
+
 
 
 }

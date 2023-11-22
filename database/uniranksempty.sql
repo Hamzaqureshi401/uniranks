@@ -4835,7 +4835,7 @@ CREATE TABLE `university_fee_structures` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `university_front_banners`
+-- Table structure for table `university_front_banners` 
 --
 
 CREATE TABLE `university_front_banners` (

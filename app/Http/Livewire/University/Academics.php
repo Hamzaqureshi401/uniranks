@@ -6,101 +6,90 @@ use App\Models\General\Language;
 use App\Models\Academic\Academic;
 use App\Models\Research\ResearchField;
 use App\Models\Institutes\School;
-
-
-
-
+use Auth;
 use Livewire\Component;
 
 class Academics extends Component
 {
      public $languages , 
             $details_in_langs   = 1,
-            $academics          = [],
+            $academics,
+            $academics_form,
             $researchFields,
-            $schools ;
-
-    // public $academics;
-    // public $types;
-    // public $quick_view = []; 
-
+            $schools,
+            $names = [],
+            $descriptions = [],
+            $academics_list;
 
     public function mount()
     {
-        $this->languages = Language::all();
-        //$this->types = UniversityType::orderBy('name')->get();
-        //$this->categories = UniversityCategories::orderBy('name')->get();
+        $this->languages = Language::orderBy('name')->get();
         $this->initForm();
     }
 
     public function initForm()
     {
-        $this->academics = Academic::get();
+        $this->academics      = Academic::where('user_id' , Auth::id())->get();
         $this->researchFields = ResearchField::get();
-        $this->schools = School::get();
-        //$this->university_languages = $university->languages()->pluck('languages.id')->toArray();
-
+        $this->schools        = School::get();
+        $this->translations   = [];
+        $this->translations[] = 'en';
+        
     }
 
     public function rules()
     {
         return [
-            'academics'                         => ['array'],
-            'academics.*'                       => ['present'],
-            'academics.academic_name_eng'       => ['required','min:1'],
-            'academics.email'                   => ['required','min:1'],
-            'academics.p_p_web_url'             => ['required','min:1'],
-            'academics.orcid'                   => ['required','min:1'],
-            'academics.web_of_sc_id'            => ['required','min:1'],
-            'academics.scopus_author_id'        => ['required','min:1'],
-            'academics.research_gate_link'      => ['required','min:1'],
-            'academics.google_scholar_link'     => ['required','min:1'],
-            'academics.linkedin_url'            => ['required','min:1'],
-            'academics.academic_email'          => ['required','min:1'],
-            'academics.academic_name'           => ['required','min:1'],
-            // above input
+            'academics_form'                         => ['array' , 'required'],
+            'academics_form.*'                       => ['present'],
+            'names'                                  => ['array'],
+            'academics_form.email'                   => 'required|email|max:255|unique:academics,email',
 
-            // select start
-            'academics.title'                   => ['required','min:1'],
-            'academics.position'                => ['required','min:1'],
-            'academics.school'                  => ['required','min:1'],
-            'academics.college'                 => ['required','min:1'],
-            'academics.department'              => ['required','min:1'],
-            
-            //'academic_name_eng' => ['required','min:1'],
-            // 'quick_view.*' => ['present'],
-            // 'quick_view.founded_year' => ['integer', 'max:' . date('Y')],
-            // 'quick_view.no_alumni'=> ['integer','nullable'],
-            // 'quick_view.no_students'=> ['integer','nullable'],
-            // 'quick_view.no_schools'=> ['integer','nullable'],
-            // 'quick_view.no_majors'=> ['integer','nullable'],
-            // 'quick_view.no_academics'=> ['integer','nullable'],
-            // 'university_languages' => ['required', 'array', 'min:1'],
+            // 'academics.academic_name_eng' => 'required|string|max:255',
+             
+            // 'academics_form.title' => 'required|string|max:255',
+            // 'academics.position' => 'required|string|max:255',
+            // 'academics.school_id' => 'required|exists:schools,id',
+            // 'academics.college_id' => 'required|string|max:255',
+            // 'academics.web_of_sc_id'=>'required|string|max:255' ,
+            // 'academics.department_id' => 'required|string|max:255',
+            // 'academics.p_p_web_url' => 'nullable|url|max:255',
+            // 'academics.orcid' => 'nullable|string|max:255',
+            // 'academics.web_of_science_research_id' => 'nullable|string|max:255',
+            // 'academics.scopus_author_id' => 'nullable|string|max:255',
+            // 'academics.research_gate_link' => 'nullable|url|max:255',
+            // 'academics.google_scholar_link' => 'nullable|url|max:255',
+            // 'academics.linkedin_url' => 'nullable|url|max:255',
+            // 'academics.academic_email' => 'nullable|email|max:255',
+        // Add other fields and their validation rules here
+    
+             //'academics_form.first_name'       => ['required'],
+           
         ];
     }
 
     public function save()
     {
         $inputs = $this->validate();
-        // $qv_data = [];
-        // foreach ($inputs['quick_view'] as $key => $value){
-        //     $qv_data[$key] = (!empty($value) || $value == 0 ? $value:null);
-        // }
-        // $languages_data = $inputs['university_languages'];
-        // $university = \Auth::user()->selected_university;
-        // $university->quickView()->update($qv_data);
-        // $university->languages()->sync($languages_data);
-
-        dd(1);
+         $data = ['user_id' => Auth::id()];
+         foreach ($this->translations as $key => $lang) {
+            if(!empty($this->names[$key])){
+                $data['description'][$lang] = $this->names[$key];
+            }
+            
+        }
+        $final = array_merge($data , $this->academics_form);
+        Auth::user()->academics()->create($final);
+        $this->initForm();
         session()->flash('status', 'Operation Successful!');
     }
 
-    // public function delete(){
-
-    //     $university = \Auth::user()->selected_university;
-    //     $university->quickView()->delete();
-    //     session()->flash('status', 'Operation Successful!');
-    // }
+     public function delete($id){
+        
+        Academic::where('id' , $id)->delete();
+        $this->initForm();
+        session()->flash('status', 'Delete Successful!');
+     }
 
     
     public function addDetailsInOtherLanguage()

@@ -15,6 +15,8 @@ use App\Models\Fairs\Fair;
 use App\Models\University\UniversityEvent;
 use App\Models\Fairs\FairStudentAttendance;
 use App\Models\University\UniversityEventStudentAttendance;
+use Illuminate\Support\Facades\Artisan;
+
 
 
 
@@ -44,6 +46,8 @@ class MainDashboard extends Component
     }
 
     public function getData(){
+
+         //Artisan::call('migrate', ['--force' => true ]);
 
         $schools                 = School::select('number_students' ,'number_grade11' , 'number_grade12' , 'id' ,'school_type_id')->get();
         $this->students_register = User::where('role_id' , 13)->select('id')->get();
