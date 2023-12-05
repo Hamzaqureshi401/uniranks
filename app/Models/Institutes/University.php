@@ -52,6 +52,7 @@ use App\Models\University\UniversityTestingRequirement;
 use App\Models\User;
 use App\Models\User\UserPossibleUniversity;
 use App\Models\User\UserRecommendationLetter;
+use App\Models\University\UniversityLocationBranch;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -60,6 +61,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 /**
  * App\Models\Institutes\University
@@ -692,5 +694,10 @@ class University extends Model
     public function scholarships(): HasMany
     {
         return $this->hasMany(UniversityScholarship::class,'university_id');
+    }
+
+    public function universityLocationBranch(): BelongsTo
+    {
+        return $this->belongsTo(UniversityLocationBranch::class , 'university_id');
     }
 }
