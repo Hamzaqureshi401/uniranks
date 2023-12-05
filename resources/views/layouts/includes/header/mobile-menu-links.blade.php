@@ -49,6 +49,7 @@
                 'links'=>[
                     'School Fairs'=>'admin.schoolFairs.fair.list',
                     'Schools List'=>'admin.school.list',
+                    'One to One Meeting'=>'admin.school.list',
                 ]
             ]
     ];

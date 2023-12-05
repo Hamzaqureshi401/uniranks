@@ -89,6 +89,7 @@ class PageNavigation extends Component
                         'Career Talks'=>'admin.schoolFairs.careerTalks.list',
                         'Sponsored Events'=>'admin.sponsored.list',
                         'Schools List'=>'admin.school.list',
+                        'One to One Meeting'=>'admin.schools.one-to-one-meeting-request',
                     ]
                 ]
             ],

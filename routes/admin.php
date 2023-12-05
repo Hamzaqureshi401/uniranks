@@ -17,6 +17,13 @@ Route::middleware(['setup-locale', "verify-role:" . implode(',', [AppConst::UNIV
         Route::view('/dashboard', 'pages.dashboard')->name('dashboard');
         Route::view('schools-list', 'pages.schools.list')->name('school.list');
         Route::redirect('user/profile', url('admin/profile? t=user-personal-info'))->name('user.profile');
+        
+        Route::prefix('schools')->name('schools.')->group(function () {
+
+            Route::view('one-to-one-meeting-request', 'pages.schools.one-to-one-meeting-request')->name('one-to-one-meeting-request');
+            
+             
+        });
         Route::prefix('events')->name('events.')->group(function () {
             Route::prefix('workshops')->name('workshops.')->controller(WorkshopsController::class)
                 ->group(function () {
