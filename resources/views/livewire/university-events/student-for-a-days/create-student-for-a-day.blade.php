@@ -1,6 +1,6 @@
-<div class="col-lg-12 col-sm-12">
+<div class="col-lg-12 col-sm-12"> 
     <div class="">
-        <h5 class="h5 blue">@lang($title)</h5>
+        <h5 class="h5 blue">@lang($button)</h5>
     </div>
     <div class="card">
         <div class="card-body" x-data="{start_date: @entangle('start_date'),end_date: @entangle('end_date'),curriculums: @entangle('curriculums').defer}"
@@ -93,7 +93,8 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="text-center mt-3">
-                            <button wire:click="save" class="button-dark-blue width-25 button-sm mobile-btn">@lang("Confirm and Create")</button>
+                            <!-- <button wire:click="save" class="button-dark-blue width-25 button-sm mobile-btn">@lang("Confirm and Create")</button> -->
+                             <button wire:click="save" class="button-dark-blue width-25 button-sm mobile-btn">@lang("Confirm and")@if($button == 'Edit Competition') Update @else {{ $button }}@endif</button>
                             <button wire:click="cancel" class="button-red width-25  button-sm  mobile-btn">@lang("Cancel")</button>
                         </div>
                     </div>

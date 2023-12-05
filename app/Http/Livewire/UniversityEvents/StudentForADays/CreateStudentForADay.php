@@ -25,6 +25,7 @@ class CreateStudentForADay extends Component
     public $all_cities;
 
     public $title;
+    public $button;
     public $fair_type;
     public $start_date;
     public $end_date;
@@ -36,7 +37,7 @@ class CreateStudentForADay extends Component
 
     public $country_id;
 
-
+ 
     public function mount()
     {
         $this->all_fair_types = FairType::all();
@@ -45,7 +46,14 @@ class CreateStudentForADay extends Component
         $this->country_id = Auth::user()->selected_university->country_id;
         $this->all_cities = Cities::whereCountryId($this->country_id)->get();
         $this->setData();
-        $this->title = (!empty($this->fair) ? 'Edit' : 'Create New') . ' Student for a day';
+        //$this->title = (!empty($this->fair) ? 'Edit' : 'Create New') . ' Student for a day';
+
+        $currentURL = $_SERVER['REQUEST_URI'];
+        if (strpos($currentURL, 'edit') !== false) {
+            $this->button = 'Edit Student for a day';
+        } else {
+            $this->button = 'Create New Student for a day';
+        }
     }
 
     public function render()
