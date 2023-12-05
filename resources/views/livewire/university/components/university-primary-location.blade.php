@@ -55,6 +55,19 @@
                         </div>
                     </div>
                 </div>
+                <br>
+                <hr>
+
+                <div class="d-md-flex h6 blue justify-content-between">
+                    <div class="fw-bold">{{ $record->country->country_name }}</div>
+                    <div class="font-light">{{ $record->city->city_name }}</div>
+                    <div class="font-light"><a href="{{ $record->map_link }}" class="light-blue font-light">Location Link</a></div>
+                    <div class="font-light">{{ $record->created_at ?? '--' }} </div>
+                    <div class="font-light">{{ Auth::user()->name ?? '--'}} </div>
+                    <div class=""><a href="javascript:void(0)" wire:click="delete()" class="red ">@lang('Delete')</a></div>
+                </div>
+
+                <!-- <div class="text-end"><a href="javascript:void(0)" wire:click="delete()" class="red ">@lang('Delete')</a></div> -->
                 <div class="row mt-3">
                     <div class="col-lg-12">
                         <div class="text-end">
@@ -71,5 +84,5 @@
             </form>
         </div>
     </div>
-    <x-general.loading wire:target="save" message="Updating..." />
+    <x-general.loading wire:target="save" message="Updating..." /> 
 </div>

@@ -13,6 +13,7 @@ class UniversityPrimaryLocation extends Component
     public $country_id;
     public $city_id;
     public $map_link;
+    public $record;
 
     public function mount()
     {
@@ -27,6 +28,7 @@ class UniversityPrimaryLocation extends Component
         $this->country_id = $university->country_id;
         $this->city_id = $university->city_id;
         $this->map_link = $university->map_link;
+        $this->record = $university;
         $this->loadCities();
     }
 
@@ -50,6 +52,12 @@ class UniversityPrimaryLocation extends Component
     {
         $inputs = $this->validate();
         \Auth::user()->selected_university->update($inputs);
+        session()->flash('status', 'Operation Successful!');
+    }
+
+    public function delete(){
+        \Auth::user()->selected_university->update(['country_id' => null , 'city_id' => null , 'map_link' => null]);
+        $this->initForm();
         session()->flash('status', 'Operation Successful!');
     }
 

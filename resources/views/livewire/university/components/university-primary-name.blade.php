@@ -32,6 +32,9 @@
 {{--                    </div>--}}
 
                 </div>
+                <br>
+                <hr>
+                <div class="text-end"><a href="javascript:void(0)" wire:click="delete()" class="red ">@lang('Delete')</a></div>
                 <div class="d-md-flex mt-3 mb-3 text-place-end justify-content-end">
                     <button wire:click="save" class="m-0 button-no-bg" type="button" id="my-show">@lang('Update primary name')</button>
                 </div>

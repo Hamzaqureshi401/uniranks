@@ -27,6 +27,11 @@ class UniversityPrimaryName extends Component
         \Auth::user()->selected_university->update($inputs);
         session()->flash('status', 'Operation Successful!');
     }
+     public function delete(){
+        \Auth::user()->selected_university->update(['university_name' => null]);
+         $this->initForm();
+        session()->flash('status', 'Operation Successful!');
+    }
     public function render()
     {
         return view('livewire.university.components.university-primary-name');
