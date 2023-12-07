@@ -26,6 +26,7 @@
          <!-- </div> -->
       </div>
    </div>
+   <br>
       <div class="row-h">
          <div class="col-md-6 offset-6 d-flex justify-content-md-end">
             <button wire:click="save" class="button-blue button-sm mobile-button w-35">@lang('Save')</button>

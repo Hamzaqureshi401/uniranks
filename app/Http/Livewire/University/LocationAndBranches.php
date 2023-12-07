@@ -42,7 +42,7 @@ class LocationAndBranches extends Component
         $this->locationAndBranches = UniversityLocationBranch::where('user_id' , Auth::id())->get();
        // dd($this->locationAndBranches);
         $this->loadCities();
-    }
+    } 
     public function loadCities()
     {
         $this->cities = [];

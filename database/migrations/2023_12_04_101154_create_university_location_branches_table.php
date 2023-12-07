@@ -10,11 +10,11 @@ class CreateUniversityLocationBranchesTable extends Migration
     {
         Schema::create('university_location_branches', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('university_id');
-            $table->unsignedBigInteger('user_id');
+            $table->foreignId('university_id');
+            $table->foreignId('user_id');
             $table->tinyInteger('campus_type')->default(0)->comment('0 = Branch, 1 = Main');
-            $table->unsignedBigInteger('country_id')->nullable();
-            $table->unsignedBigInteger('city_id')->nullable();
+            $table->foreignId('country_id')->nullable();
+            $table->foreignId('city_id')->nullable();
             $table->string('campus_name')->nullable();
             $table->text('campus_address_txt')->nullable();
             $table->string('campus_map_link')->nullable();

@@ -7,7 +7,7 @@
                         <div class="p-3">
                             <div class="d-flex align-self-start justify-content-between">
                             <div class=" w-10 university-img-div">
-                                <img src="./assets/oxford.png" class="" width="94px">
+                                <img src="https://1.daeux.com/UR/new/assets/oxford.png" class="" width="94px">
                             </div>
                             <div class="w-90 ps-3 d-flex flex-column justify-content-between align-items-stretch">
                                 <div class="top-content">
@@ -19,7 +19,7 @@
                                 </div>
                                 <div class="top-content">
                                     <div class="col-lg-5 d-flex align-items-center justify-content-between mt-2">
-                                        <div class="col-lg-2 university-img-div"><img src="./assets/profile/4.png" class="" width="50px"></div>
+                                        <div class="col-lg-2 university-img-div"><img src="https://1.daeux.com/UR/new/assets/profile/4.png" class="" width="50px"></div>
                                         <div class="col-lg-11 ps-1">
                                             <div class="blue mt-2">Scott Henry Request for one to one meeting</div>
                                             <div class="d-md-flex mb-0 h6 mt-1 justify-content-between gray">
@@ -51,7 +51,7 @@
                         <div class="p-3">
                             <div class="d-flex align-self-start justify-content-between">
                             <div class=" w-10 university-img-div">
-                                <img src="./assets/thomas.png" class="" width="94px">
+                                <img src="https://1.daeux.com/UR/new/assets/thomas.png" class="" width="94px">
                             </div>
                             <div class="w-90 ps-3 d-flex flex-column justify-content-between align-items-stretch">
                                 <div class="top-content">
@@ -63,7 +63,7 @@
                                 </div>
                                 <div class="top-content">
                                     <div class="col-lg-5 d-flex align-items-center justify-content-between mt-2">
-                                        <div class="col-lg-2 university-img-div"><img src="./assets/profile/4.png" class="" width="50px"></div>
+                                        <div class="col-lg-2 university-img-div"><img src="https://1.daeux.com/UR/new/assets/profile/4.png" class="" width="50px"></div>
                                         <div class="col-lg-11 ps-1">
                                             <div class="blue mt-2">Scott Henry Request for one to one meeting</div>
                                             <div class="d-md-flex mb-0 h6 mt-1 justify-content-between gray">
@@ -95,7 +95,7 @@
                         <div class="p-3">
                             <div class="d-flex align-self-start justify-content-between">
                             <div class=" w-10 university-img-div">
-                                <img src="./assets/oxford.png" class="" width="94px">
+                                <img src="https://1.daeux.com/UR/new/assets/oxford.png" class="" width="94px">
                             </div>
                             <div class="w-90 ps-3 d-flex flex-column justify-content-between align-items-stretch">
                                 <div class="top-content">
@@ -107,7 +107,7 @@
                                 </div>
                                 <div class="top-content">
                                     <div class="col-lg-5 d-flex align-items-center justify-content-between mt-2">
-                                        <div class="col-lg-2 university-img-div"><img src="./assets/profile/4.png" class="" width="50px"></div>
+                                        <div class="col-lg-2 university-img-div"><img src="https://1.daeux.com/UR/new/assets/profile/4.png" class="" width="50px"></div>
                                         <div class="col-lg-11 ps-1">
                                             <div class="blue mt-2">Scott Henry Request for one to one meeting</div>
                                             <div class="d-md-flex mb-0 h6 mt-1 justify-content-between gray">
@@ -139,7 +139,7 @@
                         <div class="p-3">
                             <div class="d-flex align-self-start justify-content-between">
                             <div class=" w-10 university-img-div">
-                                <img src="./assets/thomas.png" class="" width="94px">
+                                <img src="https://1.daeux.com/UR/new/assets/thomas.png" class="" width="94px">
                             </div>
                             <div class="w-90 ps-3 d-flex flex-column justify-content-between align-items-stretch">
                                 <div class="top-content">
@@ -151,7 +151,7 @@
                                 </div>
                                 <div class="top-content">
                                     <div class="col-lg-5 d-flex align-items-center justify-content-between mt-2">
-                                        <div class="col-lg-2 university-img-div"><img src="./assets/profile/4.png" class="" width="50px"></div>
+                                        <div class="col-lg-2 university-img-div"><img src="https://1.daeux.com/UR/new/assets/profile/4.png" class="" width="50px"></div>
                                         <div class="col-lg-11 ps-1">
                                             <div class="blue mt-2">Scott Henry Request for one to one meeting</div>
                                             <div class="d-md-flex mb-0 h6 mt-1 justify-content-between gray">
@@ -183,7 +183,7 @@
                         <div class="p-3">
                             <div class="d-flex align-self-start justify-content-between">
                             <div class=" w-10 university-img-div">
-                                <img src="./assets/oxford.png" class="" width="94px">
+                                <img src="https://1.daeux.com/UR/new/assets/oxford.png" class="" width="94px">
                             </div>
                             <div class="w-90 ps-3 d-flex flex-column justify-content-between align-items-stretch">
                                 <div class="top-content">
@@ -195,7 +195,7 @@
                                 </div>
                                 <div class="top-content">
                                     <div class="col-lg-5 d-flex align-items-center justify-content-between mt-2">
-                                        <div class="col-lg-2 university-img-div"><img src="./assets/profile/4.png" class="" width="50px"></div>
+                                        <div class="col-lg-2 university-img-div"><img src="https://1.daeux.com/UR/new/assets/profile/4.png" class="" width="50px"></div>
                                         <div class="col-lg-11 ps-1">
                                             <div class="blue mt-2">Scott Henry Request for one to one meeting</div>
                                             <div class="d-md-flex mb-0 h6 mt-1 justify-content-between gray">

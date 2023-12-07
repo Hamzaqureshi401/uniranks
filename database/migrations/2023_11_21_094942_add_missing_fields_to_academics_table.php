@@ -9,10 +9,10 @@ class AddMissingFieldsToAcademicsTable extends Migration
     public function up()
     {
         Schema::table('academics', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->unsignedBigInteger('school_id')->nullable();
-            $table->unsignedBigInteger('college_id')->nullable();
-            $table->unsignedBigInteger('department_id')->nullable();
+            $table->foreignId('user_id')->nullable();
+            $table->foreignId('school_id')->nullable();
+            $table->foreignId('college_id')->nullable();
+            $table->foreignId('department_id')->nullable();
             $table->string('profile_page_web_url')->nullable();
             $table->string('orcid')->nullable();
             $table->string('web_of_science_research_id')->nullable();
@@ -22,15 +22,6 @@ class AddMissingFieldsToAcademicsTable extends Migration
             $table->string('linkedin_url')->nullable();
             $table->text('description')->nullable();
             
-            // Foreign key constraint
-           
-            // Add other missing fields here
-
-            // Foreign keys
-            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            // $table->foreign('school_id')->references('id')->on('schools')->onDelete('cascade');
-            // $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade');
-            // $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
         });
     }
 
@@ -50,8 +41,7 @@ class AddMissingFieldsToAcademicsTable extends Migration
                 'google_scholar_link',
                 'linkedin_url',
                 'description',
-               
-                // Drop other added columns here
+                
             ]);
         });
     }

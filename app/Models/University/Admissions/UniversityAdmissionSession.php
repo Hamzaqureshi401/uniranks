@@ -53,7 +53,16 @@ class UniversityAdmissionSession extends Model
         'start_date',
         'end_date',
 //        'is_current',
-        'description'
+        'description',
+        'is_current',
+        'related_record_id',
+        'old_value',
+        'what_changed',
+        'status',
+        'remarks',
+        'type',
+        'requested_by_id',
+        'approved_by_id',
     ];
 
     protected $casts = ['start_date'=>'datetime','end_date'=>'datetime'];

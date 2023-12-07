@@ -90,6 +90,7 @@ class PageNavigation extends Component
                         'Sponsored Events'=>'admin.sponsored.list',
                         'Schools List'=>'admin.school.list',
                         'One to One Meeting'=>'admin.schools.one-to-one-meeting-request',
+                        'View One to One Meeting'=>'admin.schools.view-one-to-one-meeting-request',
                     ]
                 ]
             ],
