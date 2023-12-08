@@ -8,6 +8,8 @@ use App\Rules\ValidateStartDate;
 use App\Http\Controllers\Admin\University\Traits\Program\AdmissionsSessionsTrait;
 use App\Http\Controllers\Admin\University\Traits\Shared\MustApproveUpdates;
 use App\Models\University\Admissions\UpdateRequestsModals\UniversityAdmissionSessionUpdateRequest;
+use App\Models\University\Admissions\SemesterAdmissionSessionUserReview;
+
 use App\Models\University\Admissions\UniversityAdmissionSession;
 use Illuminate\Http\Request;
 
@@ -27,6 +29,7 @@ class AdmissionsSemestersAndAdmissionSessions extends Component
     $admission = [],
     $translations = [],
     $names = [],
+    $review_request,
     $semesters;
 
     
@@ -36,20 +39,30 @@ class AdmissionsSemestersAndAdmissionSessions extends Component
     }
 
     public function initForm(){
-        $this->semesters = \Auth::user()->selected_university->semesters()->get();
+        $this->semesters = \Auth::user()->selected_university->admissionSessions()->get();
+        $this->review_request = $this->getAdmissionSessionsPendingRequests(1);
+        //dd($this->review_request);
+
     }
 
     public function loadSemesterDetail(){
 
         if (!empty($this->admission['university_semester_id'])) {
-            $this->semester_details = \Auth::user()->selected_university->semesters()->where('id' , $this->admission['university_semester_id'])->first();
+            $this->semester_details = \Auth::user()->selected_university->semesters()->where('id' , $this->admission['university_semester_id'])->first(); 
             if ($this->semester_details) {
             $this->admission['semester_start_date'] = $this->semester_details->start_date;
             }
     }else{
+        $this->resetForm();
+    }
+    }
+
+    public function resetForm(){
+
         $this->semester_details = null;
         $this->admission['semester_start_date'] = null;
-    }
+        $this->admission['start_date'] = null;
+        $this->admission['end_date'] = null;
     }
 
     public function mount(){
@@ -92,11 +105,17 @@ class AdmissionsSemestersAndAdmissionSessions extends Component
 
     public function save()
     {
-        //$inputs = $this->validate();
+        $inputs = $this->validate();
+
+       $old_record = \Auth::user()->selected_university->admissionSessions()->where('university_semester_id' , $this->admission['university_semester_id'])->first();
        $data = [
             'university_id'     => \Auth::user()->campus_id,
             'type'              => \AppConst::ADD_RECORD,
-            'requested_by_id'   => \Auth::id()
+            'requested_by_id'   => \Auth::id(),
+            'related_record_id' => $old_record->id,
+            'old_value'         => $old_record->start_date.','.$old_record->end_date,
+            'what_changed'      => $this->admission['start_date'].','.$this->admission['end_date'],
+
         ];
         foreach ($this->translations as $key => $lang) {
             if (!empty($this->names[$key])) {
@@ -106,32 +125,36 @@ class AdmissionsSemestersAndAdmissionSessions extends Component
         if (!empty($this->admission['c_description'])) {
             $data['description']['en'] = $this->admission['c_description'];
         }
-        if (!empty($data['description'])) {
-            $final = array_merge($data, $this->admission);
-            $data = $final; // Update $data with the merged result
-        } else {
-            $final = $this->admission;
-        }
-        //$requestInstance = Request::create('/', 'POST', $final);
-        // $result = $this->saveRequestForApprovalAndRedirect(
-        //     $requestInstance, 
-        //     new UniversityAdmissionSessionUpdateRequest, 
-        //     new UniversityAdmissionSession);
+        
+        $final = array_merge($data, $this->admission);
+        
+        $request = Request::create('/dummy-route', 'POST', $final);
 
-        //dd($result);
+        $this->saveRequestForApprovalAndRedirect($request, new UniversityAdmissionSessionUpdateRequest, new UniversityAdmissionSession);
 
+        // $request_record = UniversityAdmissionSessionUpdateRequest::latest('id')->first();
 
+        // $review_record = [
+        //     'university_admission_requirement_update_request_id' => $request_record->id,
+        //     'user_id' => \Auth::id(),
+        //     'reviewed_by'=> null,
+        //     'remarks' => null,
+        // ];
+        // SemesterAdmissionSessionUserReview::create($review_record);
 
-        dd($this->saveRequestForApprovalAndRedirect(new Request($final), new UniversityAdmissionSessionUpdateRequest, new UniversityAdmissionSession));
-
-
-
-        //dd($final, $data);
-
-
-    
-       // Auth::user()->academics()->create($final);
+       // dd($final , $data , UniversityAdmissionSessionUpdateRequest::get());
         $this->initForm();
+        $this->resetForm();
+        session()->flash('status', 'Operation Successful!');
+    }
+
+    public function delete($id){
+        
+    $data = ['id' => $id];
+    $request = Request::create('/dummy-route', 'POST', $data);
+    $this->saveDeleteRecordRequestAndRedirect($request, new UniversityAdmissionSessionUpdateRequest, new UniversityAdmissionSession);
+    $this->initForm();
+    $this->resetForm();
         session()->flash('status', 'Operation Successful!');
     }
 }

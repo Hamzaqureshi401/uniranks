@@ -32,12 +32,11 @@ trait AdmissionsSessionsTrait
      * @param $request_type
      * @return AnonymousResourceCollection
      */
-    public function getAdmissionSessionsPendingRequests($request_type): AnonymousResourceCollection
-    {
+    public function getAdmissionSessionsPendingRequests($request_type){
         $data = RequestModel::where([['type', $request_type]])
             ->where(function ($query) {
                 return $query->where('university_id', \Auth::user()->campus_id)
-                    ->orWhereIn('related_record_id', \Auth::user()->userUniversity->admissionSessions?->pluck('id'));
+                    ->orWhereIn('related_record_id', \Auth::user()->selected_university->admissionSessions?->pluck('id'));
             })->with(
                 'requestedBy:id,name,email',
                 'approvedBy:id,name,email',
@@ -46,9 +45,11 @@ trait AdmissionsSessionsTrait
                 'semesterOld:id,name',
                 'originalData.university:id,university_name',
                 'originalData.semester:id,name',
-            )->orderBy('status')->paginate(10);
+            )->orderBy('status')->get();
+
+            //dd($data);
         //TODO:Pagination
-        return DataResource::collection($data);
+        return $data;
     }
 
     /**

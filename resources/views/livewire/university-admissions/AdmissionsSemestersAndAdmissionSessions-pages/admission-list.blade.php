@@ -1,42 +1,48 @@
+
+
                
                <div class="card-body">
                    <div class="h4 blue">Semesters &amp; Admission Sessions</div>
-                   <div class="d-md-flex h6 blue justify-content-between mt-3">
-                       <div class="col-md-4">Admission &amp; Semesters 1</div>
-                       <div class="">1/9/2023</div>
-                       <div class="">15/7/2023</div>
-                       <div class="">15/9/2023</div>
-                      <div class="z-index-100"><a href="" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="light-blue">Note</a></div>
-                       <div class="z-index-100"><a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" class="light-blue">Edit</a></div>
-                       <div class=""><a href="" class="red">Delete</a></div>
-                   </div>
-                    <div class="d-md-flex h6 blue justify-content-between">
-                       <div class="col-md-4">Admission &amp; Semesters 2</div>
-                       <div class="">1/9/2023</div>
-                       <div class="">15/7/2023</div>
-                       <div class="">15/9/2023</div>
-                        <div class="z-index-100"><a href="" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="light-blue">Note</a></div>
-                       <div class="z-index-100"><a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" class="light-blue">Edit</a></div>
-                       <div class=""><a href="" class="red">Delete</a></div>
-                   </div>
-                    <div class="d-md-flex h6 blue justify-content-between">
-                       <div class="col-md-4">Admission &amp; Semesters 3</div>
-                       <div class="">1/9/2023</div>
-                       <div class="">15/7/2023</div>
-                       <div class="">15/9/2023</div>
-                        <div class="z-index-100"><a href="" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="light-blue">Note</a></div>
-                       <div class="z-index-100"><a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" class="light-blue">Edit</a></div>
-                       <div class=""><a href="" class="red">Delete</a></div>
-                   </div>
-                    <div class="d-md-flex h6 blue justify-content-between">
-                       <div class="col-md-4">Admission &amp; Semesters 4</div>
-                       <div class="">1/9/2023</div>
-                       <div class="">15/7/2023</div>
-                       <div class="">15/9/2023</div>
-                        <div class="z-index-100"><a href="" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="light-blue">Note</a></div>
-                       <div class="z-index-100"><a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" class="light-blue">Edit</a></div>
-                       <div class=""><a href="" class="red">Delete</a></div>
-                   </div>
-               </div>
+                   <table class="table">
+    <thead>
+        <tr class="blue">
+            <th>#</th>
+            
+            <th>Semester</th>
+            <!-- Add more headers for other columns as needed -->
+            <th>Description</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <!-- <th>Status</th>
+            <th>Type</th> -->
+
+            <!-- Include headers for all columns -->
+            <th>Created At</th>
+            <th>View </th>
+            <th>Edit </th>
+            <th>Delete </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($review_request as $request)
+            <tr class="blue">
+                <td>{{ $loop->index + 1 }}</td>
+                
+                <td>{{ $request->semester->name ?? '--' }}</td>
+                <!-- Fetch other columns similarly -->
+                <td>{{ $request->description ?? '--' }}</td>
+                <td>{{ $request->start_date ?? '--' }}</td>
+                <td>{{ $request->end_date ?? '--' }}</td>
+               <!--  <td>{{ $request->status ?? '--' }}</td>
+                <td>{{ $request->type ?? '--' }}</td> -->
+                <td>{{ $request->created_at ?? '--' }}</td>
+                <td> <div class="z-index-100"><a href="" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="light-blue">Note</a></div></td>
+                <td><div class="z-index-100"><a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" class="light-blue">Edit</a></div></td>
+                <td><div class=""><a href="javascript:void(0)" wire:click="delete('{{$request->related_record_id}}')" class="red">Delete</a></div></td>
+                
+            </tr>
+        @endforeach
+    </tbody>
+</table>
                    
               

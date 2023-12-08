@@ -8,26 +8,26 @@ class CreateSemesterAdmissionSessionUserReviewTable extends Migration
 {
     public function up()
     {
-        Schema::create('semester_admission_session_user_review', function (Blueprint $table) {
+        Schema::create('semester_admission_session_user_reviews', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('university_admission_session_id');
-            $table->foreignId('user_id');
-            $table->foreignId('reviewed_by');
+            $table->foreignId('university_admission_requirement_update_request_id')->nullable();
+            $table->foreignId('user_id')->nullable();
+            $table->foreignId('reviewed_by')->nullable();
             $table->text('remarks')->nullable();
             $table->timestamps();
 
-            // Foreign key constraints with custom names
-            $table->foreign('university_admission_session_id', 'fk_university_admission_session')
-                ->references('id')
-                ->on('university_admission_sessions')
-                ->onDelete('cascade');
+            // Define foreign key constraints with custom names (shortened)
+            $table->foreign('university_admission_requirement_update_request_id', 'fk_university_admission_requirement_update_request')
+                  ->references('id')
+                  ->on('university_admission_session_update_requests')
+                  ->onDelete('restrict');
 
             $table->foreign('user_id', 'fk_user')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
 
-            $table->foreign('reviewed_by', 'fk_reviewed_by')
+            $table->foreign('reviewed_by', 'fk_reviewer')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
@@ -36,6 +36,6 @@ class CreateSemesterAdmissionSessionUserReviewTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('semester_admission_session_user_review');
+        Schema::dropIfExists('semester_admission_session_user_reviews');
     }
 }

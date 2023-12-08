@@ -7,6 +7,7 @@ use App\Models\Interfaces\UpdateRequest;
 use App\Models\Traits\HasTranslations;
 use App\Models\University\Admissions\UniversityAdmissionSession;
 use App\Models\University\Admissions\UniversitySemester;
+use App\Models\University\Admissions\SemesterAdmissionSessionUserReview;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -135,5 +136,9 @@ class UniversityAdmissionSessionUpdateRequest extends Model implements UpdateReq
     public function semesterOld(): BelongsTo
     {
         return $this->belongsTo(UniversitySemester::class, 'old_value');
+    }
+
+    public function requestUserReview(){
+        return $this->belongsTo(SemesterAdmissionSessionUserReview::class);
     }
 }

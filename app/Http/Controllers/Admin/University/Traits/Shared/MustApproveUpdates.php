@@ -77,10 +77,8 @@ trait MustApproveUpdates
      * @param Model $current_data_model
      * @return RedirectResponse
      */
-    public function saveRequestForApprovalAndRedirect(
-        Request|FormRequest $request, 
-        Model $update_request_model ,
-        Model $current_data_model): RedirectResponse
+    public function saveRequestForApprovalAndRedirect(Request|FormRequest $request, Model $update_request_model ,
+                                                       Model $current_data_model): RedirectResponse
     {
         $this->saveRequestForApproval($request,$update_request_model,$current_data_model);
         return redirect()->back();
@@ -92,27 +90,52 @@ trait MustApproveUpdates
      * @param Model $current_data_model
      * @return bool
      */
-    public function saveRequestForApproval(Request|FormRequest $request, Model $update_request_model , Model $current_data_model): bool
-    {
-        //$inputs = $request->validated();
+   public function saveRequestForApproval(Request $request, Model $update_request_model, Model $current_data_model): bool
+{
+    $validator = \Validator::make($request->all(), [
+        'university_id' => 'required',
+        'type' => 'required',
+        'start_date' => 'required',
+        'end_date' => 'required',
+        'university_semester_id' =>'required',
+        'related_record_id' =>'required',
+        'old_value' =>'required',
+        'what_changed' =>'required',
+        'description' =>'nullable',
+    ]);
 
-        //dd($request->all() , $update_request_model,$current_data_model);
+     //dd($validator->fails());
 
-        // if ($this->isUpdateRequest($request)) {
-        //     return $this->saveUpdateRequest($update_request_model,$current_data_model,$request);
-        // }
-        return $this->saveAddRequest($update_request_model,$request);
+    if ($validator->fails()) {
+        // Handle validation failure, e.g., return an error message or redirect back with errors
+        // You can access the errors using $validator->errors()
+        return false;
     }
+
+    // Proceed with your logic if validation passes
+    $validatedData = $validator->validated();
+
+
+
+    if ($this->isUpdateRequest($validatedData)) {
+        return $this->saveUpdateRequest($update_request_model, $current_data_model, $validatedData);
+    }
+
+    return $this->saveAddRequest($update_request_model, $validatedData);
+}
+
+
 
     /**
      * @param Model $update_request_model
      * @param array $inputs
      * @return bool
      */
-    public function saveAddRequest(Model $update_request_model, Request $inputs): bool
+    public function saveAddRequest(Model $update_request_model, array $inputs): bool
     {
-        //$inputs = $this->addRequestInfoToInputs($inputs);
-        $update_request_model::create($inputs->all());
+        //dd($inputs);
+        $inputs = $this->addRequestInfoToInputs($inputs);
+        $update_request_model::create($inputs);
         return true;
     }
 

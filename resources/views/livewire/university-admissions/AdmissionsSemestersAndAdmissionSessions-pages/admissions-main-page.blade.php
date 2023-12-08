@@ -8,7 +8,7 @@
                               aria-label="" wire:change="loadSemesterDetail">
                               <option value="">@lang('Semester')</option>
                               @foreach($semesters ?? [] as $semester)
-                              <option value="{{$semester->id}}">{{$semester->name}}</option>
+                              <option value="{{$semester->university_semester_id}}">{{$semester->semester->name}}</option>
                               @endforeach
              </select>
             <label for="floatingSelectGrid">@lang('Select semesters')</label>
