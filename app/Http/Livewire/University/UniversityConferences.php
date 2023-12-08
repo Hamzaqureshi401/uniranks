@@ -8,6 +8,7 @@ class UniversityConferences extends Component
 {
      public $languages , 
     $details_in_langs       = 1,
+    $university,
     $addCenferenceDetailsInOtherLanguage = 1;
     
     public function addDetailsInOtherLanguage()
@@ -57,6 +58,7 @@ class UniversityConferences extends Component
 
     public function render()
     {
+        $this->university = \Auth::user()->selected_university;
         return view('livewire.university.university-conferences');
     }
 }

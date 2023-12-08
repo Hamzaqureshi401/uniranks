@@ -40,22 +40,29 @@ class AdmissionsSemestersAndAdmissionSessions extends Component
 
     public function initForm(){
         $this->semesters = \Auth::user()->selected_university->admissionSessions()->get();
-        $this->review_request = $this->getAdmissionSessionsPendingRequests(1);
+        $this->review_request = $this->getAdmissionSessions();
         //dd($this->review_request);
 
     }
 
-    public function loadSemesterDetail(){
+   public function loadSemesterDetail()
+{
+    if (!empty($this->admission['university_semester_id'])) {
+        $this->semester_details = \Auth::user()->selected_university->semesters()->where('id', $this->admission['university_semester_id'])->first(); 
+        if ($this->semester_details) {
+            $minDate = $this->semester_details->start_date;
+            $maxDate = $this->semester_details->end_date;
 
-        if (!empty($this->admission['university_semester_id'])) {
-            $this->semester_details = \Auth::user()->selected_university->semesters()->where('id' , $this->admission['university_semester_id'])->first(); 
-            if ($this->semester_details) {
-            $this->admission['semester_start_date'] = $this->semester_details->start_date;
-            }
-    }else{
+            $this->admission['semester_start_date'] = $minDate;
+
+            // Dispatch an event to notify Livewire about the date change
+            $this->dispatchBrowserEvent('startDateChanged', [$minDate, $maxDate]);
+        }
+    } else {
         $this->resetForm();
     }
-    }
+}
+
 
     public function resetForm(){
 
@@ -154,6 +161,14 @@ class AdmissionsSemestersAndAdmissionSessions extends Component
     $request = Request::create('/dummy-route', 'POST', $data);
     $this->saveDeleteRecordRequestAndRedirect($request, new UniversityAdmissionSessionUpdateRequest, new UniversityAdmissionSession);
     $this->initForm();
+    $this->resetForm();
+        session()->flash('status', 'Operation Successful!');
+    }
+
+    public function deleteRecord($id){
+
+        UniversityAdmissionSessionUpdateRequest::whereId($id)->delete();
+        $this->initForm();
     $this->resetForm();
         session()->flash('status', 'Operation Successful!');
     }

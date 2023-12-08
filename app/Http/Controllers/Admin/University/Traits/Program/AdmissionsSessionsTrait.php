@@ -16,7 +16,7 @@ trait AdmissionsSessionsTrait
     /**
      * @return AnonymousResourceCollection
      */
-    public function getAdmissionSessions(): AnonymousResourceCollection
+    public function getAdmissionSessions()
     {
         $data = UniversityAdmissionSession::with(['semester:id,name'])
             ->with(['updateRequests' => function ($query) {
@@ -25,7 +25,7 @@ trait AdmissionsSessionsTrait
             ->whereDoesntHave('updateRequests', fn($q) => $q->where('type', \AppConst::DELETE_RECORD))
             ->where('university_id', \Auth::user()->campus_id)->get();
 
-        return UniversityAdmissionSessionResource::collection($data);
+        return $data;
     }
 
     /**
