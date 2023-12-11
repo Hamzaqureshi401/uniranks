@@ -74,18 +74,12 @@ class UniversityConferences extends Component
             
             ]
         )->load('media');
-
-        //dd($this->selected_album);
     }
-
-
-
 
     public function save()
     {
         $inputs = $this->validate();
         $data = ['created_by' => Auth::id()];
-
         $imgs = $this->handleImages();
          $data['rectangle_logo_path'] = $imgs[0];
          $data['square_logo_path'] = $imgs[1];
@@ -190,7 +184,6 @@ class UniversityConferences extends Component
         $this->translations   = [];
         $this->translations[] = 'en';
         $this->subject_translations = [];
-        //dd($this->conf);
     }
 
     public function render()
