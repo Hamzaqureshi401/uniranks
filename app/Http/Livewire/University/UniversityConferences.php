@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\University;
 
 use App\Models\General\Language;
+use App\Models\Multimedia\Media;
+use App\Models\Multimedia\MediaAlbum;
 
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -19,17 +21,21 @@ class UniversityConferences extends Component
 
     public $rectangle_logo_path;
     public $languages , 
+    $file,
     $details_in_langs       = 1,
     $university,
     $conference,
     $conf,
     $other_subjects,
     $addCenferenceDetailsInOtherLanguage = 1,
-    $names = [],
-    $subject_names_lang = [],
-    $descriptions = [],
+    $names                               = [],
+    $subject_names_lang                  = [],
+    $descriptions                        = [],
     $square_logo_path,
-    $universityConferenceType;
+    $universityConferenceType,
+    $album_id,
+    $selected_album;
+
     
     public function addDetailsInOtherLanguage()
     {
@@ -53,6 +59,26 @@ class UniversityConferences extends Component
             'square_logo_path'                  => ['mimes:jpg,jpeg,png'],
         ];
     }
+   
+
+    public function loadAlbumData()
+    {
+        $this->selected_album = MediaAlbum::firstOrCreate(
+            ['title->en' => 'University Conference'],
+            [
+                'title' => ['en' => 'University Conference'],
+                'description' => [],
+                'content_type' => 1,
+                'created_by'   => Auth::id(),
+                'university_id' => \Auth::user()->selected_university->id
+            
+            ]
+        )->load('media');
+
+        //dd($this->selected_album);
+    }
+
+
 
 
     public function save()
@@ -60,13 +86,9 @@ class UniversityConferences extends Component
         $inputs = $this->validate();
         $data = ['created_by' => Auth::id()];
 
-        if ($this->rectangle_logo_path && $this->square_logo_path) {
-            $rectangleLogoPath = $this->rectangle_logo_path->store('logos', 'public');
-            $squareLogoPath = $this->square_logo_path->store('logos', 'public');
-
-            $data['rectangle_logo_path'] = $rectangleLogoPath;
-            $data['square_logo_path'] = $squareLogoPath;
-        }
+        $imgs = $this->handleImages();
+         $data['rectangle_logo_path'] = $imgs[0];
+         $data['square_logo_path'] = $imgs[1];
         foreach ($this->translations as $key => $lang) {
             if (!empty($this->names[$key])) {
                 $data['translated_name'][$lang] = $this->names[$key];
@@ -78,6 +100,29 @@ class UniversityConferences extends Component
         $latestConference = \Auth::user()->selected_university->conferences()->latest('id')->first();
         $this->initForm();
         session()->flash('status', 'Operation Successful!');
+    }
+
+    public function handleImages(){
+
+        if($this->file){
+            $images = [];
+             $file     = $this->file[0]->storePublicly('images/university-photos', 's3');
+            $images []            = [ 'media_type'=>Media::TYPE_IMAGE, 'url'=>$file, 'created_by'=>\Auth::id()];
+           $this->selected_album->media()->createMany($images);
+           $this->selected_album->refresh();
+        }
+         if ($this->rectangle_logo_path && $this->square_logo_path) {
+            $images = [];
+            $rectangle_logo_path  = $this->rectangle_logo_path->storePublicly('images/university-photos', 's3');
+            $square_logo_path     = $this->square_logo_path->storePublicly('images/university-photos', 's3');
+            $images []            = [ 'media_type'=>Media::TYPE_IMAGE, 'url'=>$rectangle_logo_path, 'created_by'=>\Auth::id()];
+            $images []            = [ 'media_type'=>Media::TYPE_IMAGE, 'url'=>$square_logo_path, 'created_by'=>\Auth::id()];
+           $this->selected_album->media()->createMany($images);
+           $this->selected_album->refresh();
+
+           return [$rectangle_logo_path , $square_logo_path];
+        }
+
     }
 
 
@@ -120,6 +165,7 @@ class UniversityConferences extends Component
 
 
     public function mount(){
+        $this->loadAlbumData();
         $this->initForm();
     }
 

@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Multimedia\Media;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+
 
 /**
  * App\Models\University\UniversityConference
@@ -84,5 +87,10 @@ class UniversityConference extends Model
     public function subjects(): HasMany
     {
         return $this->hasMany(UniversityConferenceSubject::class,'university_conference_id');
+    }
+
+    public function media(): MorphMany
+    {
+        return $this->morphMany(Media::class, 'mediaable');
     }
 }

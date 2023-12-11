@@ -18,8 +18,8 @@
                         </select> -->
 
                          <select wire:model.defer="conference.university_conference_type_id" class="form-select input-field" 
-                              aria-label="" wire:change="">
-                              <option value="">@lang('Semester')</option>
+                              aria-label="" wire:change="" required>
+                              <option value="">@lang('Select Conference Type')</option>
                               @foreach($universityConferenceType ?? [] as $type)
                               <option value="{{$type->id}}">{{$type->title}}</option>
                               @endforeach

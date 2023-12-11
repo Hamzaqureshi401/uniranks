@@ -270,7 +270,7 @@
                   </div>
                   <div class="upload-container file-upload d-flex justify-content-center">
                      <i class="fa-solid fa-cloud-arrow-up light-blue"></i>
-                     <input wire:model.defer="conference.logo" type="file" id="file_upload" multiple="">
+                     <input wire:model.defer="file" type="file" id="file_upload" multiple="">
                   </div>
                </div>
             </div>
