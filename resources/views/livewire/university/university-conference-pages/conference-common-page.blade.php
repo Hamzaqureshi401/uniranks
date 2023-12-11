@@ -18,7 +18,7 @@
          <div class="mt-3 row">
             <div class="col-md-6 col-12">
                <div class="form-floating w-100">
-                  <input wire:model.defer="conference.starts_date" type="text" class="input-field basicDate form-control flatpickr-input"  placeholder="Conference Start Date" data-input="" readonly="readonly">
+                  <input wire:model.defer="conference.start_date" type="text" class="input-field basicDate form-control flatpickr-input"  placeholder="Conference Start Date" data-input="" readonly="readonly">
                   <label for="floatingInput">@lang('Conference Start Date')</label>
                </div>
             </div>
@@ -44,7 +44,7 @@
          <div class="mt-3 row">
             <div class="col-12">
                <div class="form-floating w-100">
-                  <input wire:model.defer="conference.subjects" class="form-control input-field"  placeholder="Name of the Subjects">
+                  <input wire:model.defer="conference.subjects-0" class="form-control input-field"  placeholder="Name of the Subjects">
                   <label for="floatingInput">@lang('Name of the Subjects')</label>
                </div>
             </div>
@@ -65,15 +65,19 @@
                   <div class="row mb-4">
                      <div class="col-md-8 col-12">
                         <div class="form-floating w-100">
-                           <input wire:model.defer="conference.subjects_new_lang{{$i}}" class="form-control input-field"  placeholder="Name of the Subjects">
+                           <input wire:model.defer="subject_names_lang.{{$i}}" class="form-control input-field"  placeholder="Name of the Subjects">
                            <label for="floatingInput">@lang('Name of the Subjects')</label>
                         </div>
                      </div>
                      <div class="col-md-4 col-12 mobile-marg-2">
                         <div class="form-floating w-100">
-                           <select wire:model.defer="conference.lang_{{$i}}" class="form-select input-field" aria-label="">
-                              <option>English(Italiano)</option>
-                           </select>
+                            <select wire:model.defer="subject_translations.{{$i}}" class="form-select input-field">
+                                        <option value="">@lang('Select Language')</option>
+                                        @foreach($languages as $language)
+                                            <option
+                                                value="{{$language->code}}" @disabled(in_array($language->code,$translations))>{{$language->native_name}}</option>
+                                        @endforeach
+                                    </select>
                            <label for="floatingSelectGrid">@lang('Select Language')</label>
                         </div>
                      </div>
@@ -88,6 +92,11 @@
          </div>
          <div class="h5 blue">@lang('Conference Logos')</div>
          <div>
+         <div class="card mt-1" x-data="{photoName: null, photoPreview: null,isUploading: false, progress: 0}"
+            x-on:livewire-upload-start="isUploading = true"
+            x-on:livewire-upload-finish="isUploading = false"
+            x-on:livewire-upload-error="isUploading = false"
+            x-on:livewire-upload-progress="progress = $event.detail.progress">
             <input type="file" class="d-none" wire:model="rectangle_logo_path" x-ref="photo" x-on:change="
                photoName = $refs.photo.files[0].name;
                const reader = new FileReader();
@@ -116,36 +125,53 @@
                </div>
             </div>
          </div>
-
+      </div>
          <div>
-            <input type="file" class="d-none" wire:model="square_logo_path" x-ref="photo" x-on:change="
-               photoName = $refs.photo.files[0].name;
-               const reader = new FileReader();
-               reader.onload = (e) => {
-               photoPreview = e.target.result;
-               };
-               reader.readAsDataURL($refs.photo.files[0]);"/>
-            <div class="d-md-flex mt-3 justify-content-between align-items-center">
-               <div class="col-md-6">
-                  <div x-show="!photoPreview">
-                     <img src="{{$university->monogram_url}}" x-on:click.prevent="$refs.photo.click()" style="cursor:pointer;" class="card p-2 rounded-0" width="130px">
-                  </div>
-                  <div x-show="photoPreview" style="display: none;">
-                     <img :src="photoPreview" class="card p-2 rounded-0" width="130px">
-                  </div>
-                  <div x-show="isUploading" class="mt-2" style="width: 130px" >
-                     <div class="progress">
-                        <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
-                           :style="`width: ${progress}%;`"  :aria-valuenow="progress" aria-valuemin="0" aria-valuemax="100"></div>
-                     </div>
-                  </div>
-                  <x-jet-input-error for="photo" class="mt-2"/>
-               </div>
-               <div class="col-md-6  mobile-marg text-place-end">
-                  <button class="m-0 button-no-bg" :disabled="isUploading"   x-on:click.prevent="$refs.photo.click()">@lang('+ Upload Square Logo')</button>
-               </div>
+             <div class="card mt-1" x-data="{photoName: null, photoPreview: null,isUploading: false, progress: 0}"
+            x-on:livewire-upload-start="isUploading = true"
+            x-on:livewire-upload-finish="isUploading = false"
+            x-on:livewire-upload-error="isUploading = false"
+            x-on:livewire-upload-progress="progress = $event.detail.progress">
+    <!-- Existing code for square logo upload -->
+    <input 
+        type="file" 
+        class="d-none" 
+        wire:model="square_logo_path" 
+        x-ref="photoSquare" 
+        x-on:change="
+            photoName = $refs.photoSquare.files[0].name;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                photoPreview = e.target.result;
+            };
+            reader.readAsDataURL($refs.photoSquare.files[0]);
+        "
+    />
+    <div class="d-md-flex mt-3 justify-content-between align-items-center">
+        <div class="col-md-6">
+            <!-- Adjusted to reference correct photo input -->
+            <div x-show="!photoPreview">
+                <img src="{{$university->monogram_url}}" x-on:click.prevent="$refs.photoSquare.click()" style="cursor:pointer;" class="card p-2 rounded-0" width="130px">
             </div>
-         </div>
+            <div x-show="photoPreview" style="display: none;">
+                <img :src="photoPreview" class="card p-2 rounded-0" width="130px">
+            </div>
+            <div x-show="isUploading" class="mt-2" style="width: 130px">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" :style="`width: ${progress}%;`"  :aria-valuenow="progress" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+            <x-jet-input-error for="photo" class="mt-2"/>
+        </div>
+        <div class="col-md-6  mobile-marg text-place-end">
+            <!-- Adjusted to reference correct photo input -->
+            <button class="m-0 button-no-bg" :disabled="isUploading" x-on:click.prevent="$refs.photoSquare.click()">
+                @lang('+ Upload Square Logo')
+            </button>
+        </div>
+    </div>
+</div>
+</div>
 
         <!--  <div class="d-md-flex mt-3 justify-content-between align-items-center">
             <div class="col-md-6">
@@ -160,11 +186,7 @@
          <div class="w-100 px-4 mt-4">
             <hr>
          </div>
-         <div class="d-md-flex justify-content-end align-items-center mt-1">
-            <button class="m-0 button-no-bg" wire:click="addCenferenceDetailsInOtherLanguage" type="button">
-            @lang('+ Add Conference detail in another Language')
-            </button>
-         </div>
+        
          <div class="language-div-3">
             
             @for($i = 0; $i<$addCenferenceDetailsInOtherLanguage; $i++)
@@ -179,15 +201,20 @@
                   <div class="mt-3 row">
                      <div class="col-md-5 col-12">
                         <div class="form-floating w-100">
-                           <select wire:model.defer="conference.lang_detail_{{$i}}" class="form-select input-field"  aria-label="">
-                              <option>Language(English)</option>
-                           </select>
+                            <select wire:model.defer="translations.{{$i}}" class="form-select input-field">
+                                        <option value="">@lang('Select Language')</option>
+                                        @foreach($languages as $language)
+                                            <option
+                                                value="{{$language->code}}" @disabled(in_array($language->code,$translations))>{{$language->native_name}}</option>
+                                        @endforeach
+                                    </select>
                            <label for="floatingSelectGrid">@lang('Select Language')</label>
                         </div>
                      </div>
                      <div class="col-md-7 col-12 mobile-marg-2">
                         <div class="form-floating w-100">
-                           <input wire:model.defer="conference.detail_conference_name{{$i}}" class="form-control input-field" placeholder="Conference Name">
+                           
+                           <input wire:model.defer="names.{{$i}}" class="form-control input-field" placeholder="Conference Name">
                            <label for="floatingInput">@lang('Conference Name')</label>
                         </div>
                      </div>
@@ -206,39 +233,32 @@
                <hr>
             </div>
          </div>
+          <div class="d-md-flex justify-content-end align-items-center mt-1">
+            <button class="m-0 button-no-bg" wire:click="addCenferenceDetailsInOtherLanguage" type="button">
+            @lang('+ Add Conference detail in another Language')
+            </button>
+         </div>
          <div class="h5 blue mt-3">@lang('Conference Subjects')</div>
-         <div class="row mt-4">
-            <div class="col-12">
-               <div class="form-floating w-100">
-                  <input wire:model.defer="conference.subject1" class="form-control input-field"  placeholder="Name of the Subjects 1">
-                  <label for="floatingInput">@lang('Name of the Subjects 1')</label>
-               </div>
-            </div>
-         </div>
-         <div class="row mt-3">
-            <div class="col-12">
-               <div class="form-floating w-100">
-                  <input wire:model.defer="conference.subject1" class="form-control input-field"  placeholder="Name of the Subjects 2">
-                  <label for="floatingInput">@lang('Name of the Subjects 2')</label>
-               </div>
-            </div>
-         </div>
-         <div class="row mt-3">
-            <div class="col-12">
-               <div class="form-floating w-100">
-                  <input wire:model.defer="conference.subject1" class="form-control input-field"  placeholder="Name of the Subjects 3">
-                  <label for="floatingInput">@lang('Name of the Subjects 3')</label>
-               </div>
-            </div>
-         </div>
-         <div class="row mt-3">
-            <div class="col-12">
-               <div class="form-floating w-100">
-                  <input wire:model.defer="conference.subject1" class="form-control input-field"  placeholder="Name of the Subjects 4">
-                  <label for="floatingInput">@lang('Name of the Subjects 4')</label>
-               </div>
-            </div>
-         </div>
+                  @php
+             $subjects = [
+                 'Name of the Subjects 1',
+                 'Name of the Subjects 2',
+                 'Name of the Subjects 3',
+                 'Name of the Subjects 4'
+             ];
+         @endphp
+
+         @foreach($subjects as $index => $subject)
+             <div class="row mt-3">
+                 <div class="col-12">
+                     <div class="form-floating w-100">
+                         <input wire:model.defer="other_subjects.{{ $index }}" class="form-control input-field" placeholder="{{ $subject }}">
+                         <label for="floatingInput">@lang($subject)</label>
+                     </div>
+                 </div>
+             </div>
+         @endforeach
+
          <div class="w-100 px-4 mt-4">
             <hr>
          </div>
@@ -258,3 +278,34 @@
      
    </div>
 </div>
+
+ @push(AppConst::PUSH_CSS)
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    @endpush
+    @push(AppConst::PUSH_JS)
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        @if(app()->getLocale() != 'en')
+            <script src="https://npmcdn.com/flatpickr/dist/l10n/{{app()->getLocale()}}.js"></script>
+        @endif
+        <script>
+           
+
+
+$(document).ready(function() {
+        
+
+            
+    // var start_date = $('#st').val();
+    // var end_date = $('#ed').val();
+    
+    $('.flatpickr-input').flatpickr({
+        locale: "{{ app()->getLocale() }}",
+        enableTime: false,
+        allowInput: false,
+         minDate: "today",
+        // maxDate: end_date,
+    });
+    });
+        </script>
+    @endpush
+

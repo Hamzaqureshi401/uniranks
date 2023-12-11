@@ -10,11 +10,20 @@
                 </div>
                 <div class="d-flex justify-content-end mt-2">
                     <div class="col-md-6 col-12">
-                        <select class="form-control input-field">
+                        
+                        <!-- <select class="form-control input-field">
                             <option>Select Entry Type</option>
                             <option>Conferences</option>
                             <option>Workshops</option>
-                        </select>
+                        </select> -->
+
+                         <select wire:model.defer="conference.university_conference_type_id" class="form-select input-field" 
+                              aria-label="" wire:change="">
+                              <option value="">@lang('Semester')</option>
+                              @foreach($universityConferenceType ?? [] as $type)
+                              <option value="{{$type->id}}">{{$type->title}}</option>
+                              @endforeach
+             </select>
                     </div>
                     
                 </div>
