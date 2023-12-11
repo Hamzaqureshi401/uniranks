@@ -46,7 +46,7 @@ class LeftSidebar extends Component
                 'sub-title'=>'Manage University admissions',
                 'links'=>[
                     'Semesters'=>'admin.university.semesters',
-                    'Admissions Semesters & Admission Sessions'=>'admin.university.admissionsSemestersAdmissionSessions',
+                    'Admissions Semesters & Sessions'=>'admin.university.admissionsSemestersAdmissionSessions',
                     'Sessions'=>'admin.university.sessions',
                     'Programs'=>'admin.university.programs',
                     'Fee Structure'=>'admin.university.feeStructure',
