@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\University;
 use App\Models\General\Language;
-
+ 
 
 use Livewire\Component;
 
@@ -17,52 +17,56 @@ class ResearchOutputData extends Component
     $addNewVolume           = 1,
     $journalDetailInNewLang = 1,
     $translations           = []; 
+    public $editorialData = [];
+    public $associateData = [];
+    public $add_new_editor = 0; // Counter for new editor boards
+    public $add_new_associate = 0; // Counter for new associate boards
+
     
 
     public function mount()
     {
-        $this->editorialAndAssociate = $this->setEditoralData();
+        $this->editorialAndAssociate = $this->setEditorialData();
         $this->languages = Language::orderBy('name')->get();
     }
     public function addDetailsInOtherLanguage()
     {
-        //dd(1);
         ++$this->details_in_langs;
     }
     public function addNewLocation()
     {
-        //dd(1);
         ++$this->add_new_board_member;
     }
     public function render()
     {
         return view('livewire.university.research-output-data');
-    }
-    public function setEditoralData(){
-
-        return  [
-            'editoral' => 'Editoral',
-            'editor'   => 'Editor'
+    } 
+    public function setEditorialData()
+    {
+        return [
+            'editoral' => 'Editorial',
+            'editor' => 'Editor',
         ];
     }
-    public function setAssosiateData(){
 
-        return  [
-            'editoral' => 'Assosiate',
-            'editor'   => 'Assosiate'
+    public function setAssociateData()
+    {
+        return [
+            'editoral' => 'Associate',
+            'editor' => 'Associate',
         ];
     }
-    public function addEditorBoard(){
-        $this->editorialAndAssociate = $this->setEditoralData();
-        ++$this->add_new_board_member;
 
+    public function addEditorBoard()
+    {
+        $this->editorialData[] = $this->setEditorialData();
+        ++$this->add_new_editor;
     }
-     public function addAssosiateBoard(){
 
-        $this->editorialAndAssociate = $this->setAssosiateData();
-        ++$this->add_new_board_member;
-
-        
+    public function addAssociateBoard()
+    {
+        $this->associateData[] = $this->setAssociateData();
+        ++$this->add_new_associate;
     }
     public function addNewSubject(){
 

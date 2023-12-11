@@ -1,14 +1,23 @@
-<div class="d-md-flex justify-content-between  align-items-center">
+<div class="d-md-flex justify-content-between  align-items-center"> 
             <div class="h4 mb-0 blue">@lang('Journel Information')</div>
          </div>
          <br>
 
          <div class="paragraph-style-2 blue">
-            @lang('Intorduction about the Journel')
+
+             <div class="form-floating w-100">
+                  <textarea wire:model.defer="research.intro" class="form-control input-field" id="floatingInput" placeholder="Journal Information"></textarea>
+                  <label for="floatingInput">@lang('Intorduction about the Journel')</label>
+               </div>
+            
          </div>
          <br>
           <div class="paragraph-style-2 blue">
-            @lang('Aims and Scope of the Journel')
+             <div class="form-floating w-100">
+                  <textarea wire:model.defer="research.intro" class="form-control input-field" id="floatingInput" placeholder="Aims and Scope"></textarea>
+                  <label for="floatingInput">@lang('Aims and Scope of the Journel')</label>
+               </div>
+            
          </div>
          <div class="blue h5 mt-3">@lang('Journel Detail')</div>
          

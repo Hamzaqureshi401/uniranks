@@ -11,19 +11,11 @@
          <div class="w-100 px-4 mt-4">
             <hr>
          </div>
-         <div class="d-md-flex justify-content-end align-items-center mt-1">
-            <div class="blue h5 col-md-4 col-12">@lang('Journal Logos')</div>
-            <div class="col-md-8 col-12 text-place-end mt-3 mb-3">
-               <button class="m-0 button-no-bg w-90" wire:click="journalDetailInNewLang" type="button">
-                  @lang('+ Add This Journal detail in another Language')
-                  </button>
-            </div>
-
-         </div>
+        
          @for($i = 0; $i<$journalDetailInNewLang; $i++)
        @if($i > 0)
             <br>
-            @endif
+           
       
 <div class="card">
    <div class="card-body">
@@ -48,23 +40,33 @@
             <div class="mt-3 row">
                <div class="col-12">
                   <div class="blue">@lang('Introduction about the Journal')</div>
-                  <textarea wire:model.defer="research.Jol_intro-{{$i}}" name="content" id="editor3" style="display: none;"></textarea>
+                  <textarea wire:model.defer="research.Jol_intro-{{$i}}" name="content" class="form-control" ></textarea>
                </div>
             </div>
             <div class="mt-3 row">
                <div class="col-12">
                   <div class="blue">@lang('Aims and Scope of the Journal')</div>
-                  <textarea wire:model.defer="research.Jol_aim_scope-{{$i}}" name="content" id="editor4" style="display: none;"></textarea>
+                  <textarea wire:model.defer="research.Jol_aim_scope-{{$i}}" name="content" class="form-control" ></textarea>
                </div>
             </div>
          </div>
          </div>
 </div>
+ @endif
 @endfor
+ <div class="d-md-flex justify-content-end align-items-center mt-1">
+            <div class="blue h5 col-md-4 col-12"></div>
+            <div class="col-md-8 col-12 text-place-end mt-3 mb-3">
+               <button class="m-0 button-no-bg w-90" wire:click="journalDetailInNewLang" type="button">
+                  @lang('+ Add This Journal detail in another Language')
+                  </button>
+            </div>
+
+         </div>
          <div class="w-100 px-4 mt-4">
             <hr>
          </div>
-         <div class="h5 blue">@lang('Editorial Board</div>
+         <div class="h5 blue">@lang('Editorial Board')</div>
          <div class="row mt-4">
             <div class="col-md-6">
                <div class="form-floating w-100">
