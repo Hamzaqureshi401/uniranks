@@ -155,9 +155,6 @@ class UniversityConferences extends Component
         return $subject ?? '--';
     }
 
-
-
-
     public function mount(){
         $this->loadAlbumData();
         $this->initForm();
@@ -178,7 +175,6 @@ class UniversityConferences extends Component
     }
 
     public function initForm(){
-
         $this->languages = Language::orderBy('name')->get();
         $this->universityConferenceType = UniversityConferenceType::get();
         $this->translations   = [];
