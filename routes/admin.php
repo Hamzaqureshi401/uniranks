@@ -22,6 +22,7 @@ Route::middleware(['setup-locale', "verify-role:" . implode(',', [AppConst::UNIV
 
             Route::view('one-to-one-meeting-request', 'pages.schools.one-to-one-meeting-request')->name('one-to-one-meeting-request');
             Route::view('view-one-to-one-meeting-request', 'pages.schools.view-one-to-one-meeting-request')->name('view-one-to-one-meeting-request');
+            Route::view('school-request-for-presentation', 'pages.schools.presentation')->name('presentation');
             
              
         });
