@@ -1,0 +1,95 @@
+<?php
+
+namespace App\Helpers\Interfaces;
+
+interface PointTypes
+{
+    const PT_EARNED_FOR_STUDENT = 'student';
+    const PT_EARNED_FOR_EVENT = 'school_fair';
+    const PT_EARNED_FOR_UNIVERSITY = 'university';
+
+    const SM_POINT_TYPE_SCHOOL_EVENTS = 1;
+    const SM_POINT_TYPE_UNIVERSITY_EVENTS = 2;
+    const SM_POINT_TYPE_STUDENT_ACTIVITY = 3;
+    const SM_POINT_TYPE_ENROLLMENT_CREDIT = 4;
+
+    const PT_SCHOOL_REGISTRATION_BONUS = 1;
+
+
+    const PT_CREATE_UNIVERSITY_FAIR = 2;
+
+
+    const PT_CREATE_CAREER_TALK = 3;
+
+
+    const PT_REQUEST_A_MEETING_S2_U = 4;
+
+
+    const PT_REQUEST_FOR_PRESENTATION_U2_S = 5;
+
+
+    const PT_JOIN_UNIVERSITY_OPEN_DAY = 6;
+
+
+    const PT_JOIN_WORKSHOPS = 7;
+
+
+    const PT_JOIN_STUDENT_FOR_A_DAY = 8;
+
+
+    const PT_JOIN_COMPETITION = 9;
+
+
+    const PT_JOIN_UNIVERSITIES_INTERNATIONAL_VISIT = 10;
+
+
+    const PT_JOIN_ONE_TO_ONE_MEETING_U2_C = 11;
+
+
+    const PT_JOIN_EXHIBITIONS_AND_FAIRS = 12;
+
+
+    const PT_UNIVERSITY_ATTEND_UNIVERSITY_FAIR = 13;
+
+
+    const PT_UNIVERSITY_ATTEND_CAREER_TALK = 14;
+
+
+    const PT_STUDENT_REGISTRATION = 15;
+
+
+    const PT_STUDENT_DOWNLOAD_UNIRANKS_MOBILE_APP = 16;
+
+
+    const PT_STUDENT_MAJORS = 17;
+
+
+    const PT_STUDENT_DESTINATIONS = 18;
+
+
+    const PT_STUDENT_BUDGET = 19;
+
+
+    const PT_STUDENT_POSSIBLE_UNIVERSITIES = 20;
+
+
+    const PT_STUDENT_JOIN_AN_EVENT = 21;
+
+
+    const PT_STUDENT_QR_CODE_SCANNED = 22;
+
+
+    const PT_STUDENT_APPLY_TO_A_UNIVERSITY = 23;
+
+
+    const PT_STUDENT_ENROLLMENT = 24;
+
+
+    const PT_STUDENT_LANGUAGE_TEST = 25;
+
+
+    const PT_STUDENT_VISA_APPLICATION = 26;
+
+
+    const PT_SHORT_COURSES_ENROLLMENTS = 27;
+}
