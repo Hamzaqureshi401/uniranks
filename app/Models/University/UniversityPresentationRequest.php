@@ -6,6 +6,7 @@ use App\Models\General\Cities;
 use App\Models\General\Countries;
 use App\Models\Institutes\School;
 use App\Models\Institutes\University;
+use App\Models\AttendanceMethod\AttendanceMethod;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -58,7 +59,7 @@ class UniversityPresentationRequest extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['university_id','school_id','country_id','created_by','type_id','title','description','status'];
+    protected $fillable = ['university_id','school_id','country_id','created_by','type_id','title','description','status','attendance_method_id'];
 
     public function university(): BelongsTo
     {
@@ -94,6 +95,9 @@ class UniversityPresentationRequest extends Model
 
     public function cities():BelongsToMany{
         return  $this->belongsToMany(Cities::class, UniversityPresentationRequestCity::class,'request_id','city_id');
+    }
+    public function attendanceMethod(): BelongsTo{
+        return $this->belongsTo(AttendanceMethod::class);
     }
 
 
