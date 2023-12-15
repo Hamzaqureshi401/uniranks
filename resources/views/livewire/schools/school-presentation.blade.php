@@ -26,7 +26,7 @@
                                     <div class="col-lg-5 d-flex align-items-center justify-content-between mt-2">
                                         <div class="col-lg-2 university-img-div"><img src="{{ $presentation->createdBy->profile_photo_path ?? 'https://1.daeux.com/UR/new/assets/profile/4.png' }}" class="" width="50px"></div>
                                         <div class="col-lg-10">
-                                            <div class="blue mt-2">{{ $presentation->createdBy->name ?? '--'}}</div>
+                                            <div class="blue mt-2">{{ !empty($presentation->createdBy->name) ? $presentation->createdBy->name : 'Name Not Found For The User Please Update!'}}</div>
                                             <div class="d-md-flex mb-0 h6 mt-1 justify-content-between gray">
                                                 <div class="mt-2">{{ $presentation->slots->count() }} Available Slots</div>
                                                  <div class="mt-2">First Available Slot: {{ $presentation->slots->first()->start_datetime }}</div>
@@ -86,11 +86,16 @@
                                 <td>{{ $loop->index + 1 }}</td>
                                 <td>{{ $slot->start_datetime }}</td>
                                 <td>
+
                                     @if($slot->status == 0)
-                                    <span wire:click="confirmSlot({{ $slot->id }})" style="cursor: pointer;" class="button-sm button-blue m-0">Confirm</span>
-         
+                                    @if($slot->where('reserved_by' , Auth::id())->where('status' , 1)->count() >= 1)
+                                    <button class="button-sm button-orange mobile-btn w-98">Already Accepted 1 Slot!</button>
                                     @else
-                                    --
+                                    <span wire:click="confirmSlot({{ $slot->id }})" style="cursor: pointer;" class="button-sm button-blue m-0">Confirm</span>
+                                    @endif
+                                    
+                                    @else
+                                    <button class="button-sm button-green mobile-btn w-98">Accepted</button>
                                     @endif
                                 </td>
                                 <!-- Render other slot data -->

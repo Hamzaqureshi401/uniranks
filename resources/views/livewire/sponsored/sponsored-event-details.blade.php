@@ -8,10 +8,10 @@
     @endphp
     <div class="">
         <div class="row align-items-center gap-1">
-            <div class="col-lg-2 university-img-div ">
+            <div class="col-lg-2 ">
                 <img src="{{$school->logo_url}}" class="" alt="Logo" width="140px">
             </div>
-            <div class="col-lg-10 ms-3 ms-lg-0">
+            <div class="col-lg-9 ms-3 ms-lg-0">
                 <div class="h2 blue">{{$school->school_name}}</div>
                 <div class="blue h5 mt-1">{{$school->address1}}</div>
                 <div

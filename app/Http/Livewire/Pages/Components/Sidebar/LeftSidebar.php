@@ -13,6 +13,7 @@ class LeftSidebar extends Component
             'Main Information' => [
                 'sub-title'=>'Manage university detail',
                 'links'=>[
+                    'Dashboard'=>'admin.dashboard',
                     'Main Information'=>'admin.university.mainInfo',
                     'Set Logos'=>'admin.university.setLogo',
                     'Domains'=>'admin.university.domains',
