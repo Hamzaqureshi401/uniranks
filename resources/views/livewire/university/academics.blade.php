@@ -22,19 +22,24 @@
          <x-general.status-alert/>
          <x-jet-validation-errors class="mt-3 mb-3 alert alert-danger"/>
          @include('livewire.university.academics-pages.academics-common-page')
-         <!-- <div x-data="{created_date: @entangle('support_information.created_date').defer}"
-            x-init="addDatePicker($refs.created_date);"> -->
-            
-            
-         <!-- </div> -->
+        
       </div>
    </div>
-      <div class="row-h">
+     <!--  <div class="row-h">
          <div class="col-md-6 offset-6 d-flex justify-content-md-end">
             <button wire:click="save" class="button-blue button-sm mobile-button w-35">@lang('Save')</button>
             <button wire:click="initForm" class="button-red button-sm mobile-button w-35">@lang('Cancel')</button>
          </div>
-      </div>
+      </div> -->
+       <div class="row mt-4">
+        <div class="col-md-6 offset-6 d-flex justify-content-md-end">
+            <button wire:click="save" class="button-blue button-sm mobile-button w-35">@lang('Save')</button>
+            @if(!empty($edit_item))
+                <button wire:click="initForm(true)" class="button-orange button-sm mobile-button w-35">@lang('Reset')</button>
+            @endif
+            <button wire:click="initForm" class="button-red button-sm mobile-button w-35">@lang('Cancel')</button>
+        </div>
+    </div>
       <div class="w-100 px-4 mt-3">
          <hr>
       </div>

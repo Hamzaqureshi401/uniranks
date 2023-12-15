@@ -69,13 +69,6 @@
                         <input wire:model.defer="lc_b.campus_type.{{ $i }}" type="checkbox" class=" mt-0 form-check-input"> <span class="blue ms-2">This is the Main Branch</span>
                      </div>
                   </div>
-                  <div class="row mb-3">
-                     <div class="col-12 text-place-end mt-4 mb-4">
-                        <button class="m-0 button-no-bg" wire:click="addDetailsInOtherLanguage" type="button">
-                        @lang('+ Add University Location in another language')
-                        </button>
-                     </div>
-                  </div>
                   @for($i = 0; $i<$details_in_langs; $i++)
                   @if($i > 0)
                   <br>
@@ -96,14 +89,15 @@
                            </div>
                            <div class="mt-3">
                               <div class="form-floating w-100">
-                                 <input wire:model.defer="branch_name_other_lang.{{ $i }}" class="form-control input-field" placeholder="branch name or just University Name in Arabic Language">
-                                 <label for="floatingInput">@lang('branch name or just University Name in Arabic Language')</label>
+                                 <input wire:model.defer="branch_name_other_lang.{{ $i }}" class="form-control input-field" placeholder="branch name or just University Name in Other Language">
+                                 <label for="floatingInput">@lang('Branch name or just University Name in 
+                                 Other Language')</label>
                               </div>
                            </div>
                            <div class="mt-3">
                               <div class="form-floating w-100">
-                                 <input wire:model.defer="branch_address_other_lang.{{ $i }}" class="form-control input-field" placeholder="University Addresses as text in Arabic Language">
-                                 <label for="floatingInput">@lang('University Addresses as text in Arabic Language')</label>
+                                 <input wire:model.defer="branch_address_other_lang.{{ $i }}" class="form-control input-field" placeholder="University Addresses as text in Other Language">
+                                 <label for="floatingInput">@lang('University Addresses in Other Language')</label>
                               </div>
                            </div>
                         </div>
@@ -111,6 +105,14 @@
                   </div>
                   @endif
                   @endfor
+                  <div class="row mb-3">
+                     <div class="col-12 text-place-end mt-4 mb-4">
+                        <button class="m-0 button-no-bg" wire:click="addDetailsInOtherLanguage" type="button">
+                        @lang('+ Add University Location in another language')
+                        </button>
+                     </div>
+                  </div>
+                  
                </div>
             </div>
          </div>

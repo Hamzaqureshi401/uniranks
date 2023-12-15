@@ -10,7 +10,9 @@
          <div class="col-md-4 mobile-marg-2">Created on {{$academic->created_at ?? '--'}}</div>
          <div class="col-md-3 mobile-marg-2">By {{ $academic->user->name }}</div>
          <div class="col-md-2 text-place-end mobile-marg-2 d-flex justify-content-between">
-            <a href="javascript:void(0)" wire:click="delete('{{$academic->id}}')" class="red ">@lang('Delete')</a><a href="" class="light-blue">View</a><a href="" class="light-blue ">Edit</a></div>
+            <a href="javascript:void(0)" wire:click="delete('{{$academic->id}}')" class="red ">@lang('Delete')</a><a href="" class="light-blue">View</a>
+            <a href="javascript:void(0);" class="light-blue" wire:click.prevent="edit('{{$academic->id}}')"
+                               class="blue">@lang('Edit')</a></div>
       </div>
    </div>
 </div>
