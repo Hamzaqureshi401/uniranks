@@ -34,6 +34,9 @@
 @endif
 <link rel="stylesheet" href="{{asset('assets/css/template/common.css')}}?id={{Str::uuid()}}">
 <link rel="stylesheet" href="{{ asset('assets/css/intlTelInput.css') }}">
+
+@include('layouts.includes.metoxi.metoxi-header-style')
+
 @stack(AppConst::PUSH_CSS)
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,6 +48,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" defer/>
 <script src="https://kit.fontawesome.com/9487d74d1e.js" crossorigin="anonymous" defer></script>
 <script src="https://kit.fontawesome.com/2c1e5308ba.js" crossorigin="anonymous" defer></script>
+@include('layouts.includes.metoxi.metoxi-header-js')
+
 <!-- Scripts -->
 @stack('styles')
 @vite(['resources/js/app.js'])

@@ -115,7 +115,6 @@ class UniversityConferences extends Component
            $this->selected_album->refresh();
         }
          if (($this->rectangle_logo_path == false) && ($this->square_logo_path == false)) {
-            dd(1);
             $images = [];
             $rectangle_logo_path  = $this->rectangle_logo_path->storePublicly('images/university-photos', 's3');
             $square_logo_path     = $this->square_logo_path->storePublicly('images/university-photos', 's3');
