@@ -18,6 +18,7 @@ class Academics extends Component
             $academics,
             $academics_form,
             $researchFields,
+            $edit_item,
             $schools,
             $names = [],
             $descriptions = [],
@@ -69,7 +70,7 @@ class Academics extends Component
             
         }
         $final = array_merge($data , $this->academics_form);
-         if (!empty($this->edit_item)) {
+        if (!empty($this->edit_item)) {
             $this->edit_item->update($final);
         } else {
            Auth::user()->academics()->create($final);

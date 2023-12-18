@@ -15,7 +15,8 @@
                         <div class="col-md-4 mobile-marg-2">Created on {{ $con->created_at }}</div>
                         <div class="col-md-3 mobile-marg-2">By {{ $con->created_by ?? '--'}}</div>
                          
-                         <div class="col-md-2 text-place-end mobile-marg-2 d-flex justify-content-between"><a href="javascript:void(0)" wire:click="delete({{ $s->id }})" class="red ms-2">Delete</a><a href="" class="light-blue">View</a><a href="" class="light-blue ">Edit</a></div>
+                         <div class="col-md-2 text-place-end mobile-marg-2 d-flex justify-content-between"><a href="javascript:void(0)" wire:click="delete({{ $s->id }})" class="red ms-2">Delete</a><a href="javascript:void(0);" class="light-blue" wire:click="edit('{{$con->id}}')"
+                               class="blue">@lang('Edit')</a></div>
                     </div>
                    </div>
                </div>

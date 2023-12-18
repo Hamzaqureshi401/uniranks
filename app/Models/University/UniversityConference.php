@@ -69,10 +69,15 @@ class UniversityConference extends Model
         return \AppConst::IMAGES_CDN_URL.'/'.$this->square_logo_path;
     }
 
+    public function getRectangleLogoUrlAttribute(): string
+    {
+        return \AppConst::IMAGES_CDN_URL.'/'.$this->rectangle_logo_path;
+    }
     public function getRectangleUrlAttribute(): string
     {
         return \AppConst::IMAGES_CDN_URL.'/'.$this->rectangle_logo_path;
     }
+
 
     public function university(): BelongsTo
     {
