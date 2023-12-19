@@ -13,11 +13,18 @@
     <livewire:suggest.modal/>
     <livewire:leads.student-details-modal/>
     <x-general.coming-soon/>
-    <footer class="page-footer" style="display: block !important;">
-  
-    <x-general.footer/>
-    </footer>
-    @include('layouts.theme-customizer')
+   
+     @if(Route::is('login'))
+        <!-- If the current route is 'login', use specific footer -->
+        <x-general.footer/>
+    @else
+        <!-- If the current route is not 'login', use another footer -->
+        <footer class="page-footer" style="display: block !important;">
+            <x-general.footer/>
+        </footer>
+        @include('layouts.theme-customizer')
+    @endif
+    
 </div>
 @include('layouts.includes.scripts')
 </body>

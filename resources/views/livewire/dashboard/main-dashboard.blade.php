@@ -253,7 +253,7 @@
    <div class="d-md-flex justify-content-between">
       <div class="paragraph-style1 gray font-normal align-self-center">Monitor student Statistics UAE</div>
       <div class="d-md-flex col-md-4 mobile-marg-2">
-         <div class="col-md-6">
+         <div class="col-md-6" style="padding-right: 5px">
             <select class="input-field form-control">
                <option>Province</option>
             </select>

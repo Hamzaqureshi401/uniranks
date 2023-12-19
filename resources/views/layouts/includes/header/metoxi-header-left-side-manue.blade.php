@@ -1,3 +1,10 @@
+@push('styles')
+<style type="text/css">
+  li .material-icons-outlined{
+    color: black !important;
+  }
+</style>
+@endpush
 <header class="top-header">
     <nav class="navbar navbar-expand align-items-center gap-4">
       <div class="btn-toggle">
@@ -532,32 +539,41 @@
           </a>
         </li>
         <li class="nav-item dropdown">
-           <a href="#" class="dropdown-toggle dropdown-toggle-nocaret" id="dropdownMenuLink">
-       
-             <img src="{{ asset('assets/metoxi/assets/images/avatars/01.png') }}" class="rounded-circle p-1 border" width="45" height="45">
+          <a href="javascrpt:;" class="dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown">
+             <img class="navbar-user-avatar" src="{{ auth()->user()->profile_photo_url }}"
+                 alt="Profile Picture"/>
+            <span class="ms-3 primary-text">
+                {{ auth()->user()->userBio->first_name }}
+            </span>
           </a>
-         <div class="dropdown-menu dropdown-user dropdown-menu-end shadow" aria-labelledby="dropdownMenuLink">
-      <a class="dropdown-item  gap-2 py-2" href="javascript:;">
+          <div class="dropdown-menu dropdown-user dropdown-menu-end shadow">
+            <a class="dropdown-item  gap-2 py-2" href="javascript:;">
               <div class="text-center">
-                <img src="{{ asset('assets/metoxi/assets/images/avatars/01.png') }}" class="rounded-circle p-1 shadow mb-3" width="90" height="90"
-                  alt="">
-                <h5 class="user-name mb-0 fw-bold">Hello, Jhon</h5>
+                <img class="navbar-user-avatar" src="{{ auth()->user()->profile_photo_url }}"
+                 alt="Profile Picture"/>
+                <h5 class="user-name mb-0 fw-bold">{{ auth()->user()->userBio->first_name }}</h5>
               </div>
             </a>
             <hr class="dropdown-divider">
-            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
+            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{route('admin.user.profile')}}"><i
               class="material-icons-outlined">person_outline</i>Profile</a>
-            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
-              class="material-icons-outlined">local_bar</i>Setting</a>
-            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
+           <!--  <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
+              class="material-icons-outlined">local_bar</i>Setting</a> -->
+            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{route('admin.dashboard')}}"><i
               class="material-icons-outlined">dashboard</i>Dashboard</a>
-            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
+            <!-- <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
               class="material-icons-outlined">account_balance</i>Earning</a>
               <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
-                class="material-icons-outlined">cloud_download</i>Downloads</a>
+                class="material-icons-outlined">cloud_download</i>Downloads</a> -->
             <hr class="dropdown-divider">
             <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
-            class="material-icons-outlined">power_settings_new</i>Logout</a>
+            class="material-icons-outlined">power_settings_new</i><form method="POST" action="{{ route('logout') }}">
+                    @csrf
+
+                    <button type="submit" class="dropdown-item">
+                        {{ __('Logout') }}
+                    </button>
+                </form></a>
           </div>
         </li>
       </ul>
@@ -606,8 +622,8 @@
                     @endif
                 @else
                     <li>
-                        <a href="javascript:;">
-                            <i class="material-icons-outlined">arrow_right</i> @lang($sub_category_name)
+                        <a href="javascript:;" class="has-arrow">
+                            <i class="material-icons-outlined ">arrow_right</i> @lang($sub_category_name)
                         </a>
                         <ul>
                             @foreach($sub_routes['links'] as $title => $route_name)
@@ -682,26 +698,6 @@
 
     </div>
 </aside>
-<script type="text/javascript">
-  $(document).ready(function() {
-    $('#dropdownMenuLink').click(function(e) {
-        e.preventDefault();
-        var $dropdownMenu = $(this).next('.dropdown-menu');
-        if ($dropdownMenu.hasClass('show')) {
-            $dropdownMenu.removeClass('show');
-        } else {
-            $('.dropdown-menu').removeClass('show');
-            $dropdownMenu.addClass('show');
-        }
-    });
+  <script src="{{ asset('assets/metoxi/assets/js/bootstrap.bundle.min.js') }}"></script>
 
-    // Close dropdown on outside click
-    $(document).on('click', function(e) {
-        if (!$(e.target).closest('.dropdown').length) {
-            $('.dropdown-menu').removeClass('show');
-        }
-    });
-});
-
-</script>
 
