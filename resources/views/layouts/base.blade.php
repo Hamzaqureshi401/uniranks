@@ -13,7 +13,11 @@
     <livewire:suggest.modal/>
     <livewire:leads.student-details-modal/>
     <x-general.coming-soon/>
+    <footer class="page-footer" style="display: block !important;">
+  
     <x-general.footer/>
+    </footer>
+    @include('layouts.theme-customizer')
 </div>
 @include('layouts.includes.scripts')
 </body>

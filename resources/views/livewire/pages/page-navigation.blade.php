@@ -1,5 +1,5 @@
-<div class="container">
-    <div class="row">
+<!-- <div class="container"> -->
+    <!-- <div class="row">
         @foreach($routes as $main_category => $top_rotes)
             <div class="col-2 dropdown menu-item">
                 <a class="btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -43,5 +43,6 @@
         <div class="col-2 dropdown menu-item">
             <livewire:user.user-currency-selection/>
         </div>
-    </div>
-</div>
+    </div> -->
+<!-- </div> -->
+@include('layouts.includes.header.metoxi-header-left-side-manue') 

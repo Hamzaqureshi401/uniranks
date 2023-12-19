@@ -16,4 +16,4 @@
     $(".data-attributes span").peity("donut")
   </script>
   <script src="{{ asset('assets/metoxi/assets/plugins/simplebar/js/simplebar.min.js') }}"></script>
-  <script src="{{ asset('assets/metoxi/assets/js/main.js') }}"></script>
+  <script src="{{ asset('assets/metoxi/assets/js/main.js') }}"></script> 

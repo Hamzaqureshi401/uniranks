@@ -12,4 +12,4 @@
   <link href="{{ asset('assets/metoxi/sass/dark-theme.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/metoxi/sass/semi-dark.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/metoxi/sass/bordered-theme.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/metoxi/sass/responsive.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/metoxi/sass/responsive.css') }}" rel="stylesheet"> 

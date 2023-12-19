@@ -35,6 +35,7 @@
 <link rel="stylesheet" href="{{asset('assets/css/template/common.css')}}?id={{Str::uuid()}}">
 <link rel="stylesheet" href="{{ asset('assets/css/intlTelInput.css') }}">
 
+
 @include('layouts.includes.metoxi.metoxi-header-style')
 
 @stack(AppConst::PUSH_CSS)

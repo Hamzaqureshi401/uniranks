@@ -1,4 +1,4 @@
-<div class="col mobile-hidden ps-0">
+<!-- <div class="col mobile-hidden ps-0">
     @foreach($routes as $group_name=>$route_group)
         <div @class(["card",'mt-3'=>!$loop->first])>
             <div class="card-body">
@@ -19,3 +19,4 @@
 
     @endforeach
 </div>
+ -->

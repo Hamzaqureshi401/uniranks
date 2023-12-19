@@ -606,7 +606,7 @@ input::placeholder {
 
 /* main content */
 .main-wrapper {
-  margin-top: 70px;
+/*  margin-top: 70px;*/
   padding-bottom: 20px;
   margin-left: 260px;
   transition: ease-out 0.3s;
