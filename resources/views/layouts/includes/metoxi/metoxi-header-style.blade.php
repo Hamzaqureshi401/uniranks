@@ -5,7 +5,7 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/metoxi/assets/plugins/metismenu/mm-vertical.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/metoxi/assets/plugins/simplebar/css/simplebar.css') }}">
   <!--bootstrap css-->
-  <link href="{{ asset('assets/metoxi/assets/css/bootstrap.min.css') }}" rel="stylesheet">
+  <!-- <link href="{{ asset('assets/metoxi/assets/css/bootstrap.min.css') }}" rel="stylesheet"> -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined" rel="stylesheet">
   <!--main css-->
