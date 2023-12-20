@@ -75,6 +75,14 @@ body {
 .my-col {
     flex: 0 0 20%;
 }
+.breadcrumb-bar {
+    margin-top: 3.5rem;
+    background: var(--light-primary);
+    color: white;
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
 
 
 html {

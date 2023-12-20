@@ -6,6 +6,9 @@
     <img id="loader" src="{{ AppConst::SITE_LOGOS . '/logo-vertical.png' }}" alt="Loading"/>
 </div>
 <div id="mainBody" class="d-none">
+    @if(!Route::is('login'))
+    <div class="container">
+    @endif
     @include('layouts.includes.header')
     <main>
         {{ $slot }}
@@ -26,6 +29,9 @@
     @endif
     
 </div>
+@if(!Route::is('login'))
+</div>
+@endif
 @include('layouts.includes.scripts')
 </body>
 </html>

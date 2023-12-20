@@ -1,3 +1,5 @@
+ @if(!Route::is('login'))
+    
 <link href="{{ asset('assets/metoxi/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/metoxi/assets/plugins/metismenu/metisMenu.min.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/metoxi/assets/plugins/metismenu/mm-vertical.css') }}">
@@ -13,3 +15,4 @@
   <link href="{{ asset('assets/metoxi/sass/semi-dark.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/metoxi/sass/bordered-theme.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/metoxi/sass/responsive.css') }}" rel="stylesheet"> 
+  @endif
