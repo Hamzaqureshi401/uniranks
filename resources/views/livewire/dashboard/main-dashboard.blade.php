@@ -1,11 +1,11 @@
-<div class="col-lg-12">
       <div class="mt-3 mb-3">
          <div class="h2 blue">WORLD'S LARGEST SCHOOLS EVENT PLATFORM<i class="fa-solid fa-sm fa-circle-info light-blue" role="button" data-bs-toggle="modal" data-bs-target="#about-modal"></i></div>
          <!-- <div class="paragraph-style1 gray font-normal mt-3"></div> -->
       </div>
       <div class="row g-2">
          <!--to force new line-->
-         <div class="col-3">
+         <div class="col-12 col-md-4 col-lg-3">
+         
             <div class="card">
                <div class="p-3 statistics-card-content">
                   <div class="d-flex justify-content-between">
@@ -36,7 +36,8 @@
             </div>
          </div>
          <!--to force new line-->
-         <div class="col-3">
+         <div class="col-12 col-md-4 col-lg-3">
+         
             <div class="card">
                <div class="p-3 statistics-card-content">
                   <div class="d-flex justify-content-between">
@@ -67,7 +68,8 @@
             </div>
          </div>
          <!--to force new line-->
-         <div class="col-3">
+         <div class="col-12 col-md-4 col-lg-3">
+         
             <div class="card">
                <div class="p-3 statistics-card-content">
                   <div class="d-flex justify-content-between">
@@ -97,7 +99,8 @@
                </div>
             </div>
          </div>
-         <div class="col-3">
+         <div class="col-12 col-md-4 col-lg-3">
+         
             <div class="card">
                <div class="p-3 statistics-card-content">
                   <div class="d-flex justify-content-between">
@@ -127,7 +130,8 @@
                </div>
             </div>
          </div>
-         <div class="col-3">
+         <div class="col-12 col-md-4 col-lg-3">
+         
             <div class="card">
                <div class="p-3 statistics-card-content">
                   <div class="d-flex justify-content-between">
@@ -157,7 +161,8 @@
                </div>
             </div>
          </div>
-         <div class="col-3">
+         <div class="col-12 col-md-4 col-lg-3">
+         
             <div class="card">
                <div class="p-3 statistics-card-content">
                   <div class="d-flex justify-content-between">
@@ -187,7 +192,8 @@
                </div>
             </div>
          </div>
-         <div class="col-3">
+         <div class="col-12 col-md-4 col-lg-3">
+         
             <div class="card">
                <div class="p-3 statistics-card-content">
                   <div class="d-flex justify-content-between">
@@ -217,7 +223,8 @@
                </div>
             </div>
          </div>
-         <div class="col-3">
+         <div class="col-12 col-md-4 col-lg-3">
+         
             <div class="card">
                <div class="p-3 statistics-card-content">
                   <div class="d-flex justify-content-between">
@@ -472,4 +479,3 @@
          </div>
       </div>
    
-</div>

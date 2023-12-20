@@ -25,6 +25,18 @@ $(function () {
   })
 
 
+function removeToggledClass(mq) {
+    if (mq.matches) {
+        $("body").removeClass("toggled");
+    }
+}
+
+  // Specify the media query for mobile screens
+  var mediaQuery = window.matchMedia("(max-width: 768px)");
+
+  // Call the function initially and add an event listener for changes
+  removeToggledClass(mediaQuery);
+  mediaQuery.addListener(removeToggledClass);
 
 
   /* menu */
