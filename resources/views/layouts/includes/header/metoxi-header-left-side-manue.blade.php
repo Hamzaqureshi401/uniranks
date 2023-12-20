@@ -12,8 +12,8 @@
       </div>
       <div class="search-bar flex-grow-1">
         <div class="position-relative">
-          <input class="form-control rounded-5 px-5 search-control d-lg-block d-none" type="text" placeholder="Search">
-          <span class="material-icons-outlined position-absolute d-lg-block d-none ms-3 translate-middle-y start-0 top-50">search</span>
+          <!-- <input class="form-control rounded-5 px-5 search-control d-lg-block d-none" type="text" placeholder="Search"> -->
+          <!-- <span class="material-icons-outlined position-absolute d-lg-block d-none ms-3 translate-middle-y start-0 top-50">search</span> -->
           <span class="material-icons-outlined position-absolute me-3 translate-middle-y end-0 top-50 search-close">close</span>
           <div class="search-popup p-3">
             <div class="card rounded-4 overflow-hidden">
@@ -588,12 +588,15 @@
     <div class="sidebar-header">
       <div class="logo-icon">
          <a href="{{url('/')}}"  class="navbar-brand" style="align-self: center">
-            <img class="header-logo d-none d-lg-inline-block pointer" style="width: 175px; height: auto; "
-                 src="{{AppConst::SITE_LOGOS}}/Logo-stars-v1.png" alt="Unirank"/>
+            <!-- <img class="header-logo d-none d-lg-inline-block pointer" style="width: 175px; height: auto; "
+                 src="{{AppConst::SITE_LOGOS}}/Logo-stars-v1.png" alt="Unirank"/> -->
+                 <img class="header-logo d-none d-lg-inline-block pointer" style="max-width: 37px; max-height: 32px; margin-left: 1.1rem;"
+     src="{{asset('assets/img/UR-Ble.svg')}}" alt="Unirank"/>
+
         </a>
       </div>
       <div class="logo-name flex-grow-1">
-        <!-- <h5 class="mb-0">Metoxi</h5> -->
+        <h5 class="mb-0">Uniranks</h5>
       </div>
       <div class="sidebar-close">
         <span class="material-icons-outlined">close</span>
@@ -699,5 +702,26 @@
     </div>
 </aside>
   <script src="{{ asset('assets/metoxi/assets/js/bootstrap.bundle.min.js') }}"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+    $('.main-content').click(function(e) {
+        ($("body").addClass("toggled"), $(".sidebar-wrapper").hover(function () {
+      $("body").addClass("sidebar-hovered")
+    }, function () {
+      $("body").removeClass("sidebar-hovered")
+    }));  
+        e.stopPropagation(); // Prevent the click event from propagating further
+    });
+  });
+    function closeSideManue(){
+      $("body").hasClass("toggled") ? ($("body").removeClass("toggled"), $(".sidebar-wrapper").unbind("hover")) : ($("body").addClass("toggled"), $(".sidebar-wrapper").hover(function () {
+      $("body").addClass("sidebar-hovered")
+    }, function () {
+      $("body").removeClass("sidebar-hovered")
+    }));  
+    }
+    closeSideManue();
+    
+  </script>
 
 

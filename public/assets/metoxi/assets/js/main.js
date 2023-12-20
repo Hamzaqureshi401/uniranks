@@ -60,18 +60,22 @@ $(function () {
 
   $("#LightTheme").on("click", function () {
     $("html").attr("data-bs-theme", "light")
+    $("[class^='h']:not(h5).blue").removeClass("text-white")
   }),
 
     $("#DarkTheme").on("click", function () {
       $("html").attr("data-bs-theme", "dark")
+      $("[class^='h']:not(h5).blue").addClass("text-white")
     }),
 
     $("#SemiDarkTheme").on("click", function () {
       $("html").attr("data-bs-theme", "semi-dark")
+      $("[class^='h']:not(h5).blue").removeClass("text-white")
     }),
 
     $("#BoderedTheme").on("click", function () {
       $("html").attr("data-bs-theme", "bodered-theme")
+      $("[class^='h']:not(h5).blue").removeClass("text-white")
     })
 
 

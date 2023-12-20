@@ -201,6 +201,10 @@ button {
 .blue {
     color: #1c345a !important;
 }
+.blue.text-white {
+    color: white !important;
+}
+
 
 .light-blue {
     color: #039be5 !important;
