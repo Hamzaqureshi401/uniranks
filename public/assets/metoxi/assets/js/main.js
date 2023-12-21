@@ -59,8 +59,17 @@ function removeToggledClass(mq) {
     })
   });
 
+  var a = 1; 
 
   $(".dark-mode").click(function () {
+    if(a == 1){
+      $("[class^='h']:not(h5).blue").addClass("text-white"); 
+      a = 0; 
+    }else{
+      $("[class^='h']:not(h5).blue").removeClass("text-white");
+      a = 1;
+    
+    }
     $("html").attr("data-bs-theme", function (i, v) {
       return v === 'dark' ? 'light' : 'dark';
     })

@@ -1,12 +1,12 @@
 @push('styles')
 <style type="text/css">
   li .material-icons-outlined{
-    color: black !important;
+    color: #1C345A !important;
   }
 </style>
 @endpush
 <header class="top-header">
-    <nav class="navbar navbar-expand align-items-center gap-4">
+    <nav class="navbar navbar-expand align-items-center " style="gap: 0.5rem!important;">
       <div class="btn-toggle">
         <a href="javascript:;"><i class="material-icons-outlined">menu</i></a>
       </div>
@@ -113,9 +113,9 @@
         </div>
       </div>
       <ul class="navbar-nav gap-1 nav-right-links align-items-center" style="color: #49494 !important">
-        <li class="nav-item d-lg-none mobile-search-btn">
+        <!-- <li class="nav-item d-lg-none mobile-search-btn">
           <a class="nav-link" href="javascript:;"><i class="material-icons-outlined">search</i></a>
-        </li>
+        </li> -->
         <li class="nav-item dropdown position-static">
           <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-bs-auto-close="outside"
           data-bs-toggle="dropdown" href="javascript:;"><i class="material-icons-outlined">done_all</i></a>
@@ -532,12 +532,12 @@
             </div>
           </div>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link position-relative" data-bs-toggle="offcanvas" href="#offcanvasCart"><i
               class="material-icons-outlined">shopping_cart</i>
             <span class="badge-notify bg-dark">8</span>
           </a>
-        </li>
+        </li> -->
         <li class="nav-item dropdown">
           <a href="javascrpt:;" class="dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown">
              <img class="navbar-user-avatar" src="{{ auth()->user()->profile_photo_url }}"
@@ -606,6 +606,17 @@
       
         <!--navigation-->
         <ul class="metismenu" id="sidenav">
+           <li>
+            <a href="javascript:;" class="has-arrow">
+              <div class="parent-icon"><i class="material-icons-outlined">home</i>
+              </div>
+              <div class="menu-title">Dashboard</div>
+            </a>
+            <ul>
+              <li><a href="{{route('admin.dashboard')}}"><i class="material-icons-outlined">arrow_right</i>Dasboard</a>
+              </li>
+            </ul>
+          </li>
           @foreach($routes as $main_category => $top_routes)
     <li>
         <a href="javascript:;" class="has-arrow">
