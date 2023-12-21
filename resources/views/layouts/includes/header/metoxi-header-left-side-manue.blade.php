@@ -608,7 +608,8 @@
         <ul class="metismenu" id="sidenav">
            <li>
             <a href="javascript:;" class="has-arrow">
-              <div class="parent-icon"><i class="material-icons-outlined">home</i>
+              <div class="parent-icon"><i class="material-icons-outlined"> <img class="header-logo d-none d-lg-inline-block pointer" style="max-width: 25px; max-height: 25px;"
+     src="{{asset('assets/img/dashboard.svg')}}" alt="Unirank"/></i>
               </div>
               <div class="menu-title">Dashboard</div>
             </a>
