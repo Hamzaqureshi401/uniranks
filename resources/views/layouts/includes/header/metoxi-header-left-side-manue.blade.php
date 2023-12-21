@@ -1,9 +1,8 @@
 @push('styles')
-<style type="text/css">
-  li .material-icons-outlined{
-    color: #1C345A !important;
-  }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined" rel="stylesheet">
+    <link href="{{ asset('assets/metoxi/sass/main.css') }}" rel="stylesheet">
+
 @endpush
 <header class="top-header">
     <nav class="navbar navbar-expand align-items-center " style="gap: 0.5rem!important;">
@@ -112,13 +111,13 @@
           </div>
         </div>
       </div>
-      <ul class="navbar-nav gap-1 nav-right-links align-items-center" style="color: #49494 !important">
+      <ul class="navbar-nav gap-1 nav-right-links align-items-center">
         <!-- <li class="nav-item d-lg-none mobile-search-btn">
           <a class="nav-link" href="javascript:;"><i class="material-icons-outlined">search</i></a>
         </li> -->
         <li class="nav-item dropdown position-static">
           <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-bs-auto-close="outside"
-          data-bs-toggle="dropdown" href="javascript:;"><i class="material-icons-outlined">done_all</i></a>
+          data-bs-toggle="dropdown" href="javascript:;"><i class="material-icons-outlined clr">done_all</i></a>
           <div class="dropdown-menu dropdown-menu-end mega-menu shadow-lg p-4 p-lg-5">
             <div class="mega-menu-widgets">
              <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-4 g-lg-5">
@@ -257,7 +256,7 @@
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-bs-auto-close="outside"
-            data-bs-toggle="dropdown" href="javascript:;"><i class="material-icons-outlined">apps</i></a>
+            data-bs-toggle="dropdown" href="javascript:;"><i class="material-icons-outlined clr">apps</i></a>
           <div class="dropdown-menu dropdown-menu-end dropdown-apps shadow-lg p-3">
             <div class="border rounded-4 overflow-hidden">
               <div class="row row-cols-3 g-0 border-bottom">
@@ -396,7 +395,7 @@
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" data-bs-auto-close="outside"
-            data-bs-toggle="dropdown" href="javascript:;"><i class="material-icons-outlined">notifications</i>
+            data-bs-toggle="dropdown" href="javascript:;"><i class="material-icons-outlined clr">notifications</i>
             <span class="badge-notify">5</span>
           </a>
           <div class="dropdown-menu dropdown-notify dropdown-menu-end shadow">
@@ -596,7 +595,8 @@
         </a>
       </div>
       <div class="logo-name flex-grow-1">
-        <h5 class="mb-0">Uniranks</h5>
+       <img class="header-logo d-none d-lg-inline-block pointer" style="max-width: 100px; max-height: 32px; "
+     src="{{asset('assets/img/UNIRANKS-Text-Logo-Blue.svg')}}" alt="Unirank"/>
       </div>
       <div class="sidebar-close">
         <span class="material-icons-outlined">close</span>

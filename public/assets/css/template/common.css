@@ -2990,3 +2990,17 @@ textarea.form-control {
 /*    border-bottom: 2px solid var(--secondary-blue);*/
 /*    border-radius: 0;*/
 /*}*/
+
+@media (prefers-color-scheme: dark) {
+.blue {
+    color: white !important;
+}
+
+.statistics-card-content {
+    background: #001736;
+  }
+
+.paragraph-style2 {
+    color: white !important;
+}
+}
