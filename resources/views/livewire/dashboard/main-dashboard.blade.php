@@ -26,7 +26,7 @@
                      </div> -->
                   <div class="mt-2 d-flex justify-content-between align-items-center">
                      <div class="">
-                        <img src="https://1.daeux.com/UR/new/assets/icons/school.svg" width="30px">
+                        <img src="{{asset('assets/icons/school-solid.svg')}}" width="30px">
                      </div>
                      <div class="align-self-end">
                         <i class="fa-solid light-blue font-1-5rem fa-angle-right"></i>
@@ -35,7 +35,7 @@
                </div>
             </div>
          </div>
-         <!--to force new line-->
+         <!--to force new line--> 
          <div class="col-12 col-md-4 col-lg-3">
          
             <div class="card">
@@ -58,7 +58,7 @@
                      </div> -->
                   <div class="mt-2 d-flex justify-content-between align-items-center">
                      <div class="">
-                        <i class="fa-regular fa-calendar event-calendar"></i>
+                        <img src="{{asset('assets/icons/calendar-days-solid.svg')}}" width="30px">
                      </div>
                      <div class="align-self-end">
                         <i class="fa-solid light-blue font-1-5rem fa-angle-right"></i>
@@ -90,7 +90,7 @@
                      </div> -->
                   <div class="mt-2 d-flex justify-content-between align-items-center">
                      <div class="">
-                        <img src="https://1.daeux.com/UR/new/assets/icons/students.svg" width="30px">
+                        <img src="{{asset('assets/icons/users-solid.svg')}}" width="30px">
                      </div>
                      <div class="align-self-end">
                         <i class="fa-solid light-blue font-1-5rem fa-angle-right"></i>
@@ -121,7 +121,7 @@
                      </div> -->
                   <div class="mt-2 d-flex justify-content-between align-items-center">
                      <div class="">
-                        <img src="https://1.daeux.com/UR/new/assets/icons/universities.svg" width="30px">
+                        <img src="{{asset('assets/icons/building-columns-solid.svg')}}" width="30px">
                      </div>
                      <div class="align-self-end">
                         <i class="fa-solid light-blue font-1-5rem fa-angle-right"></i>
@@ -152,7 +152,7 @@
                      </div> -->
                   <div class="mt-2 d-flex justify-content-between align-items-center">
                      <div class="">
-                        <img src="https://1.daeux.com/UR/new/assets/icons/create_university_fair.svg" width="30px">
+                        <img src="{{ asset('assets/icons/shop-solid.svg') }}" width="30px">
                      </div>
                      <div class="align-self-end">
                         <i class="fa-solid light-blue font-1-5rem fa-angle-right"></i>
@@ -183,7 +183,7 @@
                      </div> -->
                   <div class="mt-2 d-flex justify-content-between align-items-center">
                      <div class="">
-                        <img src="https://1.daeux.com/UR/new/assets/icons/create_career_talk.svg" width="30px">
+                        <img src="{{ asset('assets/icons/chalkboard-user-solid.svg') }}" width="30px">
                      </div>
                      <div class="align-self-end">
                         <i class="fa-solid light-blue font-1-5rem fa-angle-right"></i>
@@ -214,7 +214,7 @@
                      </div> -->
                   <div class="mt-2 d-flex justify-content-between align-items-center">
                      <div class="">
-                        <img src="https://1.daeux.com/UR/new/assets/icons/request_for_presentation.svg" width="30px">
+                        <img src="{{ asset('assets/icons/person-chalkboard-solid.svg') }}" width="30px">
                      </div>
                      <div class="align-self-end">
                         <i class="fa-solid light-blue font-1-5rem fa-angle-right"></i>
@@ -245,7 +245,7 @@
                      </div> -->
                   <div class="mt-2 d-flex justify-content-between align-items-center">
                      <div class="">
-                        <img src="https://1.daeux.com/UR/new/assets/icons/request_a_meeting.svg" width="30px">
+                        <img src="{{ asset('assets/icons/handshake-simple-solid.svg') }}" width="30px">
                      </div>
                      <div class="align-self-end">
                         <i class="fa-solid light-blue font-1-5rem fa-angle-right"></i>

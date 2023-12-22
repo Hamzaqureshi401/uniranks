@@ -3,17 +3,43 @@
   <link href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined" rel="stylesheet">
     <link href="{{ asset('assets/metoxi/sass/main.css') }}" rel="stylesheet">
 
+    <style type="text/css">
+      .hd-color{
+        color: #00008B;
+      }
+/*.hover-style:hover {
+  
+  cursor: pointer; /* Change cursor to pointer on hover */
+}*/
+
+    </style>
+
 @endpush
 <header class="top-header">
     <nav class="navbar navbar-expand align-items-center " style="gap: 0.5rem!important;">
       <div class="btn-toggle">
         <a href="javascript:;"><i class="material-icons-outlined">menu</i></a>
       </div>
+      <div class="row">
+            <div class="col-12 blue">
+          <span class="">{{ \Auth::user()->selected_university->university_name ?? '--' }} |</span>
+          <a href=""><span class="hd-color">Ur Credit: 4625 |</span></a>
+          
+         <span class="hd-color hover-style">Admission Credit: 0 |</span>
+
+          <a href="{{ route('admin.account.eventCredits')}}"><span class="hd-color">Events Credit: 11 |</span></a>
+          <a href=""><span class="hd-color">Velidity: 2024-11-21</span></a>
+          
+          </div>
+          </div>
       <div class="search-bar flex-grow-1">
         <div class="position-relative">
+
+          
+
           <!-- <input class="form-control rounded-5 px-5 search-control d-lg-block d-none" type="text" placeholder="Search"> -->
           <!-- <span class="material-icons-outlined position-absolute d-lg-block d-none ms-3 translate-middle-y start-0 top-50">search</span> -->
-          <span class="material-icons-outlined position-absolute me-3 translate-middle-y end-0 top-50 search-close">close</span>
+          <!-- <span class="material-icons-outlined position-absolute me-3 translate-middle-y end-0 top-50 search-close">close</span> -->
           <div class="search-popup p-3">
             <div class="card rounded-4 overflow-hidden">
               <div class="card-header d-lg-none">
@@ -619,29 +645,27 @@
             </ul>
           </li>
           @foreach($routes as $main_category => $top_routes)
+
     <li>
         <a href="javascript:;" class="has-arrow">
-            <div class="parent-icon"><i class="material-icons-outlined">home</i></div>
+            <div class="parent-icon">
+              <!-- <i class="material-icons-outlined">home</i> -->
+              <i class="material-icons-outlined"> 
+                <img class="header-logo d-none d-lg-inline-block pointer" style="max-width: 25px; max-height: 25px;"
+     src="{{ asset('assets/icons/' . $top_routes['icon']) }}" alt="Unirank"/>
+          </i>
+            </div>
             <div class="menu-title">@lang($main_category)</div>
         </a>
-        <ul>
-            @foreach($top_routes as $sub_category_name => $sub_routes )
-                @if(!is_array($sub_routes))
-                    <li>
-                        <a href="{{ route($sub_routes) }}">
-                            <i class="material-icons-outlined">arrow_right</i> @lang($sub_category_name)
-                        </a>
-                    </li>
-                    @if(!empty($sub_routes['sub-title']))
-                        <div class="menu-title">@lang($sub_routes['sub-title'])</div>
-                    @endif
-                @else
+       <!--  <ul>
+           
+               
                     <li>
                         <a href="javascript:;" class="has-arrow">
-                            <i class="material-icons-outlined ">arrow_right</i> @lang($sub_category_name)
-                        </a>
+                            <i class="material-icons-outlined ">arrow_right</i> @lang($top_routes['sub-title'])
+                        </a> -->
                         <ul>
-                            @foreach($sub_routes['links'] as $title => $route_name)
+                            @foreach($top_routes['links'] as $title => $route_name)
                                 <li>
                                     <a href="{{ route($route_name) }}">
                                         <i class="material-icons-outlined">arrow_right</i> @lang($title)
@@ -649,10 +673,10 @@
                                 </li>
                             @endforeach
                         </ul>
-                    </li>
-                @endif
-            @endforeach
-        </ul>
+                   <!--  </li>
+          
+            
+        </ul> -->
     </li>
 @endforeach
 

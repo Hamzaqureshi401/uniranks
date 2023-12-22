@@ -9,7 +9,7 @@ class PageNavigation extends Component
     public function render()
     {
         $routes  = [
-            'University'=>[
+            // 'University'=>[
                 'Main Information' => [
                     'sub-title'=>'Manage university detail',
                     'links'=>[
@@ -30,7 +30,8 @@ class PageNavigation extends Component
                         'Location and Branches' => 'admin.university.location-and-branches',
                     
                     
-                    ]
+                    ],
+                    'icon'=>'building-columns-solid.svg'
                 ],
                 'University Facilities' => [
                     'sub-title'=>'Manage University Facilities',
@@ -42,7 +43,8 @@ class PageNavigation extends Component
                         'Transportation'=>'admin.university.transport',
                         'Student Life'=>'admin.university.studentLife',
                         'Student Support'=>'admin.university.studentSupport',
-                    ]
+                    ],
+                    'icon'=>'house-medical-solid.svg'
                 ],
                 'University Admissions' => [
                     'sub-title'=>'Manage University Admissions',
@@ -59,10 +61,11 @@ class PageNavigation extends Component
 //                        'Faculties'=>'admin.university.faculties',
 //                        'Financial Aid'=>'admin.university.financialAid',
                         'Scholarships'=>'admin.university.scholarships',
-                    ]
+                    ],
+                    'icon'=>'file-invoice-solid.svg'
                 ],
-            ],
-            'Create'=>[
+            // ],
+            // 'Create'=>[
                 'University Events' => [
                     'sub-title'=>'Create events for schools',
                     'links'=>[
@@ -70,19 +73,21 @@ class PageNavigation extends Component
                         'Open Days'=>'admin.events.openDays.list',
                         'Competitions'=>'admin.events.competitions.list',
                         'Student for a Days'=>'admin.events.studentForADays.list',
-                    ]
-                ]
-            ],
-            'Leads'=>[
+                    ],
+                    'icon'=>'square-plus-solid.svg'
+                ],
+            // ],
+            // 'Leads'=>[
                 'Student Leads' => [
                     'sub-title'=>'Manage your leads',
                     'links'=>[
                         'My Leads'=>'admin.leads.owned',
                         'Leads Repository'=>'admin.leads.repository',
-                    ]
-                ]
-            ],
-            'Schools' => [
+                    ],
+                    'icon'=>'user-plus-solid.svg'
+                ],
+            // ],
+            // 'Schools' => [
                 'Schools'=>[
                     'sub-title'=>'Join School Events',
                     'links'=>[
@@ -93,16 +98,18 @@ class PageNavigation extends Component
                         'School Request Presentation'=>'admin.schools.presentation',
                         // 'One to One Meeting'=>'admin.schools.one-to-one-meeting-request',
                         // 'View One to One Meeting'=>'admin.schools.view-one-to-one-meeting-request',
-                    ]
-                ]
-            ],
-            'Account TopUp' => [
+                    ],
+                    'icon'=>'school-solid.svg'
+                ],
+            // ],
+            // 'Account TopUp' => [
                 'Top Up'=>[
                     'sub-title'=>'Top Up Your Account',
                     'links'=>[
                         'Account Top Up'=>'admin.account.topUp',
                         'Event Packages'=>'admin.account.eventPackages',
-                    ]
+                    ],
+                    'icon'=>'ur-credit.svg'
                 ],
                 'Transactions'=>[
                     'sub-title'=>'Transaction and Invoices',
@@ -110,10 +117,13 @@ class PageNavigation extends Component
                         'Invoices'=>'admin.account.invoicesList',
                         'Event Credits'=>'admin.account.eventCredits',
                         'Repository Credits'=>'admin.account.repositoryTransactions',
-                    ]
+                    ],
+                    'icon'=>'ur-credit.svg'
                 ]
-            ],
+            // ],
         ];
+
+       // dd($routes);
         return view('livewire.pages.page-navigation',compact('routes'));
     }
 }
