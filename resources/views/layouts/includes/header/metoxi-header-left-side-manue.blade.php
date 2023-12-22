@@ -659,7 +659,7 @@
          </ul>
         <!--end navigation-->
     </div>
-    <div class="sidebar-bottom gap-4">
+  <!--   <div class="sidebar-bottom gap-4">
         <div class="dark-mode">
           <a href="javascript:;" class="footer-icon dark-mode-icon">
             <i class="material-icons-outlined">dark_mode</i>  
@@ -711,7 +711,7 @@
           </div>
         </div>
 
-    </div>
+    </div> -->
 </aside>
   <script src="{{ asset('assets/metoxi/assets/js/bootstrap.bundle.min.js') }}"></script>
   <script type="text/javascript">

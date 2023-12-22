@@ -10,6 +10,10 @@
                 {{ $slot }}
                 </div>
                 </main>
+
+                <script type="text/javascript">
+                    $('.container').removeClass('container');
+                </script>
             
             <!-- end main content -->
         <!-- </div> -->

@@ -1,7 +1,7 @@
- <button class="btn btn-primary position-fixed bottom-0 end-0 m-3 d-flex align-items-center gap-2 customizerButton" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" id="customizerButton">
+ <!-- <button class="btn btn-primary position-fixed bottom-0 end-0 m-3 d-flex align-items-center gap-2 customizerButton" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" id="customizerButton">
     <i class="material-icons-outlined">tune</i>Customize
   </button>
-  
+ -->  
   <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="staticBackdrop">
     <div class="offcanvas-header border-bottom h-70">
       <div class="">

@@ -319,7 +319,7 @@ input::placeholder {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #494949;
+  color: #1C345A;
   width: 45px;
   height: 45px;
   border-radius: 50%;
@@ -424,7 +424,7 @@ input::placeholder {
   justify-content: left;
   padding: 6px 16px;
   font-size: 15px;
-  color: #5f5f5f;
+  color: #1C345A;
   outline-width: 0;
   text-overflow: ellipsis;
   overflow: hidden;
