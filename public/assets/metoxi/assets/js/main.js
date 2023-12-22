@@ -73,6 +73,7 @@ function removeToggledClass(mq) {
     $("html").attr("data-bs-theme", function (i, v) {
       return v === 'dark' ? 'light' : 'dark';
     })
+    applyThemeStyles()
   })
 
 
@@ -80,24 +81,47 @@ function removeToggledClass(mq) {
   /* switcher */
 
   $("#LightTheme").on("click", function () {
-    $("html").attr("data-bs-theme", "light")
-    $("[class^='h']:not(h5).blue").removeClass("text-white")
-  }),
+    $("html").attr("data-bs-theme", "light");
+    applyThemeStyles();
+});
 
-    $("#DarkTheme").on("click", function () {
-      $("html").attr("data-bs-theme", "dark")
-      $("[class^='h']:not(h5).blue").addClass("text-white")
-    }),
+$("#DarkTheme").on("click", function () {
+    $("html").attr("data-bs-theme", "dark");
+    applyThemeStyles();
+});
 
-    $("#SemiDarkTheme").on("click", function () {
-      $("html").attr("data-bs-theme", "semi-dark")
-      $("[class^='h']:not(h5).blue").removeClass("text-white")
-    }),
+$("#SemiDarkTheme").on("click", function () {
+    $("html").attr("data-bs-theme", "semi-dark");
+    applyThemeStyles();
+});
 
-    $("#BoderedTheme").on("click", function () {
-      $("html").attr("data-bs-theme", "bodered-theme")
-      $("[class^='h']:not(h5).blue").removeClass("text-white")
-    })
+$("#BoderedTheme").on("click", function () {
+    $("html").attr("data-bs-theme", "bodered-theme");
+    applyThemeStyles();
+});
+
+function applyThemeStyles() {
+    var theme = $("html").attr("data-bs-theme");
+
+    if (theme === "dark") {
+        // Overwrite styles for dark theme
+        $(".blue").addClass("blue-dark");
+        $(".statistics-card-content").addClass("statistics-card-content-dark");
+        $(".paragraph-style2").addClass("paragraph-style2-dark");
+    } else if (theme === "semi-dark") {
+        // Reset styles for semi-dark theme
+       $(".blue").removeClass("blue-dark");
+        $(".statistics-card-content").removeClass("statistics-card-content-dark");
+        $(".paragraph-style2").removeClass("paragraph-style2-dark");
+    } else {
+        // Apply styles for light theme
+       $(".blue").removeClass("blue-dark");
+        $(".statistics-card-content").removeClass("statistics-card-content-dark");
+        $(".paragraph-style2").removeClass("paragraph-style2-dark");
+    
+    }
+}
+
 
 
 
