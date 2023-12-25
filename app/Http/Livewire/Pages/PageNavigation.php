@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Livewire\Pages;
+use App\Models\Transactions\EventCreditTransaction;
+
 
 use Livewire\Component;
  
@@ -123,7 +125,16 @@ class PageNavigation extends Component
             // ],
         ];
 
+        $invoices = $this->loadInvoices();
+        
+
        // dd($routes);
-        return view('livewire.pages.page-navigation',compact('routes'));
+        return view('livewire.pages.page-navigation',compact('routes' , 'invoices'));
+    }
+
+    public function loadInvoices(){
+
+        return EventCreditTransaction::selectUniversityBalance()->whereUniversityId(\Auth::user()->selected_university->id)
+            ->with('event')->orderByDesc('id')->select('id')->count();
     }
 }

@@ -27,7 +27,7 @@
           
          <span class="hd-color hover-style">Admission Credit: 0 |</span>
 
-          <a href="{{ route('admin.account.eventCredits')}}"><span class="hd-color">Events Credit: 11 |</span></a>
+          <a href="{{ route('admin.account.eventCredits')}}"><span class="hd-color">Events Credit: {{ $invoices }} |</span></a>
           <a href=""><span class="hd-color">Velidity: 2024-11-21</span></a>
           
           </div>
