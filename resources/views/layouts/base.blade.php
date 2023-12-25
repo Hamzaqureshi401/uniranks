@@ -21,6 +21,7 @@
         <!-- If the current route is 'login', use specific footer -->
         <x-general.footer/>
     @else
+    <br>
         <!-- If the current route is not 'login', use another footer -->
         <footer class="page-footer" style="display: block !important;">
             <x-general.footer/>

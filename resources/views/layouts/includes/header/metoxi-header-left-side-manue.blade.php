@@ -1,34 +1,46 @@
+<div class="menu-title">
+                <livewire:user.user-currency-selection/>
+              </div>
 @push('styles')
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined" rel="stylesheet">
     <link href="{{ asset('assets/metoxi/sass/main.css') }}" rel="stylesheet">
 
     <style type="text/css">
-      .hd-color{
-        color: #00008B;
+      .non-hover-blue-color{
+        color: #1c345a;
       }
-/*.hover-style:hover {
-  
-  cursor: pointer; /* Change cursor to pointer on hover */
-}*/
+      .hover-blue-color{
+        color: #1c345a;
+      }
+      .hover-blue-color:hover {
+        
+        color: #039be5 !important; /* Change cursor to pointer on hover */
+      }
 
     </style>
 
 @endpush
-<header class="top-header">
-    <nav class="navbar navbar-expand align-items-center " style="gap: 0.5rem!important;">
+<header class="top-header ">
+    <nav class="navbar navbar-expand align-items-center nav-bar-border-top" style="gap: 0.5rem!important;">
       <div class="btn-toggle">
         <a href="javascript:;"><i class="material-icons-outlined">menu</i></a>
       </div>
-      <div class="row">
-            <div class="col-12 blue">
-          <span class="">{{ \Auth::user()->selected_university->university_name ?? '--' }} |</span>
-          <a href=""><span class="hd-color">Ur Credit: 4625 |</span></a>
+      <div class="row rmv">
+            <div class="col-12 ">
+          <span class="non-hover-blue-color">{{ \Auth::user()->selected_university->university_name ?? '--' }} |</span>
+          <a href="">
+            <span class="hover-blue-color">@lang('UR Credit'): {{$ur_cr}} |</span>
+          </a>
           
-         <span class="hd-color hover-style">Admission Credit: 0 |</span>
+         <span class="non-hover-blue-color">@lang('Admission Credit'): {{$ad_cr}} |</span>
 
-          <a href="{{ route('admin.account.eventCredits')}}"><span class="hd-color">Events Credit: {{ $invoices }} |</span></a>
-          <a href=""><span class="hd-color">Velidity: 2024-11-21</span></a>
+          <a href="{{ route('admin.account.eventCredits')}}">
+            <span class="hover-blue-color">@lang('Events Credit'): {{$ev_cr}} |</span>
+          </a>
+          <a href="">
+            <span class="hover-blue-color">Velidity: 2024-11-21</span>
+          </a>
           
           </div>
           </div>
@@ -633,16 +645,13 @@
         <!--navigation-->
         <ul class="metismenu" id="sidenav">
            <li>
-            <a href="javascript:;" class="has-arrow">
+            <a href="{{route('admin.dashboard')}}" class="has-arrow">
               <div class="parent-icon"><i class="material-icons-outlined"> <img class="header-logo d-none d-lg-inline-block pointer" style="max-width: 25px; max-height: 25px;"
      src="{{asset('assets/img/dashboard.svg')}}" alt="Unirank"/></i>
               </div>
               <div class="menu-title">Dashboard</div>
             </a>
-            <ul>
-              <li><a href="{{route('admin.dashboard')}}"><i class="material-icons-outlined">arrow_right</i>Dasboard</a>
-              </li>
-            </ul>
+            
           </li>
           @foreach($routes as $main_category => $top_routes)
 
@@ -679,6 +688,18 @@
         </ul> -->
     </li>
 @endforeach
+
+<li>
+            <a href="javascript:;" class="has-arrow" wire:click="openCurrencySelection">
+              <div class="parent-icon"><i class="material-icons-outlined"> <img class="header-logo d-none d-lg-inline-block pointer" style="max-width: 25px; max-height: 25px;"
+     src="{{asset('assets/img/dashboard.svg')}}" alt="Unirank"/></i>
+              </div>
+
+              CAD
+
+            </a>
+            
+          </li>
 
          </ul>
         <!--end navigation-->

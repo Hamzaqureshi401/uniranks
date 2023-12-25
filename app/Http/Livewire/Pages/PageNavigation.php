@@ -12,7 +12,7 @@ class PageNavigation extends Component
     {
         $routes  = [
             // 'University'=>[
-                'Main Information' => [
+                'Information' => [
                     'sub-title'=>'Manage university detail',
                     'links'=>[
                         // 'Dashboard'=>'admin.dashboard',
@@ -35,7 +35,7 @@ class PageNavigation extends Component
                     ],
                     'icon'=>'building-columns-solid.svg'
                 ],
-                'University Facilities' => [
+                'Facilities' => [
                     'sub-title'=>'Manage University Facilities',
                     'links'=>[
                         'Buildings'=>'admin.university.mainBuilding',
@@ -48,7 +48,7 @@ class PageNavigation extends Component
                     ],
                     'icon'=>'house-medical-solid.svg'
                 ],
-                'University Admissions' => [
+                'Admissions' => [
                     'sub-title'=>'Manage University Admissions',
                     'links'=>[
                         'Admission Requirements'=>'admin.university.admissionRequirements.show',
@@ -68,7 +68,7 @@ class PageNavigation extends Component
                 ],
             // ],
             // 'Create'=>[
-                'University Events' => [
+                'Events' => [
                     'sub-title'=>'Create events for schools',
                     'links'=>[
                         'Workshops'=>'admin.events.workshops.list',
@@ -80,7 +80,7 @@ class PageNavigation extends Component
                 ],
             // ],
             // 'Leads'=>[
-                'Student Leads' => [
+                'Leads' => [
                     'sub-title'=>'Manage your leads',
                     'links'=>[
                         'My Leads'=>'admin.leads.owned',
@@ -126,10 +126,20 @@ class PageNavigation extends Component
         ];
 
         $invoices = $this->loadInvoices();
-        
+        $campus = \Auth::user()->selected_university->fresh();
+        $ur_cr = $campus->ur_credit;
+        $ad_cr = $campus->admissions_credit;
+        $ev_cr = $campus->event_credit;
+       
+        return view('livewire.pages.page-navigation',compact(
+            'routes' , 
+            'invoices',
+            'campus',
+            'ur_cr',
+            'ad_cr',
+            'ev_cr'
 
-       // dd($routes);
-        return view('livewire.pages.page-navigation',compact('routes' , 'invoices'));
+        ));
     }
 
     public function loadInvoices(){

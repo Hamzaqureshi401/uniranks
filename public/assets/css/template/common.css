@@ -2266,6 +2266,12 @@ tr {
     }
 }
 
+@media only screen and (max-width: 1000px) {
+    .rmv {
+       display: none;
+    }
+}
+
 /*Sticky footer*/
 
 .sticky-footer {
