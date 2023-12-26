@@ -1,4 +1,6 @@
 <div class="bg-blue">
+    <div class="container">
+    <div class="container">
         <div class="container row py-4">
             <div class="col-12  col-md-6 col-lg-3  d-flex flex-column justify-content-between">
                 <ul class="list-group">
@@ -169,5 +171,7 @@
 
         <button id="back_to_top" class="btn btn-secondary" onclick="goTop()" title="Go to top"><i
                 class="fas fa-angle-up"></i></button>
+    </div>
+    </div>
     </div>
 

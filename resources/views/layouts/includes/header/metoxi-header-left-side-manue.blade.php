@@ -1,6 +1,3 @@
-<div class="menu-title">
-                <livewire:user.user-currency-selection/>
-              </div>
 @push('styles')
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined" rel="stylesheet">
@@ -15,7 +12,7 @@
       }
       .hover-blue-color:hover {
         
-        color: #039be5 !important; /* Change cursor to pointer on hover */
+        color: #039BE5 !important; /* Change cursor to pointer on hover */
       }
 
     </style>
@@ -153,6 +150,18 @@
         <!-- <li class="nav-item d-lg-none mobile-search-btn">
           <a class="nav-link" href="javascript:;"><i class="material-icons-outlined">search</i></a>
         </li> -->
+        <li class="nav-item dropdown position-static">
+        
+            <a href="javascript:;" class="has-arrow">
+              
+
+              <div class="menu-title clickable">
+                <livewire:user.user-currency-selection/>
+              </div>
+
+            </a>
+            
+          </li>
         <li class="nav-item dropdown position-static">
           <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-bs-auto-close="outside"
           data-bs-toggle="dropdown" href="javascript:;"><i class="material-icons-outlined clr">done_all</i></a>
@@ -689,17 +698,7 @@
     </li>
 @endforeach
 
-<li>
-            <a href="javascript:;" class="has-arrow" wire:click="openCurrencySelection">
-              <div class="parent-icon"><i class="material-icons-outlined"> <img class="header-logo d-none d-lg-inline-block pointer" style="max-width: 25px; max-height: 25px;"
-     src="{{asset('assets/img/dashboard.svg')}}" alt="Unirank"/></i>
-              </div>
 
-              CAD
-
-            </a>
-            
-          </li>
 
          </ul>
         <!--end navigation-->
@@ -778,6 +777,16 @@
     }));  
     }
     closeSideManue();
+
+    $(document).ready(function(){
+  // Class click event handler
+  $('.clickable').click(function() {
+    setTimeout(function() {
+      $('.modal-backdrop').removeClass('modal-backdrop');
+    }, 2000); // 3000 milliseconds = 3 seconds
+  });
+});
+
     
   </script>
 
