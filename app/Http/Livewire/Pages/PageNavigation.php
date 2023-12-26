@@ -16,8 +16,7 @@ class PageNavigation extends Component
                     'sub-title'=>'Manage university detail',
                     'links'=>[
                         // 'Dashboard'=>'admin.dashboard',
-                        'University Information'=>'admin.university.university-main-information-view',
-                        'Main Information'=>'admin.university.mainInfo',
+                        'Information'=>'admin.university.mainInfo',
                         'Set Logos'=>'admin.university.setLogo',
                         'Domains'=>'admin.university.domains',
                         'Quick View'=>'admin.university.quickView',

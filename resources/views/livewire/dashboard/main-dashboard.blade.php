@@ -105,7 +105,7 @@
          </a>
          </div>
          <div class="col-12 col-md-4 col-lg-3">
-         <a href="javscript;">
+         <a href="{{ route('admin.university.university-main-information-view')}}">
             <div class="card">
                <div class="p-3 statistics-card-content">
                   <div class="d-flex justify-content-between">

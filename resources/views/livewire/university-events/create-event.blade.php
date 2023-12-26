@@ -11,7 +11,7 @@
             
             <div class="card mb-4">
                 <div class="card-body">
-                    <p class="h4 hover-blue-color">Create a Work Shop</p>
+                    <a href="{{ route('admin.events.workshops.list')}}"><p class="h4 hover-blue-color">Create a Work Shop</p></a>
                     <p class="paragraph-style2">The Student Admissions Agreement provides you with access to a pool of leads
                         that closely align with your agent profile's study destinations, majors, and programs. The unique benefit
                         of this agreement is that you can access these leads without the requirement of adding actual funds to
@@ -28,7 +28,7 @@
             
             <div class="card mb-4">
                 <div class="card-body">
-                    <p class="h4 hover-blue-color">Create a Open Days</p>
+                    <a href="{{ route('admin.events.openDays.list')}}"><p class="h4 hover-blue-color">Create a Open Days</p></a>
                     <p class="paragraph-style2">Our platform offers a comprehensive leads repository service, enabling you to
                         filter and discover students who align with your university preferences: By topping up your account, you
                         gain access to the tools necessary to search for and connect with these prospective students.</p>
@@ -44,7 +44,7 @@
             
             <div class="card mb-4">
                 <div class="card-body">
-                    <p class="h4 hover-blue-color">Create a Competitions</p>
+                    <a href="{{ route('admin.events.competitions.list')}}"><p class="h4 hover-blue-color">Create a Competitions</p></a>
                     <p class="paragraph-style2">The UNIRANKS Events Packages enable universities and education agents to connect
                         with students during the SchoolsMaster university fair events. These packages are designed to provide
                         comprehensive support, including powerful tools that facilitate communication and student matching both
@@ -62,7 +62,7 @@
             
              <div class="card mb-4">
                 <div class="card-body">
-                    <p class="h4 hover-blue-color">Create Student For a Days</p>
+                    <a href="{{ route('admin.events.studentForADays.list')}}"><p class="h4 hover-blue-color">Create Student For a Days</p></a>
                     <p class="paragraph-style2">The UNIRANKS Events Packages enable universities and education agents to connect
                         with students during the SchoolsMaster university fair events. These packages are designed to provide
                         comprehensive support, including powerful tools that facilitate communication and student matching both

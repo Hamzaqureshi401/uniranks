@@ -15,7 +15,7 @@
                     <div class="row">
                         <div class="col-12">
                             
-                    <p class="h4 hover-blue-color">{{ $key }}</p>
+                    <a href="{{ route($rout)}}"><p class="h4 hover-blue-color">{{ $key }}</p></a>
                     <p class="paragraph-style2">The Student Admissions Agreement provides you with access to a pool of leads
                         that closely align with your agent profile's study destinations, majors, and programs. The unique benefit
                         of this agreement is that you can access these leads without the requirement of adding actual funds to
