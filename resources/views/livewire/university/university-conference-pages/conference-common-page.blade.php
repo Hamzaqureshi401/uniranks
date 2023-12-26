@@ -253,10 +253,25 @@
                <div class="row">
                   <div class="h6 blue">@lang('upload or drag and drop 1 or more images , Image Format must be .JPG, .PNG, .SVG, or .WEBP')</div>
                </div>
-               <div class="upload-container file-upload d-flex justify-content-center">
-                  <i class="fa-solid fa-cloud-arrow-up light-blue"></i>
-                  <input wire:model.defer="file" type="file" id="file_upload" multiple="">
-               </div>
+               <div wire:ignore="">
+    <div x-data="{
+                dropingFile: false,
+                handleFileDrop(e) {
+                    if (event.dataTransfer.files.length > 0) {
+                        const files = e.dataTransfer.files;
+                                                window.livewire.find('VANIYOiibPkyQNUFWtw3').upload('image', files[0],(uploadedFilename) => {}, () => {}, (event) => {})
+                                            }
+                }
+            }">
+        <label class="w-100 file-drag border-gray-500 bg-gray-200" for="file_input" x-bind:class="dropingFile ? 'bg-gray-400 border-gray-500' : 'border-gray-500 bg-gray-200'" x-on:drop="dropingFile = false" x-on:drop.prevent="handleFileDrop($event)" x-on:dragover.prevent="dropingFile = true" x-on:dragleave.prevent="dropingFile = false">
+                    <span class="upload-container file-upload d-flex justify-content-center">
+                        <i class="fa-solid fa-cloud-arrow-up light-blue" aria-hidden="true"></i>
+                        <input type="file" wire:model="image" hidden="" id="file_input" accept="image/*">
+                    </span>
+            <p class="text-center blue">Drop file(s) here / Click to select the file</p>
+        </label>
+    </div>
+</div>
             </div>
          </div>
       </div>

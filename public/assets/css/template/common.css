@@ -2415,6 +2415,7 @@ option:disabled {
 
 .has-search .form-control {
     color: var(--secondary-blue);
+    padding-left: 2.375rem !important;
 }
 
 .has-search .form-control-feedback {
@@ -3008,3 +3009,7 @@ textarea.form-control {
 .paragraph-style2-dark {
     color: white !important;
 }
+.file-upload i {
+    font-size: 7rem;
+}
+

@@ -1,7 +1,16 @@
 <div>
-   <div class="d-md-flex justify-content-between  align-items-center">
+   <!-- <div class="d-md-flex justify-content-between  align-items-center">
       <div class="h4 mb-0 blue">University Research Output Data</div>
-   </div>
+   </div> -->
+   <div class="d-md-flex justify-content-between">
+    <div class="blue col-md-12">
+        <div class="d-md-flex align-items-center">
+            <div class="h4 mb-0 blue">University Research Output Data</div>
+            <div class="light-gray col-marg h4 mobile-hidden">|</div>
+            <div class="h4 mb-0 blue col-marg">Academics Researches</div>
+        </div>
+    </div>
+</div>
    <div class="h4 mt-3 blue">Academic Research Strength</div>
    <div class="paragraph-style-2 blue">
       This is where you will need to update some records related to academics, researches, publications, journals, etc...
@@ -18,7 +27,7 @@
          </select>
       </div>
    </div>
-   <div class="card">
+   <div class="card mt-1">
       <div class="card-body">
          @include('livewire.university.research-output-data-pages.research-common-page')
          @include('livewire.university.research-output-data-pages.editorial-and_associate-board')

@@ -1,7 +1,16 @@
 <div>
-   <div class="d-md-flex justify-content-between  align-items-center">
+   <!-- <div class="d-md-flex justify-content-between  align-items-center">
    <div class="h4 mb-0 blue">@lang('University Academics')</div>
   
+</div> -->
+<div class="d-md-flex justify-content-between">
+    <div class="blue col-md-12">
+        <div class="d-md-flex align-items-center">
+            <div class="h4 mb-0 blue">University Academics</div>
+            <div class="light-gray col-marg h4 mobile-hidden">|</div>
+            <div class="h4 mb-0 blue col-marg">Academics Researches</div>
+        </div>
+    </div>
 </div>
 <div class="h4 mt-3 blue">@lang('Academics') &amp; Researches</div>
 <div class="paragraph-style-2 blue">
@@ -16,7 +25,7 @@
       </select>
    </div>
 </div>
-   <div class="card">
+   <div class="card mt-1">
       <div class="card-body">
          
          <x-general.status-alert/>

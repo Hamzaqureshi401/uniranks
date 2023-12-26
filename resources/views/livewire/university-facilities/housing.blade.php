@@ -151,7 +151,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mt-3">
                     <div class="col-md-4">
                         <label>@lang('Housing can accommodate upto')</label>
                     </div>

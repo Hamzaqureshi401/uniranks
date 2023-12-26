@@ -10,11 +10,11 @@
                 {{ $slot }}
             </div>
         </main>
-            <!-- </div> -->
+            {{--<!-- </div> -->
             <!-- end main content -->
             <!-- RIGHT SIDEBAR START -->
             <!-- <livewire:pages.components.sidebar.right-sidebar/> -->
             <!-- RIGHT SIDEBAR CLOSED -->
-        <!-- </div> -->
+        <!-- </div> -->--}}
     </x-shared.general.main>
 </x-base-layout>
