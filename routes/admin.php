@@ -133,6 +133,7 @@ Route::middleware(['setup-locale', "verify-role:" . implode(',', [AppConst::UNIV
             Route::get('/', fn() => redirect()->route('admin.university.mainInfo'))->name('show');
 
             Route::prefix('information')->group(function () {
+                Route::view('main-info-view', 'pages.university.university-main-information-view')->name('university-main-information-view');
                 Route::get('/', fn() => redirect()->route('admin.university.mainInfo'))->name('show');
                 Route::view('main-info', 'pages.university.main-info')->name('mainInfo');
                 Route::view('set-logo', 'pages.university.set-logo')->name('setLogo');
