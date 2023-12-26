@@ -4,16 +4,7 @@
     <link href="{{ asset('assets/metoxi/sass/main.css') }}" rel="stylesheet">
 
     <style type="text/css">
-      .non-hover-blue-color{
-        color: #1c345a;
-      }
-      .hover-blue-color{
-        color: #1c345a;
-      }
-      .hover-blue-color:hover {
-        
-        color: #039BE5 !important; /* Change cursor to pointer on hover */
-      }
+     
 
     </style>
 
@@ -26,7 +17,7 @@
       <div class="row rmv">
             <div class="col-12 ">
           <span class="non-hover-blue-color">{{ \Auth::user()->selected_university->university_name ?? '--' }} |</span>
-          <a href="">
+          <a href="{{ route('admin.account.repositoryTransactions')}}">
             <span class="hover-blue-color">@lang('UR Credit'): {{$ur_cr}} |</span>
           </a>
           

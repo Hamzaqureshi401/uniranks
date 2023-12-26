@@ -5,6 +5,7 @@
       <div class="row g-2">
          <!--to force new line-->
          <div class="col-12 col-md-4 col-lg-3">
+            <a href="{{ route('admin.school.list')}}">
          
             <div class="card">
                <div class="p-3 statistics-card-content">
@@ -34,10 +35,11 @@
                   </div>
                </div>
             </div>
+            </a>
          </div>
          <!--to force new line--> 
          <div class="col-12 col-md-4 col-lg-3">
-         
+         <a href="{{ route('admin.events.create-event')}}">
             <div class="card">
                <div class="p-3 statistics-card-content">
                   <div class="d-flex justify-content-between">
@@ -66,9 +68,11 @@
                   </div>
                </div>
             </div>
+            </a>
          </div>
          <!--to force new line-->
          <div class="col-12 col-md-4 col-lg-3">
+         <a href="{{ route('admin.leads.owned')}}">
          
             <div class="card">
                <div class="p-3 statistics-card-content">
@@ -98,13 +102,14 @@
                   </div>
                </div>
             </div>
+         </a>
          </div>
          <div class="col-12 col-md-4 col-lg-3">
-         
+         <a href="javscript;">
             <div class="card">
                <div class="p-3 statistics-card-content">
                   <div class="d-flex justify-content-between">
-                     <h5 class="h5 blue">My Universities</h5>
+                     <h5 class="h5 blue">My University</h5>
                      <!-- <h4 class="h4 light-blue text-end"><i class="fa-solid fa-angle-right"></i></h4> -->
                   </div>
                   <!-- <div class="row mt-2 align-items-center">
@@ -129,6 +134,7 @@
                   </div>
                </div>
             </div>
+            </a>
          </div>
          <div class="col-12 col-md-4 col-lg-3">
          
@@ -162,6 +168,7 @@
             </div>
          </div>
          <div class="col-12 col-md-4 col-lg-3">
+         <a href="{{ route('admin.schoolFairs.careerTalks.list')}}">
          
             <div class="card">
                <div class="p-3 statistics-card-content">
@@ -191,8 +198,10 @@
                   </div>
                </div>
             </div>
+         </a>
          </div>
          <div class="col-12 col-md-4 col-lg-3">
+         <a href="{{ route('admin.schools.presentation')}}">
          
             <div class="card">
                <div class="p-3 statistics-card-content">
@@ -222,6 +231,7 @@
                   </div>
                </div>
             </div>
+         </a>
          </div>
          <div class="col-12 col-md-4 col-lg-3">
          

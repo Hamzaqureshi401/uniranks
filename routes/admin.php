@@ -27,6 +27,8 @@ Route::middleware(['setup-locale', "verify-role:" . implode(',', [AppConst::UNIV
              
         });
         Route::prefix('events')->name('events.')->group(function () {
+            Route::view('crete-event', 'pages.university-events.create-event.create-event')->name('create-event');
+                
             Route::prefix('workshops')->name('workshops.')->controller(WorkshopsController::class)
                 ->group(function () {
                     Route::get('/', 'index');

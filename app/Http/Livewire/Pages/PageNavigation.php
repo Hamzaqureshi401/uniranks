@@ -25,15 +25,28 @@ class PageNavigation extends Component
                         'Front Videos'=>'admin.university.frontVideos',
                         'Social Media Links'=>'admin.university.socialMedia',
                         'Galleries'=>'admin.media.show',
-                        'Academics'=>'admin.university.academics',
-                        'University Conference' => 'admin.university.university-conferences',
-                        'Research Output Data' => 'admin.university.research-output-data',
-                        'Confirm 1 to 1 Meeting' => 'admin.university.confirm-one-to-one-meeting',
+                        
                         'Location and Branches' => 'admin.university.location-and-branches',
                     
                     
                     ],
                     'icon'=>'building-columns-solid.svg'
+                ],
+                'Academia' => [
+                    'sub-title'=>'Manage University Academia',
+                    'links'=>[
+                        'Academics'=>'admin.university.academics',
+                        'Conferences' => 'admin.university.university-conferences',
+                        'Researches' => 'admin.university.research-output-data',
+                    ],
+                    'icon'=>'user-tie-solid.svg'
+                ],
+                'Meetings' => [
+                    'sub-title'=>'Manage University Meetings',
+                    'links'=>[
+                        '1 to 1 Meeting' => 'admin.university.confirm-one-to-one-meeting',
+                    ],
+                    'icon'=>'calendar-days-solid.svg'
                 ],
                 'Facilities' => [
                     'sub-title'=>'Manage University Facilities',

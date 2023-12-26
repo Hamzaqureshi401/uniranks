@@ -3012,4 +3012,13 @@ textarea.form-control {
 .file-upload i {
     font-size: 7rem;
 }
+.non-hover-blue-color{
+    color: #1c345a;
+}
+.hover-blue-color{
+    color: #1c345a;
+}
+.hover-blue-color:hover {    
+    color: #039BE5 !important; /* Change cursor to pointer on hover */
+}
 
