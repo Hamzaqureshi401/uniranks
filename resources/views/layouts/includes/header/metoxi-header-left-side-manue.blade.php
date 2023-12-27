@@ -627,13 +627,13 @@
          <a href="{{url('/')}}"  class="navbar-brand" style="align-self: center">
             <!-- <img class="header-logo d-none d-lg-inline-block pointer" style="width: 175px; height: auto; "
                  src="{{AppConst::SITE_LOGOS}}/Logo-stars-v1.png" alt="Unirank"/> -->
-                 <img class="header-logo d-none d-lg-inline-block pointer" style="max-width: 37px; max-height: 32px; margin-left: 1.1rem;"
+                 <img class="header-logo d-lg-inline-block pointer" style="max-width: 37px; max-height: 32px; margin-left: 1.1rem;"
      src="{{asset('assets/img/UR-Ble.svg')}}" alt="Unirank"/>
 
         </a>
       </div>
       <div class="logo-name flex-grow-1">
-       <img class="header-logo d-none d-lg-inline-block pointer" style="max-width: 100px; max-height: 32px; "
+       <img class="header-logo d-lg-inline-block pointer" style="max-width: 100px; max-height: 32px; "
      src="{{asset('assets/img/UNIRANKS-Text-Logo-Blue.svg')}}" alt="Unirank"/>
       </div>
       <div class="sidebar-close">

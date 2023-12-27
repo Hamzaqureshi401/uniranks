@@ -137,7 +137,7 @@
             </a>
          </div>
          <div class="col-12 col-md-4 col-lg-3">
-         
+         <a href="{{ route('admin.schoolFairs.fair.list')}}">
             <div class="card">
                <div class="p-3 statistics-card-content">
                   <div class="d-flex justify-content-between">
@@ -166,6 +166,7 @@
                   </div>
                </div>
             </div>
+            </a>
          </div>
          <div class="col-12 col-md-4 col-lg-3">
          <a href="{{ route('admin.schoolFairs.careerTalks.list')}}">
@@ -234,7 +235,7 @@
          </a>
          </div>
          <div class="col-12 col-md-4 col-lg-3">
-         
+         <a href="{{ route('admin.university.confirm-one-to-one-meeting')}}">
             <div class="card">
                <div class="p-3 statistics-card-content">
                   <div class="d-flex justify-content-between">
@@ -263,6 +264,7 @@
                   </div>
                </div>
             </div>
+            </a>
          </div>
          <!--to force new line-->
       </div>

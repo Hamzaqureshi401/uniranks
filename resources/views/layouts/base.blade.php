@@ -2,6 +2,9 @@
 <html lang={{ str_replace('_', '-', app()->getLocale()) }} > {{--dir="{{getPageDirection()}}"--}}
 <head>@include('layouts.includes.head')</head>
 <body>
+    @if(!Route::is('login'))
+    <livewire:pages.page-navigation/>
+    @endif
 <div id="loader-wrapper" style="">
     <img id="loader" src="{{ AppConst::SITE_LOGOS . '/logo-vertical.png' }}" alt="Loading"/>
 </div>
