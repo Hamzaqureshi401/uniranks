@@ -65,7 +65,14 @@
                 * @var \App\Models\University\UniversityContactNumber[] $contacts
                 **/
             @endphp
-           <table class="table">
+
+
+        </div>
+    </div>
+
+    <div class="card-body">
+        <div class="h4 blue">@lang('Contacts')</div>
+     <table class="table">
     <!-- <thead>
         <tr>
             <th>@lang('Phone Number')</th>
@@ -77,11 +84,11 @@
     <tbody>
         @forelse($contacts as $contact)
             <tr>
-                <td>{{$contact->full_phone_number}} {{!empty($contact->ext) ? '/'.__('ext')." $contact->ext":""}}</td>
-                <td class="font-light">{{$contact->created_at?->toDayDateTimeString()}}</td>
-                <td class="font-light">{{$contact->createdBy?->name ?:"---"}}</td>
-                <td class="text-end"><a href="javascript:void(0)" wire:click="edit('{{$contact->id}}')" class="light-blue">@lang('Edit')</a></td>
-                <td class="text-end">
+                <td class="blue">{{$contact->full_phone_number}} {{!empty($contact->ext) ? '/'.__('ext')." $contact->ext":""}}</td>
+                <td class="font-light blue">{{$contact->created_at?->toDayDateTimeString()}}</td>
+                <td class="font-light blue">{{$contact->createdBy?->name ?:"---"}}</td>
+                <td class="text-end blue"><a href="javascript:void(0)" wire:click="edit('{{$contact->id}}')" class="light-blue">@lang('Edit')</a></td>
+                <td class="text-end blue">
                      
                     <a href="javascript:void(0)" wire:click="deleteContact('{{$contact->id}}')" class="red">@lang('Delete')</a>
 
@@ -94,7 +101,5 @@
         @endforelse
     </tbody>
 </table>
-
-        </div>
-    </div>
+</div>
 </div>
