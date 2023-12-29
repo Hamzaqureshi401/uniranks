@@ -182,7 +182,14 @@ class EntryTest extends Component
             }
         }
         $this->initForm();
-        session()->flash('status', 'Operation Successful!');
+        $this->emit('returnResponseModal',[
+                'title'=>'Test Requirement Added',
+                'message'=>'Test requirement has been added.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
+        //session()->flash('status', 'Operation Successful!');
     }
 
     public function render()

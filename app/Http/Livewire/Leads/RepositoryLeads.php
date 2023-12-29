@@ -273,7 +273,14 @@ class RepositoryLeads extends Component
             $uni->save();
             $this->emit('refresh-credits');
             $this->selectedStudents = [];
-            session()->flash('status', "$count Leads(s) has bean added to your leads");
+            $this->emit('returnResponseModal',[
+            'title'=>'Lead Added',
+                'message'=>"$count Leads(s) has bean added to your leads.",
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
+            //session()->flash('status', "$count Leads(s) has bean added to your leads");
         });
     }
     /**

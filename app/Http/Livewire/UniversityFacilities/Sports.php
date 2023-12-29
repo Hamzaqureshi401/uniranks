@@ -92,14 +92,28 @@ class Sports extends Component
         $data = array_merge($data, $this->facility_information);
         if ($this->update_details == 1) {
             $this->selected_item->update($data);
+             $this->emit('returnResponseModal',[
+                'title'=>'Sport Record Updated',
+                'message'=>'Sport record has been updated.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
         } else {
             \Auth::user()->selected_university->facilityAthletics()->create($data);
             $this->loadAlbums();
+            $this->emit('returnResponseModal',[
+                'title'=>'Sport Record Added',
+                'message'=>'1 New Sport record has been added.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
         }
         $this->update_details = 0;
         $this->loadAlbumData();
         $this->initForm();
-        session()->flash('status', 'Operation Successful!');
+        //session()->flash('status', 'Operation Successful!');
     }
 
     public function edit()
@@ -132,6 +146,13 @@ class Sports extends Component
         $this->photos[$key] = null;
         unset($this->photos[$key]);
         sort($this->photos);
+        $this->emit('returnResponseModal',[
+            'title'=>'Record Deleted',
+                'message'=>'Photo has been deleted.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+        ]);
     }
 
     public function savePhotos()
@@ -144,6 +165,13 @@ class Sports extends Component
         $this->selected_item->media()->createMany($images);
         $this->selected_item->refresh();
         $this->photos = [];
+        $this->emit('returnResponseModal',[
+                'title'=>'Photo Added',
+                'message'=>'1 New photo has been added.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+        ]);
     }
 
     public function deleteSelected()
@@ -151,18 +179,39 @@ class Sports extends Component
         Media::whereIn('id', $this->selected_images)->delete();
         $this->selected_item->refresh();
         $this->selected_images = [];
+        $this->emit('returnResponseModal',[
+            'title'=>'Record Deleted',
+            'message'=>'Selected record has been deleted.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
     }
 
     public function disable()
     {
         $this->selected_item->update(['status' => \AppConst::DISABLED]);
         $this->selected_item->refresh();
+        $this->emit('returnResponseModal',[
+            'title'=>'Album Disabled',
+            'message'=>'Album has been disabled.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
     }
 
     public function enable()
     {
         $this->selected_item->update(['status' => \AppConst::ENABLED]);
         $this->selected_item->refresh();
+        $this->emit('returnResponseModal',[
+            'title'=>'Album Enabled',
+            'message'=>'Album has been enabled.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
     }
 
     public function deleteAlbum()
@@ -171,6 +220,13 @@ class Sports extends Component
         $this->selected_item = null;
         $this->item_id = "";
         $this->loadAlbums();
+        $this->emit('returnResponseModal',[
+            'title'=>'Record Deleted',
+            'message'=>'Album has been deleted.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
     }
     public function render()
     {

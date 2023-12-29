@@ -71,7 +71,14 @@ class ViewInvoice extends Component
             ]);
         $this->initForm();
         $this->emit('goToTop');
-        session()->flash('status', 'Operation Successful!');
+        $this->emit('returnResponseModal',[
+            'title'=>'Invoice Paid',
+            'message'=>'Invoice has been paid.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
+        //session()->flash('status', 'Operation Successful!');
     }
 
 

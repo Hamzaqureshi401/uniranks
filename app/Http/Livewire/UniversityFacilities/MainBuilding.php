@@ -36,7 +36,14 @@ class MainBuilding extends Component
         $inputs['created_by_id'] = \Auth::id();
         \Auth::user()->selected_university->mainBuilding()->update($inputs);
         $this->initForm();
-        session()->flash('status', 'Operation Successful!');
+        $this->emit('returnResponseModal',[
+                'title'=>'Main Building Record Updated',
+                'message'=>'Main building record has been updated.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
+        //session()->flash('status', 'Operation Successful!');
     }
 
     public function render()

@@ -61,8 +61,15 @@ class TravelDocuments extends Component
         $uni = \Auth::user()->selected_university;
         $uni->applicationRequirments()->whereRelation('requirement', 'type_id', $this->type_id)->delete();
         $uni->applicationRequirments()->createMany($this->other_application_requirements);
+        $this->emit('returnResponseModal',[
+                'title'=>'Travel Documents Record Added',
+                'message'=>'Travel documents record has been added.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
         $this->initForm();
-        session()->flash('status', 'Operation Successful!');
+        //session()->flash('status', 'Operation Successful!');
     }
 
     public function render()

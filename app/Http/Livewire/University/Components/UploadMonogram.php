@@ -31,6 +31,14 @@ class UploadMonogram extends Component
         $this->validate();
         $monogram = $this->photo->storePublicly('images/universities-logos', 's3');
         \Auth::user()->selected_university->update(['monogram'=>$monogram]);
+         $this->emit('returnResponseModal',[
+        'title'=>'Update Logo',
+            'message'=>'Logo has been updated.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
+
     }
 
     public function removeLogo(){
@@ -38,6 +46,13 @@ class UploadMonogram extends Component
         if($university->monogram){
             \Storage::disk('s3')->delete($university->monogram);
             $university->update(['monogram'=>null]);
+            $this->emit('returnResponseModal',[
+            'title'=>'Logo Removed',
+            'message'=>'Your Logo has been removed.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
         }
     }
 

@@ -8,7 +8,9 @@
         <div class="d-md-flex align-items-center">
             <div class="h4 mb-0 blue">University Academics</div>
             <div class="light-gray col-marg h4 mobile-hidden">|</div>
-            <div class="h4 mb-0 blue col-marg">Academics Researches</div>
+            <div class="h4 mb-0 blue col-marg">Academics Researches
+               @include('about-icon')
+            </div>
         </div>
     </div>
 </div>

@@ -111,7 +111,14 @@ class LocationAndBranches extends Component
              }
         }
         $this->initForm();
-        session()->flash('status', 'Operation Successful!');
+        $this->emit('returnResponseModal',[
+        'title'=>'Location And Branch Added',
+            'message'=>'1 New location or branch has been added.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
+        //session()->flash('status', 'Operation Successful!');
     }
     public function render()
     {
@@ -126,7 +133,14 @@ class LocationAndBranches extends Component
     {
         UniversityLocationBranch::where('id' , $branchId)->delete();
         $this->initForm();
-        session()->flash('status', 'Operation Successful!');
+        $this->emit('returnResponseModal',[
+        'title'=>'Record Deleted',
+            'message'=>'Location or branch has been deleted.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
+        //session()->flash('status', 'Operation Successful!');
     }
 
 

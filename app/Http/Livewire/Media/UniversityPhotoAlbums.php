@@ -67,21 +67,49 @@ class UniversityPhotoAlbums extends Component
         $this->selected_album->media()->createMany($images);
         $this->selected_album->refresh();
         $this->photos = [];
+        $this->emit('returnResponseModal',[
+        'title'=>'Photo Added',
+            'message'=>'Photos has been Added.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
     }
 
     public function deleteSelected(){
         Media::whereIn('id',$this->selected_images)->get()->each(fn(Media $media)=>$media->delete());
         $this->selected_album->refresh();
         $this->selected_images= [];
+        $this->emit('returnResponseModal',[
+            'title'=>'Record Deleted',
+            'message'=>'Selected record has been deleted.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
     }
 
     public function disable(){
         $this->selected_album->update(['status'=>\AppConst::DISABLED]);
         $this->selected_album->refresh();
+        $this->emit('returnResponseModal',[
+            'title'=>'Album Disabled',
+            'message'=>'Album has been disabled.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
     }
     public function enable(){
         $this->selected_album->update(['status'=>\AppConst::ENABLED]);
         $this->selected_album->refresh();
+        $this->emit('returnResponseModal',[
+            'title'=>'Album Enabled',
+            'message'=>'Album has been enabled.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
     }
 
     public function deleteAlbum(){
@@ -89,6 +117,13 @@ class UniversityPhotoAlbums extends Component
         $this->selected_album = null;
         $this->album_id = "";
         $this->loadAlbums();
+        $this->emit('returnResponseModal',[
+            'title'=>'Record Deleted',
+            'message'=>'Album has been deleted.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
     }
 
 }

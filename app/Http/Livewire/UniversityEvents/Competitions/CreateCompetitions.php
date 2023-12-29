@@ -117,7 +117,14 @@ class CreateCompetitions extends Component
         $this->inviteSchools($university_events);
         $this->addHistory($university_events, $create_university_events);
         $this->setData();
-        session()->flash('status', 'Created Successfully!');
+        $this->emit('returnResponseModal',[
+                'title'=>'New Competition Added',
+                'message'=>'1 new Competition has been added.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
+        //session()->flash('status', 'Created Successfully!');
         $this->redirectAfterSuccess();
     }
 
@@ -133,7 +140,14 @@ class CreateCompetitions extends Component
     public function createUpdateFairRequest($create_university_events)
     {
         $this->event->editRequests()->create(['details' => $create_university_events]);
-        session()->flash('status', 'Update Request Added, Our Team will review it shortly!.');
+        $this->emit('returnResponseModal',[
+                'title'=>'Competition Updated Request Added',
+                'message'=>'Competition Update Request Added, Our Team will review it shortly!.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+        ]);
+        //session()->flash('status', 'Update Request Added, Our Team will review it shortly!.');
         $this->redirectAfterSuccess();
     }
 
@@ -143,7 +157,14 @@ class CreateCompetitions extends Component
         $this->event->curriculums()->sync($this->curriculums);
         $this->addHistory($this->event, $create_university_events);
         $this->inviteSchools($this->event);
-        session()->flash('status', 'Updated Successfully!');
+        $this->emit('returnResponseModal',[
+                'title'=>'Competition Updated',
+                'message'=>'Competition has been updated.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+        ]);
+        //session()->flash('status', 'Updated Successfully!');
         $this->redirectAfterSuccess();
     }
 

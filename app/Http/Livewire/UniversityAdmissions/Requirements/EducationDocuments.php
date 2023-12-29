@@ -63,7 +63,14 @@ class EducationDocuments extends Component
         $uni->applicationRequirments()->whereRelation('requirement', 'type_id', $this->type_id)->delete();
         $uni->applicationRequirments()->createMany($this->other_application_requirements);
         $this->initForm();
-        session()->flash('status', 'Operation Successful!');
+        $this->emit('returnResponseModal',[
+                'title'=>'Education Documents Added',
+                'message'=>'Education documents has been added.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
+        //session()->flash('status', 'Operation Successful!');
     }
 
     public function render()

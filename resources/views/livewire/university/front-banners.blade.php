@@ -23,7 +23,7 @@
                 </div>
             @endif
             <div class="row mt-4">
-                <div class="col-md-6 offset-6 d-flex justify-content-md-end">
+                <div class="col-md-6 d-flex justify-content-md-end" style="margin-left: 50.5%;">
                     <button wire:click="save" class="button-blue button-sm mobile-button w-35">@lang('Upload Banner')</button>
                 </div>
             </div>

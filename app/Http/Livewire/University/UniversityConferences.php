@@ -94,15 +94,31 @@ class UniversityConferences extends Component
         $final = array_merge($data, $this->conference);
         if (!empty($this->edit_item)) {
             $newConference = $this->edit_item->update($final);
+            $this->emit('returnResponseModal',[
+                'title'=>'Conference Record Updated',
+                'message'=>'Conference record has been updated.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
+
         } else {
           $newConference = \Auth::user()->selected_university->conferences()->create($final);
+          
+            $this->emit('returnResponseModal',[
+                'title'=>'Conference Record Added',
+                'message'=>'1 New conference record has been added.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+        ]);
         }
         $this->handleSubjects($newConference);
         $this->edit_item = null;
         $this->edit_id = null;
         //$latestConference = \Auth::user()->selected_university->conferences()->latest('id')->first();
         $this->initForm();
-        session()->flash('status', 'Operation Successful!');
+        //session()->flash('status', 'Operation Successful!');
     }
 
     public function handleImages(){
@@ -185,8 +201,15 @@ class UniversityConferences extends Component
         }else{
             \Auth::user()->selected_university->conferences()->whereId($data)->delete();
         }
+        $this->emit('returnResponseModal',[
+            'title'=>'Record Deleted',
+                'message'=>'Conference record has been deleted.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+        ]);
         $this->initForm();
-        session()->flash('status', 'Operation Successful!');
+        //session()->flash('status', 'Operation Successful!');
 
     }
 

@@ -7,7 +7,9 @@
         <div class="d-md-flex align-items-center">
             <div class="h4 mb-0 blue">University Conferences</div>
             <div class="light-gray col-marg h4 mobile-hidden">|</div>
-            <div class="h4 mb-0 blue col-marg">Conference Workshops</div>
+            <div class="h4 mb-0 blue col-marg">Conference Workshops
+                @include('about-icon')
+            </div>
         </div>
     </div>
 </div>
@@ -50,7 +52,7 @@
          <!-- </div> -->
       </div>
    </div>
-      <div class="row-h">
+      <div class="row-h mt-3">
          <div class="col-md-6 offset-6 d-flex justify-content-md-end">
             <button wire:click="save" class="button-blue button-sm mobile-button w-35">@lang('Save')</button>
             <button wire:click="initForm" class="button-red button-sm mobile-button w-35">@lang('Cancel')</button>

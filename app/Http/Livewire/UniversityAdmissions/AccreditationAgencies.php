@@ -120,7 +120,14 @@ class AccreditationAgencies extends Component
         $this->edit_id = null;
         $this->initForm();
         $this->loadData();
-        session()->flash('status', 'Operation Successful!');
+        $this->emit('returnResponseModal',[
+                'title'=>'Accreditation agencies Updated Or Created',
+                'message'=>'Operation Successful.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+        ]);
+        //session()->flash('status', 'Operation Successful!');
     }
 
     public function loadTimePicker(){
@@ -150,6 +157,13 @@ class AccreditationAgencies extends Component
         $semester->attachedPrograms()->delete();
         $semester->delete();
         $this->loadData();
+        $this->emit('returnResponseModal',[
+                'title'=>'Record Deleted',
+                'message'=>'Accreditation Agency record has been deleted.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
     }
 
 }

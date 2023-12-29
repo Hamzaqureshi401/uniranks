@@ -306,7 +306,7 @@ button {
 
 .h4 {
     font-size: 1.563rem;
-    line-height: 1.25rem !important
+    line-height: 2.25rem !important
 }
 
 .h5 {
@@ -3021,4 +3021,3 @@ textarea.form-control {
 .hover-blue-color:hover {    
     color: #039BE5 !important; /* Change cursor to pointer on hover */
 }
-

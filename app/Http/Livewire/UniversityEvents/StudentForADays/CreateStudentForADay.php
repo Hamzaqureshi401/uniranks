@@ -118,7 +118,14 @@ class CreateStudentForADay extends Component
         $this->inviteSchools($university_events);
         $this->addHistory($university_events, $create_university_events);
         $this->setData();
-        session()->flash('status', 'Created Successfully!');
+        //session()->flash('status', 'Created Successfully!');
+        $this->emit('returnResponseModal',[
+                'title'=>'New Student For A Day Added',
+                'message'=>'1 new student For a day has been added.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
         $this->redirectAfterSuccess();
     }
 
@@ -134,7 +141,14 @@ class CreateStudentForADay extends Component
     public function createUpdateFairRequest($create_university_events)
     {
         $this->event->editRequests()->create(['details' => $create_university_events]);
-        session()->flash('status', 'Update Request Added, Our Team will review it shortly!.');
+        //session()->flash('status', 'Update Request Added, Our Team will review it shortly!.');
+                $this->emit('returnResponseModal',[
+                'title'=>'Student For A Day Updated Request Added',
+                'message'=>'Student For A Day Update Request Added, Our Team will review it shortly!.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+        ]);
         $this->redirectAfterSuccess();
     }
 
@@ -144,7 +158,14 @@ class CreateStudentForADay extends Component
         $this->event->curriculums()->sync($this->curriculums);
         $this->addHistory($this->event, $create_university_events);
         $this->inviteSchools($this->event);
-        session()->flash('status', 'Updated Successfully!');
+        $this->emit('returnResponseModal',[
+                'title'=>'Student For A Day Updated',
+                'message'=>'Student for a day has been updated.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+        ]);
+        //session()->flash('status', 'Updated Successfully!');
         $this->redirectAfterSuccess();
     }
 

@@ -18,7 +18,14 @@ trait ProcessFairInvitation
     public function acceptFair($fair_id)
     {
         Invitation::updateOrCreate(['fair_id' => $fair_id, 'university_id' => \Auth::user()->selected_university?->id], ['status' => \AppConst::INVITATION_ACCEPTED]);
-        $this->removeCredit($fair_id);;
+        $this->removeCredit($fair_id);
+        $this->emit('returnResponseModal',[ 
+        'title'=>'Joining Fair',
+            'message'=>'Fair has been join.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
     }
 
     private function removeCredit($fair_id=null,$description=null): void
@@ -29,6 +36,13 @@ trait ProcessFairInvitation
         $campus->save();
         $this->refreshCredits();
         EventCreditTransaction::create(['university_id' => $campus->id, 'event_id' => $fair_id,'event_name'=>$description, 'credit_out' => 1, 'by_user_id' => \Auth::id()]);
+        $this->emit('returnResponseModal',[
+        'title'=>'Remove Credit',
+            'message'=>'Credit has been removed.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
     }
     private function addCredit($fair_id=null,$description=null): void
     {
@@ -38,6 +52,13 @@ trait ProcessFairInvitation
         $campus->save();
         $this->refreshCredits();
         EventCreditTransaction::create(['university_id' => $campus->id, 'event_id' => $fair_id,'event_name'=>$description, 'credit_out' => 0, 'credit_in' => 1, 'by_user_id' => \Auth::id()]);
+        $this->emit('returnResponseModal',[
+        'title'=>'Credit Added',
+            'message'=>'Credit has been added.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
     }
 
     public function rejectFair($fair_id)
@@ -49,6 +70,13 @@ trait ProcessFairInvitation
         }else{
             Invitation::create(['fair_id' => $fair_id, 'university_id' => \Auth::user()->selected_university->id,'status' => \AppConst::INVITATION_REJECTED]);
         }
+        $this->emit('returnResponseModal',[
+        'title'=>'Fair Rejected',
+            'message'=>'Fair has been rejected.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
     }
 
     public function loadEventsCredit()

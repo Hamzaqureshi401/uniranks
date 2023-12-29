@@ -116,7 +116,14 @@ class CreateWorkshops extends Component
         $this->inviteSchools($university_events);
         $this->addHistory($university_events, $create_university_events);
         $this->setData();
-        session()->flash('status', 'New Workshop Created Successfully!');
+        //session()->flash('status', 'New Workshop Created Successfully!');
+        $this->emit('returnResponseModal',[
+                'title'=>'Workshop Added',
+                'message'=>'1 new workshop has been added.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
         $this->redirect(route('admin.events.workshops.create'));
     }
 
@@ -143,7 +150,14 @@ class CreateWorkshops extends Component
     public function createUpdateFairRequest($create_university_events)
     {
         $this->event->editRequests()->create(['details' => $create_university_events]);
-        session()->flash('status', 'Workshop Update Request Added, Our Team will review it shortly!.');
+        //session()->flash('status', 'Workshop Update Request Added, Our Team will review it shortly!.');
+        $this->emit('returnResponseModal',[
+                'title'=>'Workshop Updated Request Added',
+                'message'=>'Workshop Update Request Added, Our Team will review it shortly!.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
         $this->redirectAfterSuccess();
     }
 
@@ -154,7 +168,14 @@ class CreateWorkshops extends Component
         $this->event->majors()->sync($this->majors);
         $this->inviteSchools($this->event);
         $this->addHistory($this->event, $create_university_events);
-        session()->flash('status', 'Workshop Updated Successfully!');
+        $this->emit('returnResponseModal',[
+                'title'=>'Workshop Updated',
+                'message'=>'Workshop has been updated.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
+        //session()->flash('status', 'Workshop Updated Successfully!');
         $this->redirectAfterSuccess();
     }
 

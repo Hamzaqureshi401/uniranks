@@ -214,17 +214,31 @@ class Programs extends Component
             $this->edit_item->gpaRequirments()->sync($gpa_requirements);
             $this->edit_item->testingRequirments()->sync($test_requirments);
             $this->edit_item->applicationRequirments()->sync($app_requirments);
+            $this->emit('returnResponseModal',[
+                'title'=>'Admission Program Updated',
+                'message'=>'Admission program has been updated.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
         } else {
             $program = UniversityAdmissionProgram::create($data);
             $program->gpaRequirments()->sync($gpa_requirements);
             $program->testingRequirments()->sync($test_requirments);
             $program->applicationRequirments()->sync($app_requirments);
+            $this->emit('returnResponseModal',[
+                'title'=>'Admission Program Reord Added',
+                'message'=>'1 new admission program record has been added.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
         }
         $this->edit_item = null;
         $this->edit_id = null;
         $this->initForm();
         $this->loadData();
-        session()->flash('status', 'Operation Successful!');
+        //session()->flash('status', 'Operation Successful!');
     }
 
     public function loadTimePicker()
@@ -278,5 +292,12 @@ class Programs extends Component
     {
         $admissionProgram->delete();
         $this->loadData();
+        $this->emit('returnResponseModal',[
+                'title'=>'Record Deleted',
+                'message'=>'1 Admission program record has been deleted.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
     }
 }

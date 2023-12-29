@@ -51,7 +51,14 @@ class UniversityPanoramaAlbums extends Component
         $this->selected_album->media()->create($inputs);
         $this->selected_album->refresh();
         $this->initForm();
-        session()->flash('status', 'Operation Successful!');
+         $this->emit('returnResponseModal',[
+        'title'=>'Panorama Added',
+            'message'=>'Panorama has been Added.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
+        //session()->flash('status', 'Operation Successful!');
     }
 
     public function loadAlbums()
@@ -69,9 +76,46 @@ class UniversityPanoramaAlbums extends Component
         $this->selected_album = null;
         $this->album_id = "";
         $this->loadAlbums();
+        $this->emit('returnResponseModal',[
+            'title'=>'Record Deleted',
+            'message'=>'Album has been deleted.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
     }
     public function deleteMedia(Media $media){
         $media->delete();
+        $this->initForm();
+        $this->emit('returnResponseModal',[
+            'title'=>'Penorama Deleted',
+            'message'=>'Penorama has been deleted.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
+    }
+    public function disable(){
+        $this->selected_album->update(['status'=>\AppConst::DISABLED]);
+        $this->selected_album->refresh();
+        $this->emit('returnResponseModal',[
+            'title'=>'Album Disabled',
+            'message'=>'Album has been disabled.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
+    }
+    public function enable(){
+        $this->selected_album->update(['status'=>\AppConst::ENABLED]);
+        $this->selected_album->refresh();
+        $this->emit('returnResponseModal',[
+            'title'=>'Album Enabled',
+            'message'=>'Album has been enabled.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
     }
     public function render()
     {

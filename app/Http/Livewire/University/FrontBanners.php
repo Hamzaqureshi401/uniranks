@@ -45,24 +45,52 @@ class FrontBanners extends Component
         \Auth::user()->selected_university->frontBanners()->create(['created_by_id'=>\Auth::id(),'image_path'=>$path,'title'=>$this->title]);
         $this->initForm();
         $this->loadBanners();
-        session()->flash('status', 'Operation Successful!');
+        $this->emit('returnResponseModal',[
+        'title'=>'Banner Added',
+            'message'=>'Banner has been Added.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
+        //session()->flash('status', 'Operation Successful!');
     }
 
     public function delete(UniversityFrontBanners $banner){
         $banner->delete();
         $this->loadBanners();
-        session()->flash('status', 'Operation Successful!');
+        $this->emit('returnResponseModal',[
+            'title'=>'Banner Deleted',
+            'message'=>'Banner has been removed.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
+        //session()->flash('status', 'Operation Successful!');
     }
     public function disable(UniversityFrontBanners  $banner){
         $banner->update(['status'=>\AppConst::DISABLED]);
         $this->loadBanners();
-        session()->flash('status', 'Operation Successful!');
+        $this->emit('returnResponseModal',[
+            'title'=>'Banner Disabled',
+            'message'=>'Banner has been disabled.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
+        //session()->flash('status', 'Operation Successful!');
     }
 
     public function enable(UniversityFrontBanners  $banner){
         $banner->update(['status'=>\AppConst::ENABLED]);
         $this->loadBanners();
-        session()->flash('status', 'Operation Successful!');
+        $this->emit('returnResponseModal',[
+            'title'=>'Banner Enabled',
+            'message'=>'banner has been enabled.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
+        //session()->flash('status', 'Operation Successful!');
     }
     public function render()
     {

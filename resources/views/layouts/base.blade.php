@@ -14,8 +14,9 @@
     @endif
     @include('layouts.includes.header')
     <main>
-        {{ $slot }}
+        {{ $slot }}     
     </main>
+    <livewire:response.return-response-modal-component/>
     <livewire:suggest.modal/>
     <livewire:leads.student-details-modal/>
     <x-general.coming-soon/>

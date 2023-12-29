@@ -60,7 +60,14 @@ class PreviousGrades extends Component
         $uni->gpaRequirments()->where('degree_id',$this->degree_id)->delete();
         $uni->gpaRequirments()->createMany($this->gpa_requirments);
         $this->initForm();
-        session()->flash('status', 'Operation Successful!');
+        $this->emit('returnResponseModal',[
+                'title'=>'Grades Record Added',
+                'message'=>'Grades record has been added.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
+        //session()->flash('status', 'Operation Successful!');
     }
 
     public function render()

@@ -270,6 +270,13 @@ class OwnedLeads extends Component
         \Auth::user()->selected_university->leads()->detach($this->selectedStudents);
         $this->selectedStudents = [];
         $this->closeModal();
+        $this->emit('returnResponseModal',[
+            'title'=>'Record Deleted',
+            'message'=>'Selected Record has been deleted.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
     }
     /**
      * TODO:FEED LEADS FOR UNIVERSITY

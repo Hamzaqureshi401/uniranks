@@ -17,19 +17,32 @@
                         </div>
                         <x-jet-input-error for="university_name" class="mt-2" />
                     </div>
-{{--                    <div class="col-md-4 mobile-marg-2">--}}
-{{--                        <div class="form-floating w-100">--}}
-{{--                            <select wire:model.defer="translations.{{$i}}" class="form-select input-field"--}}
-{{--                                    id="floatingSelectGrid" aria-label="">--}}
-{{--                                <option value="">@lang('Select Language')</option>--}}
-{{--                                @foreach($languages as $language)--}}
-{{--                                    <option--}}
-{{--                                        value="{{$language->code}}" @disabled(in_array($language->code,$translations))>{{$language->native_name}}</option>--}}
-{{--                                @endforeach--}}
-{{--                            </select>--}}
-{{--                            <label for="floatingSelectGrid">@lang('Select Language') </label>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
+                    <div class="col-md-4 mobile-marg-2">
+                        
+                        <div class="form-floating w-100">
+                            
+                            <select wire:model.defer="translations.{{$i}}" class="form-select input-field"
+                            
+                                    id="floatingSelectGrid" aria-label="">
+                                    
+                                <option value="">@lang('Select Language')</option>
+                                
+                                @foreach($languages as $language)
+                                
+                                    <option
+                                    
+                                        value="{{$language->code}}" @disabled(in_array($language->code,$translations))>{{$language->native_name}}</option>
+                                        
+                                @endforeach
+                                
+                            </select>
+                            
+                            <label for="floatingSelectGrid">@lang('Select Language') </label>
+                            
+                        </div>
+                        
+                    </div>
+                    
 
                 </div>
                 <br>

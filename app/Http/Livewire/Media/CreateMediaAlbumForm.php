@@ -56,7 +56,14 @@ class CreateMediaAlbumForm extends Component
         \Auth::user()->selected_university->mediaAlbums()->create($data);
         $this->initForm();
         $this->emit('onAlbumCreated');
-        session()->flash('status', 'Operation Successful!');
+        $this->emit('returnResponseModal',[
+        'title'=>'Add Media Album',
+            'message'=>'1 New Media Album has been added.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
+        //session()->flash('status', 'Operation Successful!');
     }
 
 

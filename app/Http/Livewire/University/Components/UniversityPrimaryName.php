@@ -25,12 +25,26 @@ class UniversityPrimaryName extends Component
     public function save(){
         $inputs = $this->validate();
         \Auth::user()->selected_university->update($inputs);
-        session()->flash('status', 'Operation Successful!');
+        $this->emit('returnResponseModal',[
+        'title'=>'University Name Update',
+            'message'=>'Your University name has been updated.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
+        //session()->flash('status', 'Operation Successful!');
     }
      public function delete(){
         \Auth::user()->selected_university->update(['university_name' => null]);
          $this->initForm();
-        session()->flash('status', 'Operation Successful!');
+         $this->emit('returnResponseModal',[
+        'title'=>'Record Deleted',
+            'message'=>'Your University name has been deleted.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
+        // session()->flash('status', 'Operation Successful!');
     }
     public function render()
     {

@@ -88,14 +88,28 @@ class StudentLife extends Component
         $data = array_merge($data, $this->service_information);
         if ($this->update_details == 1) {
             $this->selected_item->update($data);
+            $this->emit('returnResponseModal',[
+                'title'=>'Student Life Record Updated',
+                'message'=>'Student life record has been updated.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
         } else {
             \Auth::user()->selected_university->facilityStudentLives()->create($data);
             $this->loadAlbums();
+            $this->emit('returnResponseModal',[
+                'title'=>'Student Life Record Added',
+                'message'=>'1 New Student life record has been added.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
         }
         $this->update_details = 0;
         $this->loadAlbumData();
         $this->initForm();
-        session()->flash('status', 'Operation Successful!');
+        //session()->flash('status', 'Operation Successful!');
     }
 
     public function edit()
@@ -128,6 +142,13 @@ class StudentLife extends Component
         $this->photos[$key] = null;
         unset($this->photos[$key]);
         sort($this->photos);
+        $this->emit('returnResponseModal',[
+            'title'=>'Record Deleted',
+                'message'=>'Photo has been deleted.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+        ]);
     }
 
     public function savePhotos()
@@ -140,6 +161,13 @@ class StudentLife extends Component
         $this->selected_item->media()->createMany($images);
         $this->selected_item->refresh();
         $this->photos = [];
+        $this->emit('returnResponseModal',[
+                'title'=>'Photo Added',
+                'message'=>'1 New photo has been added.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+        ]);
     }
 
     public function deleteSelected()
@@ -147,18 +175,39 @@ class StudentLife extends Component
         Media::whereIn('id', $this->selected_images)->delete();
         $this->selected_item->refresh();
         $this->selected_images = [];
+        $this->emit('returnResponseModal',[
+            'title'=>'Record Deleted',
+            'message'=>'Selected record has been deleted.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
     }
 
     public function disable()
     {
         $this->selected_item->update(['status' => \AppConst::DISABLED]);
         $this->selected_item->refresh();
+        $this->emit('returnResponseModal',[
+            'title'=>'Album Disabled',
+            'message'=>'Album has been disabled.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
     }
 
     public function enable()
     {
         $this->selected_item->update(['status' => \AppConst::ENABLED]);
         $this->selected_item->refresh();
+        $this->emit('returnResponseModal',[
+            'title'=>'Album Enabled',
+            'message'=>'Album has been enabled.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
     }
 
     public function deleteAlbum()
@@ -167,6 +216,13 @@ class StudentLife extends Component
         $this->selected_item = null;
         $this->item_id = "";
         $this->loadAlbums();
+        $this->emit('returnResponseModal',[
+            'title'=>'Record Deleted',
+            'message'=>'Album has been deleted.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
     }
     public function render()
     {

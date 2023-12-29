@@ -32,7 +32,14 @@ class Domains extends Component
     public function deleteDomain(UniversityDomains $domain){
         $domain->delete();
         $this->loadDomains();
-        session()->flash('status', 'Operation Successful!');
+        $this->emit('returnResponseModal',[
+        'title'=>'Record Deleted',
+            'message'=>'Domain has been deleted.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
+        //session()->flash('status', 'Operation Successful!');
     }
 
     public function rules(){
@@ -48,7 +55,14 @@ class Domains extends Component
         $user = \Auth::user()->selected_university->domains()->create($inputs);
         $this->initForm();
         $this->loadDomains();
-        session()->flash('status', 'Operation Successful!');
+        $this->emit('returnResponseModal',[
+        'title'=>'Domain Added',
+            'message'=>'1 New domain has been added',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
+        //session()->flash('status', 'Operation Successful!');
     }
 
     public function render()

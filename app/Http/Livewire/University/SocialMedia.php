@@ -32,7 +32,14 @@ class SocialMedia extends Component
         $inputs = $this->validate()['sm_columns'];
         \Auth::user()->selected_university->socialMedia()->update($inputs);
         $this->initForm();
-        session()->flash('status', 'Operation Successful!');
+        $this->emit('returnResponseModal',[
+        'title'=>'Social Media Update',
+            'message'=>'Social media has been updated.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
+        //session()->flash('status', 'Operation Successful!');
     }
 
     public function render()

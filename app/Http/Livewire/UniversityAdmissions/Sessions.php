@@ -76,14 +76,28 @@ class Sessions extends Component
         $data = array_merge($data, $this->information);
         if (!empty($this->edit_item)) {
             $this->edit_item->update($data);
+            $this->emit('returnResponseModal',[
+                'title'=>'Session Record Updated',
+                'message'=>'Session record has been updated.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
         } else {
             \Auth::user()->selected_university->admissionSessions()->create($data);
+            $this->emit('returnResponseModal',[
+                'title'=>'Session Record Added',
+                'message'=>'1 new session record has been added.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
         }
         $this->edit_item = null;
         $this->edit_id = null;
         $this->initForm();
         $this->loadData();
-        session()->flash('status', 'Operation Successful!');
+        //session()->flash('status', 'Operation Successful!');
     }
 
     public function loadTimePicker(){
@@ -112,6 +126,13 @@ class Sessions extends Component
     {
         $semester->delete();
         $this->loadData();
+        $this->emit('returnResponseModal',[
+                'title'=>'Record Deleted',
+                'message'=>'1 Session record has been deleted.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
     }
     public function render()
     {

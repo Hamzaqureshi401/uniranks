@@ -121,14 +121,28 @@ class FeeStructure extends Component
         $data ['created_by_id'] = \Auth::id();
         if (!empty($this->edit_item)) {
             $this->edit_item->update($data);
+            $this->emit('returnResponseModal',[
+                'title'=>'Fee Structure Updated',
+                'message'=>'Fee structure has been updated.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
         } else {
             \Auth::user()->selected_university->feeStructures()->create($data);
+            $this->emit('returnResponseModal',[
+                'title'=>'Fee Structure Added',
+                'message'=>'1 new fee structure record has been added.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
         }
         $this->edit_item = null;
         $this->edit_id = null;
         $this->initForm();
         $this->loadData();
-        session()->flash('status', 'Operation Successful!');
+        //session()->flash('status', 'Operation Successful!');
     }
 
     public function loadTimePicker()
@@ -164,5 +178,12 @@ class FeeStructure extends Component
     {
         $feeStructure->delete();
         $this->loadData();
+        $this->emit('returnResponseModal',[
+                'title'=>'Record Deleted',
+                'message'=>'1 Fee structure record has been deleted.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
     }
 }

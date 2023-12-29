@@ -47,12 +47,28 @@ class WorkshopsList extends Component
     {
         $workshop = UniversityEvent::find($id);
         $workshop->update(['status' => \AppConst::EVENT_REQUSTED_RESTORE]);
-        session()->flash('status', 'Event is requested to restore successfully!');
+        $this->emit('returnResponseModal',[
+                'title'=>'Event Restore Request',
+                'message'=>'Event is requested to restore successfully!',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
+        
+        //session()->flash('status', 'Event is requested to restore successfully!');
     }
     public function toDelete($id)
     {
         $workshop = UniversityEvent::find($id);
         $workshop->update(['status' => \AppConst::EVENT_DELETED]);
-        session()->flash('status', 'Event is requested to delete successfully!');
+        $this->emit('returnResponseModal',[
+                'title'=>'Event Delete Request',
+                'message'=>'Event is requested to delete successfully!',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+        ]);
+        
+        //session()->flash('status', 'Event is requested to delete successfully!');
     }
 }

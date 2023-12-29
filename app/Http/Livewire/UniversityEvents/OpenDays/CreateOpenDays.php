@@ -111,7 +111,14 @@ class CreateOpenDays extends Component
         $this->inviteSchools($university_events);
         $this->addHistory($university_events, $create_university_events);
         $this->setData();
-        session()->flash('status', 'New Open Day Created Successfully!');
+        $this->emit('returnResponseModal',[
+                'title'=>'New Open Day Added',
+                'message'=>'1 new open day has been added.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
+        //session()->flash('status', 'New Open Day Created Successfully!');
         $this->redirect(route('admin.events.openDays.create'));
     }
 
@@ -127,7 +134,14 @@ class CreateOpenDays extends Component
     public function createUpdateFairRequest($create_university_events)
     {
         $this->event->editRequests()->create(['details' => $create_university_events]);
-        session()->flash('status', 'Open Day Update Request Added, Our Team will review it shortly!.');
+        $this->emit('returnResponseModal',[
+                'title'=>'Open Day Updated Request Added',
+                'message'=>'Open Day Update Request Added, Our Team will review it shortly!.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
+        //session()->flash('status', 'Open Day Update Request Added, Our Team will review it shortly!.');
         $this->redirectAfterSuccess();
     }
 
@@ -137,7 +151,14 @@ class CreateOpenDays extends Component
         $this->event->curriculums()->sync($this->curriculums);
         $this->addHistory($this->event, $create_university_events);
         $this->inviteSchools($this->event);
-        session()->flash('status', 'Open Day Updated Successfully!');
+        $this->emit('returnResponseModal',[
+                'title'=>'Open Day Updated',
+                'message'=>'Open Day has been updated.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
+        //session()->flash('status', 'Open Day Updated Successfully!');
         $this->redirectAfterSuccess();
     }
 

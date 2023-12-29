@@ -44,7 +44,14 @@ class About extends Component
             $uni->forgetTranslation('description', $key);
             $uni->save();
             $this->initForm();
-            session()->flash('status', 'Operation Successful!');
+            $this->emit('returnResponseModal',[
+            'title'=>'Record Deleted',
+                'message'=>'About in different languages has been deleted.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
+            //session()->flash('status', 'Operation Successful!');
         }
     }
 
@@ -65,8 +72,16 @@ class About extends Component
             $data['description'][$lang] = $this->descriptions[$key];
         }
         \Auth::user()->selected_university->update($data);
+
         $this->initForm();
-        session()->flash('status', 'Operation Successful!');
+        $this->emit('returnResponseModal',[
+        'title'=>'University About Update',
+            'message'=>'About has been updated',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
+        //session()->flash('status', 'Operation Successful!');
     }
 
 

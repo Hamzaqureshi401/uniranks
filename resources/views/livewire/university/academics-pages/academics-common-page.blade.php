@@ -52,21 +52,21 @@
          </div>
          <div class="row mt-3">
             <div class="col-md-6 col-12">
-               <div class="form-floating w-100">
+               <div class="">
                   <select wire:model.defer="academics_form.college_id" class="form-select input-field" id="floatingSelectGrid" aria-label="">
                      <option value="1">Select College</option>
                      <option value="1">Select College1</option>
                   </select>
-                  <label for="floatingSelectGrid">@lang('Select College')</label>
+                  <!-- <label for="floatingSelectGrid">@lang('Select College')</label> -->
                </div>
             </div>
             <div class="col-md-6 col-12 mobile-marg-2">
-               <div class="form-floating w-100">
+               <div class="">
                   <select wire:model.defer="academics_form.department_id" class="form-select input-field" id="floatingSelectGrid" aria-label="">
                      <option value="1">Select Department</option>
                      <option value="1">Select Department1</option>
                   </select>
-                  <label for="floatingSelectGrid">@lang('Select Department')</label>
+                  <!-- <label for="floatingSelectGrid">@lang('Select Department')</label> -->
                </div>
             </div>
          </div>

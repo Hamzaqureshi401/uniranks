@@ -46,13 +46,27 @@ class UniversityAdmissionContact extends Component
         \Auth::user()->selected_university->contactNumbers()->create($inputs);
         $this->initForm();
         $this->loadContacts();
-        session()->flash('status', 'Operation Successful!');
+        $this->emit('returnResponseModal',[
+        'title'=>'New Contact Added to your Main Information',
+            'message'=>'1 New contact has been added main information.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
+        //session()->flash('status', 'Operation Successful!');
     }
 
     public function deleteContact(UniversityContactNumber $contactNumber){
         $contactNumber->delete();
         $this->loadContacts();
-        session()->flash('status', 'Operation Successful!');
+        $this->emit('returnResponseModal',[
+        'title'=>'Record Deleted',
+            'message'=>'Your Contact has been deleted.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
+        //session()->flash('status', 'Operation Successful!');
     }
 
     public function render()

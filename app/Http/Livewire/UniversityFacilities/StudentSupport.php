@@ -93,14 +93,28 @@ class StudentSupport extends Component
         $data = array_merge($data, $this->support_information);
         if ($this->update_details == 1) {
             $this->selected_item->update($data);
+            $this->emit('returnResponseModal',[
+                'title'=>'Student Support Record Updated',
+                'message'=>'Student Support record has been updated.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
         } else {
             \Auth::user()->selected_university->facilityStudentSupports()->create($data);
+            $this->emit('returnResponseModal',[
+                'title'=>'Student Support Record Added',
+                'message'=>'1 New Student Support record has been added.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
             $this->loadAlbums();
         }
         $this->update_details = 0;
         $this->loadAlbumData();
         $this->initForm();
-        session()->flash('status', 'Operation Successful!');
+        //session()->flash('status', 'Operation Successful!');
     }
 
     public function edit()
@@ -134,6 +148,13 @@ class StudentSupport extends Component
         $this->photos[$key] = null;
         unset($this->photos[$key]);
         sort($this->photos);
+        $this->emit('returnResponseModal',[
+            'title'=>'Record Deleted',
+                'message'=>'Photo has been deleted.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+        ]);
     }
 
     public function savePhotos()
@@ -146,6 +167,13 @@ class StudentSupport extends Component
         $this->selected_item->media()->createMany($images);
         $this->selected_item->refresh();
         $this->photos = [];
+        $this->emit('returnResponseModal',[
+                'title'=>'Photo Added',
+                'message'=>'1 New photo has been added.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+        ]);
     }
 
     public function deleteSelected()
@@ -153,18 +181,40 @@ class StudentSupport extends Component
         Media::whereIn('id', $this->selected_images)->delete();
         $this->selected_item->refresh();
         $this->selected_images = [];
+        $this->emit('returnResponseModal',[
+            'title'=>'Record Deleted',
+            'message'=>'Selected record has been deleted.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
     }
 
     public function disable()
     {
         $this->selected_item->update(['status' => \AppConst::DISABLED]);
         $this->selected_item->refresh();
+        $this->emit('returnResponseModal',[
+            'title'=>'Album Disabled',
+            'message'=>'Album has been disabled.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
     }
 
     public function enable()
     {
         $this->selected_item->update(['status' => \AppConst::ENABLED]);
         $this->selected_item->refresh();
+        $this->emit('returnResponseModal',[
+            'title'=>'Album Enabled',
+            'message'=>'Album has been enabled.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
+        
     }
 
     public function deleteAlbum()
@@ -173,6 +223,13 @@ class StudentSupport extends Component
         $this->selected_item = null;
         $this->item_id = "";
         $this->loadAlbums();
+        $this->emit('returnResponseModal',[
+            'title'=>'Record Deleted',
+            'message'=>'Album has been deleted.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
     }
     public function render()
     {

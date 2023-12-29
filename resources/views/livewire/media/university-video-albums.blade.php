@@ -98,7 +98,12 @@
                         <div class="d-md-flex h6 blue justify-content-between">
                             <div class="">@lang('Created on') {{$selected_album->created_at->toDayDateTimeString()}}</div>
                             <div class="">@lang('By') {{$selected_album?->createdByUser?->name ?: "---"}}</div>
-                            <div class=""><a href="" class="red ">@lang('Disabled')</a></div>
+                            <div class=""> @if($selected_album->is_enabled)
+                                            <a href="javascript:void(0)" wire:click="disable" class="red ">@lang('Disable')</a>
+                                            @else
+                                                <a href="javascript:void(0)" wire:click="enable" class="green ">@lang('Enable')</a>
+                                            @endif
+                            </div>
                             <div class=""><a href="" class="red"  wire:click.prevent="deleteAlbum">@lang('Delete Album')</a></div>
                         </div>
                         <div class="w-100 mt-4 px-4">
@@ -120,6 +125,7 @@
                                             </a>
                                         </div>
                                         <div class="col-md-1 text-center">{{$image->language->code}}</div>
+                                        
                                         <div class="col-md-2 text-center">
                                             <a href="javascript:void(0)" wire:click="deleteMedia({{$image->id}})" class="red">@lang('Delete')</a></div>
                                     @endforeach

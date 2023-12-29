@@ -59,13 +59,27 @@ class QuickView extends Component
         $university = \Auth::user()->selected_university;
         $university->quickView()->update($qv_data);
         $university->languages()->sync($languages_data);
-        session()->flash('status', 'Operation Successful!');
+        $this->emit('returnResponseModal',[
+        'title'=>'Quick View Updated',
+            'message'=>'Quick view been updated',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
+        //session()->flash('status', 'Operation Successful!');
     }
 
     public function delete(){
 
         $university = \Auth::user()->selected_university;
         $university->quickView()->delete();
+        $this->emit('returnResponseModal',[
+        'title'=>'Record Deleted',
+            'message'=>'Quick view has been deleted.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
         session()->flash('status', 'Operation Successful!');
     }
 

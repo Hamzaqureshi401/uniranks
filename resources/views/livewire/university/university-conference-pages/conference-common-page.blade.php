@@ -92,7 +92,7 @@
       </div>
       <div class="h5 blue">@lang('Conference Logos')</div>
       <div>
-         <div class="card mt-1" x-data="{photoName: null, photoPreview: null,isUploading: false, progress: 0}"
+         <div class="mt-1" x-data="{photoName: null, photoPreview: null,isUploading: false, progress: 0}"
             x-on:livewire-upload-start="isUploading = true"
             x-on:livewire-upload-finish="isUploading = false"
             x-on:livewire-upload-error="isUploading = false"
@@ -127,7 +127,7 @@
          </div>
       </div>
       <div>
-         <div class="card mt-1" x-data="{photoName: null, photoPreview: null,isUploading: false, progress: 0}"
+         <div class=" mt-1" x-data="{photoName: null, photoPreview: null,isUploading: false, progress: 0}"
             x-on:livewire-upload-start="isUploading = true"
             x-on:livewire-upload-finish="isUploading = false"
             x-on:livewire-upload-error="isUploading = false"

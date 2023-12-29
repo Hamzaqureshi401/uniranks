@@ -51,7 +51,7 @@ class Academics extends Component
         return [
             'academics_form'                         => ['array' , 'required'],
             'academics_form.*'                       => ['present'],
-            'names'                                  => ['array'],
+            //'names'                                  => ['array'],
             'academics_form.email'                   => 'required|email|max:255|unique:academics,email',
            
         ];
@@ -72,14 +72,29 @@ class Academics extends Component
         $final = array_merge($data , $this->academics_form);
         if (!empty($this->edit_item)) {
             $this->edit_item->update($final);
+            $this->emit('returnResponseModal',[
+            'title'=>'Academic Record Updated',
+                'message'=>'Academic record has been updated.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
         } else {
            Auth::user()->academics()->create($final);
+           $this->emit('returnResponseModal',[
+            'title'=>'Academic Record Added',
+            'message'=>'1 New academic record has been added.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
         }
         $this->edit_item = null;
         $this->edit_id = null;
         $this->initForm();
         $this->refreshForm();
-        session()->flash('status', 'Operation Successful!');
+        
+        //session()->flash('status', 'Operation Successful!');
     }
 
     public function refreshForm(){
@@ -93,7 +108,14 @@ class Academics extends Component
         
         Academic::where('id' , $id)->delete();
         $this->initForm();
-        session()->flash('status', 'Delete Successful!');
+        $this->emit('returnResponseModal',[
+            'title'=>'Record Deleted',
+                'message'=>'Academic record has been deleted.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
+        //session()->flash('status', 'Delete Successful!');
      }
 
     

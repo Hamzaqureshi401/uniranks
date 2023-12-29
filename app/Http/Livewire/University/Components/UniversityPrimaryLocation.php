@@ -52,13 +52,27 @@ class UniversityPrimaryLocation extends Component
     {
         $inputs = $this->validate();
         \Auth::user()->selected_university->update($inputs);
-        session()->flash('status', 'Operation Successful!');
+        $this->emit('returnResponseModal',[
+            'title'=>'Location Updated',
+            'message'=>'Location has been updated.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
+        //session()->flash('status', 'Operation Successful!');
     }
 
     public function delete(){
         \Auth::user()->selected_university->update(['country_id' => null , 'city_id' => null , 'map_link' => null]);
         $this->initForm();
-        session()->flash('status', 'Operation Successful!');
+        $this->emit('returnResponseModal',[
+            'title'=>'Record Deleted',
+            'message'=>'Location has been deleted.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
+        //session()->flash('status', 'Operation Successful!');
     }
 
     public function render()

@@ -61,8 +61,15 @@ class OtherDocuments extends Component
         $uni = \Auth::user()->selected_university;
         $uni->applicationRequirments()->whereHas('requirement', fn($q)=>$q->whereNotIn('type_id',$this->type_id))->delete();
         $uni->applicationRequirments()->createMany($this->other_application_requirements);
+        $this->emit('returnResponseModal',[
+                'title'=>'Other Documents Added',
+                'message'=>'Other Documents has been added.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
         $this->initForm();
-        session()->flash('status', 'Operation Successful!');
+        //session()->flash('status', 'Operation Successful!');
     }
 
     public function render()

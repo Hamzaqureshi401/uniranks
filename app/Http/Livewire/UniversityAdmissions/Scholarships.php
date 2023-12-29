@@ -78,14 +78,28 @@ class Scholarships extends Component
         $data = array_merge($data, $this->information);
         if (!empty($this->edit_item)) {
             $this->edit_item->update($data);
+            $this->emit('returnResponseModal',[
+                'title'=>'Scholarship Updated',
+                'message'=>'Scholarship has been updated.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
         } else {
             \Auth::user()->selected_university->scholarships()->create($data);
+            $this->emit('returnResponseModal',[
+                'title'=>'Scholarship Added',
+                'message'=>'1 new scholarship record has been added.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
         }
         $this->edit_item = null;
         $this->edit_id = null;
         $this->initForm();
         $this->loadData();
-        session()->flash('status', 'Operation Successful!');
+        //session()->flash('status', 'Operation Successful!');
     }
 
     public function edit($semester_id)
@@ -110,6 +124,13 @@ class Scholarships extends Component
     {
         $scholarship->delete();
         $this->loadData();
+        $this->emit('returnResponseModal',[
+                'title'=>'Record Deleted',
+                'message'=>'1 Scholarship record has been deleted.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
     }
 
     public function render()

@@ -152,7 +152,14 @@ class AdmissionsSemestersAndAdmissionSessions extends Component
        // dd($final , $data , UniversityAdmissionSessionUpdateRequest::get());
         $this->initForm();
         $this->resetForm();
-        session()->flash('status', 'Operation Successful!');
+        $this->emit('returnResponseModal',[
+                'title'=>'Admission Semester Reord Added',
+                'message'=>'1 new admission semester record has been added.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+        ]);
+        //session()->flash('status', 'Operation Successful!');
     }
 
     public function delete($id){
@@ -162,14 +169,28 @@ class AdmissionsSemestersAndAdmissionSessions extends Component
     $this->saveDeleteRecordRequestAndRedirect($request, new UniversityAdmissionSessionUpdateRequest, new UniversityAdmissionSession);
     $this->initForm();
     $this->resetForm();
-        session()->flash('status', 'Operation Successful!');
+    $this->emit('returnResponseModal',[
+                'title'=>'Record Deleted',
+                'message'=>'1 Admission semester record has been deleted.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
+    //session()->flash('status', 'Operation Successful!');
     }
 
     public function deleteRecord($id){
 
-        UniversityAdmissionSessionUpdateRequest::whereId($id)->delete();
-        $this->initForm();
+    UniversityAdmissionSessionUpdateRequest::whereId($id)->delete();
+    $this->initForm();
     $this->resetForm();
-        session()->flash('status', 'Operation Successful!');
+    $this->emit('returnResponseModal',[
+                'title'=>'Record Deleted',
+                'message'=>'1 Admission semester review record has been deleted.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
+        //session()->flash('status', 'Operation Successful!');
     }
 }

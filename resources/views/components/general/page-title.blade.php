@@ -4,7 +4,9 @@
         <div class="d-md-flex align-items-center">
             <div class="h4 mb-0 blue">@lang($title)</div>
             <div class="light-gray col-marg h4 mobile-hidden">|</div>
-            <div class="h4 mb-0 blue col-marg">@lang($subTitle)</div>
+            <div class="h4 mb-0 blue col-marg">@lang($subTitle)
+                @include('about-icon')
+            </div>
         </div>
     </div>
 </div>

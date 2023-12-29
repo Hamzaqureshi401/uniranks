@@ -91,8 +91,15 @@ class AddTransportStops extends Component
 
         $this->stop = null;
         $this->initForm();
-        session()->flash('status', 'Operation Successful!');
-        $this->emit('stopUpdated');
+        //session()->flash('status', 'Operation Successful!');
+        $this->emit('returnResponseModal',[ 
+        'title'=>'Stop Update',
+            'message'=>'Stop has been updated.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
+        //$this->emit('stopUpdated');
     }
 
     public function edit(UniversityTransportStop $stop)

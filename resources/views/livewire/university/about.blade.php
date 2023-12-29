@@ -37,7 +37,7 @@
                             </div>
                         </div>
                     @endif
-                    <div class="row">
+                    <div class="row mt-3">
                         <div class="col-12">
                             <div class="form-floating w-100">
                                 <textarea wire:model.defer="descriptions.{{$i}}" class="form-control input-textarea"

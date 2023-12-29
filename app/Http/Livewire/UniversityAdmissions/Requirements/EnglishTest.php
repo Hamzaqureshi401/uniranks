@@ -182,8 +182,15 @@ class EnglishTest extends Component
                 $test_requirement->requiredScoreTypes()->createMany($sub_scores_data);
             }
         }
+        $this->emit('returnResponseModal',[
+                'title'=>'English Test Required Grade Added',
+                'message'=>'English Test required grade has been added.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
         $this->initForm();
-        session()->flash('status', 'Operation Successful!');
+        //session()->flash('status', 'Operation Successful!');
     }
 
     public function render()

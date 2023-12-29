@@ -78,14 +78,28 @@ class Semesters extends Component
         $data = array_merge($data, $this->information);
         if (!empty($this->edit_item)) {
             $this->edit_item->update($data);
+            $this->emit('returnResponseModal',[
+                'title'=>'Semester Record Updated',
+                'message'=>'Semester record has been updated.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
         } else {
             \Auth::user()->selected_university->semesters()->create($data);
+            $this->emit('returnResponseModal',[
+                'title'=>'Semester Record Added',
+                'message'=>'1 new semester record has been added.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
         }
         $this->edit_item = null;
         $this->edit_id = null;
         $this->initForm();
         $this->loadData();
-        session()->flash('status', 'Operation Successful!');
+        //session()->flash('status', 'Operation Successful!');
     }
 
     public function loadTimePicker(){
@@ -115,5 +129,12 @@ class Semesters extends Component
         $semester->admissionSessions()->delete();
         $semester->delete();
         $this->loadData();
+        $this->emit('returnResponseModal',[
+                'title'=>'Record Deleted',
+                'message'=>'1 semester record has been deleted.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
     }
 }
