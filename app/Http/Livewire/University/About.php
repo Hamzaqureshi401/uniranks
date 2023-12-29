@@ -24,7 +24,6 @@ class About extends Component
         //dd(1);
         $uni = \Auth::user()->selected_university;
         $uni->refresh();
-//        dd($uni->getTranslations('description'));
         $this->about_translations = $uni->getTranslations('description') ?? [];
         $this->translations = empty($this->about_translations) ? ['en'] : array_keys($this->about_translations);
         $this->descriptions = array_values($this->about_translations);

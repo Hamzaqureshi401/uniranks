@@ -7,7 +7,10 @@
             @include('about-icon')
         </div>
     </div>
-    <div class="card mt-1">
+    <div class="paragraph-style-2 blue">
+   @lang('Update the direct admission enrolment and add the legal university name')
+</div>
+    <div class="card mt-3">
         <div class="card-body">
             <x-general.status-alert name="status"/>
             <form>
@@ -77,8 +80,9 @@
                 <td>{{$contact->full_phone_number}} {{!empty($contact->ext) ? '/'.__('ext')." $contact->ext":""}}</td>
                 <td class="font-light">{{$contact->created_at?->toDayDateTimeString()}}</td>
                 <td class="font-light">{{$contact->createdBy?->name ?:"---"}}</td>
+                <td class="text-end"><a href="javascript:void(0)" wire:click="edit('{{$contact->id}}')" class="light-blue">@lang('Edit')</a></td>
                 <td class="text-end">
-                     <a href="javascript:void(0)" wire:click="edit('{{$contact->id}}')" class="light-blue">@lang('Edit')</a>
+                     
                     <a href="javascript:void(0)" wire:click="deleteContact('{{$contact->id}}')" class="red">@lang('Delete')</a>
 
                 </td>
