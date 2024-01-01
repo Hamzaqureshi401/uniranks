@@ -123,7 +123,8 @@
         **/
     @endphp
     <div class="card-body">
-        <div class="h4 blue">@lang('Acreditation Agencies List')</div>
+        <div class="h4 blue">@lang('Acreditation Agencies List')
+        @include('about-icon')</div>
         <div class="table-responsive">
             <table class="table">
                 <tbody>

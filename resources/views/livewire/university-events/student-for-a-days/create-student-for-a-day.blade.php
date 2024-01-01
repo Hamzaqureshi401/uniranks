@@ -1,6 +1,7 @@
 <div class="col-lg-12 col-sm-12"> 
     <div class="">
-        <h5 class="h5 blue">@lang($button)</h5>
+        <h5 class="h5 blue">@lang($button)
+        @include('about-icon')</h5>
     </div>
     <div class="card">
         <div class="card-body" x-data="{start_date: @entangle('start_date'),end_date: @entangle('end_date'),curriculums: @entangle('curriculums').defer}"

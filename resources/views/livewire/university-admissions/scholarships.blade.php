@@ -111,7 +111,8 @@
         **/
     @endphp
     <div class="card-body">
-        <div class="h4 blue">@lang('Scholarships')</div>
+        <div class="h4 blue">@lang('Scholarships')
+        @include('about-icon')</div>
         <div class="table-responsive">
             <table class="table blue">
                 <tbody>

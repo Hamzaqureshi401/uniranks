@@ -11,7 +11,8 @@
     <div x-data="{ showFilters:false }" class="w-100">
         <div class="row">
             <div class="col-12 d-flex justify-content-between blue">
-                <div class="h4 blue">@lang('Upcoming Career Talks')</div>
+                <div class="h4 blue">@lang('Upcoming Career Talks')
+                @include('about-icon')</div>
                 <i class="d-md-none fas fa-filter pointer blue blue" @click="showFilters = !showFilters"
                    aria-hidden="true"></i>
             </div>

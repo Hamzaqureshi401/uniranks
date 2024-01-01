@@ -3,7 +3,8 @@
       <x-general.status-alert/>
          <x-jet-validation-errors class="mt-3 mb-3 alert alert-danger"/>
        
-              <div class="h4 blue mt-3">School Request for Presentation</div>
+              <div class="h4 blue mt-3">School Request for Presentation
+              @include('about-icon')</div>
               <div class="h5 mt-4 blue">Find schools are looking to have a solo event with you</div>
               @foreach($presentations as $presentation)
                 <div class="card mt-4">

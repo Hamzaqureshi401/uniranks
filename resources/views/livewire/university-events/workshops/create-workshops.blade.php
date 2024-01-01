@@ -1,5 +1,6 @@
 <div class="col-lg-12 col-sm-12">
-    <h5 class="h5 blue">@lang($title)</h5>
+    <h5 class="h5 blue">@lang($title)
+    @include('about-icon')</h5>
 
     <div class="card">
         <div class="card-body" x-data="{start_date: @entangle('start_date'),end_date: @entangle('end_date'),curriculums: @entangle('curriculums').defer,majors: @entangle('majors').defer}"

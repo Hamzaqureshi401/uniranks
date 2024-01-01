@@ -5,7 +5,8 @@
                 <div class="row">
                     <div class="col-12 d-flex justify-content-between blue">
                         <div class="h5 blue">@lang('Invoices and Transactions')
-                            | @lang('Event Credit Transaction')</div>
+                            | @lang('Event Credit Transaction')
+                        @include('about-icon')</div>
 {{--                        <button class="button-sm button-blue ">--}}
 {{--                            Available balance $1,500.00 Top up your Account--}}
 {{--                        </button>--}}

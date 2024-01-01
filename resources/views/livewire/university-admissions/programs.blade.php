@@ -300,7 +300,8 @@
             **/
         @endphp
         <div class="card-body">
-            <div class="h4 blue">@lang('Admission Programs')</div>
+            <div class="h4 blue">@lang('Admission Programs')
+            @include('about-icon')</div>
             <div class="table-responsive">
                 <table class="table">
                     <tbody>

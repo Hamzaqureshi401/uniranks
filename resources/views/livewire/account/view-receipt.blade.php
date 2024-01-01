@@ -4,7 +4,8 @@
             <div x-data="{ showFilters:false }" class="w-100">
                 <div class="row">
                     <div class="col-12 d-flex justify-content-between blue">
-                        <div class="h5 blue">@lang('System Invoice')</div>
+                        <div class="h5 blue">@lang('System Invoice')
+                        @include('about-icon')</div>
                         <a href="javascript:void(0)" onclick="printDivContent('{{route('admin.account.downloadReceipt',$receipt->id)}}')"   class="a-underline blue" >
                             @lang('Print Invoice') <i class="fa-solid fa-print pointer"></i>
                         </a>

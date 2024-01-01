@@ -4,7 +4,8 @@
             <div x-data="{ showFilters:false }" class="w-100">
                 <div class="row">
                     <div class="col-12 d-flex justify-content-between blue">
-                        <div class="h5 blue">@lang('Packages and Account Top')</div>
+                        <div class="h5 blue">@lang('Packages and Account Top')
+                        @include('about-icon')</div>
                     </div>
                 </div>
             </div>

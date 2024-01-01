@@ -1,7 +1,8 @@
 <div>
     <div class="row">
         <div class="col-12 d-flex justify-content-between blue">
-            <div class="h4 blue">@lang('School Request Event Sponsor')</div>
+            <div class="h4 blue">@lang('School Request Event Sponsor')
+            @include('about-icon')</div>
         </div>
     </div>
     <div class="row">

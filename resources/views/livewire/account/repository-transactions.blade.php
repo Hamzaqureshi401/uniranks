@@ -4,7 +4,8 @@
             <div x-data="{ showFilters:false }" class="w-100">
                 <div class="row">
                     <div class="col-12 d-flex justify-content-between blue">
-                        <div class="h5 blue">@lang('Invoices and Transactions') | @lang('Repository Transaction')</div>
+                        <div class="h5 blue">@lang('Invoices and Transactions') | @lang('Repository Transaction')
+                        @include('about-icon')</div>
 {{--                        <button class="button-sm button-blue ">--}}
 {{--                            Available balance $1,500.00 Top up your Account--}}
 {{--                        </button>--}}

@@ -2,7 +2,8 @@
 
                
                <div class="card-body">
-                   <div class="h4 blue">Semesters &amp; Admission Sessions</div>
+                   <div class="h4 blue">@lang('Semesters &amp; Admission Sessions')
+                   @include('about-icon')</div>
                    <table class="table">
     <thead>
         <tr class="blue">
@@ -52,7 +53,8 @@
 
                
                <div class="card-body">
-                   <div class="h4 blue">Semesters &amp; Admission Sessions Under Review</div>
+                   <div class="h4 blue">@lang('Semesters &amp; Admission Sessions Under Review')
+                   @include('about-icon')</div>
                    <table class="table">
     <thead>
         <tr class="blue">

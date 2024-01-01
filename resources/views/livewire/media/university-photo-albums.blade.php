@@ -7,7 +7,8 @@
         * @var \App\Models\Multimedia\MediaAlbum $selected_album
         **/
     @endphp
-    <div class="h4 blue mt-3" id="upload-images">@lang('Upload Materials to Albums')</div>
+    <div class="h4 blue mt-3" id="upload-images">@lang('Upload Materials to Albums')
+    @include('about-icon')</div>
     <div class="row align-items-baseline">
         <div class="col-md-8">
             <select wire:model="album_id" wire:change="loadAlbumData" class="input-field form-control">

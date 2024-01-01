@@ -4,7 +4,8 @@
             <div x-data="{ showFilters:false }" class="w-100">
                 <div class="row">
                     <div class="col-12 blue">
-                        <div class="h5 blue">@lang('Event Packages')</div>
+                        <div class="h5 blue">@lang('Event Packages')
+                        @include('about-icon')</div>
                         <p class="gray">
                             @lang('The UNIRANKS Events Packages enable universities and education agents to connect with
                             students during the SchoolsMaster university fair events. These packages are designed to provide

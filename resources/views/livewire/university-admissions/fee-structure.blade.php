@@ -169,7 +169,8 @@
             **/
         @endphp
         <div class="card-body">
-            <div class="h4 blue">@lang('Fee Structure')</div>
+            <div class="h4 blue">@lang('Fee Structure')
+            @include('about-icon')</div>
             <div class="table-responsive">
                 <table class="table">
                     <tbody>

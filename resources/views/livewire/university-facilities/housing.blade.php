@@ -201,7 +201,8 @@
         * @var \App\Models\University\Facility\UniversityFacilityHousing $selected_item
         **/
     @endphp
-    <div class="h4 blue mt-3" id="upload-images">@lang('Housings Detail and Gallery')</div>
+    <div class="h4 blue mt-3" id="upload-images">@lang('Housings Detail and Gallery')
+    @include('about-icon')</div>
     <div class="row align-items-baseline">
         <div class="col-md-8">
             <select wire:model="item_id" wire:change="loadAlbumData" class="input-field form-control">

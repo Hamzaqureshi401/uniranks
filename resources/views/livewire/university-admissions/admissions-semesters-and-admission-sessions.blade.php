@@ -4,6 +4,7 @@
                   <div class="light-gray col-marg h4 mobile-nav-hidden">|</div>
                    <div class="h4 blue col-marg">
                      @lang('Semesters') &amp; @lang('Admission Sessions')
+                     @include('about-icon')
                     </div>
                </div>
                 <div class="paragraph-style-2 blue  mb-3">
