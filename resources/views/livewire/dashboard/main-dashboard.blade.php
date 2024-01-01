@@ -1,5 +1,5 @@
       <div class="mt-3 mb-3">
-         <div class="h2 blue">WORLD'S LARGEST SCHOOLS EVENT PLATFORM
+         <div class="h2 blue">@lang("WORLD'S LARGEST SCHOOLS EVENT PLATFORM")
             @include('about-icon')
          </div>
          <!-- <div class="paragraph-style1 gray font-normal mt-3"></div> -->
@@ -12,7 +12,7 @@
             <div class="card">
                <div class="p-3 statistics-card-content">
                   <div class="d-flex justify-content-between">
-                     <h5 class="h5 blue">Schools</h5>
+                     <h5 class="h5 blue">@lang('Schools')</h5>
                      <!-- <h4 class="h4 light-blue text-end"><i class="fa-solid fa-angle-right"></i></h4> -->
                   </div>
                   <!-- <div class="row mt-2 align-items-center">
@@ -22,7 +22,7 @@
                                          </div>
                      </div> -->
                   <div class="row mt-2">
-                     <p class="blue paragraph-style2">Manage School accounts, student, counselors, events and more </p>
+                     <p class="blue paragraph-style2">@lang('Manage School accounts, student, counselors, events and more') </p>
                   </div>
                   <!-- <div class="row mt-2">
                      <p class="blue paragraph-style2"></p>
@@ -45,7 +45,7 @@
             <div class="card">
                <div class="p-3 statistics-card-content">
                   <div class="d-flex justify-content-between">
-                     <h5 class="h5 blue">Create Event</h5>
+                     <h5 class="h5 blue">@lang("Create Event")</h5>
                      <!-- <h4 class="h4 light-blue text-end"><i class="fa-solid fa-angle-right"></i></h4> -->
                   </div>
                   <!-- <div class="row mt-2 align-items-center">
@@ -55,7 +55,7 @@
                                          </div>
                      </div> -->
                   <div class="row mt-2">
-                     <p class="blue paragraph-style2">Create the couselor account, sub-accounts, and basic information </p>
+                     <p class="blue paragraph-style2">@lang("Create the couselor account, sub-accounts, and basic information") </p>
                   </div>
                   <!-- <div class="row mt-2">
                      <p class="blue paragraph-style2"></p>
@@ -79,7 +79,7 @@
             <div class="card">
                <div class="p-3 statistics-card-content">
                   <div class="d-flex justify-content-between">
-                     <h5 class="h5 blue">My Students</h5>
+                     <h5 class="h5 blue">@lang("My Students")</h5>
                      <!-- <h4 class="h4 light-blue text-end"><i class="fa-solid fa-angle-right"></i></h4> -->
                   </div>
                   <!-- <div class="row mt-2 align-items-center">
@@ -89,7 +89,7 @@
                                          </div>
                      </div> -->
                   <div class="row mt-2">
-                     <p class="blue paragraph-style2">Create student's accounts, manage students, and more, and more</p>
+                     <p class="blue paragraph-style2">@lang("Create student's accounts, manage students, and more, and more")</p>
                   </div>
                   <!-- <div class="row mt-2">
                      <p class="blue paragraph-style2"></p>
@@ -111,7 +111,7 @@
             <div class="card">
                <div class="p-3 statistics-card-content">
                   <div class="d-flex justify-content-between">
-                     <h5 class="h5 blue">My University</h5>
+                     <h5 class="h5 blue">@lang("My University")</h5>
                      <!-- <h4 class="h4 light-blue text-end"><i class="fa-solid fa-angle-right"></i></h4> -->
                   </div>
                   <!-- <div class="row mt-2 align-items-center">
@@ -121,7 +121,7 @@
                                          </div>
                      </div> -->
                   <div class="row mt-2">
-                     <p class="blue paragraph-style2">List universities, manage students, and more, and more</p>
+                     <p class="blue paragraph-style2">@lang("List universities, manage students, and more, and more")</p>
                   </div>
                   <!-- <div class="row mt-2">
                      <p class="blue paragraph-style2"></p>
@@ -143,7 +143,7 @@
             <div class="card">
                <div class="p-3 statistics-card-content">
                   <div class="d-flex justify-content-between">
-                     <h5 class="h5 blue">University Fairs</h5>
+                     <h5 class="h5 blue">@lang("University Fairs")</h5>
                      <!-- <h4 class="h4 light-blue text-end"><i class="fa-solid fa-angle-right"></i></h4> -->
                   </div>
                   <!-- <div class="row mt-2 align-items-center">
@@ -153,7 +153,7 @@
                                          </div>
                      </div> -->
                   <div class="row mt-2">
-                     <p class="blue paragraph-style2">Run a university fair with few clicks, invite local and international universities</p>
+                     <p class="blue paragraph-style2">@lang("Run a university fair with few clicks, invite local and international universities")</p>
                   </div>
                   <!-- <div class="row mt-2">
                      <p class="blue paragraph-style2"></p>
@@ -176,7 +176,7 @@
             <div class="card">
                <div class="p-3 statistics-card-content">
                   <div class="d-flex justify-content-between">
-                     <h5 class="h5 blue">Career Talk</h5>
+                     <h5 class="h5 blue">@lang("Career Talk")</h5>
                      <!-- <h4 class="h4 light-blue text-end"><i class="fa-solid fa-angle-right"></i></h4> -->
                   </div>
                   <!-- <div class="row mt-2 align-items-center">
@@ -186,7 +186,7 @@
                                          </div>
                      </div> -->
                   <div class="row mt-2">
-                     <p class="blue paragraph-style2">Manage School accounts, student, counselors, events and more </p>
+                     <p class="blue paragraph-style2">@lang("Manage School accounts, student, counselors, events and more") </p>
                   </div>
                   <!-- <div class="row mt-2">
                      <p class="blue paragraph-style2"></p>
@@ -209,7 +209,7 @@
             <div class="card">
                <div class="p-3 statistics-card-content">
                   <div class="d-flex justify-content-between">
-                     <h5 class="h5 blue">Request for Presentation</h5>
+                     <h5 class="h5 blue">@lang("Request for Presentation")</h5>
                      <!-- <h4 class="h4 light-blue text-end"><i class="fa-solid fa-angle-right"></i></h4> -->
                   </div>
                   <!-- <div class="row mt-2 align-items-center">
@@ -219,7 +219,7 @@
                                          </div>
                      </div> -->
                   <div class="row mt-2">
-                     <p class="blue paragraph-style2">ask a university to give your students a presentation about their major university</p>
+                     <p class="blue paragraph-style2">@lang("ask a university to give your students a presentation about their major university")</p>
                   </div>
                   <!-- <div class="row mt-2">
                      <p class="blue paragraph-style2"></p>
@@ -241,7 +241,7 @@
             <div class="card">
                <div class="p-3 statistics-card-content">
                   <div class="d-flex justify-content-between">
-                     <h5 class="h5 blue">Request a Meeting</h5>
+                     <h5 class="h5 blue">@lang("Request a Meeting")</h5>
                      <!-- <h4 class="h4 light-blue text-end"><i class="fa-solid fa-angle-right"></i></h4> -->
                   </div>
                   <!-- <div class="row mt-2 align-items-center">
@@ -251,7 +251,7 @@
                                          </div>
                      </div> -->
                   <div class="row mt-2">
-                     <p class="blue paragraph-style2">Request a meeting with SchoolMaster Team or a university representative</p>
+                     <p class="blue paragraph-style2">@lang("Request a meeting with SchoolMaster Team or a university representative")</p>
                   </div>
                   <!-- <div class="row mt-2">
                      <p class="blue paragraph-style2"></p>
@@ -270,19 +270,20 @@
          </div>
          <!--to force new line-->
       </div>
-      <div class="h22 blue mt-4">Student Statisctics</div>
+      <div class="h22 blue mt-4">@lang('Student Statisctics')
+      @include('about-icon')</div>
       <div class="d-md-flex justify-content-between">
-         <div class="paragraph-style1 gray font-normal align-self-center">Monitor student Statistics UAE</div>
+         <div class="paragraph-style1 gray font-normal align-self-center">@lang("Monitor student Statistics UAE")</div>
          <div class="d-md-flex col-md-4 mobile-marg-2">
             <div class="col-md-6" style="padding-right: 5px">
                <select class="input-field form-control">
-                  <option>Province</option>
+                  <option>@lang("Province")</option>
                </select>
             </div>
             <div class="col-md-6">
                <div class="col-marg">
                   <select class="input-field form-control">
-                     <option>City</option>
+                     <option>@lang("City")</option>
                   </select>
                </div>
             </div>
@@ -326,8 +327,9 @@
          </div>
          @endforeach
          <!--to force new line-->
-         <div class="h22 blue mt-5">Event Statisctics</div>
-         <div class="paragraph-style1 gray font-normal mt-2">Monitor students events</div>
+         <div class="h22 blue mt-5">@lang("Event Statisctics")
+         @include('about-icon')</div>
+         <div class="paragraph-style1 gray font-normal mt-2">@lang("Monitor students events")</div>
          <div class="row mt-1 g-2">
             @foreach($event_statistics as $value)
             <div class="col-12 col-md-4 col-lg-3">
@@ -365,8 +367,9 @@
             </div>
             @endforeach
          </div>
-         <div class="h22 blue mt-5">Students Events Statisctics</div>
-         <div class="paragraph-style1 gray font-normal mt-2">Monitor student's events attendance &amp; engagements</div>
+         <div class="h22 blue mt-5">@lang("Students Events Statisctics")
+         @include('about-icon')</div>
+         <div class="paragraph-style1 gray font-normal mt-2">@lang("Monitor student's events attendance &amp; engagements")</div>
          <div class="row mt-1 g-2">
             @foreach($students_events_statisctics as $value)
             <div class="col-12 col-md-4 col-lg-3">
@@ -440,8 +443,9 @@
                </div>
             </div>
          </div>
-         <div class="h2 blue mt-5">School and Universities Statisctics</div>
-         <div class="paragraph-style1 gray font-normal mt-2">Monitor Schools and Universities listed, and recognized.</div>
+         <div class="h2 blue mt-5">@lang('School and Universities Statisctics')
+         @include('about-icon')</div>
+         <div class="paragraph-style1 gray font-normal mt-2">@lang("Monitor Schools and Universities listed, and recognized.")</div>
          <div class="row mt-1 g-2">
             @foreach($school_and_universities_statisctics as $value)
             <div class="col-12 col-md-4 col-lg-3">
