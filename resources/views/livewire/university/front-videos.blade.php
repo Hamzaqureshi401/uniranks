@@ -41,29 +41,40 @@
                     * @var \App\Models\University\Information\UniversityFrontVideos[] $videos
                     */
                 @endphp
-                @foreach($videos ?? [] as $video)
-                    <div class="d-md-flex h6 blue justify-content-between">
-                        <div class="col-md-3"><a href="{{$video->url}}" target="_blank"
-                                                 class="light-blue">{{$video->title}}</a></div>
-                        <div class="col-md-3">@lang('Created on') {{$video->created_at?->toDayDateTimeString()}}</div>
-                        <div class="col-md-2">@lang('By') {{$video->createdBy?->name}}</div>
-                        <div class="col-md-2 text-place-end">
-                            @if($video->is_disabled)
-                                <a href="javascript:void(0)" wire:click="enable({{$video->id}})"
-                                   class="green">@lang('Enable')</a>
-                            @else
-                                <a href="javascript:void(0)" wire:click="disable({{$video->id}})"
-                                   class="red">@lang('Disabled')</a>
-                            @endif
-                        </div>
-                        <div class="col-md-2  text-place-end"><a href="javascript:void(0)"
-                                                                 wire:click="deleteVideo({{$video->id}})"
-                                                                 class="red ">@lang('Delete')</a></div>
-                    </div>
-                @endforeach
+               
             </div>
             <x-general.loading message="Processing..."/>
 
         </div>
     </div>
+    <div class="card bg-transparent mt-4">
+    <div class="card-body">
+    <div class="h4 blue" id="upload-images">@lang('Videos')</div>
+     <div class="w-100 px-4 mt-3">
+        <hr>
+    </div>
+    <table class="table">
+        <tbody>
+            @foreach($videos ?? [] as $video)
+            <tr>
+                <td><a href="{{$video->url}}" target="_blank" class="light-blue">{{$video->title}}</a></td>
+                <td class="blue">@lang('Created on') {{$video->created_at?->toDayDateTimeString()}}</td>
+                <td class="blue">{{$video->createdBy?->name}}</td>
+                <td class="text-place-end">
+                    @if($video->is_disabled)
+                        <a href="javascript:void(0)" wire:click="enable({{$video->id}})" class="green">@lang('Enable')</a>
+                    @else
+                        <a href="javascript:void(0)" wire:click="disable({{$video->id}})" class="red">@lang('Disabled')</a>
+                    @endif
+                </td>
+                <td class="text-place-end">
+                    <a href="javascript:void(0)" wire:click="deleteVideo({{$video->id}})" class="red">@lang('Delete')</a>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+</div>
+
 </div>

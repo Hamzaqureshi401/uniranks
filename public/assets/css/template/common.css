@@ -1695,6 +1695,9 @@ small {
     margin-left: 8px;
 }
 
+.mr-25{
+    margin-right: 25px;
+}
 .option-color {
     color: gray;
 }

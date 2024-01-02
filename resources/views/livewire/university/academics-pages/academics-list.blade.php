@@ -1,19 +1,30 @@
-@foreach($academics as $academic)
-<div class="card mt-3 bg-body-color">
-   <div class="card-body">
-      <div class="h5 blue">@lang('Conference Name')</div>
-      <div class="w-100 px-4 mt-3">
-         <hr>
-      </div>
-      <div class="d-md-flex h6 mb-0 blue justify-content-between">
-         <div class="col-md-2 mobile-marg-2">{{$academic->first_name ?? '--'}}</div>
-         <div class="col-md-4 mobile-marg-2">Created on {{$academic->created_at ?? '--'}}</div>
-         <div class="col-md-3 mobile-marg-2">By {{ $academic->user->name }}</div>
-         <div class="col-md-2 text-place-end mobile-marg-2 d-flex justify-content-between">
-            <a href="javascript:void(0)" wire:click="delete('{{$academic->id}}')" class="red ">@lang('Delete')</a><a href="" class="light-blue">View</a>
-            <a href="javascript:void(0);" class="light-blue" wire:click.prevent="edit('{{$academic->id}}')"
-                               class="blue">@lang('Edit')</a></div>
-      </div>
-   </div>
+<div class="card bg-transparent mt-4">
+<div class="card-body mt-3 bg-body-color">
+    <div class="h5 blue">@lang('Conferences')</div>
+    <div class="w-100 px-4 mt-3">
+        <hr>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table">
+            <tbody>
+                @foreach($academics as $academic)
+                <tr>
+                    <td class="blue">{{ empty($academic->first_name) ? '--' : $academic->first_name }}</td>
+                    <td class="blue">
+                         {{ $academic->created_at ? $academic->created_at->format('D, M j, Y g:i A') : '--' }}
+                    </td>
+                    <td class="blue">By {{ $academic->user->name }}</td>
+                    <td class="text-place-end">
+                        
+                        <a href="#" class="light-blue mr-25">View</a>
+                        <a href="javascript:void(0);" class="light-blue mr-25" wire:click.prevent="edit('{{$academic->id}}')">@lang('Edit')</a>
+                        <a href="javascript:void(0)" wire:click="delete('{{$academic->id}}')" class="red">@lang('Delete')</a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </div>
-@endforeach
+</div>

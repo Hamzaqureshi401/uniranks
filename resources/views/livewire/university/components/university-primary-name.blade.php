@@ -59,13 +59,13 @@
 
 
                 </div>
-                <br>
-                <hr>
+                
+               
                 <!-- <div class="text-end"><a href="javascript:void(0)" wire:click="delete()" class="red ">@lang('Delete Primary Name')</a></div> -->
 
 
-                <div class="d-md-flex justify-content-end align-items-end mt-1">
-                <div class="col-md-4 col-12 text-place-end mt-3 mb-4">
+                <div class="d-md-flex justify-content-end align-items-end">
+                <div class="col-md-4 col-12 text-place-end mb-4">
                     <button class="m-0 button-no-bg w-90" wire:click="addDetailsInOtherLanguage"
                                 type="button"> @lang('+ Add University in different name')</button>
                             </div>
@@ -76,12 +76,41 @@
                 @endif
                            
                 </div>
+                <hr>
             </form>
+             
         </div>
     </div>
     <x-general.loading wire:target="save" message="Updating..." />
+<!-- <div class="card bg-transparent mt-4">
+    <div class="card-body mt-3 bg-body-color">
+    <div class="h5 blue">@lang('University Name')</div>
+     <div class="w-100 px-4 mt-3">
+        <hr>
+    </div> 
+    
 
-      @foreach($about_translations as $key=>$about)
+    <div class="table-responsive">
+        <table class="table">
+            <tbody>
+                @foreach($about_translations as $key=>$about)
+                @php
+                $lang = $languages->where('code',$key)->first()?->native_name;
+                @endphp
+                <tr>
+                    <td class="blue">{{$lang}}</td>
+                    <td class="text-end">
+                        <a href="javascript:void(0)" class="light-blue mr-25">@lang('Edit')</a>
+                        <a href="javascript:void(0)" wire:click="deleteTranslation('{{$key}}')" class="red">@lang('Delete')</a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+</div> -->
+ @foreach($about_translations as $key=>$about)
         @php
             $lang = $languages->where('code',$key)->first()?->native_name;
         @endphp
@@ -110,4 +139,6 @@
             </div>
         </div>
     @endforeach
+            
+   
 </div>

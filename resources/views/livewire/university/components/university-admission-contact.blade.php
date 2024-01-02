@@ -69,9 +69,12 @@
 
         </div>
     </div>
-
+<div class="card bg-transparent mt-4">
     <div class="card-body">
         <div class="h4 blue">@lang('Contacts')</div>
+         <div class="w-100 px-4 mt-3">
+        <hr>
+    </div>
      <table class="table">
     <!-- <thead>
         <tr>
@@ -86,7 +89,7 @@
             <tr>
                 <td class="blue">{{$contact->full_phone_number}} {{!empty($contact->ext) ? '/'.__('ext')." $contact->ext":""}}</td>
                 <td class="font-light blue">{{$contact->created_at?->toDayDateTimeString()}}</td>
-                <td class="font-light blue">{{$contact->createdBy?->name ?:"---"}}</td>
+                <!-- <td class="font-light blue">{{$contact->createdBy?->name ?:"---"}}</td> -->
                 <td class="text-end blue"><a href="javascript:void(0)" wire:click="edit('{{$contact->id}}')" class="light-blue">@lang('Edit')</a></td>
                 <td class="text-end blue">
                      
@@ -101,5 +104,6 @@
         @endforelse
     </tbody>
 </table>
+</div>
 </div>
 </div>

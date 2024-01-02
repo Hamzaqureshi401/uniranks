@@ -51,17 +51,44 @@
                 * @var \App\Models\University\Information\UniversityDomains[] $domains;
                 **/
             @endphp
-            @foreach($domains ?? [] as $domain)
-                <div class="d-md-flex h6 blue justify-content-between">
-                    <div class="fw-bold col-md-3"><a href="{{$domain->url}}" class="blue" target="_blank">{{$domain->url}}</a></div>
-                    <div class="col-md-3">{{$domain->type?->title ?? "N/A"}}</div>
-                    <div class="col-md-3">@lang('Created on') {{$domain->created_at?->toDayDateTimeString() ?? '---'}}</div>
-                    <div class="col-md-2">@lang('By') {{$domain->createdByUser?->name}}</div>
-                    <div class="col-md-1  text-place-end"><a href="" wire:click.prevent="deleteDomain({{$domain->id}})"
-                                                             class="red ">Delete</a></div>
-                </div>
-            @endforeach
+            
         </div>
     </div>
+
+    <div class="card bg-transparent mt-4">
+        <div class="card-body">
+            <div class="h4 blue" id="upload-images">@lang('Domains')   
+             <div class="w-100 px-4 mt-3">
+        <hr>
+    </div> 
+    <!-- @include('about-icon') -->
+
+ </div>
+       <table class="table">
+   <!--  <thead>
+        <tr>
+            <th scope="col">URL</th>
+            <th scope="col">Type</th>
+            <th scope="col">Created On</th>
+            <th scope="col">By</th>
+            <th scope="col" class="text-place-end">Actions</th>
+        </tr>
+    </thead> -->
+    <tbody>
+        @foreach($domains ?? [] as $domain)
+        <tr>
+            <td><a href="{{$domain->url}}" class="blue" target="_blank">{{$domain->url}}</a></td>
+            <td class="blue">{{$domain->type?->title ?? "N/A"}}</td>
+            <td class="blue">@lang('Created on') {{$domain->created_at?->toDayDateTimeString() ?? '---'}}</td>
+            <td class="blue">{{$domain->createdByUser?->name}}</td>
+            <td class="text-place-end"><a href="" wire:click.prevent="deleteDomain({{$domain->id}})" class="red">Delete</a></td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
+
+    </div>
+    </div>
+    
 
 </div>
