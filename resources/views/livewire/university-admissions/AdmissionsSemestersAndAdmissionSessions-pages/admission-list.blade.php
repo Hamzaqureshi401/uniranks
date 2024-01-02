@@ -1,11 +1,14 @@
 
 
-               
+                <div class="card bg-transparent mt-4">
                <div class="card-body">
                    <div class="h4 blue">@lang('Semesters &amp; Admission Sessions')
-                   @include('about-icon')</div>
+                   </div>
+                    <div class="w-100 px-4 mt-3">
+            <hr>
+        </div>
                    <table class="table">
-    <thead>
+    {{--<thead>
         <tr class="blue">
             <!-- <th>#</th> -->
             
@@ -23,7 +26,7 @@
             <th>Edit </th>
             <th>Delete </th>
         </tr>
-    </thead>
+    </thead>--}}
     <tbody>
         @foreach($review_request as $request)
             <tr class="blue">
@@ -47,16 +50,19 @@
 </table>
 
 </div>
-
+</div>
                    
               
 
-               
+               <div class="card bg-transparent mt-4">
                <div class="card-body">
                    <div class="h4 blue">@lang('Semesters &amp; Admission Sessions Under Review')
-                   @include('about-icon')</div>
+                   </div>
+                   <div class="w-100 px-4 mt-3">
+            <hr>
+        </div>
                    <table class="table">
-    <thead>
+    {{--<thead>
         <tr class="blue">
             <!-- <th>#</th> -->
             
@@ -74,7 +80,7 @@
             <th>Edit </th>
             <th>Delete </th>
         </tr>
-    </thead>
+    </thead>--}}
     <tbody>
         @foreach($review_request as $request)
         @foreach($request->updateRequests as $data)

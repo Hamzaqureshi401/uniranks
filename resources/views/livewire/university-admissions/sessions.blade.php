@@ -109,9 +109,13 @@
         * @var \App\Models\University\Admissions\UniversityAdmissionSession[] $dataCollection
         **/
     @endphp
+     <div class="card bg-transparent mt-4">
     <div class="card-body">
         <div class="h4 blue">@lang('Semesters')
-        @include('about-icon')</div>
+        </div>
+        <div class="w-100 px-4 mt-3">
+            <hr>
+        </div>
         @foreach($dataCollection ??[] as $dataItem)
             <div class="d-md-flex h6 blue justify-content-between mt-3">
                 <div class="col-md-4">{{$dataItem?->semester?->translated_name}} & @lang('admission session')</div>
@@ -126,6 +130,7 @@
             </div>
         @endforeach
     </div>
+</div>
     <x-general.loading wire:target="addDetailsInOtherLanguage, save, initForm, delete, edit" message="Processing..."/>
 
 @push(AppConst::PUSH_CSS)

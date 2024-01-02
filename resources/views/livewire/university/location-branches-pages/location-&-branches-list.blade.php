@@ -1,9 +1,13 @@
+<div class="card bg-transparent mt-4">
 <div class="card-body">
-                   <div class="h4 blue">Location And Branches List</div>
+                   <div class="h4 blue">@lang('Location And Branches List')</div>
+                   <div class="w-100 px-4 mt-3">
+            <hr>
+        </div>
  
 <div>
     <table class="table">
-        <thead>
+        {{--<thead>
             <tr>
                 <!-- <th class="gray">ID</th> -->
                 <th class="gray">University</th>
@@ -19,7 +23,7 @@
                 <th class="gray">Created</th>
                 <th class="gray">Action</th>
             </tr>
-        </thead>
+        </thead>--}}
         <tbody>
             @foreach($locationAndBranches as $branch)
             <tr>
@@ -44,6 +48,7 @@
             @endforeach
         </tbody>
     </table>
+</div>
 </div>
 </div>
 

@@ -122,9 +122,13 @@
         * @var \App\Models\University\Admissions\UniversityAccreditationAgency[] $dataCollection
         **/
     @endphp
+ <div class="card bg-transparent mt-4">
     <div class="card-body">
         <div class="h4 blue">@lang('Acreditation Agencies List')
-        @include('about-icon')</div>
+        </div>
+         <div class="w-100 px-4 mt-3">
+            <hr>
+        </div>
         <div class="table-responsive">
             <table class="table">
                 <tbody>
@@ -167,6 +171,7 @@
         </div>
 
     </div>
+</div>
     <x-general.loading wire:target="addDetailsInOtherLanguage, save, initForm, delete, edit" message="Processing..."/>
 
     @push(AppConst::PUSH_CSS)

@@ -110,9 +110,13 @@
         * @var \App\Models\University\UniversityScholarship[] $dataCollection
         **/
     @endphp
+     <div class="card bg-transparent mt-4">
     <div class="card-body">
         <div class="h4 blue">@lang('Scholarships')
-        @include('about-icon')</div>
+        </div>
+         <div class="w-100 px-4 mt-3">
+            <hr>
+        </div>
         <div class="table-responsive">
             <table class="table blue">
                 <tbody>
@@ -150,6 +154,7 @@
             </table>
         </div>
     </div>
+</div>
     <x-general.loading wire:target="addDetailsInOtherLanguage, save, initForm, delete, edit" message="Processing..."/>
     <div class="modal fade" id="notes-modal" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
         <div class="modal-dialog modal-lg">

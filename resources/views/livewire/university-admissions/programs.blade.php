@@ -299,9 +299,14 @@
             * @var \App\Models\University\Admissions\UniversityAdmissionProgram [] $dataCollection
             **/
         @endphp
+    <div class="card bg-transparent mt-4">
+
         <div class="card-body">
             <div class="h4 blue">@lang('Admission Programs')
-            @include('about-icon')</div>
+            </div>
+            <div class="w-100 px-4 mt-3">
+            <hr>
+        </div>
             <div class="table-responsive">
                 <table class="table">
                     <tbody>
@@ -348,6 +353,7 @@
                     </tbody>
                 </table>
             </div>
+        </div>
 
         </div>
         <x-general.loading wire:target="addDetailsInOtherLanguage ,loadPrograms, save, initForm, delete, edit"

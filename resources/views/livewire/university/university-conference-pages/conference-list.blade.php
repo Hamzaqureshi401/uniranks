@@ -1,29 +1,50 @@
 
+@push('styles')
+<style type="text/css">
+    .no-border td,
+    .no-border th {
+        border: none !important;
+    }
+</style>
+@endpush
+<div class="card bg-transparent mt-4">
+    <div class="card-body">
+        <div class="h4 blue" id="upload-images">@lang('Conferences')</div>
+        <div class="w-100 px-4 mt-3">
+            <hr>
+        </div>
 
-
-
-@foreach(\Auth::user()->selected_university->conferences()->get() as $con)
-@foreach($con->subjects as $s)
-  <div class="card mt-3 bg-body-color">
-                   <div class="card-body">
-                       <div class="h5 blue">{{$con->title ?? '--'}}</div>
-                       <div class="w-100 px-4 mt-3">
-                           <hr>
+        <table class="table">
+            <tbody>
+                @foreach(\Auth::user()->selected_university->conferences()->get() as $con)
+                <tr class="no-border">
+                    <td>
+                        <div class="card bg-transparent mt-4">
+                            <div class="card-body">
+                                <div class="h5 blue">{{$con->title ?? '--'}}</div>
+                                <table class="table">
+                                    <tbody>
+                                        @foreach($con->subjects as $s)
+                                        <tr>
+                                            <td class="blue">{{ $s->title ?? '--'}}</td>
+                                            <td class="blue">Created on {{ $con->created_at }}</td>
+                                            <!-- <td class="blue">By {{ $con->created_by ?? '--'}}</td> -->
+                                            <td class="blue text-end">
+                                                
+                                                <a href="javascript:void(0);" class="light-blue" wire:click="edit('{{$con->id}}')" class="blue mr-25">@lang('Edit')</a>
+                                                <a href="javascript:void(0)" wire:click="delete({{ $s->id }})" class="red ms-2 ">Delete</a>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                       <div class="d-md-flex h6 mb-0 blue justify-content-between">
-                        <div class="col-md-2 mobile-marg-2">{{ $s->title ?? '--'}}</div>
-                        <div class="col-md-4 mobile-marg-2">Created on {{ $con->created_at }}</div>
-                        <div class="col-md-3 mobile-marg-2">By {{ $con->created_by ?? '--'}}</div>
-                         
-                         <div class="col-md-2 text-place-end mobile-marg-2 d-flex justify-content-between"><a href="javascript:void(0)" wire:click="delete({{ $s->id }})" class="red ms-2">Delete</a><a href="javascript:void(0);" class="light-blue" wire:click="edit('{{$con->id}}')"
-                               class="blue">@lang('Edit')</a></div>
-                    </div>
-                   </div>
-               </div>
-               @endforeach
-               <hr>
-@endforeach
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
 
-
-
-
+    </div>
+</div>
