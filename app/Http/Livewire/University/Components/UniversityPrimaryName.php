@@ -15,6 +15,7 @@ class UniversityPrimaryName extends Component
     $languages,
     $type,
     $edit,
+    $langues_with_primery_names,
     $edit_name,
     $edit_type,
     $edit_name_type,
@@ -35,7 +36,11 @@ class UniversityPrimaryName extends Component
         $this->translations[] = 'en';
         $this->details_in_langs = 1;
         $this->type = [];
-        $this->setPrimaryAndSecondry(null);
+        $this->setPrimaryAndSecondary(null , null);
+        $this->langues_with_primery_names = \Auth::user()->selected_university->originalUniversity()->pluck('name_language')->toArray();
+        $this->langues_with_primery_names = array_filter($this->langues_with_primery_names);
+
+        //dd($this->langues_with_primery_names);
         // $this->translations = empty($this->about_translations) ? ['en'] : array_keys($this->about_translations);
         // $this->translated_name = array_values($this->about_translations);
         // $this->details_in_langs = count($this->translations) ?: 1;
@@ -69,35 +74,20 @@ class UniversityPrimaryName extends Component
         //session()->flash('status', 'Operation Successful!');
     }
 
-    public function setPrimaryAndSecondry($i = null){  
+    public function setPrimaryAndSecondary($i = null, $code = null)
+    {  
+        if (!empty($i)) {
+            $record = \Auth::user()->selected_university->originalUniversity()->where('name_language', $code);
+            if ($record->exists()) {
+                $this->emit('checkResult', true, $i); // Emit event with true and $i
+            } else {
+                $this->emit('checkResult', false, $i); // Emit event with false and $i
+            }
+        }
 
-    //dd($this->setVal , $i , $this->name_type , $this->translations , $this->translations[$i]);  
-        // if(!empty($i)){
-        //     $record = \Auth::user()->selected_university->originalUniversity()->where('name_language' , $i);
-        //     if($record->exists()){
-
-        //     }
-        //}
-    
-
-    
-
-        // if (!empty($i) && $this->name_type[$i] == 1) {
-        
-        // foreach ($this->setVal as $key => $value) {
-        //     if ($value != $i) {
-        //         $this->other_val = $value;
-        //             $this->type[$this->other_val] = ['2' => 'Secondary'];
-        //         }
-        // }
-        // $this->type[$this->setVal[$i]] = ['1' => 'Primary', '2' => 'Secondary'];
-
-        // //dd($this->setVal , $this->type , $i);
-               
-        // }else{
-            $this->type = ['1' => 'Primary' ,'2' => 'Secondary'];
-        //}
+        $this->type = ['1' => 'Primary', '2' => 'Secondary'];
     }
+
     public function addDetailsInOtherLanguage()
     { 
         ++$this->details_in_langs;

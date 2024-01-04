@@ -398,13 +398,13 @@ button {
 
 button:disabled,
 button[disabled] {
-    border: 1px solid #C6C6C6;
-    background-color: #C6C6C6;
-    color: #666666;
+    border: none !important ;
+    background-color: #EFF1F3;
+    color: #D1D3D5;
 }
 
 button:disabled, button[disabled]:hover {
-    border: 1px solid #C6C6C6;
+    border: none !important;
     background-color: #EFF1F3;
     color: #D1D3D5;
 }
