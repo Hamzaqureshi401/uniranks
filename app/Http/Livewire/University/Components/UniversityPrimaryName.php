@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\University\Components;
 use App\Models\General\Language;
+use App\Models\Library\OriginalUniversity;
 
 use Livewire\Component;
 
@@ -15,7 +16,6 @@ class UniversityPrimaryName extends Component
     $languages,
     $type,
     $edit,
-    $langues_with_primery_names,
     $edit_name,
     $edit_type,
     $edit_name_type,
@@ -24,32 +24,45 @@ class UniversityPrimaryName extends Component
     $name = [],
     $name_language = [],
     $name_type = [],
-    $translated_name = []; 
+    $translated_name = [],
+    $langues_with_primery_names = [],
+    $show_name_type=[];
     
 
 
     public function initForm(){
+                $this->loadLangauesWithPrimeryName();
+
         $this->university_name = \Auth::user()->selected_university->university_name;
         $uni = \Auth::user()->selected_university;
         $uni->refresh();
-        $this->secondry_translations = \Auth::user()->selected_university->originalUniversity()->get();
-        $this->translations[] = 'en';
+        $secondry = \Auth::user()->selected_university->originalUniversity()->get();
+        $this->secondry_translations = $secondry;
+        $this->translations[] ='en'; 
         $this->details_in_langs = 1;
         $this->type = [];
-        $this->setPrimaryAndSecondary(null , null);
-        $this->langues_with_primery_names = \Auth::user()->selected_university->originalUniversity()->pluck('name_language')->toArray();
-        $this->langues_with_primery_names = array_filter($this->langues_with_primery_names);
-
-        //dd($this->langues_with_primery_names);
+        $this->setPrimaryAndSecondry(null);
+        $this->langSelected(0);
         // $this->translations = empty($this->about_translations) ? ['en'] : array_keys($this->about_translations);
         // $this->translated_name = array_values($this->about_translations);
         // $this->details_in_langs = count($this->translations) ?: 1;
         
     }
-
+    public function langSelected($index){
+        $lan = $this->translations[$index];
+        $this->show_name_type[$index] = in_array($lan,$this->langues_with_primery_names);
+    }
     public function mount(){
         $this->languages = Language::orderBy('name')->get();
         $this->initForm();
+    }
+    
+    public function loadLangauesWithPrimeryName(){
+        $this->langues_with_primery_names =\Auth::user()->selected_university->originalUniversity()->where('name_type',1)
+        ->whereNotNull('name_language')
+        ->groupBy('name_language')
+        ->pluck('name_language')
+        ->toArray();
     }
 
     public function rules(){
@@ -74,20 +87,35 @@ class UniversityPrimaryName extends Component
         //session()->flash('status', 'Operation Successful!');
     }
 
-    public function setPrimaryAndSecondary($i = null, $code = null)
-    {  
-        if (!empty($i)) {
-            $record = \Auth::user()->selected_university->originalUniversity()->where('name_language', $code);
-            if ($record->exists()) {
-                $this->emit('checkResult', true, $i); // Emit event with true and $i
-            } else {
-                $this->emit('checkResult', false, $i); // Emit event with false and $i
-            }
-        }
+    public function setPrimaryAndSecondry($i = null){  
 
-        $this->type = ['1' => 'Primary', '2' => 'Secondary'];
+    //dd($this->setVal , $i , $this->name_type , $this->translations , $this->translations[$i]);  
+        // if(!empty($i)){
+        //     $record = \Auth::user()->selected_university->originalUniversity()->where('name_language' , $i);
+        //     if($record->exists()){
+
+        //     }
+        //}
+    
+
+    
+
+        // if (!empty($i) && $this->name_type[$i] == 1) {
+        
+        // foreach ($this->setVal as $key => $value) {
+        //     if ($value != $i) {
+        //         $this->other_val = $value;
+        //             $this->type[$this->other_val] = ['2' => 'Secondary'];
+        //         }
+        // }
+        // $this->type[$this->setVal[$i]] = ['1' => 'Primary', '2' => 'Secondary'];
+
+        // //dd($this->setVal , $this->type , $i);
+               
+        // }else{
+            $this->type = ['1' => 'Primary' ,'2' => 'Secondary'];
+        //}
     }
-
     public function addDetailsInOtherLanguage()
     { 
         ++$this->details_in_langs;
@@ -165,6 +193,7 @@ class UniversityPrimaryName extends Component
             'viewTitle' => null
         ]);
         $this->initForm();
+        
         //session()->flash('status', 'Operation Successful!');
     }
 
