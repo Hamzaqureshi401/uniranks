@@ -701,8 +701,8 @@ class University extends Model
     {
         return $this->belongsTo(UniversityLocationBranch::class , 'university_id');
     }
-     public function originalUniversity(): BelongsTo
+     public function originalUniversity(): HasMany
     {
-        return $this->belongsTo(OriginalUniversity::class,'university_id');
+        return $this->hasMany(OriginalUniversity::class,'university_id');
     }
 }

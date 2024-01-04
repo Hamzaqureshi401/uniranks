@@ -10,11 +10,14 @@ class UniversityPrimaryName extends Component
     public $university_name,
     $translations = [],
     $descriptions = [],
-    $about_translations = [],
+    $secondry_translations = [],
     $details_in_langs = 1,
     $languages,
     $type,
-    $flag = 0,
+    $edit,
+    $edit_name,
+    $edit_type,
+    $edit_name_type,
     $other_val,
     $setVal = [],
     $name = [],
@@ -28,7 +31,7 @@ class UniversityPrimaryName extends Component
         $this->university_name = \Auth::user()->selected_university->university_name;
         $uni = \Auth::user()->selected_university;
         $uni->refresh();
-        $this->about_translations = $uni->getTranslations('translated_name') ?? [];
+        $this->secondry_translations = \Auth::user()->selected_university->originalUniversity()->get();
         $this->translations[] = 'en';
         $this->details_in_langs = 1;
         $this->type = [];
@@ -68,36 +71,75 @@ class UniversityPrimaryName extends Component
 
     public function setPrimaryAndSecondry($i = null){  
 
-    //dd($this->setVal , $i);  
+    //dd($this->setVal , $i , $this->name_type , $this->translations , $this->translations[$i]);  
+        // if(!empty($i)){
+        //     $record = \Auth::user()->selected_university->originalUniversity()->where('name_language' , $i);
+        //     if($record->exists()){
 
-        if (!empty($i) && $this->name_type[$i] == 1) {
+        //     }
+        //}
+    
+
+    
+
+        // if (!empty($i) && $this->name_type[$i] == 1) {
         
-        foreach ($this->setVal as $key => $value) {
-            if ($value != $i) {
-                $this->other_val = $value;
-                    $this->type[$this->other_val] = ['2' => 'Secondary'];
-                }
-        }
-        $this->flag = 0;
-        $this->type[$this->setVal[$i]] = ['1' => 'Primary', '2' => 'Secondary'];
+        // foreach ($this->setVal as $key => $value) {
+        //     if ($value != $i) {
+        //         $this->other_val = $value;
+        //             $this->type[$this->other_val] = ['2' => 'Secondary'];
+        //         }
+        // }
+        // $this->type[$this->setVal[$i]] = ['1' => 'Primary', '2' => 'Secondary'];
 
-        //dd($this->setVal , $this->type , $i);
+        // //dd($this->setVal , $this->type , $i);
                
-        }else{
+        // }else{
             $this->type = ['1' => 'Primary' ,'2' => 'Secondary'];
-        }
+        //}
     }
     public function addDetailsInOtherLanguage()
     { 
         ++$this->details_in_langs;
-        $this->setVal[] = $this->details_in_langs;
-        //dd($this->setVal);
-        $this->addPrimaryAndSecondry(end($this->setVal));
         
+    }
+
+    public function edit($id){
+
+        $this->edit = \Auth::user()->selected_university->originalUniversity()->get()->where('id' , $id)->first();
+        $this->edit_name = $this->edit->name;
+        $this->edit_type =  ['1' => 'Primary' ,'2' => 'Secondary'];
+        $this->emit('showSlotsModal');
+        //dd($this->eidt , $id);
+
+    }
+
+    public function updateSecondryName($id){
+
+        //dd($this->edit_name , $this->edit_name_type);
+        $university = \Auth::user()->selected_university->originalUniversity()->find($id);
+
+        if ($university) {
+            $university->update([
+                'name' => $this->edit_name,
+                'name_type' => $this->edit_name_type ?? $this->edit->name_type,
+            ]);
+        }
+        $this->emit('closeModal');
+
+        $this->emit('returnResponseModal',[
+        'title'=>'University Name Update',
+            'message'=>'Your University name has been updated.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
+        $this->initForm();
+
+
     }
     public function addPrimaryAndSecondry($i = null){
 
-        $this->flag = 1;
         $this->type[$i] = ['1' => 'Primary' ,'2' => 'Secondary'];
     }
     public function saveSecondryName(){
@@ -110,11 +152,21 @@ class UniversityPrimaryName extends Component
             'status'  => $uni->status 
         ];
         
-        $data = ['name_language' => []];
-        foreach ($this->names as $key => $lang) {
-            $data['name_language'][$lang] = $this->translated_name[$key];
+        
+        foreach ($this->name as $key => $name) {
+
+            $data[] = [
+            'name_language' => $this->translations[$key] ?? 'en',
+            'name_type'     => $this->name_type[$key] ?? '2',
+            'name'          => $name,
+            'website'       => $uni->website,
+            'country'       => $uni->country->country_name,
+            'status'        => $uni->status,
+            ];
         }
-        \Auth::user()->selected_university->OriginalUniversity($data);
+
+        //dd($data , \Auth::user()->selected_university->originalUniversity()->get());
+        \Auth::user()->selected_university->originalUniversity()->createMany($data);
         $this->emit('returnResponseModal',[
         'title'=>'University Secondry Name Added',
             'message'=>'University secondry name has been added.',
@@ -124,6 +176,23 @@ class UniversityPrimaryName extends Component
         ]);
         $this->initForm();
         //session()->flash('status', 'Operation Successful!');
+    }
+
+    public function deleteName($id){
+        $university = \Auth::user()->selected_university->originalUniversity()->where('id', $id)->first();
+
+        if ($university) {
+            $university->delete();
+        }
+        $this->emit('returnResponseModal',[
+        'title'=>'Record Deleted',
+            'message'=>'Your University name has been deleted.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
+        $this->initForm();
+
     }
      public function delete(){
         \Auth::user()->selected_university->update(['university_name' => null]);

@@ -31,31 +31,24 @@
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="form-floating w-100">
-                                    <select wire:model.defer="translations.{{$i}}" class="form-select input-field"
-                                             aria-label="">
+                                   <select wire:model.defer="translations.{{$i}}"  class="form-select input-field" aria-label="">
                                         <option value="{{'en'}}" selected>@lang('English')</option>
                                         @foreach($languages->whereNotIn('code' , 'en') as $language)
-                                            <option
-                                                value="{{$language->code}}" @disabled(in_array($language->code,$translations))>{{$language->native_name}}</option>
+                                            <option value="{{$language->code}}" @disabled(in_array($language->code,$translations))>{{$language->native_name}}</option>
                                         @endforeach
                                     </select>
+
                                     <label for="floatingSelectGrid">@lang('Select Language') </label>
                                 </div>
 
                             </div>
                             
                          <div class="col-md-7">
-                                    <select wire:model.defer="name_type.{{$i}}" wire:change="setPrimaryAndSecondry({{$i}})" id='type-{{$i}}' class="form-select input-field"
+                                    <select wire:model.defer="name_type.{{$i}}" id='type-{{$i}}' class="form-select input-field"
                                              aria-label="">
                                         <option value="">@lang('Select Name Type')</option>
-                                        @php
-                                        if($flag == 1){
-                                            $val = end($setVal);
-                                        }else {
-                                            $val = $other_val;    
-                                        }
-                                        @endphp
-                                        @foreach($type[$val] as $key => $t)
+                                       
+                                        @foreach($type as $key => $t)
                                         <option value="{{ $key }}">{{$t}}</option>
                                         @endforeach
                                        
@@ -105,66 +98,103 @@
 
 
     <x-general.loading wire:target="save" message="Updating..." />
-<!-- <div class="card bg-transparent mt-4">
-    <div class="card-body mt-3 bg-body-color">
-    <div class="h5 blue">@lang('University Name')</div>
-     <div class="w-100 px-4 mt-3">
-        <hr>
-    </div> 
-    
 
-    <div class="table-responsive">
-        <table class="table">
-            <tbody>
-                @foreach($about_translations as $key=>$about)
-                @php
-                $lang = $languages->where('code',$key)->first()?->native_name;
-                @endphp
-                <tr>
-                    <td class="blue">{{$lang}}</td>
-                    <td class="text-end">
-                        <a href="javascript:void(0)" class="light-blue mr-25">@lang('Edit')</a>
-                        <a href="javascript:void(0)" wire:click="deleteTranslation('{{$key}}')" class="red">@lang('Delete')</a>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+
+<div class="card bg-transparent mt-4">
+    <div class="card-body">
+        <div class="h4 blue">@lang('University Name')</div>
+         <div class="w-100 px-4 mt-3">
+        <hr>
     </div>
+     <table class="table">
+    <!-- <thead>
+        <tr>
+            <th>@lang('Phone Number')</th>
+            <th>@lang('Created on')</th>
+            <th>@lang('By')</th>
+            <th></th>
+        </tr>
+    </thead> -->
+    <tbody>
+        @forelse($secondry_translations as $uni)
+            <tr>
+                <td class="blue">
+                     @if($uni->name_type == 1)
+                            @lang('Primary')
+                            @else
+                            @lang('Secondry')
+                            @endif
+
+                </td>
+                <td class="font-light blue">{{ $uni->name }}</td>
+                
+                <td class="font-light blue">{{$uni->language->native_name ?? "---"}}</td>
+                <td class="text-end blue">
+                    <a href="javascript:void(0)" wire:click="edit('{{$uni->id}}')" class="light-blue">@lang('Edit')</a>
+                </td>
+                <td class="text-end blue">
+                     
+                    <a href="javascript:void(0)" wire:click="deleteName('{{$uni->id}}')" class="red">@lang('Delete')</a>
+
+                </td>
+            </tr>
+        @empty
+            <tr>
+                <td colspan="4" class="text-center">@lang('No Name Added Yet!')</td>
+            </tr>
+        @endforelse
+    </tbody>
+</table>
 </div>
-</div> -->
- @foreach($about_translations as $key=>$about)
-        @php
-            $lang = $languages->where('code',$key)->first()?->native_name;
-        @endphp
-        <div class="card bg-transparent mt-4">
-            <div class="card-body">
-                <div class="w-100">
-                    <div class="row">
-                        <div class="h5 blue">@lang('University Name in') {{$lang}}</div>
-                        <p class="paragraph-style2 blue">
-                            {{$about}}
-                        </p>
-                        <div class="w-100 mt-4 px-4">
-                            <hr>
-                        </div>
-                        <div class="d-md-flex h6 blue justify-content-between">
-                            <div class="">{{$lang}}</div>
-                            {{--                        <div class="">Created on 15 Jan 2022</div>--}}
-                            {{--                        <div class="">By David Scott</div>--}}
-                            
-                                <div class=""><a href="javascript:void(0)" wire:click="editTranslation('{{$key}}')"
-                                                 class="light-blue mr-25">@lang('Edit')</a>
-                                <a href="javascript:void(0)" wire:click="deleteTranslation('{{$key}}')"
-                                                 class="red ">@lang('Delete')</a>
-                                </div>
-                           
-                        </div>
+<div class="modal fade" id="slotsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Name</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Livewire component rendering the slots -->
+                @if($edit)
+                <div  class="row">
+                    <div class="col-md-12 mt-3">
+                            <input wire:model.defer="edit_name" id="university_name_input" class="form-control input-field" placeholder="Primary University Name in English" value="{{ $edit->name }}">
+                        
                     </div>
+                   @if($edit->name_type == 2)
+                        @php 
+                            arsort($edit_type);
+                        @endphp
+                    @endif
+                    <div class="col-md-12 mt-3">
+                        <select wire:model.defer="edit_name_type" class="form-select input-field"
+                                             aria-label="">
+
+                                        
+                                        @foreach($edit_type as $key => $t)
+                                        <option value="{{ $key }}">{{$t}}</option>
+                                        @endforeach
+                                       
+                                    </select>
+                    </div>
+                    <div class="col-md-12 mt-3">
+                    <a href="javascript:void(0)" wire:click="updateSecondryName({{$edit->id}})" class="btn btn-primary">@lang('Update Name')</a>
+                    </div>
+
                 </div>
+
+                    
+                @else
+                    <p>No Data available</p>
+                @endif
             </div>
         </div>
-    @endforeach
+    </div>
+</div>
+</div>
+
+
+
     <script>
     $(document).ready(function() {
         $('#university_name_input').on('input', function() {
@@ -193,6 +223,19 @@
             console.log(selectedValue);
             var nameTypeInputs = $('select[name^="name_type."]');
             nameTypeInputs.not(this).val(selectedValue == 1 ? 2 : 1);
+        });
+    });
+
+      document.addEventListener('livewire:load', function () {
+        console.log(1);
+        Livewire.on('showSlotsModal', () => {
+            $('#slotsModal').modal('show'); // Show the modal when the event is emitted
+        });
+    });
+     document.addEventListener('livewire:load', function () {
+        Livewire.on('closeModal', () => {
+            $('#slotsModal .btn-close').click(); // Hide the modal when the event is emitted
+            $('#slotsModal').modal('show');
         });
     });
 </script>
