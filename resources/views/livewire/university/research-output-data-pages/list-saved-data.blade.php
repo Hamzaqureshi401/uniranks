@@ -1,5 +1,5 @@
 
-<div class="card mt-3 bg-body-color">
+<div class="card bg-transparent mt-3 bg-body-color">
    <div class="card-body">
       <div class="h5 blue">Journal Name</div>
       <div class="w-100 px-4 mt-3">
@@ -13,7 +13,7 @@
       </div>
    </div>
 </div>
-<div class="card mt-3 bg-body-color">
+<div class="card bg-transparent mt-3 bg-body-color">
    <div class="card-body">
       <div class="h5 blue">Journal Name</div>
       <div class="w-100 px-4 mt-3">
@@ -27,7 +27,7 @@
       </div>
    </div>
 </div>
-<div class="card mt-3 mb-5 bg-body-color">
+<div class="card bg-transparent mt-3 mb-5 bg-body-color">
    <div class="card-body">
       <div class="h5 blue">Journal Name</div>
       <div class="w-100 px-4 mt-3">

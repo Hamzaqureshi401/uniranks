@@ -403,11 +403,10 @@ button[disabled] {
     color: #666666;
 }
 
-button:disabled,
-button[disabled]:hover {
+button:disabled, button[disabled]:hover {
     border: 1px solid #C6C6C6;
-    background-color: #C6C6C6;
-    color: #666666;
+    background-color: #EFF1F3;
+    color: #D1D3D5;
 }
 
 

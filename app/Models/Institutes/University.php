@@ -40,6 +40,7 @@ use App\Models\University\Information\UniversityQuickView;
 use App\Models\University\Information\UniversitySocialMedia;
 use App\Models\University\Preferences\UniversityPreferredMajor;
 use App\Models\University\UniversityApplicationRequirement;
+use App\Models\University\OriginalUniversity;
 use App\Models\University\UniversityConference;
 use App\Models\University\UniversityContactNumber;
 use App\Models\University\UniversityEvent;
@@ -699,5 +700,9 @@ class University extends Model
     public function universityLocationBranch(): BelongsTo
     {
         return $this->belongsTo(UniversityLocationBranch::class , 'university_id');
+    }
+     public function originalUniversity(): BelongsTo
+    {
+        return $this->belongsTo(OriginalUniversity::class,'university_id');
     }
 }
