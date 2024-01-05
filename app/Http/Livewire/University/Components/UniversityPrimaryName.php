@@ -43,6 +43,9 @@ class UniversityPrimaryName extends Component
         $this->type = [];
         $this->setPrimaryAndSecondry(null);
         $this->langSelected(0);
+        $this->languages = Language::orderBy('name')->get();
+        
+
         // $this->translations = empty($this->about_translations) ? ['en'] : array_keys($this->about_translations);
         // $this->translated_name = array_values($this->about_translations);
         // $this->details_in_langs = count($this->translations) ?: 1;
@@ -51,9 +54,10 @@ class UniversityPrimaryName extends Component
     public function langSelected($index){
         $lan = $this->translations[$index];
         $this->show_name_type[$index] = in_array($lan,$this->langues_with_primery_names);
+        //dd($lan , $this->show_name_type[$index] , $this->langues_with_primery_names);
+        
     }
     public function mount(){
-        $this->languages = Language::orderBy('name')->get();
         $this->initForm();
     }
     
@@ -102,8 +106,19 @@ class UniversityPrimaryName extends Component
     public function edit($id){
 
         $this->edit = \Auth::user()->selected_university->originalUniversity()->get()->where('id' , $id)->first();
+        $record = \Auth::user()->selected_university->originalUniversity()->get()
+        ->where('name_language' , $this->edit->name_language)
+        ->where('name_type' , 1)
+        ->whereNotIn('id' , $this->edit->id)
+        ->count();
+        
         $this->edit_name = $this->edit->name;
-        $this->edit_type =  ['1' => 'Primary' ,'2' => 'Secondary'];
+        //dd();
+        if($record != 0){
+            $this->edit_type = null;
+        }else{
+            $this->edit_type =  ['1' => 'Primary' ,'2' => 'Secondary'];
+        }
         $this->emit('showSlotsModal');
         //dd($this->eidt , $id);
 
@@ -119,12 +134,15 @@ class UniversityPrimaryName extends Component
                 'name' => $this->edit_name,
                 'name_type' => $this->edit_name_type ?? $this->edit->name_type,
             ]);
+            $this->handleUniversitiesTranslatedName();
         }
         $this->emit('closeModal');
 
+        $name =  $this->languages->where("code" , $university->name_language)->first()->native_name;
+
         $this->emit('returnResponseModal',[
-        'title'=>'University Name Update',
-            'message'=>'Your University name has been updated.',
+        'title'=>'University Name In '.$name. ' Update',
+            'message'=>'Your University name '.$name .' has been updated.',
             'btn'=>'Oky',
             'link'=>null,
             'viewTitle' => null
@@ -165,23 +183,46 @@ class UniversityPrimaryName extends Component
 
         //dd($data , \Auth::user()->selected_university->originalUniversity()->get());
         \Auth::user()->selected_university->originalUniversity()->createMany($data);
+        $this->handleUniversitiesTranslatedName();
         $this->emit('returnResponseModal',[
-        'title'=>'University Secondry Name Added',
-            'message'=>'University secondry name has been added.',
+        'title'=>'University Names Added',
+            'message'=>'The name of the university, a variation of it, or its name in another language has been added.',
             'btn'=>'Oky',
             'link'=>null,
             'viewTitle' => null
         ]);
+        $this->translations = [];
+        $this->languages = '';
+        $this->show_name_type = [];
+        $this->name_type = [];
+        $this->type = '';
+        $this->name = [];
+
         $this->initForm();
         
         //session()->flash('status', 'Operation Successful!');
     }
+    public function handleUniversitiesTranslatedName(){
+
+        $university = \Auth::user()->selected_university;
+        $university->setTranslation('translated_name', $university->translated_name, null);
+        $uni = $university->originalUniversity()->where('name_type', 1)->get();
+        $data = ['translated_name' => []];
+        foreach ($uni as $lang) {
+            $data['translated_name'][$lang->name_language] = json_encode(trim($lang->name) , JSON_UNESCAPED_UNICODE);
+        } 
+        //dd($data);
+        $university->update($data);
+    }
+
+
 
     public function deleteName($id){
         $university = \Auth::user()->selected_university->originalUniversity()->where('id', $id)->first();
 
         if ($university) {
             $university->delete();
+            
         }
         $this->emit('returnResponseModal',[
         'title'=>'Record Deleted',
@@ -190,6 +231,7 @@ class UniversityPrimaryName extends Component
             'link'=>null,
             'viewTitle' => null
         ]);
+         $this->handleUniversitiesTranslatedName();
         $this->initForm();
 
     }
