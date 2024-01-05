@@ -9,6 +9,8 @@
     <div class="card mt-3">
         <div class="card-body">
             <x-general.status-alert name="status"/>
+         <x-jet-validation-errors class="mt-3 mb-3 alert alert-danger"/>
+         
             <form>
                 <div class="row justify-content-between">
                     <div @class(['col-md-12'])>
@@ -29,7 +31,7 @@
                             <hr>
                         </div>
                         <div class="row">
-                            <div class="col-md-5">
+                            <div class="col-md-6">
                                 <div class="form-floating w-100">
                                    <select wire:model.lazy="translations.{{$i}}" wire:change="langSelected('{{$i}}')"  class="form-select input-field" aria-label="">
                                         <option value="{{'en'}}" selected>@lang('English')</option>
@@ -44,7 +46,7 @@
 
                             </div>
                             
-                         <div class="col-md-7">
+                         <div class="col-md-6">
                                  @if(!empty($translations[$i]) && !$show_name_type[$i])
                                     <select wire:model.defer="name_type.{{$i}}" id='type-{{$i}}' class="form-select input-field"
                                              aria-label="">
@@ -100,7 +102,7 @@
 
 
 
-    <x-general.loading wire:target="save" message="Updating..." />
+    {{--<x-general.loading wire:target="save" message="Updating..." />--}}
 
 
 <div class="card bg-transparent mt-4">
@@ -132,14 +134,21 @@
                 <td class="font-light blue">{{ $uni->name }}</td>
                 
                 <td class="font-light blue">{{$uni->language->native_name ?? "---"}}</td>
+                @if($uni->name_language == 'en' && $uni->name_type == 1)
+                     
+                    @else
                 <td class="text-end blue">
                     <a href="javascript:void(0)" wire:click="edit('{{$uni->id}}')" class="light-blue">@lang('Edit')</a>
                 </td>
                 <td class="text-end blue">
-                     
+                    
                     <a href="javascript:void(0)" wire:click="deleteName('{{$uni->id}}')" class="red">@lang('Delete')</a>
 
+                   
+                    
+
                 </td>
+                 @endif
             </tr>
         @empty
             <tr>
@@ -242,6 +251,6 @@
         });
     });
 </script>
-       
+       <x-general.loading message="Processing..."/>
    
 </div>
