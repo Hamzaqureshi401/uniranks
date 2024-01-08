@@ -16,7 +16,7 @@ class UniversityPrimaryName extends Component
     $languages,
     $type,
     $edit,
-    $edit_name,
+    $edit_name, 
     $edit_type,
     $edit_name_type,
     $other_val,
@@ -159,6 +159,7 @@ class UniversityPrimaryName extends Component
         //$inputs = $this->validate();
          $this->validate([
         'name' => ['array', 'required', 'min:1'],
+        'name.*' => 'required|unique:original_universities,name',
             ]);
         $uni = \Auth::user()->selected_university->first();
 
