@@ -207,7 +207,7 @@
    
      document.addEventListener('livewire:load', function () {
        console.log(1);
-       Livewire.on('showSlotsModal', () => {
+       Livewire.on('showContactModal', () => {
            $('#slotsModal').modal('show'); // Show the modal when the event is emitted
        });
    });
