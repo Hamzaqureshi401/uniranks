@@ -42,9 +42,28 @@ class QuickView extends Component
             'quick_view.no_alumni'=> ['integer','nullable'],
             'quick_view.no_students'=> ['integer','nullable'],
             'quick_view.no_schools'=> ['integer','nullable'],
-            'quick_view.no_majors'=> ['integer','nullable'],
+            //'quick_view.no_majors'=> ['integer','nullable', 'max:11'],
             'quick_view.no_academics'=> ['integer','nullable'],
             'university_languages' => ['required', 'array', 'min:1'],
+            'quick_view.avg_annual_cost' => ['integer','nullable'],
+            // 'quick_view.no_programs' => ['integer' , 'nullable' , 'max:11'],
+            // 'quick_view.acceptance_rate' => ['integer' , 'nullable' , 'max:11'],
+            'quick_view.no_majors' => ['integer', 'nullable', function ($attribute, $value, $fail) {
+            if ($value !== null && strlen((string)$value) > 11) {
+                $fail("The $attribute must not exceed 11 digits.");
+            }
+            }],
+            'quick_view.no_programs' => ['integer', 'nullable', function ($attribute, $value, $fail) {
+                if ($value !== null && strlen((string)$value) > 11) {
+                    $fail("The $attribute must not exceed 11 digits.");
+                }
+            }],
+            'quick_view.acceptance_rate' => ['integer', 'nullable', function ($attribute, $value, $fail) {
+                if ($value !== null && strlen((string)$value) > 11) {
+                    $fail("The $attribute must not exceed 11 digits.");
+                }
+            }],
+
         ];
     }
 

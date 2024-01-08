@@ -68,15 +68,15 @@
                     </div>
                     <div class="col-md-6 mt-3">
                         <div class="form-floating w-100">
-                            <input wire:model.defer="quick_view.no_majors" type="number" class="form-control input-field"
-                                   id="floatingInput" placeholder="@lang('Number of Majors')">
+                            <input wire:model.defer="quick_view.no_majors" type="number" maxlength="11" class="form-control input-field"
+                                   id="floatingInput" placeholder="@lang('Number of Majors')" onkeypress="return isNumberKey(event)" />
                             <label for="floatingInput">@lang('Number of Majors')</label>
                         </div>
                     </div>
                     <div class="col-md-6 mt-3">
                         <div class="form-floating w-100">
-                            <input wire:model.defer="quick_view.no_programs" type="number" class="form-control input-field"
-                                   id="floatingInput" placeholder="@lang('Number of Programs')">
+                            <input wire:model.defer="quick_view.no_programs" type="number" maxlength="11" class="form-control input-field"
+                                   id="floatingInput" placeholder="@lang('Number of Programs')" onkeypress="return isNumberKey(event)" />
                             <label for="floatingInput">@lang('Number of Programs')</label>
                         </div>
                     </div>
@@ -108,7 +108,7 @@
                     </div>
                     <div class="col-md-6 mt-3">
                         <div class="form-floating w-100">
-                            <input wire:model.defer="quick_view.body_type" class="form-control input-field"
+                            <input wire:model.defer="quick_view.body_type" type="number" class="form-control input-field"
                                    id="floatingInput" placeholder="@lang('Body Type')">
                             <label for="floatingInput">@lang('Body Type')</label>
                         </div>
@@ -150,22 +150,22 @@
                     </div>
                     <div class="col-md-6 mt-3">
                         <div class="form-floating w-100">
-                            <input wire:model.defer="quick_view.avg_total_fee" class="form-control input-field"
+                            <input wire:model.defer="quick_view.avg_total_fee" type="number" class="form-control input-field"
                                    id="floatingInput" placeholder="@lang('Average total fee')">
                             <label for="floatingInput">@lang('Average total fee')</label>
                         </div>
                     </div>
                     <div class="col-md-6 mt-3">
                         <div class="form-floating w-100">
-                            <input wire:model.defer="quick_view.avg_annual_cost" class="form-control input-field"
+                            <input wire:model.defer="quick_view.avg_annual_cost" type="number" class="form-control input-field"
                                    id="floatingInput" placeholder="@lang('Average annual cost')">
                             <label for="floatingInput">@lang('Average annual cost')</label>
                         </div>
                     </div>
                     <div class="col-md-6 mt-3">
                         <div class="form-floating w-100">
-                            <input wire:model.defer="quick_view.acceptance_rate" class="form-control input-field"
-                                   id="floatingInput" placeholder="@lang('Acceptance Rate')">
+                            <input wire:model.defer="quick_view.acceptance_rate" type="number" maxlength="11" class="form-control input-field"
+                                   id="floatingInput" placeholder="@lang('Acceptance Rate')" onkeypress="return isNumberKey(event)" />
                             <label for="floatingInput">@lang('Acceptance Rate')</label>
                         </div>
                     </div>
@@ -239,9 +239,9 @@
                 <hr>
             </div>
             <div class="d-md-flex h6 mt-4 text-place-end blue justify-content-end">
-                <div class="col-md-3">Created on 15 Jan 2022</div>
-                <div class="col-md-3 mobile-marg-2">By David Scott</div>
-                <div class="col-md-2 mobile-marg-2"><a href="javascript:void(0)" wire:click="delete" class="red ">Delete</a></div>
+                <!-- <div class="col-md-3">Created on 15 Jan 2022</div>
+                <div class="col-md-3 mobile-marg-2">By David Scott</div> -->
+                <div class="col-md-2 mobile-marg-2"><a href="" wire:click="delete" class="red ">Delete</a></div>
             </div>
         </div>
     </div>
