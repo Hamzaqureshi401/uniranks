@@ -81,7 +81,8 @@
             <td class="blue">{{$domain->type?->title ?? "N/A"}}</td>
             <td class="blue">@lang('Created on') {{$domain->created_at?->toDayDateTimeString() ?? '---'}}</td>
             <td class="blue">{{$domain->createdByUser?->name}}</td>
-            <td class="text-place-end"><a href="" wire:click.prevent="deleteDomain({{$domain->id}})" class="red">Delete</a></td>
+            <td class="text-place-end"><a href="" wire:click.prevent="edit({{$domain->id}})" class="light-blue mr-25">Edit</a>
+            <a href="" wire:click.prevent="deleteDomain({{$domain->id}})" class="red">Delete</a></td>
         </tr>
         @endforeach
     </tbody>
@@ -89,6 +90,56 @@
 
     </div>
     </div>
-    
+     <div class="modal fade" id="slotsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">@lang('Update Domain')</h5>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               <!-- Livewire component rendering the slots -->
+               @if($edit)
+               <div  class="row">
+                  <div class="col-md-12 mt-3">
+                     <input wire:model.defer="edit_url" id="university_name_input" class="form-control input-field" placeholder="Domain Url" >
+                  </div>
+                  
+                  <div class="col-md-12 mt-3">
+                     <div class="form-floating w-100">
+                            <select wire:model.defer="edit_domain_type_id" class="form-select input-field">
+                                <option value="">@lang('Domain Type')</option>
+                                @foreach($domainTypes ?? [] as $domainType)
+                                    <option value="{{$domainType->id}}">{{$domainType->title}}</option>
+                                @endforeach
+                            </select>
+                            <label for="floatingSelectGrid">@lang('Domain Type')</label>
+                        </div>
+                  </div>
 
+                  <div class="col-md-12 mt-3">
+                    <a href="javascript:void(0)" wire:click="updateDomain" class="btn btn-primary">@lang('Update Domain')</a>
+                </div>
+
+                 
+               @endif
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<script type="text/javascript">
+        document.addEventListener('livewire:load', function () {
+       console.log(1);
+       Livewire.on('showEditModal', () => {
+           $('#slotsModal').modal('show'); // Show the modal when the event is emitted
+       });
+   });
+    document.addEventListener('livewire:load', function () {
+       Livewire.on('closeModal', () => {
+           $('#slotsModal .btn-close').click(); // Hide the modal when the event is emitted
+           $('#slotsModal').modal('show');
+       });
+   });
+   </script>
 </div>

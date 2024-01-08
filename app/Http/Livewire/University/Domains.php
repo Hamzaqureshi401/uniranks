@@ -8,19 +8,24 @@ use Livewire\Component;
 
 class Domains extends Component
 {
+
     public $domains;
+    public $edit;
     public $domainTypes;
 
     public $url;
     public $domain_type_id;
 
+    public $edit_url;
+    public $edit_domain_type_id;
+
     public function mount(){
         $this->domainTypes = DomainType::orderBy('title')->get();
-        $this->loadDomains();
         $this->initForm();
     }
 
     public function initForm(){
+        $this->loadDomains();
         $this->url = '';
         $this->domain_type_id = '';
     }
@@ -28,6 +33,31 @@ class Domains extends Component
     public function loadDomains(){
         $this->domains = \Auth::user()->selected_university->domains()->with(['type','createdByUser'])->get();
     }
+
+    public function edit($id){
+        $this->edit = $this->domains->where('id' , $id)->first();
+        $this->edit_url = $this->edit->url;
+        $this->edit_domain_type_id = $this->edit->domain_type_id;
+        $this->emit('showEditModal');
+    }
+
+   public function updateDomain()
+{
+    $this->edit->url = $this->edit_url !== '' ? $this->edit_url : $this->edit->url;
+    $this->edit->domain_type_id = $this->edit_domain_type_id ?? $this->edit->domain_type_id;
+    $this->edit->save();
+       $this->emit('returnResponseModal', [
+        'title' => 'University Domain Update',
+        'message' => 'University Domain has been updated.',
+        'btn' => 'Oky',
+        'link' => null,
+        'viewTitle' => null
+    ]);
+    $this->emit('closeModal');
+    $this->initForm();
+}
+
+
 
     public function deleteDomain(UniversityDomains $domain){
         $domain->delete();
