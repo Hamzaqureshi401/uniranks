@@ -113,12 +113,15 @@
                             </td>
                             <td class="font-light blue col-md-4">{{ $uni->name }}</td>
                             <!-- <td class="font-light blue">{{$uni->language->native_name ?? "---"}}</td> -->
+                            <td class="text-end blue col-md-4">
+                              <a href="javascript:void(0)" wire:click="edit('{{$uni->id}}')" class="light-blue mr-25">@lang('Edit')</a>
                             @if($uni->name_language !== 'en' || $uni->name_type !== 1)
-                                <td class="text-end blue col-md-4">
-                                    <a href="javascript:void(0)" wire:click="edit('{{$uni->id}}')" class="light-blue mr-25">@lang('Edit')</a>
+                                
+                                    
                                     <a href="javascript:void(0)" wire:click="deleteName('{{$uni->id}}')" class="red">@lang('Delete')</a>
-                                </td>
+                                
                             @endif
+                            </td>
                         </tr>
                     @empty
                         <tr>

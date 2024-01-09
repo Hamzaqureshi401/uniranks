@@ -82,7 +82,12 @@
             <td class="blue">@lang('Created on') {{$domain->created_at?->toDayDateTimeString() ?? '---'}}</td>
             <td class="blue">{{$domain->createdByUser?->name}}</td>
             <td class="text-place-end"><a href="" wire:click.prevent="edit({{$domain->id}})" class="light-blue mr-25">Edit</a>
-            <a href="" wire:click.prevent="deleteDomain({{$domain->id}})" class="red">Delete</a></td>
+            </td>
+            <td>
+            @if($loop->index != 0)
+            <a href="" wire:click.prevent="deleteDomain({{$domain->id}})" class="red">Delete</a>
+            @endif
+        </td>
         </tr>
         @endforeach
     </tbody>

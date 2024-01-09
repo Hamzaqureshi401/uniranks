@@ -69,6 +69,7 @@
 
         </div>
     </div>
+    @if(!empty($contacts))
 <div class="card bg-transparent mt-4">
     <div class="card-body">
         <div class="h4 blue">@lang('Contacts')</div>
@@ -90,12 +91,19 @@
                 <td class="blue">{{$contact->full_phone_number}} {{!empty($contact->ext) ? '/'.__('ext')." $contact->ext":""}}</td>
                 <td class="font-light blue">{{$contact->created_at?->toDayDateTimeString()}}</td>
                 <!-- <td class="font-light blue">{{$contact->createdBy?->name ?:"---"}}</td> -->
-                <td class="text-end blue"><a href="javascript:void(0)" wire:click="edit('{{$contact->id}}')" class="light-blue">@lang('Edit')</a></td>
                 <td class="text-end blue">
+                    <a href="javascript:void(0)" wire:click="edit('{{$contact->id}}')" class="light-blue">@lang('Edit')</a>
+                </td>
+                @if($loop->index != 0)
+                <td class="text-end blue">
+                    
                      
                     <a href="javascript:void(0)" wire:click="deleteContact('{{$contact->id}}')" class="red">@lang('Delete')</a>
 
+                   
+
                 </td>
+                 @endif
             </tr>
         @empty
             <tr>
@@ -106,6 +114,7 @@
 </table>
 </div>
 </div>
+@endif
 
    <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">

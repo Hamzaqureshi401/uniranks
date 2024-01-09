@@ -14,15 +14,23 @@ class LocationAndBranches extends Component
 {
     public $languages , 
     $details_in_langs = 1,
+    $edit_details_in_langs = 1,
     $add_new_location = 1,
     $countries,
     $cities,
     $country_id,
     $city_id,
+    $edit_item,
     $branch_name_other_lang = [],
     $branch_address_other_lang = [],
+    $edit_branch_name_other_lang = [],
+    $edit_branch_address_other_lang = [],
     $translations = [],
+    $editTranslations = [],
     $lc_b = [],
+    $edit,
+    $edit_campus_country_id,
+    $isModalOpen = false,
     $locationAndBranches;
     
 
@@ -40,6 +48,7 @@ class LocationAndBranches extends Component
         $this->city_id = $university->city_id;
         $this->map_link = $university->map_link;
         $this->locationAndBranches = UniversityLocationBranch::where('user_id' , Auth::id())->get();
+        $this->lc_b = [];
        // dd($this->locationAndBranches);
         $this->loadCities();
     } 
@@ -53,6 +62,11 @@ class LocationAndBranches extends Component
     public function addDetailsInOtherLanguage()
     {
         ++$this->details_in_langs;
+    }
+    public function addEditDetailsInOtherLanguage()
+    {
+        ++$this->edit_details_in_langs;
+                
     }
     public function addNewLocation()
     {
@@ -124,23 +138,118 @@ class LocationAndBranches extends Component
     {
         return view('livewire.university.location-and-branches');
     }
-    public function edit($branchId)
-    {
-        // Your logic to handle editing with $branchId
-    }
+   
 
-    public function delete($branchId)
-    {
-        UniversityLocationBranch::where('id' , $branchId)->delete();
-        $this->initForm();
+    public function updateLocation(){
+
+         $this->validate([
+            'edit_item'                         => ['array' , 'required'],
+            'edit_item.*'                       => ['present'],
+            'edit_item.country_id'              => 'required',
+            'edit_item.city_id'                 => 'required',
+            'edit_item.campus_name'             => 'required|max:255',
+            'edit_item.campus_address_txt'      => 'required|max:255',
+            'edit_item.campus_map_link'         => 'required|max:255',
+            ]);
+
+        foreach ($this->editTranslations as $key => $lang) {
+            if (!empty($this->edit_branch_name_other_lang[$key])) {
+                $data['branch_name_other_lang'][$lang] = $this->edit_branch_name_other_lang[$key];
+            }
+            if (!empty($this->edit_branch_address_other_lang[$key])) {
+                $data['branch_address_other_lang'][$lang] = $this->edit_branch_address_other_lang[$key];
+            }
+        }
+        if(!empty($data)){
+            $final = array_merge($this->edit_item , $data);
+        }else{
+            $final = $this->edit_item;
+        }
+        $rec = \Auth::user()->selected_university->first();
+
+
+        if(!empty($this->edit_item['campus_type'])){
+            $rec->main_campus_id = $this->edit->id;
+        }else if($rec->main_campus_id == $this->edit->id && $this->edit_item['campus_type'] == false) {
+            $rec->main_campus_id = null;
+        }
+        $rec->save();
+        
+        $this->edit->update($final);
+        $this->closeModal();
         $this->emit('returnResponseModal',[
-        'title'=>'Record Deleted',
-            'message'=>'Location or branch has been deleted.',
+        'title'=>'Location Or Branch Updated',
+            'message'=>'Location or branch has been updated.',
             'btn'=>'Oky',
             'link'=>null,
             'viewTitle' => null
         ]);
+        $this->initForm();
+
+
+    }
+
+    public function delete($branchId)
+    {
+        if(\Auth::user()->selected_university->first()?->branchId != $branchId){
+            UniversityLocationBranch::where('id' , $branchId)->delete();
+            $this->initForm();
+            $this->emit('returnResponseModal',[
+            'title'=>'Record Deleted',
+                'message'=>'Location or branch has been deleted.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
+        }else{
+            $this->initForm();
+            $this->emit('returnResponseModal',[
+            'title'=>'Record Not Deleted',
+                'message'=>'Main branch can not be deleted.',
+                'btn'=>'Oky',
+                'link'=>null,
+                'viewTitle' => null
+            ]);
+
+        }
         //session()->flash('status', 'Operation Successful!');
+    }
+
+     public function edit($id)
+    {
+        
+
+        $this->add_new_location = 1;
+        $this->edit = $this->locationAndBranches->where('id',$id)->first();
+        $this->edit_item = $this->edit->only([
+
+            'country_id',
+            'city_id',
+            'campus_name',
+            'campus_address_txt',
+            'campus_map_link',
+            'campus_type',
+        ]);
+
+        $translations = $this->edit->getTranslations();
+         //dd($translations);
+        $this->edit_branch_name_other_lang = array_values($translations['branch_name_other_lang']);
+        $this->edit_branch_address_other_lang = array_values($translations['branch_address_other_lang']);
+        $this->editTranslations = array_keys($translations['branch_name_other_lang']);
+         $this->edit_details_in_langs = count($this->editTranslations);
+         $this->isModalOpen = true;
+        // $this->emit('showEditItem');
+
+    }
+
+    public function openModalConfirmModal()
+    {
+        $this->isModalOpen = true;
+    }
+
+    public function closeModal()
+    {
+        $this->isModalOpen = false;
     }
 
 

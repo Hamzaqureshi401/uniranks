@@ -134,7 +134,19 @@ class PageNavigation extends Component
                         'Repository Credits'=>'admin.account.repositoryTransactions',
                     ],
                     'icon'=>'ur-credit.svg'
-                ]
+                ],
+
+                'User Profile' => [
+                'sub-title'=>'Manage Account detail',
+                'links'=>[
+                    'Profile'=>'admin.user.profile',
+                    'Emails'=>'admin.user.emails',
+                    'Phone Number'=>'admin.user.phoneNumber',
+                    'Password'=>'admin.user.password',
+                    'Active Sessions'=>'admin.user.sessions',
+                ],
+                'icon'=>'ur-credit.svg'
+            ],
             // ],
         ];
 

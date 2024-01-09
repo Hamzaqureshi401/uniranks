@@ -26,6 +26,7 @@
         </thead>--}}
         <tbody>
             @foreach($locationAndBranches as $branch)
+
             <tr>
                 <!-- <td>{{ $branch->id }}</td> -->
                 <td>{{ $branch->university->university_name ?? '--' }}</td>
@@ -40,8 +41,10 @@
                 <td>{{ $branch->branch_address_other_lang ?? '--' }} </td> -->
                 <td>{{ $branch->created_at }}</td>
                <td>
-                  <a wire:click="edit({{ $branch->id }})" data-bs-toggle="modal" data-bs-target="#exampleModal" class="light-blue ms-2">Edit</a>
-                  <a wire:click="delete({{ $branch->id }})" class="red ms-2">Delete</a>
+                  <a wire:click="edit({{ $branch->id }})" href="javascript:void(0)" class="light-blue ms-2">Edit</a>
+                  @if(\Auth::user()->selected_university->main_campus_id != $branch->id)
+                  <a wire:click="delete({{ $branch->id }})" href="javascript:void(0)" class="red ms-2">Delete</a>
+                  @endif
               </td>
 
             </tr>
