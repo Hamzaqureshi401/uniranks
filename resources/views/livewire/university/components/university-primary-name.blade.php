@@ -119,6 +119,9 @@
                                 
                                     
                                     <a href="javascript:void(0)" wire:click="deleteName('{{$uni->id}}')" class="red">@lang('Delete')</a>
+                                    @else
+                                    <a style="color: transparent;">Delete</a>
+
                                 
                             @endif
                             </td>

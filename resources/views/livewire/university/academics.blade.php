@@ -45,9 +45,9 @@
        <div class="row mt-4">
         <div class="col-md-6 offset-6 d-flex justify-content-md-end">
             <button wire:click="save" class="button-blue button-sm mobile-button w-35">@lang('Save')</button>
-            @if(!empty($edit_item))
+            <!-- @if(!empty($edit_item))
                 <button wire:click="initForm(true)" class="button-orange button-sm mobile-button w-35">@lang('Reset')</button>
-            @endif
+            @endif -->
             <button wire:click="initForm" class="button-red button-sm mobile-button w-35">@lang('Cancel')</button>
         </div>
     </div>

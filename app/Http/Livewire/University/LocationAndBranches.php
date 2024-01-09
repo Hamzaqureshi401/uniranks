@@ -236,8 +236,8 @@ class LocationAndBranches extends Component
         $this->edit_branch_name_other_lang = array_values($translations['branch_name_other_lang']);
         $this->edit_branch_address_other_lang = array_values($translations['branch_address_other_lang']);
         $this->editTranslations = array_keys($translations['branch_name_other_lang']);
-         $this->edit_details_in_langs = count($this->editTranslations);
-         $this->isModalOpen = true;
+        $this->edit_details_in_langs = count($this->editTranslations);
+        $this->isModalOpen = true;
         // $this->emit('showEditItem');
 
     }

@@ -23,6 +23,10 @@ class Academics extends Component
             $names = [],
             $descriptions = [],
             $edit_id,
+            $edit,
+            $editTranslations,
+            $edit_details_in_langs,
+            $isModalOpen = false,
             $academics_list;
 
     public function mount()
@@ -51,17 +55,20 @@ class Academics extends Component
         return [
             'academics_form'                         => ['array' , 'required'],
             'academics_form.*'                       => ['present'],
-            //'names'                                  => ['array'],
+            //'names'                                => ['array'],
             'academics_form.email'                   => 'required|email|max:255|unique:academics,email',
+            'academics_form.first_name'              => ['required']
+           
            
         ];
     }
 
     public function save()
     {
-        if (empty($this->edit_item)) {
-            $inputs = $this->validate();
-        }
+        $this->validate();
+        // if (empty($this->edit_item)) {
+        //     $inputs = $this->validate();
+        // }
          $data = ['user_id' => Auth::id()];
          foreach ($this->translations as $key => $lang) {
             if(!empty($this->names[$key])){
@@ -70,16 +77,16 @@ class Academics extends Component
             
         }
         $final = array_merge($data , $this->academics_form);
-        if (!empty($this->edit_item)) {
-            $this->edit_item->update($final);
-            $this->emit('returnResponseModal',[
-            'title'=>'Academic Record Updated',
-                'message'=>'Academic record has been updated.',
-                'btn'=>'Oky',
-                'link'=>null,
-                'viewTitle' => null
-            ]);
-        } else {
+        // if (!empty($this->edit_item)) {
+        //     $this->edit_item->update($final);
+        //     $this->emit('returnResponseModal',[
+        //     'title'=>'Academic Record Updated',
+        //         'message'=>'Academic record has been updated.',
+        //         'btn'=>'Oky',
+        //         'link'=>null,
+        //         'viewTitle' => null
+        //     ]);
+        // } else {
            Auth::user()->academics()->create($final);
            $this->emit('returnResponseModal',[
             'title'=>'Academic Record Added',
@@ -88,7 +95,7 @@ class Academics extends Component
             'link'=>null,
             'viewTitle' => null
         ]);
-        }
+        //}
         $this->edit_item = null;
         $this->edit_id = null;
         $this->initForm();
@@ -124,11 +131,11 @@ class Academics extends Component
         ++$this->details_in_langs;
     }
 
-     public function edit($id)
-    { 
-        $this->edit_id = $id;
-        $this->setupEditForm();
-    }
+    //  public function edit($id)
+    // { 
+    //     $this->edit_id = $id;
+    //     $this->setupEditForm();
+    // }
      public function setupEditForm(): void
     {
         $this->edit_item = Academic::find($this->edit_id);
@@ -159,5 +166,88 @@ class Academics extends Component
     public function render()
     {
         return view('livewire.university.academics');
+    }
+
+    public function edit($id)
+    {
+        $this->add_new_location = 1;
+        $this->edit = $this->academics->where('id',$id)->first();
+        $this->edit_item = $this->edit->only([
+
+            'first_name',
+            'email',
+            'title',
+            'position',
+            'school_id',
+            'college_id',
+            'department_id',
+            'profile_page_web_url',
+            'orcid',
+            'web_of_science_research_id',
+            'scopus_author_id',
+            'research_gate_link',
+            'google_scholar_link',
+            'linkedin_url'
+        ]);
+
+        $translations = $this->edit->getTranslations();
+         //dd($translations);
+        $this->names = array_values($translations['description']);
+        $this->editTranslations = array_keys($translations['description']);
+        $this->edit_details_in_langs = count($this->editTranslations);
+        $this->isModalOpen = true;
+        // $this->emit('showEditItem');
+
+    }
+
+    public function addEditDetailsInOtherLanguage(){
+
+        ++$this->edit_details_in_langs;
+    }
+
+    public function openModalConfirmModal()
+    {
+        $this->isModalOpen = true;
+    }
+
+    public function closeModal()
+    {
+        $this->isModalOpen = false;
+    }
+    public function update(){
+
+         $this->validate([
+            'edit_item'                         => ['array' , 'required'],
+            'edit_item.*'                       => ['present'],
+            'edit_item.email'                   => 'required|email|max:255',
+            'edit_item.first_name'              => ['required']
+           
+            ]);
+
+        foreach ($this->editTranslations as $key => $lang) {
+            if (!empty($this->names[$key])) {
+                $data['description'][$lang] = $this->names[$key];
+            }
+            
+        }
+        if(!empty($data)){
+            $final = array_merge($this->edit_item , $data);
+        }else{
+            $final = $this->edit_item;
+        }
+        //dd($final);
+        
+        $this->edit->update($final);
+        $this->closeModal();
+        $this->emit('returnResponseModal',[
+        'title'=>'Academics Record Updated',
+            'message'=>'The Academics record has been updated.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
+        $this->initForm();
+
+
     }
 } 
