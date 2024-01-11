@@ -14,9 +14,15 @@ class Labs extends Component
     use WithFileUploads;
     public $photos = [];
     public $lab_information = [];
+    public $labs;
 
     public $dataCollection;
     public $item_id;
+    public $edit;
+    public $edit_item;
+    public $edit_details_in_langs;
+    public $isModalOpen = false;
+
 
     /**
      * @var UniversityFacilityLab $selected_item
@@ -44,10 +50,10 @@ class Labs extends Component
 
     public function initForm()
     {
-        if ($this->update_details == 1) {
-            $this->edit();
-            return;
-        }
+        // if ($this->update_details == 1) {
+        //     $this->edit();
+        //     return;
+        // }
 
         $this->lab_information = ['university_lab_category_id' => '', 'student_capacity' => '', 'size' => '',
             'created_date' => '', 'no_labs' => '','video_url'=>'','panorama_url'=>''];
@@ -56,6 +62,9 @@ class Labs extends Component
         $this->descriptions = [];
         $this->details_in_langs = 1;
         $this->translations[] = 'en';
+        $this->labs = \Auth::user()->selected_university->facilityLabs()->get();
+
+        //dd($this->labs);
     }
 
     public function addDetailsInOtherLanguage()
@@ -88,11 +97,19 @@ class Labs extends Component
         }
 
         $data = array_merge($data, $this->lab_information);
-        if ($this->update_details == 1) {
-            $this->selected_item->update($data);
+
+        //dd($data);
+        if (!empty($this->edit_item)) {
+            $this->edit->update($data);
+            $this->edit_item = null;
+            $this->edit = null;
+            $this->edit_item = null;
+            $this->lab_information = null;
+            $this->closeModal();
+
             $this->emit('returnResponseModal',[
-                'title'=>'Labs Record Updated',
-                'message'=>'Labs record has been updated.',
+                'title'=>'Lab Record Updated',
+                'message'=>'Lab record has been updated.',
                 'btn'=>'Oky',
                 'link'=>null,
                 'viewTitle' => null
@@ -101,8 +118,8 @@ class Labs extends Component
             //dd($data);
             \Auth::user()->selected_university->facilityLabs()->create($data);
             $this->emit('returnResponseModal',[
-                'title'=>'Labs Record Added',
-                'message'=>'1 New Labs record has been added.',
+                'title'=>'Lab Record Added',
+                'message'=>'1 New Lab record has been added.',
                 'btn'=>'Oky',
                 'link'=>null,
                 'viewTitle' => null
@@ -111,20 +128,38 @@ class Labs extends Component
         $this->update_details = 0;
         $this->loadAlbumData();
         $this->initForm();
-        $this->emit('onAlbumCreated');
+        //$this->emit('onAlbumCreated');
         //session()->flash('status', 'Operation Successful!');
     }
 
-    public function edit()
+    public function edit($id = null)
     {
         $this->update_details = 1;
-        $this->lab_information = $this->selected_item->only(['university_lab_category_id', 'student_capacity', 'size', 'created_date', 'no_labs','video_url','panorama_url']);
-        $translations = $this->selected_item->getTranslations();
+        $this->edit = $this->labs->where('id',$id)->first();
+        $this->edit_item = $this->edit->only(['university_lab_category_id', 'student_capacity', 'size', 'created_date', 'no_labs','video_url','panorama_url']);
+        $translations = $this->edit->getTranslations();
         $this->names = array_values($translations['translated_name']);
         $this->descriptions = array_values($translations['description']);
         $this->translations = array_keys($translations['translated_name']);
-        $this->details_in_langs = count($this->translations);
-        $this->emit('goToTop');
+        $this->edit_details_in_langs = count($this->translations);
+        $this->isModalOpen = true;
+
+        //$this->emit('goToTop');
+    }
+
+    public function addEditDetailsInOtherLanguage(){
+
+        ++$this->edit_details_in_langs;
+    }
+
+    public function openModalConfirmModal()
+    {
+        $this->isModalOpen = true;
+    }
+
+    public function closeModal()
+    {
+        $this->isModalOpen = false;
     }
 
     public function loadAlbums()
@@ -226,6 +261,12 @@ class Labs extends Component
             'link'=>null,
             'viewTitle' => null
         ]);
+    }
+    public function update(){
+
+        $this->lab_information = $this->edit_item;
+        $this->save();
+
     }
 
     public function render()

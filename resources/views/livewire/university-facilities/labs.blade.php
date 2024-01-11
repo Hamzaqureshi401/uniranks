@@ -6,8 +6,9 @@
             <x-general.status-alert/>
             <x-jet-validation-errors class="mt-3 mb-3 alert alert-danger"/>
 
-            <div x-data="{created_date: @entangle('lab_information.created_date').defer}"
-                 x-init="addDatePicker($refs.created_date);">
+            <div x-data="{ created_date: @entangle('lab_information.created_date').defer }"
+     x-init="addDatePicker($refs.created_date); addDatePicker($refs.edit_created_date);">
+
                 @php
                     /**
                     * @var \App\Models\University\UniversityLabCategory[] $categories
@@ -306,6 +307,203 @@
             </div>
         </div>
     @endif
+
+
+    <div class="card bg-transparent mt-4">
+<div class="card-body">
+                   <div class="h4 blue">@lang('Labs')</div>
+                   <div class="w-100 px-4 mt-3">
+            <hr>
+        </div>
+ 
+<div>
+    <table class="table">
+        <thead>
+        <tr class="blue">
+            <th>Lab Category</th>
+            <th>Name</th>
+            <th>No of Labs</th>
+            <th>Translated Name</th>
+            <th>Student Capacity</th>
+            <th>Size</th>
+            <th>Description</th>
+            <th>Video URL</th>
+            <th>Panorama URL</th>
+            <!-- <th>Status</th> -->
+            <th>Action</th>
+            
+            <!-- Add other table headers as needed -->
+        </tr>
+    </thead>
+        <tbody>
+             @foreach($labs as $lab)
+            <tr>
+                <td class="blue">{{ $lab->universityLabCategory->name ?? '--' }}</td>
+                <td class="blue">{{ $lab->name }}</td>
+                <td class="blue">{{ $lab->no_labs }}</td>
+                <td class="blue">{{ $lab->translated_name }}</td>
+                <td class="blue">{{ $lab->student_capacity }}</td>
+                <td class="blue">{{ $lab->size }}</td>
+                <td class="blue">{{ $lab->description }}</td>
+                <td class="blue">{{ $lab->video_url }}</td>
+                <td class="blue">{{ $lab->panorama_url }}</td>
+                <!-- <td class="blue"> {{ $lab->status }}</td> -->
+                <td>
+                  <a wire:click="edit({{ $lab->id }})" href="javascript:void(0)" class="light-blue ms-2">Edit</a>
+                  <a wire:click="delete({{ $lab->id }})" href="javascript:void(0)" class="red ms-2">Delete</a>
+                  
+              </td>
+                <!-- Add other specific attributes as needed -->
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+</div>
+</div>
+</div>
+
+
+<x-jet-modal wire:model="isModalOpen">
+     <x-jet-validation-errors class="mt-3 mb-3 alert alert-danger"/>
+     <div x-data="{ created_date: @entangle('edit_item.created_date').defer }"
+     x-init="addDatePicker($refs.created_date); addDatePicker($refs.edit_created_date);">
+
+   <x-slot name="title">
+            @lang('Update Labs Record')
+        </x-slot>
+        <!-- <div class="modal-body"> -->
+            <!-- Livewire component rendering the slots -->
+            @if($edit_item)
+              <div class="row mt-2">
+                    <div class="col-md-6">
+                        <div class="form-floating w-100">
+                            <select wire:model.defer="edit_item.university_lab_category_id"
+                                    class="form-select input-field">
+                                <option value="">@lang('Lab Category')</option>
+                                @foreach($categories as $category)
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach
+                            </select>
+                            <label for="floatingSelectGrid">@lang('Lab Category')</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mobile-marg-2">
+                        <div class="form-floating w-100">
+                            <input type="number" wire:model.defer="edit_item.no_labs"
+                                   class="form-control input-field"
+                                   placeholder="@lang('Number of Labs')">
+                            <label for="floatingInput">@lang('Number of Labs')</label>
+                        </div>
+                    </div>
+                </div>
+                @for($i = 0; $i<$edit_details_in_langs; $i++)
+                    <div class="row mt-3">
+                        <div @class(["mobile-marg-2 col-md-8","col-md-12"=>($i == 0)])>
+                            <div class="form-floating w-100">
+                                <input wire:model.defer="names.{{$i}}" class="form-control input-field"
+                                       placeholder="@lang('Lab Name')">
+                                <label for="floatingInput">@lang('Lab Name')</label>
+                            </div>
+                        </div>
+                        @if($i > 0)
+                            <div class="col-md-4">
+                                <div class="form-floating w-100">
+                                    <select wire:model.defer="translations.{{$i}}" class="form-select input-field">
+                                        <option value="">@lang('Select Language')</option>
+                                        @foreach($languages as $language)
+                                            <option
+                                                value="{{$language->code}}" @disabled(in_array($language->code,$translations))>{{$language->native_name}}</option>
+                                        @endforeach
+                                    </select>
+                                    <label for="floatingSelectGrid">@lang('Select Language') </label>
+                                </div>
+
+                            </div>
+                        @endif
+                    </div>
+                    <div class="row mt-3">
+                        <div class="mobile-marg-2 col-md-12">
+                            <div class="form-floating w-100">
+                        <textarea wire:model.defer="descriptions.{{$i}}" class="form-control input-textarea"
+                                  placeholder="@lang('Describe the lab, including some technical specifications and detail about usage and benefits')."
+                                  rows="3"></textarea>
+                                <label for="floatingInput">@lang('Describe the lab')</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-100 px-5 mt-4">
+                        <hr>
+                    </div>
+                @endfor
+                <div class=" text-place-end mt-4 mb-4">
+                    <button class="m-0 button-no-bg" wire:click="addEditDetailsInOtherLanguage" type="button">
+                        @lang('+ Add Lab Information into different language')
+                    </button>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="h6 blue">
+                            @lang('The average number of students can all labs handle at one time?')
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mt-3">
+                        <div class="form-floating w-100">
+                            <div class="form-floating w-100">
+                                <input type="number" wire:model.defer="edit_item.student_capacity"
+                                       class="form-control input-field"
+                                       placeholder="@lang('No of Std')">
+                                <label for="floatingInput">@lang('No of Std')</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mt-3">
+                        <div class="form-floating w-100">
+                            <input type="number" wire:model.defer="edit_item.size"
+                                   class="form-control input-field"
+                                   placeholder="@lang('Lab size in m²')">
+                            <label for="floatingInput">@lang('Lab size in m²')</label>
+                        </div>
+                    </div>
+                     <div class="col-md-5 mt-3">
+        <div class="form-floating w-100">
+            <input type="date" wire:model.defer="edit_item.created_date" x-ref="edit_created_date" class="form-control input-field"
+                   placeholder="@lang('Created or Renewed Date')">
+            <label for="floatingInput">@lang('Created or Renewed Date')</label>
+        </div>
+    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mt-3">
+                        <div class="form-floating w-100">
+                            <div class="form-floating w-100">
+                                <input type="text" wire:model.defer="edit_item.video_url"
+                                       class="form-control input-field"
+                                       placeholder="@lang('Video Url')">
+                                <label for="floatingInput">@lang('Video Url')</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mt-3">
+                        <div class="form-floating w-100">
+                            <input type="text" wire:model.lazy="edit_item.panorama_url"
+                                   class="form-control input-field"
+                                   placeholder="@lang('360 Panorama Url')">
+                            <label for="floatingInput">@lang('360 Panorama Url')</label>
+                        </div>
+                    </div>
+                </div>        <div class="col-md-12 mt-3">
+                     <a href="javascript:void(0)" wire:click="update()" class="btn btn-primary">@lang('Update Lab')</a>
+            </div>
+            @endif
+         <!-- </div> -->
+         </x-jet-modal>
+
+
+
+
+
     <x-general.loading message="Processing..."/>
     @push(AppConst::PUSH_CSS)
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
