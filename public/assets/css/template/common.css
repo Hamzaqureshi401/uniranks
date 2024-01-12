@@ -192,6 +192,7 @@ button {
 /* ////////////////////color using in project////////////////////// */
 .dark-blue {
     color: #1c345a !important;
+    font-family: Calibri, sans-serif;
 }
 
 .orange {
@@ -200,6 +201,12 @@ button {
 
 .blue {
     color: #1c345a !important;
+
+}
+.mobile-marg-2 {
+    color: #1c345a !important;
+    font-size: 1rem;
+    font-family: Calibri, sans-serif;
 }
 .blue.text-white {
     color: white !important;
@@ -311,11 +318,12 @@ button {
 
 .h5 {
     font-size: 1.25rem;
+    font-weight: bold;
     line-height: 1.5rem !important
 }
 
 .h6 {
-    font-size: 0.79rem;
+    font-size: 1rem;
     line-height: 0.9rem !important
 }
 
@@ -2433,21 +2441,23 @@ option:disabled {
 
 .form-floating > label {
     position: absolute;
-    top: 0;
-    height: 100%;
+    top: -2px;
+    height: 20%;
     padding: 0 0.2rem 0.1rem 0.2rem;
     pointer-events: none;
     transform-origin: 0 0;
-    transition: opacity .1s ease-in-out, transform .1s ease-in-out;
+    /*transition: opacity .1s ease-in-out, transform .1s ease-in-out;*/
     font-size: 0.85rem;
     color: var(--primary) !important;
     border: none;
-    display: none;
+    background: white;
+    opacity: 1 !important;
+    /* display: none;*/
     /*font-family: Calibri, sans-serif;*/
 }
 
 .input-field {
-    height: 2.5rem !important;
+    height: 3.5rem !important;
     color: #1c345a !important;
     font-size: 1rem !important;
     font-family: inherit !important;
@@ -3022,4 +3032,9 @@ textarea.form-control {
 }
 .hover-blue-color:hover {    
     color: #039BE5 !important; /* Change cursor to pointer on hover */
+}
+
+.box-bottom-note{
+    color: #1c345a;
+    font-size: 1rem;
 }

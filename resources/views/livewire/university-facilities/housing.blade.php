@@ -358,5 +358,255 @@
             </div>
         </div>
     @endif
+
+
+    <div class="card bg-transparent mt-4">
+<div class="card-body">
+                   <div class="h4 blue">@lang('Labs')</div>
+                   <div class="w-100 px-4 mt-3">
+            <hr>
+        </div>
+ 
+<div>
+    <table>
+    <thead>
+        <tr class="blue">
+            <th>Category</th>
+            <th>Name</th>
+            <th>Charges</th>
+            <th>Currency</th>
+            <th>Term</th>
+            <th>Location Type</th>
+            <th>Location Link</th>
+            <th>No of Rooms</th>
+            <th>Student Capacity</th>
+            <th>Charges Type</th>
+            <th>Video URL</th>
+            <th>Panorama URL</th>
+            <th>Status</th>
+            <th>Action</th>
+            <!-- Add other table headers as needed -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($houses as $data)
+        <tr class="blue">
+
+            <td>{{ $data->housingCategory?->name }}</td>
+            <td>{{ $data['name'] }}</td>
+            <td>{{ $data['charges'] }}</td>
+            <td>{{ $data->currency?->name }}</td>
+            <td>{{ $data->housingTerm?->name }}</td>
+            <td>{{ $data->housingLocation?->name }}</td>
+            <td>{{ $data['location_link'] }}</td>
+            <td>{{ $data['number_of_rooms'] }}</td>
+            <td>{{ $data['student_capacity'] }}</td>
+            <td>{{ $data['charges_type'] }}</td>
+            <td>{{ $data['video_url'] }}</td>
+            <td>{{ $data['panorama_url'] }}</td>
+            <td>{{ $data['status'] }}</td>
+            <td><a wire:click="edit({{ $data->id }})" href="javascript:void(0)" class="light-blue ms-2">Edit</a>
+                  <a wire:click="delete({{ $data->id }})" href="javascript:void(0)" class="red ms-2">Delete</a>
+                  </td>
+            <!-- Add other specific attributes as needed -->
+        </tr>
+        @endforeach
+    </tbody>
+</table>
+
+</div>
+</div>
+</div>
+<x-jet-modal wire:model="isModalOpen">
+     <x-jet-validation-errors class="mt-3 mb-3 alert alert-danger"/>
+     
+   <x-slot name="title">
+            @lang('Update Housing Record')
+        </x-slot>
+        <!-- <div class="modal-body"> -->
+            <!-- Livewire component rendering the slots -->
+            @if($edit_item)
+
+            <div class="row mt-2">
+                    <div class="col-md-12 mt-3">
+                        <div class="form-floating w-100">
+                            <select wire:model.defer="edit_item.category_id"
+                                    class="form-select input-field" aria-label="">
+                                <option value="">@lang('Housing Category')</option>
+                                @foreach($categories as $category)
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach
+                            </select>
+                            <label>@lang('Housing Category')</label>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mt-3">
+                        <div class="form-floating w-100">
+                            <select wire:model.defer="edit_item.location_type_id"
+                                    class="form-select input-field">
+                                <option value="">@lang('Where it Located')</option>
+                                @foreach($location_types as $location_type)
+                                    <option value="{{$location_type->id}}">{{$location_type->name}}</option>
+                                @endforeach
+                            </select>
+                            <label for="floatingSelectGrid">@lang('Where it Located')</label>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mt-3 mobile-marg-2">
+                        <div class="form-floating w-100">
+                            <input type="number" wire:model.defer="edit_item.number_of_rooms"
+                                   class="form-control input-field"
+                                   placeholder="@lang('Number of Rooms')">
+                            <label for="floatingInput">@lang('Number of Rooms')</label>
+                        </div>
+                    </div>
+                </div>
+                @for($i = 0; $i<$edit_details_in_langs; $i++)
+                    <div class="row mt-3">
+                        <div @class(["mobile-marg-2 col-md-8","col-md-12"=>($i == 0)])>
+                            <div class="form-floating w-100">
+                                <input wire:model.defer="names.{{$i}}" class="form-control input-field"
+                                       placeholder="@lang('Housing Name')">
+                                <label for="floatingInput">@lang('Housing Name')</label>
+                            </div>
+                        </div>
+                        @if($i > 0)
+                            <div class="col-md-4">
+                                <div class="form-floating w-100">
+                                    <select wire:model.defer="translations.{{$i}}" class="form-select input-field">
+                                        <option value="">@lang('Select Language')</option>
+                                        @foreach($languages as $language)
+                                            <option
+                                                value="{{$language->code}}" @disabled(in_array($language->code,$translations))>{{$language->native_name}}</option>
+                                        @endforeach
+                                    </select>
+                                    <label for="floatingSelectGrid">@lang('Select Language') </label>
+                                </div>
+
+                            </div>
+                        @endif
+                    </div>
+                    <div class="row mt-3">
+                        <div class="mobile-marg-2 col-md-12">
+                            <div class="form-floating w-100">
+                        <textarea wire:model.defer="descriptions.{{$i}}" class="form-control input-textarea"
+                                  placeholder="@lang('Describe the housing, including some technical specifications and detail about usage and benefits')."
+                                  rows="3"></textarea>
+                                <label for="floatingInput">@lang('Description')</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-100 px-5 mt-4">
+                        <hr>
+                    </div>
+                @endfor
+                <div class=" text-place-end mt-3">
+                    <button class="m-0 button-no-bg" wire:click="addDetailsInOtherLanguage" type="button">
+                        @lang('+ Add Housing Information into different language')
+                    </button>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <div class="h6 blue">
+                            @lang('More detail about the Housing ')
+                        </div>
+                    </div>
+                </div>
+                @php
+                    /**
+                    * @var \App\Models\University\UniversityHousingServices[] $services
+                    **/
+                @endphp
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="d-md-flex  mt-3 justify-content-between align-items-center">
+                            @foreach($services as $service)
+                                <div class="col d-flex align-items-center">
+                                    <input wire:model.defer="selected_services" type="checkbox" value="{{$service->id}}" class="mt-0 mb-0">
+                                    <span class="h6 blue mb-0 ms-1">{{$service->name}}</span>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mt-3">
+                        <div class="form-floating w-100">
+                            <input wire:model.defer="edit_item.location_link"
+                                   class="form-control input-field"
+                                   placeholder="@lang('Location Link')">
+                            <label for="floatingInput">@lang('Location Link')</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row  mt-3">
+                    <div class="col-md-12">
+                        <label>@lang('Housing Fees and Conditions')</label>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-floating w-100">
+                            <input type="number" wire:model.defer="edit_item.charges"
+                                   class="form-control input-field"
+                                   placeholder="@lang('Fee')">
+                            <label for="floatingInput">@lang('Fee')</label>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <input wire:model.defer="edit_item.charges_type"  value="0" type="checkbox" class="mt-0 mb-0">
+                                <span class="h6 blue mb-0 ms-1">@lang('in advance')</span>
+                            </div>
+                            <div>
+                                <input wire:model.defer="edit_item.charges_type"  value="1" type="checkbox"  class="mt-0 mb-0">
+                                <span class="h6 blue mb-0 ms-1">@lang('instalments')</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label>@lang('Housing can accommodate upto')</label>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-floating w-100">
+                            <input type="number" wire:model.defer="edit_item.student_capacity"
+                                   class="form-control input-field"
+                                   placeholder="@lang('Students')">
+                            <label for="floatingInput">@lang('Students')</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mt-3">
+                        <div class="form-floating w-100">
+                            <div class="form-floating w-100">
+                                <input type="text" wire:model.defer="edit_item.video_url"
+                                       class="form-control input-field"
+                                       placeholder="@lang('Video Url')">
+                                <label for="floatingInput">@lang('Video Url')</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mt-3">
+                        <div class="form-floating w-100">
+                            <input type="text" wire:model.lazy="edit_item.panorama_url"
+                                   class="form-control input-field"
+                                   placeholder="@lang('360 Panorama Url')">
+                            <label for="floatingInput">@lang('360 Panorama Url')</label>
+                        </div>
+                    </div>
+                </div>
+             
+            @endif
+         <!-- </div> -->
+         </x-jet-modal>
+
+
+
+
+
+   
+
     <x-general.loading message="Processing..."/>
 </div>

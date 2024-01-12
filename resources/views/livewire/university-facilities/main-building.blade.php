@@ -1,6 +1,6 @@
 <div>
     <x-general.university-facility-page-title sub-title="University Main Building"/>
-    <div class="card mt-3">
+    <div class="card">
         <div class="card-body">
             <div class="blue">@lang('University Building Information')</div>
             <x-general.status-alert/>
@@ -11,7 +11,7 @@
                     * @var \App\Models\University\Facility\UniversityFacilityMainBuilding $uni_main_buildings
                     **/
                 @endphp
-                <div class="mt-2 row">
+                <div class="mt-3 row">
                     <div class="col-md-4 col-12">
                         <div class="form-floating w-100">
                             <input type="number" wire:model.defer="main_buildings.no_building"
@@ -99,7 +99,7 @@
                     <hr>
                 </div>
                 <div class="d-md-flex col-md-6 h6 blue justify-content-between">
-                    <div class="">@lang('Updated on') {{$uni_main_buildings?->updated_at->toDayDateTimeString()}}</div>
+                    <div class="box-bottom-note">@lang('Updated on') {{$uni_main_buildings?->updated_at->toDayDateTimeString()}}</div>
                     <div class="mobile-marg-2">@lang('By') {{$uni_main_buildings?->createdBy?->name}}</div>
                 </div>
             </div>

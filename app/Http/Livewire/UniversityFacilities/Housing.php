@@ -40,6 +40,12 @@ class Housing extends Component
 
     public $update_details = 0;
     protected $queryString = ['item_id' => ['except' => '', 'as' => 'housing'], 'update_details' => ['except' => 0]];
+    public $houses;
+    public $edit;
+    public $edit_item;
+    public $edit_details_in_langs;
+    public $isModalOpen = false;
+
 
     public function mount()
     {
@@ -54,10 +60,14 @@ class Housing extends Component
 
     public function initForm()
     {
-        if ($this->update_details == 1) {
-            $this->edit();
-            return;
-        }
+        // if ($this->update_details == 1) {
+        //     $this->edit();
+        //     return;
+        // }
+
+        $this->houses = UniversityFacilityHousing::get();
+
+        //dd($this->houses);
 
         $this->housing_information = [
             'charges'=>'',
@@ -136,10 +146,12 @@ class Housing extends Component
         //session()->flash('status', 'Operation Successful!');
     }
 
-    public function edit()
+    public function edit($id)
     {
         $this->update_details = 1;
-        $this->housing_information = $this->selected_item->only([
+        $this->edit = $this->houses->where('id',$id)->first();
+        
+        $this->edit_item = $this->edit->only([
             'charges',
             'category_id',
             'location_type_id',
@@ -148,13 +160,15 @@ class Housing extends Component
             'student_capacity',
             'charges_type',
             'video_url','panorama_url']);
-        $translations = $this->selected_item->getTranslations();
+        $translations = $this->edit->getTranslations();
         $this->names = array_values($translations['translated_name']);
         $this->descriptions = array_values($translations['description']);
         $this->translations = array_keys($translations['translated_name']);
-        $this->details_in_langs = count($this->translations);
-        $this->selected_services = $this->selected_item->housingServices()->pluck('service_id')?->toArray() ?? [];
-        $this->emit('goToTop');
+        $this->edi_details_in_langs = count($this->translations);
+        $this->selected_services = $this->edit->housingServices()->pluck('service_id')?->toArray() ?? [];
+        $this->isModalOpen = true;
+
+        //$this->emit('goToTop');
     }
 
     public function loadAlbums()
