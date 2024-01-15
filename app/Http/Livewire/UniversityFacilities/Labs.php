@@ -21,11 +21,7 @@ class Labs extends Component
 
     public $dataCollection;
     public $item_id;
-    public $lang_key;
-    public $edit;
-    public $edit_item;
-    public $edit_details_in_langs;
-    public $isModalOpen = false;
+    
 
 
     /**
@@ -42,6 +38,12 @@ class Labs extends Component
     public $details_in_langs = 1;
     public $categories;
     public $update_details = 0;
+
+    public $lang_key;
+    public $edit;
+    public $edit_item;
+    public $edit_details_in_langs;
+    public $isModalOpen = false;
     // protected $queryString = ['item_id' => ['except' => '', 'as' => 'lab'], 'update_details' => ['except' => 0]];
 
     public function mount()

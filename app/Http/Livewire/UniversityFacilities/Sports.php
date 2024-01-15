@@ -8,10 +8,12 @@ use App\Models\General\SportsType;
 use App\Models\Multimedia\Media;
 use App\Models\University\Facility\UniversityFacilityAthletic;
 use Livewire\Component;
+use App\Http\Controllers\Admin\University\Traits\TraitCommonMediaPages;
 use Livewire\WithFileUploads;
 
 class Sports extends Component 
 {
+    use TraitCommonMediaPages;
     use WithFileUploads;
     public $photos = [];
     public $facility_information = [];
@@ -33,7 +35,18 @@ class Sports extends Component
     public $categories;
     public $sports;
     public $update_details = 0;
-    protected $queryString = ['item_id' => ['except' => '', 'as' => 'facility'], 'update_details' => ['except' => 0]];
+   // protected $queryString = ['item_id' => ['except' => '', 'as' => 'facility'], 'update_details' => ['except' => 0]];
+
+    public $lang_key;
+    public $Info;
+    public $allSports;
+    public $edit;
+    public $edit_item;
+    public $edit_details_in_langs;
+    public $isModalOpen = false,
+    $title = 'Sports Detail and Gallery
+      ',
+    $sub_title = 'Sports';
     
 
     public function mount()
@@ -60,6 +73,9 @@ class Sports extends Component
         $this->conatct_names = [];
         $this->details_in_langs = 1;
         $this->translations[] = 'en';
+        $this->allSports = \Auth::user()->selected_university->facilityAthletics()->get();
+
+        //dd($this->allSports);
     }
 
     public function addDetailsInOtherLanguage()
@@ -99,6 +115,7 @@ class Sports extends Component
                 'link'=>null,
                 'viewTitle' => null
             ]);
+            $this->closeModal();
         } else {
             \Auth::user()->selected_university->facilityAthletics()->create($data);
             $this->loadAlbums();
@@ -118,14 +135,24 @@ class Sports extends Component
 
     public function edit()
     {
+        if(!empty($this->selected_item)){
+            $this->editSport($this->selected_item->id);
+        }
+        
+    }
+    public function editSport($id){
+
         $this->update_details = 1;
-        $this->facility_information = $this->selected_item->only(['sports_type_id','sports_name_id','video_url','panorama_url']);
-        $translations = $this->selected_item->getTranslations();
+        $this->edit = $this->allSports->where('id',$id)->first();
+        $this->edit_item = $this->edit->only(['sports_type_id','sports_name_id','video_url','panorama_url']);
+        $translations = $this->edit->getTranslations();
         $this->names = array_values($translations['translated_name']);
         $this->descriptions = array_values($translations['description']);
         $this->translations = array_keys($translations['translated_name']);
-        $this->details_in_langs = count($this->translations);
-        $this->emit('goToTop');
+        $this->edit_details_in_langs = count($this->translations);
+        $this->isModalOpen = true;
+        //$this->emit('goToTop');
+
     }
 
     public function loadAlbums()
@@ -138,6 +165,7 @@ class Sports extends Component
     {
         $this->selected_item = UniversityFacilityAthletic::whereId($this->item_id)
             ->with('media', 'createdBy')->first();
+        $this->getInfo();
     }
 
     public function deleteTemp($key)
@@ -231,5 +259,30 @@ class Sports extends Component
     public function render()
     {
         return view('livewire.university-facilities.sports');
+    }
+
+     public function update(){
+
+        $this->facility_information = $this->edit_item;
+        $this->selected_item = $this->edit;
+        $this->save();
+
+    }
+    public function delete($id){
+
+        $university = $this->allSports->where('id',$id)->first();
+        if ($university) {
+            $university->delete();
+            
+        }
+        $this->emit('returnResponseModal',[
+            'title'=>'Record Deleted',
+            'message'=>'Sport has been deleted.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
+        $this->initForm();
+        
     }
 }

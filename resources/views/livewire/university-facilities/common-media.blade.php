@@ -8,7 +8,7 @@
             <select wire:model="item_id" wire:change="loadAlbumData" class="input-field form-control">
                <option value="">@lang('Select '){{ $sub_title }}</option>
                @foreach($dataCollection ??[] as $media_album)
-               <option value="{{$media_album->id}}">{{$media_album->name}}</option>
+               <option value="{{$media_album->id}}">{{$media_album->name ?? $media_album->title}}</option>
                @endforeach
             </select>
          </div>
@@ -18,7 +18,7 @@
             <div class="row">
                @if(!empty($selected_item))
                <div class="d-md-flex justify-content-between mb-3 align-items-center">
-                  <div class="h5 blue mb-0">{{ $selected_item?->name }} </div>
+                  <div class="h5 blue mb-0">{{ $selected_item?->name ?? $media_album->title }} </div>
                   <div class="col-md-6 mobile-marg d-flex justify-content-between">
                      <div class="col-4 align-items-center d-flex justify-content-between">
                         <div class="col-4"></div>
