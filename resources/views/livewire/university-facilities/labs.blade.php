@@ -185,7 +185,7 @@
          <div class="row">
             @if(!empty($selected_item))
             <div class="d-md-flex justify-content-between mb-3 align-items-center">
-               <div class="h5 blue mb-0">Lab Information</div>
+               <div class="h5 blue mb-0">{{ $selected_item?->name }} </div>
                <div class="col-md-6 mobile-marg d-flex justify-content-between">
                   <div class="col-4 align-items-center d-flex justify-content-between">
                      <div class="col-4"></div>
@@ -198,10 +198,10 @@
                   </div>
                   <div class="col-8">
                      <select wire:model="lang_key" wire:change="loaddescription" class="input-field form-control">
-                        <option value="">@lang('Select Language')</option>
+                        <!-- <option value="">@lang('Select Language')</option> -->
                         @if(!empty($selected_item))
                         @foreach($this->selected_item->getTranslations()['translated_name'] ?? [] as $key => $translation)
-                        <option value="{{$key}}">@lang('language('){{$translation}})</option>
+                        <option value="{{$key}}">{{ $languages->where('code' , $key)->first()->native_name ?? ''}}</option>
                         @endforeach
                         @endif
                      </select>
@@ -232,8 +232,7 @@
     ({{ __('Category') }}: {{ $selected_item?->universityLabCategory->name }}) 
     {{ __('consists of') }} {{ $selected_item?->no_labs }} {{ __('labs, each with a size of') }} {{ $selected_item?->size }} {{ __('square meters, capable of accommodating up to') }} {{ $selected_item?->student_capacity }} {{ __('students simultaneously. The lab was renewed on') }} 
     {{ $selected_item?->created_date?->isoFormat('MMMM D, YYYY') }}.
-    <a href="{{ $selected_item?->penorama_url }}" target="_blank" class="light-blue">{{ __('View Panorama') }}</a>
-    <a href="{{ $selected_item?->video_url }}" target="_blank" class="light-blue">{{ __('View Video') }}</a>
+    
 </div>
 
             
@@ -605,6 +604,7 @@
            addPickerToElement($('.dat'));
        });
       addPickerToElement($('.dat'));
+      $('.file-drag').removeClass('file-drag');
         
     });
 
