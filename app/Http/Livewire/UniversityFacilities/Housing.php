@@ -11,14 +11,16 @@ use App\Models\University\UniversityHousingLocationType;
 use App\Models\University\UniversityHousingServices;
 use App\Models\University\UniversityLabCategory;
 use Livewire\Component;
+use App\Http\Controllers\Admin\University\Traits\TraitCommonMediaPages;
 use Livewire\WithFileUploads;
 
 class Housing extends Component
 {
+    use TraitCommonMediaPages;
     use WithFileUploads;
     public $photos = [];
     public $housing_information = [];
-
+ 
     public $dataCollection;
     public $item_id;
 
@@ -39,12 +41,21 @@ class Housing extends Component
     public $location_types;
 
     public $update_details = 0;
-    protected $queryString = ['item_id' => ['except' => '', 'as' => 'housing'], 'update_details' => ['except' => 0]];
+    // protected $queryString = ['item_id' => ['except' => '', 'as' => 'housing'], 'update_details' => ['except' => 0]];
+
+    public $lang_key;
+    public $Info;
     public $houses;
     public $edit;
     public $edit_item;
     public $edit_details_in_langs;
-    public $isModalOpen = false;
+    public $isModalOpen = false,
+    $title = 'Houses Detail and Gallery
+      ',
+    $sub_title = 'House';
+
+
+
 
 
     public function mount()
@@ -60,10 +71,10 @@ class Housing extends Component
 
     public function initForm()
     {
-        // if ($this->update_details == 1) {
-        //     $this->edit();
-        //     return;
-        // }
+        if ($this->update_details == 1) {
+            $this->edit();
+            return;
+        }
 
         $this->houses = UniversityFacilityHousing::get();
 
@@ -127,6 +138,7 @@ class Housing extends Component
                 'link'=>null,
                 'viewTitle' => null
             ]);
+            $this->closeModal();
         } else {
             $housing = UniversityFacilityHousing::create($data);
             $housing->universityHousingServices()->sync($this->selected_services);
@@ -146,7 +158,23 @@ class Housing extends Component
         //session()->flash('status', 'Operation Successful!');
     }
 
-    public function edit($id)
+    public function edit()
+    {
+        if(!empty($this->selected_item)){
+            $this->editHouse($this->selected_item->id);
+        }
+        
+        // $this->update_details = 1;
+        // $this->lab_information = $this->selected_item->only(['university_lab_category_id', 'student_capacity', 'size', 'created_date', 'no_labs','video_url','panorama_url']);
+        // $translations = $this->selected_item->getTranslations();
+        // $this->names = array_values($translations['translated_name']);
+        // $this->descriptions = array_values($translations['description']);
+        // $this->translations = array_keys($translations['translated_name']);
+        // $this->details_in_langs = count($this->translations);
+        // $this->emit('goToTop');
+    }
+
+    public function editHouse($id)
     {
         $this->update_details = 1;
         $this->edit = $this->houses->where('id',$id)->first();
@@ -164,7 +192,7 @@ class Housing extends Component
         $this->names = array_values($translations['translated_name']);
         $this->descriptions = array_values($translations['description']);
         $this->translations = array_keys($translations['translated_name']);
-        $this->edi_details_in_langs = count($this->translations);
+        $this->edit_details_in_langs = count($this->translations);
         $this->selected_services = $this->edit->housingServices()->pluck('service_id')?->toArray() ?? [];
         $this->isModalOpen = true;
 
@@ -181,6 +209,7 @@ class Housing extends Component
     {
         $this->selected_item = UniversityFacilityHousing::whereId($this->item_id)
             ->with('media', 'createdBy')->first();
+        $this->getInfo();
     }
 
     public function deleteTemp($key)
@@ -274,5 +303,30 @@ class Housing extends Component
     public function render()
     {
         return view('livewire.university-facilities.housing');
+    }
+
+     public function update(){
+
+        $this->housing_information = $this->edit_item;
+        $this->selected_item = $this->edit;
+        $this->save();
+
+    }
+    public function delete($id){
+
+        $university = $this->houses->where('id',$id)->first();
+        if ($university) {
+            $university->delete();
+            
+        }
+        $this->emit('returnResponseModal',[
+            'title'=>'Record Deleted',
+            'message'=>'House has been deleted.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
+        $this->initForm();
+        
     }
 }

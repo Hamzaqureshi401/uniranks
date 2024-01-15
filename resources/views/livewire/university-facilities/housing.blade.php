@@ -201,7 +201,7 @@
         * @var \App\Models\University\Facility\UniversityFacilityHousing $selected_item
         **/
     @endphp
-    <div class="h4 blue mt-3" id="upload-images">@lang('Housings Detail and Gallery')
+ <!--    <div class="h4 blue mt-3" id="upload-images">@lang('Housings Detail and Gallery')
     @include('about-icon')</div>
     <div class="row align-items-baseline">
         <div class="col-md-8">
@@ -358,11 +358,13 @@
             </div>
         </div>
     @endif
+ -->
+    @include('livewire.university-facilities.common-media')
 
 
     <div class="card bg-transparent mt-4">
 <div class="card-body">
-                   <div class="h4 blue">@lang('Labs')</div>
+                   <div class="h4 blue">@lang('Houses')</div>
                    <div class="w-100 px-4 mt-3">
             <hr>
         </div>
@@ -380,7 +382,7 @@
             <th>Location Link</th>
             <th>No of Rooms</th>
             <th>Student Capacity</th>
-            <th>Charges Type</th>
+            <!-- <th>Charges Type</th> -->
             <th>Video URL</th>
             <th>Panorama URL</th>
             <th>Status</th>
@@ -401,11 +403,11 @@
             <td>{{ $data['location_link'] }}</td>
             <td>{{ $data['number_of_rooms'] }}</td>
             <td>{{ $data['student_capacity'] }}</td>
-            <td>{{ $data['charges_type'] }}</td>
+            <!-- <td>{{ $data['charges_type'] }}</td> -->
             <td>{{ $data['video_url'] }}</td>
             <td>{{ $data['panorama_url'] }}</td>
             <td>{{ $data['status'] }}</td>
-            <td><a wire:click="edit({{ $data->id }})" href="javascript:void(0)" class="light-blue ms-2">Edit</a>
+            <td><a wire:click="editHouse({{ $data->id }})" href="javascript:void(0)" class="light-blue ms-2">Edit</a>
                   <a wire:click="delete({{ $data->id }})" href="javascript:void(0)" class="red ms-2">Delete</a>
                   </td>
             <!-- Add other specific attributes as needed -->
@@ -425,7 +427,7 @@
         </x-slot>
         <!-- <div class="modal-body"> -->
             <!-- Livewire component rendering the slots -->
-            @if($edit_item)
+           
 
             <div class="row mt-2">
                     <div class="col-md-12 mt-3">
@@ -501,7 +503,7 @@
                     </div>
                 @endfor
                 <div class=" text-place-end mt-3">
-                    <button class="m-0 button-no-bg" wire:click="addDetailsInOtherLanguage" type="button">
+                    <button class="m-0 button-no-bg" wire:click="addEditDetailsInOtherLanguage" type="button">
                         @lang('+ Add Housing Information into different language')
                     </button>
                 </div>
@@ -597,8 +599,11 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-12 mt-3">
+      <a href="javascript:void(0)" wire:click="update()" class="btn btn-primary">@lang('Update '){{ $sub_title}}</a>
+   </div>
              
-            @endif
+    
          <!-- </div> -->
          </x-jet-modal>
 

@@ -8,10 +8,12 @@ use App\Models\University\Facility\UniversityFacilityLab;
 use App\Models\University\UniversityLabCategory;
 use Carbon\Carbon;
 use Livewire\Component;
+use App\Http\Controllers\Admin\University\Traits\TraitCommonMediaPages;
 use Livewire\WithFileUploads;
 
 class Labs extends Component
 {
+    use TraitCommonMediaPages;
     use WithFileUploads;
     public $photos = [];
     public $lab_information = [];
@@ -115,7 +117,7 @@ class Labs extends Component
         }else{
             $data = $this->lab_information;
         }
-        ;
+        
         //dd($data);
         if (!empty($this->edit_item)  || !empty($this->selected_item)) {
             if(!empty($this->selected_item)){
@@ -194,19 +196,11 @@ class Labs extends Component
         //$this->emit('goToTop');
     }
 
-    public function addEditDetailsInOtherLanguage(){
-
-        ++$this->edit_details_in_langs;
-    }
+    
 
     public function openModalConfirmModal()
     {
         $this->isModalOpen = true;
-    }
-
-    public function closeModal()
-    {
-        $this->isModalOpen = false;
     }
 
     public function loadAlbums()
@@ -348,25 +342,6 @@ class Labs extends Component
         
 
     }
-
-    public function loaddescription()
-    {
-        if (!empty($this->lang_key)) {
-            $translations = $this->selected_item->getTranslations();
-
-            // Check if the 'description' key exists in the translations array
-            if (isset($translations['description'][$this->lang_key])) {
-                $this->translated_description = $translations['description'][$this->lang_key];
-            } else {
-                // Set a default value or handle the case where the key is not present
-                $this->translated_description = 'Default Description';
-            }
-        } else {
-            $this->translated_description = null;
-        }
-    }
-
-
     public function render()
     {
         return view('livewire.university-facilities.labs');
