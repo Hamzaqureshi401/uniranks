@@ -73,7 +73,7 @@ class UniversityFacilityLab extends Model
         'name', 'translated_name', 'student_capacity',
         'size', 'created_date', 'created_by_id',
         'no_labs',
-        'description','video_url','panorama_url','status'
+        'description','video_url','panorama_url','status','image'
     ];
     protected $guarded = ['id'];
     protected $casts = ['created_date'=>'datetime'];
