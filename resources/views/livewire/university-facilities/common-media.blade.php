@@ -18,7 +18,7 @@
             <div class="row">
                @if(!empty($selected_item))
                <div class="d-md-flex justify-content-between mb-3 align-items-center">
-                  <div class="h5 blue mb-0">{{ $selected_item?->name ?? $media_album->title }} </div>
+                  <div class="h5 blue mb-0">{{ $selected_item->name ?? $selected_item->title }} </div>
                   <div class="col-md-6 mobile-marg d-flex justify-content-between">
                      <div class="col-4 align-items-center d-flex justify-content-between">
                         <div class="col-4"></div>

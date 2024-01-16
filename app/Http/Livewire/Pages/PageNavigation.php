@@ -32,6 +32,17 @@ class PageNavigation extends Component
                     ],
                     'icon'=>'building-columns-solid.svg'
                 ],
+                 'User Profile' => [
+                'sub-title'=>'Manage Account detail',
+                'links'=>[
+                    'Profile'=>'admin.user.profile',
+                    'Emails'=>'admin.user.emails',
+                    'Phone Number'=>'admin.user.phoneNumber',
+                    'Password'=>'admin.user.password',
+                    'Active Sessions'=>'admin.user.sessions',
+                ],
+                'icon'=>'ur-credit.svg'
+            ],
                 'Academia' => [
                     'sub-title'=>'Manage University Academia',
                     'links'=>[
@@ -41,6 +52,7 @@ class PageNavigation extends Component
                     ],
                     'icon'=>'user-tie-solid.svg'
                 ],
+               
                 'Meetings' => [
                     'sub-title'=>'Manage University Meetings',
                     'links'=>[
@@ -136,17 +148,7 @@ class PageNavigation extends Component
                     'icon'=>'ur-credit.svg'
                 ],
 
-                'User Profile' => [
-                'sub-title'=>'Manage Account detail',
-                'links'=>[
-                    'Profile'=>'admin.user.profile',
-                    'Emails'=>'admin.user.emails',
-                    'Phone Number'=>'admin.user.phoneNumber',
-                    'Password'=>'admin.user.password',
-                    'Active Sessions'=>'admin.user.sessions',
-                ],
-                'icon'=>'ur-credit.svg'
-            ],
+                
             // ],
         ];
 

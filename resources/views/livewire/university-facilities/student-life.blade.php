@@ -107,7 +107,7 @@
         * @var \App\Models\University\Facility\UniversityFacilityStudentLife $selected_item
         **/
     @endphp
-    <div class="h4 blue mt-3" id="upload-images">@lang('Student Life Services Detail and Gallery')
+  <!--   <div class="h4 blue mt-3" id="upload-images">@lang('Student Life Services Detail and Gallery')
     @include('about-icon')</div>
     <div class="row align-items-baseline">
         <div class="col-md-8">
@@ -258,6 +258,142 @@
                 </div>
             </div>
         </div>
-    @endif
+    @endif -->
+    @include('livewire.university-facilities.common-media')
+
+    <div class="card bg-transparent mt-4">
+   <div class="card-body">
+      <div class="h4 blue">{{ $sub_title }}</div>
+      <div class="w-100 px-4 mt-3">
+         <hr>
+      </div>
+      <div>
+         <table class="table table-responsive">
+         <thead>
+            <tr class="blue">
+               <th>Club</th>
+               <th>Service Name</th>
+               <!-- <th>Category</th> -->
+               <!-- <th>Translated Name</th>
+               <th>Description</th> -->
+               <th>Video URL</th>
+               <th>Panorama URL</th>
+               <th>Action</th>
+            </tr>
+         </thead>
+         <tbody>
+            @forelse($allStudentLife as $sport)
+            <tr class="blue">
+               <td>{{ $sport->universityClubType->name }}</td>
+               <td>{{ $sport['title'] ?? '' }}</td>
+               <!-- <td>{{ $sport->SportsName->name ?? '' }}</td> -->
+               <!-- <td>{{ $sport['translated_name']['en'] ?? '' }}</td>
+               <td>{{ $sport['description']['en'] ?? '' }}</td> -->
+               <td>{{ $sport['video_url'] ?? '' }}</td>
+               <td>{{ $sport['panorama_url'] }}</td>
+                <td><a wire:click="editStudent({{ $sport->id }})" href="javascript:void(0)" class="light-blue ms-2">Edit</a>
+                     <a wire:click="delete({{ $sport->id }})" href="javascript:void(0)" class="red ms-2">Delete</a>
+                  </td>
+            </tr>
+            @empty
+            <tr>
+               <td colspan="5">@lang('No sports data available')</td>
+            </tr>
+            @endforelse
+         </tbody>
+     </table>
+      </div>
+   </div>
+</div>
+
+<x-jet-modal wire:model="isModalOpen">
+   <x-jet-validation-errors class="mt-3 mb-3 alert alert-danger"/>
+   <x-slot name="title">
+      @lang('Update Sports Record')
+   </x-slot>
+<div class="row mt-2">
+                    <div class="col-md-12">
+                        <div class="form-floating w-100">
+                            <select wire:model.defer="edit_item.club_type_id"
+                                    class="form-select input-field">
+                                <option value="">@lang('Student Life Service Club Type')</option>
+                                @foreach($categories as $category)
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach
+                            </select>
+                            <label for="floatingSelectGrid">@lang('Student Life Service Club')</label>
+                        </div>
+                    </div>
+                </div>
+                @for($i = 0; $i<$edit_details_in_langs; $i++)
+                    <div class="row mt-3">
+                        <div @class(["mobile-marg-2 col-md-8","col-md-12"=>($i == 0)])>
+                            <div class="form-floating w-100">
+                                <input wire:model.defer="names.{{$i}}" class="form-control input-field"
+                                       placeholder="@lang('Student Life Service Name')">
+                                <label for="floatingInput">@lang('Student Life Service Name')</label>
+                            </div>
+                        </div>
+                        @if($i > 0)
+                            <div class="col-md-4">
+                                <div class="form-floating w-100">
+                                    <select wire:model.defer="translations.{{$i}}" class="form-select input-field">
+                                        <option value="">@lang('Select Language')</option>
+                                        @foreach($languages as $language)
+                                            <option
+                                                value="{{$language->code}}" @disabled(in_array($language->code,$translations))>{{$language->native_name}}</option>
+                                        @endforeach
+                                    </select>
+                                    <label for="floatingSelectGrid">@lang('Select Language') </label>
+                                </div>
+
+                            </div>
+                        @endif
+                    </div>
+                    <div class="row mt-3">
+                        <div class="mobile-marg-2 col-md-12">
+                            <div class="form-floating w-100">
+                        <textarea wire:model.defer="descriptions.{{$i}}" class="form-control input-textarea"
+                                  placeholder="@lang('Describe the facility, including some technical specifications and detail about usage and benefits')."
+                                  rows="3"></textarea>
+                                <label for="floatingInput">@lang('Describe the lab')</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-100 px-5 mt-4">
+                        <hr>
+                    </div>
+                @endfor
+                <div class=" text-place-end mt-4 mb-4">
+                    <button class="m-0 button-no-bg" wire:click="addEditDetailsInOtherLanguage" type="button">
+                        @lang('+ Add Student Life Service Information into different language')
+                    </button>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mt-3">
+                        <div class="form-floating w-100">
+                            <div class="form-floating w-100">
+                                <input type="text" wire:model.defer="edit_item.video_url"
+                                       class="form-control input-field"
+                                       placeholder="@lang('Video Url')">
+                                <label for="floatingInput">@lang('Video Url')</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mt-3">
+                        <div class="form-floating w-100">
+                            <input type="text" wire:model.lazy="edit_item.panorama_url"
+                                   class="form-control input-field"
+                                   placeholder="@lang('360 Panorama Url')">
+                            <label for="floatingInput">@lang('360 Panorama Url')</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 mt-3">
+      <a href="javascript:void(0)" wire:click="update()" class="btn btn-primary">@lang('Update '){{ $sub_title}}</a>
+   </div>
+</x-jet-modal>
+
+
     <x-general.loading message="Processing..."/>
 </div>

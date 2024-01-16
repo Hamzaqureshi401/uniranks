@@ -51,11 +51,13 @@ trait TraitCommonMediaPages
     ('students. The housing unit is located in') . ' ' . $this->selected_item->housingLocation->name .'.';
     }elseif ($this->sub_title == 'Sports') {
         $this->Info = ('The') . ' ' . $this->selected_item['title'] . 'is (' . ('Category') . ': ' . $this->selected_item->SportsName->name . ') '. 'and (' . ('Type') . ': ' . $this->selected_item->sportsType->name . ') ';
-    }
+    }elseif ($this->sub_title == 'Student Life') {
+        $this->Info = ('The') . ' ' . $this->selected_item['title'] . ' (' . ('Seleced Club ') . ': ' . $this->selected_item->universityClubType->name . ') ';
     }
     
 
     }
 
     // Add more methods as needed
+}
 }

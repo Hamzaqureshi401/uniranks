@@ -9,10 +9,12 @@ use App\Models\University\Facility\UniversityFacilityStudentSupport;
 use App\Models\University\UniversityLabCategory;
 use App\Models\University\UniversitySupportOfficeType;
 use Livewire\Component;
+use App\Http\Controllers\Admin\University\Traits\TraitCommonMediaPages;
 use Livewire\WithFileUploads;
-
+ 
 class StudentSupport extends Component
 {
+    use TraitCommonMediaPages;
     use WithFileUploads;
     public $photos = [];
     public $support_information = [];
@@ -34,7 +36,19 @@ class StudentSupport extends Component
     public $details_in_langs = 1;
     public $categories;
     public $update_details = 0;
-    protected $queryString = ['item_id' => ['except' => '', 'as' => 'support'], 'update_details' => ['except' => 0]];
+   // protected $queryString = ['item_id' => ['except' => '', 'as' => 'support'], 'update_details' => ['except' => 0]];
+
+    public $lang_key;
+    public $Info;
+    public $allStudenSports;
+    public $edit;
+    public $edit_item;
+    public $edit_details_in_langs;
+    public $isModalOpen = false,
+    $title = 'Student Supports Detail and Gallery
+      ',
+    $sub_title = 'Student Supports';
+
 
     public function mount()
     {
@@ -59,6 +73,10 @@ class StudentSupport extends Component
         $this->conatct_names = [];
         $this->details_in_langs = 1;
         $this->translations[] = 'en';
+        $this->allStudenSports = \Auth::user()->selected_university->facilityStudentSupports()->get();
+
+        //dd($this->allStudenSports);
+
     }
 
     public function addDetailsInOtherLanguage()
@@ -100,6 +118,7 @@ class StudentSupport extends Component
                 'link'=>null,
                 'viewTitle' => null
             ]);
+            $this->closeModal();
         } else {
             \Auth::user()->selected_university->facilityStudentSupports()->create($data);
             $this->emit('returnResponseModal',[
@@ -119,15 +138,25 @@ class StudentSupport extends Component
 
     public function edit()
     {
+        if(!empty($this->selected_item)){
+            $this->editSupport($this->selected_item->id);
+        }
+    }
+
+    public function editSupport($id){
+
         $this->update_details = 1;
-        $this->support_information = $this->selected_item->only(['office_type_id','contact_email','video_url','panorama_url']);
-        $translations = $this->selected_item->getTranslations();
+        $this->edit = $this->allStudenSports->where('id',$id)->first();
+        $this->edit_item = $this->edit->only(['office_type_id','contact_email','video_url','panorama_url']);
+        $translations = $this->edit->getTranslations();
         $this->names = array_values($translations['translated_name']);
         $this->descriptions = array_values($translations['description']);
         $this->contact_names = array_values($translations['translated_contact_name']);
         $this->translations = array_keys($translations['translated_name']);
-        $this->details_in_langs = count($this->translations);
-        $this->emit('goToTop');
+        $this->edit_details_in_langs = count($this->translations);
+        $this->isModalOpen = true;
+        //$this->emit('goToTop');
+
     }
 
     public function loadAlbums()
@@ -140,6 +169,7 @@ class StudentSupport extends Component
     {
         $this->selected_item = UniversityFacilityStudentSupport::whereId($this->item_id)
             ->with('media', 'createdBy')->first();
+        $this->getInfo();
     }
 
     public function deleteTemp($key)
@@ -234,5 +264,30 @@ class StudentSupport extends Component
     public function render()
     {
         return view('livewire.university-facilities.student-support');
+    }
+
+    public function update(){
+
+        $this->support_information = $this->edit_item;
+        $this->selected_item = $this->edit;
+        $this->save();
+
+    }
+    public function delete($id){
+
+        $university = $this->allStudenSports->where('id',$id)->first();
+        if ($university) {
+            $university->delete();
+            
+        }
+        $this->emit('returnResponseModal',[
+            'title'=>'Record Deleted',
+            'message'=>'Sport has been deleted.',
+            'btn'=>'Oky',
+            'link'=>null,
+            'viewTitle' => null
+        ]);
+        $this->initForm();
+        
     }
 }
