@@ -3,7 +3,7 @@
                   <div class="h4 blue">@lang('University Admissions')</div>
                   <div class="light-gray col-marg h4 mobile-nav-hidden">|</div>
                    <div class="h4 blue col-marg">
-                     @lang('Semesters') &amp; @lang('Admission Sessions')
+                     @lang('Semesters & Sessions')
                      @include('about-icon')
                     </div>
                </div>

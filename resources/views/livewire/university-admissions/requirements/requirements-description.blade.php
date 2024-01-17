@@ -69,3 +69,33 @@
         wire:target="testTypeSelected,addDetailsInOtherLanguage ,loadPrograms, save, initForm, delete, edit"
         message="Processing..."/>
 </div>
+
+ </div>
+    </div>
+    <div class="card bg-transparent mt-4">
+   <div class="card-body">
+      <div class="h4 blue"> @lang('Admission Requirments ')</div>
+      <div class="w-100 px-4 mt-3">
+         <hr>
+      </div>
+      <div>
+         <table class="table table-responsive">
+         <thead>
+         </thead>
+         <tbody>
+        
+            
+         </tbody>
+     </table>
+      <div class="d-md-flex col-md-6 h6 blue justify-content-between">
+    <div class="box-bottom-note">
+        @if(Auth::user()->selected_university && Auth::user()->selected_university->updated_at)
+            @lang('Updated on') {{ \Carbon\Carbon::parse(Auth::user()->selected_university->updated_at)->format('D, M j, Y g:i A') }}
+        @endif
+    </div>
+    <div class="mobile-marg-2">@lang('By') {{ optional(Auth::user()->selected_university->createdBy)->name ?? 'By Dev Team Rep' }}</div>
+</div>
+
+      </div>
+   </div>
+</div>

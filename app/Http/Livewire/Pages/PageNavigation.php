@@ -78,7 +78,7 @@ class PageNavigation extends Component
                     'links'=>[
                         'Admission Requirements'=>'admin.university.admissionRequirements.show',
                         'Semesters'=>'admin.university.semesters',
-                        'Admission Semesters & Admission Sessions'=>'admin.university.admissionsSemestersAdmissionSessions',
+                        'Admission Semesters & Sessions'=>'admin.university.admissionsSemestersAdmissionSessions',
                         'Sessions'=>'admin.university.sessions',
                         'Programs'=>'admin.university.programs',
                         'Fee Structure'=>'admin.university.feeStructure',

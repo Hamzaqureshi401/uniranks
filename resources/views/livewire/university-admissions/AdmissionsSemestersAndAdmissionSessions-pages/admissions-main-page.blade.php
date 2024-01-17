@@ -16,7 +16,7 @@
       </div>
       <div class="col-md-6 col-12 mobile-marg-2">
          <div class="form-floating w-100">
-            <input wire:model.defer="admission.semester_start_date" type="text" class="input-field basicDate form-control flatpickr-input active" placeholder="Semesters start date" data-input="" readonly="readonly">
+            <input wire:model.defer="admission.semester_start_date" type="text" class="input-field basicDate form-control flatpickr-input active" placeholder="Semesters start date" data-input="">
             <label for="floatingInput">@lang('Semesters start date')</label>
          </div>
       </div>
@@ -107,6 +107,11 @@
    </div>
    @push(AppConst::PUSH_CSS)
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        <style type="text/css">
+            .flatpickr-calendar{
+                top : 240.271px !important;
+            }
+        </style>
     @endpush
     @push(AppConst::PUSH_JS)
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -127,7 +132,7 @@ function addPickerToElement(el, min_date = "today") {
     return flatpickr(el, {
         locale: "{{ app()->getLocale() }}",
         enableTime: false,
-        allowInput: false,
+        allowInput: true,
         minDate: min_date,
     });
 }
@@ -137,11 +142,10 @@ $(document).ready(function() {
             setTimeout(function() {
     var start_date = $('#st').val();
     var end_date = $('#ed').val();
-    console.log(start_date, end_date);
     $('.flatpickr-input').flatpickr({
         locale: "{{ app()->getLocale() }}",
         enableTime: false,
-        allowInput: false,
+        allowInput: true,
         minDate: start_date,
         maxDate: end_date,
     });
