@@ -132,7 +132,7 @@ class StudentSupport extends Component
         }
         $this->update_details = 0;
         $this->loadAlbumData();
-        $this->initForm();
+        $this->mount();
         //session()->flash('status', 'Operation Successful!');
     }
 
@@ -145,6 +145,7 @@ class StudentSupport extends Component
 
     public function editSupport($id){
 
+        $this->resetValidation();
         $this->update_details = 1;
         $this->edit = $this->allStudenSports->where('id',$id)->first();
         $this->edit_item = $this->edit->only(['office_type_id','contact_email','video_url','panorama_url']);
@@ -249,17 +250,18 @@ class StudentSupport extends Component
 
     public function deleteAlbum()
     {
-        $this->selected_item->delete();
-        $this->selected_item = null;
-        $this->item_id = "";
-        $this->loadAlbums();
-        $this->emit('returnResponseModal',[
-            'title'=>'Record Deleted',
-            'message'=>'Album has been deleted.',
-            'btn'=>'Oky',
-            'link'=>null,
-            'viewTitle' => null
-        ]);
+        $this->delete($this->selected_item->id);
+        // $this->selected_item->delete();
+        // $this->selected_item = null;
+        // $this->item_id = "";
+        // $this->loadAlbums();
+        // $this->emit('returnResponseModal',[
+        //     'title'=>'Record Deleted',
+        //     'message'=>'Album has been deleted.',
+        //     'btn'=>'Oky',
+        //     'link'=>null,
+        //     'viewTitle' => null
+        // ]);
     }
     public function render()
     {
@@ -282,12 +284,12 @@ class StudentSupport extends Component
         }
         $this->emit('returnResponseModal',[
             'title'=>'Record Deleted',
-            'message'=>'Sport has been deleted.',
+            'message'=>'Student Suport has been deleted.',
             'btn'=>'Oky',
             'link'=>null,
             'viewTitle' => null
         ]);
-        $this->initForm();
+        $this->mount();
         
     }
 }

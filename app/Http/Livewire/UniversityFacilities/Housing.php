@@ -153,7 +153,7 @@ class Housing extends Component
         }
         $this->update_details = 0;
         $this->loadAlbumData();
-        $this->initForm();
+        $this->mount();
         $this->emit('onAlbumCreated');
         //session()->flash('status', 'Operation Successful!');
     }
@@ -176,6 +176,7 @@ class Housing extends Component
 
     public function editHouse($id)
     {
+        $this->resetValidation();
         $this->update_details = 1;
         $this->edit = $this->houses->where('id',$id)->first();
         
@@ -288,17 +289,18 @@ class Housing extends Component
 
     public function deleteAlbum()
     {
-        $this->selected_item->delete();
-        $this->selected_item = null;
-        $this->item_id = "";
-        $this->loadAlbums();
-        $this->emit('returnResponseModal',[
-            'title'=>'Record Deleted',
-            'message'=>'Album has been deleted.',
-            'btn'=>'Oky',
-            'link'=>null,
-            'viewTitle' => null
-        ]);
+        $this->delete($this->selected_item->id);
+        // $this->selected_item->delete();
+        // $this->selected_item = null;
+        // $this->item_id = "";
+        // $this->loadAlbums();
+        // $this->emit('returnResponseModal',[
+        //     'title'=>'Record Deleted',
+        //     'message'=>'Album has been deleted.',
+        //     'btn'=>'Oky',
+        //     'link'=>null,
+        //     'viewTitle' => null
+        // ]);
     }
     public function render()
     {
@@ -326,7 +328,7 @@ class Housing extends Component
             'link'=>null,
             'viewTitle' => null
         ]);
-        $this->initForm();
+        $this->mount();
         
     }
 }

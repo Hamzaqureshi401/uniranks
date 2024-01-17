@@ -291,8 +291,25 @@
                <td>{{ $sport['description']['en'] ?? '' }}</td> -->
                <td>{{ $sport['video_url'] ?? '' }}</td>
                <td>{{ $sport['panorama_url'] }}</td>
-                <td><a wire:click="editStudent({{ $sport->id }})" href="javascript:void(0)" class="light-blue ms-2">Edit</a>
-                     <a wire:click="delete({{ $sport->id }})" href="javascript:void(0)" class="red ms-2">Delete</a>
+                <td>
+                     <div class="row">
+                     <div class="col-2">
+        <a wire:click="editStudent({{ $sport->id }})" href="javascript:void(0)" class="light-blue ms-2">
+            <i class="material-icons-outlined">
+                <img class="header-logo d-none d-lg-inline-block pointer" style="max-width: 15px; max-height: 15px;"
+                     src="{{ asset('assets/icons/' . 'edit-blue.svg') }}" alt="Edit"/>
+            </i>
+        </a>
+    </div>
+    <div class="col-4">
+        <a wire:click="delete({{ $sport->id }})" href="javascript:void(0)" class="red ms-2">
+            <i class="material-icons-outlined">
+                <img class="header-logo d-none d-lg-inline-block pointer" style="max-width: 15px; max-height: 15px;"
+                     src="{{ asset('assets/icons/' . 'delete-red.svg') }}" alt="Delete"/>
+            </i>
+        </a>
+    </div>
+</div>
                   </td>
             </tr>
             @empty

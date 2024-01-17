@@ -129,7 +129,7 @@ class Sports extends Component
         }
         $this->update_details = 0;
         $this->loadAlbumData();
-        $this->initForm();
+        $this->mount();
         //session()->flash('status', 'Operation Successful!');
     }
 
@@ -142,6 +142,7 @@ class Sports extends Component
     }
     public function editSport($id){
 
+        $this->resetValidation();
         $this->update_details = 1;
         $this->edit = $this->allSports->where('id',$id)->first();
         $this->edit_item = $this->edit->only(['sports_type_id','sports_name_id','video_url','panorama_url']);
@@ -244,24 +245,25 @@ class Sports extends Component
 
     public function deleteAlbum()
     {
-        $this->selected_item->delete();
-        $this->selected_item = null;
-        $this->item_id = "";
-        $this->loadAlbums();
-        $this->emit('returnResponseModal',[
-            'title'=>'Record Deleted',
-            'message'=>'Album has been deleted.',
-            'btn'=>'Oky',
-            'link'=>null,
-            'viewTitle' => null
-        ]);
+        $this->delete($this->selected_item->id);
+        // $this->selected_item->delete();
+        // $this->selected_item = null;
+        // $this->item_id = "";
+        // $this->loadAlbums();
+        // $this->emit('returnResponseModal',[
+        //     'title'=>'Record Deleted',
+        //     'message'=>'Album has been deleted.',
+        //     'btn'=>'Oky',
+        //     'link'=>null,
+        //     'viewTitle' => null
+        // ]);
     }
     public function render()
     {
         return view('livewire.university-facilities.sports');
     }
 
-     public function update(){
+    public function update(){
 
         $this->facility_information = $this->edit_item;
         $this->selected_item = $this->edit;
@@ -282,7 +284,7 @@ class Sports extends Component
             'link'=>null,
             'viewTitle' => null
         ]);
-        $this->initForm();
+        $this->mount();
         
     }
 }

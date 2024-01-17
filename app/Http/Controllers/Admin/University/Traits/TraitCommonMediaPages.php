@@ -53,6 +53,14 @@ trait TraitCommonMediaPages
         $this->Info = ('The') . ' ' . $this->selected_item['title'] . 'is (' . ('Category') . ': ' . $this->selected_item->SportsName->name . ') '. 'and (' . ('Type') . ': ' . $this->selected_item->sportsType->name . ') ';
     }elseif ($this->sub_title == 'Student Life') {
         $this->Info = ('The') . ' ' . $this->selected_item['title'] . ' (' . ('Seleced Club ') . ': ' . $this->selected_item->universityClubType->name . ') ';
+    }elseif ($this->sub_title == 'Student Supports') {
+            $this->Info = trans('The') . ' ' . $this->selected_item['title'] . trans(' has') . ' (' . trans('Office') . ': ' . $this->selected_item->universitySupportOffice->name . '), ' . trans('Contact') . ': ' . $this->selected_item['contact_name'] . ' ' . trans('and Email is') . ': ' . $this->selected_item['contact_email'];
+    }elseif($this->sub_title == 'Labs') {
+            $this->Info = ('The') . ' ' . ($this->selected_item->name) . ' (' . ('Category') . ': ' . ($this->selected_item->universityLabCategory->name) . ') ' .
+        ('consists of') . ' ' . ($this->selected_item->no_labs) . ' ' . ('labs, each with a size of') . ' ' . ($this->selected_item->size) . ' ' .
+        ('square meters, capable of accommodating up to') . ' ' . ($this->selected_item->student_capacity) . ' ' .
+        ('students simultaneously. The lab was renewed on') . ' ' . ($this->selected_item->created_date->isoFormat('MMMM D, YYYY'));
+
     }
     
 

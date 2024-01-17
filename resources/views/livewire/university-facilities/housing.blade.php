@@ -378,7 +378,7 @@
                   <!-- <th>Charges Type</th> -->
                   <th>Video URL</th>
                   <th>Panorama URL</th>
-                  <th>Status</th>
+                  <!-- <th>Status</th> -->
                   <th>Action</th>
                   <!-- Add other table headers as needed -->
                </tr>
@@ -398,9 +398,27 @@
                   <!-- <td>{{ $data['charges_type'] }}</td> -->
                   <td>{{ $data['video_url'] }}</td>
                   <td>{{ $data['panorama_url'] }}</td>
-                  <td>{{ $data['status'] }}</td>
-                  <td><a wire:click="editHouse({{ $data->id }})" href="javascript:void(0)" class="light-blue ms-2">Edit</a>
-                     <a wire:click="delete({{ $data->id }})" href="javascript:void(0)" class="red ms-2">Delete</a>
+                  <!-- <td>{{ $data['status'] }}</td> -->
+                  <td>
+
+                    <div class="row">
+                     <div class="col-4">
+        <a wire:click="editHouse({{ $data->id }})" href="javascript:void(0)" class="light-blue ms-2">
+            <i class="material-icons-outlined">
+                <img class="header-logo d-none d-lg-inline-block pointer" style="max-width: 15px; max-height: 15px;"
+                     src="{{ asset('assets/icons/' . 'edit-blue.svg') }}" alt="Edit"/>
+            </i>
+        </a>
+    </div>
+    <div class="col-4">
+        <a wire:click="delete({{ $data->id }})" href="javascript:void(0)" class="red ms-2">
+            <i class="material-icons-outlined">
+                <img class="header-logo d-none d-lg-inline-block pointer" style="max-width: 15px; max-height: 15px;"
+                     src="{{ asset('assets/icons/' . 'delete-red.svg') }}" alt="Delete"/>
+            </i>
+        </a>
+    </div>
+</div>
                   </td>
                   <!-- Add other specific attributes as needed -->
                </tr>

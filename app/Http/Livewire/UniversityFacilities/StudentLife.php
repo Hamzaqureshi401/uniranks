@@ -125,7 +125,7 @@ class StudentLife extends Component
         }
         $this->update_details = 0;
         $this->loadAlbumData();
-        $this->initForm();
+        $this->mount();
         //session()->flash('status', 'Operation Successful!');
     }
 
@@ -138,6 +138,7 @@ class StudentLife extends Component
 
     public function editStudent($id){
 
+        $this->resetValidation();
         $this->update_details = 1;
         $this->edit = $this->allStudentLife->where('id',$id)->first();
         $this->edit_item = $this->edit->only(['club_type_id','video_url','panorama_url']);
@@ -241,17 +242,18 @@ class StudentLife extends Component
 
     public function deleteAlbum()
     {
-        $this->selected_item->delete();
-        $this->selected_item = null;
-        $this->item_id = "";
-        $this->loadAlbums();
-        $this->emit('returnResponseModal',[
-            'title'=>'Record Deleted',
-            'message'=>'Album has been deleted.',
-            'btn'=>'Oky',
-            'link'=>null,
-            'viewTitle' => null
-        ]);
+        $this->delete($this->selected_item->id);
+        // $this->selected_item->delete();
+        // $this->selected_item = null;
+        // $this->item_id = "";
+        // $this->loadAlbums();
+        // $this->emit('returnResponseModal',[
+        //     'title'=>'Record Deleted',
+        //     'message'=>'Album has been deleted.',
+        //     'btn'=>'Oky',
+        //     'link'=>null,
+        //     'viewTitle' => null
+        // ]);
     }
     public function render()
     {
@@ -279,7 +281,7 @@ class StudentLife extends Component
             'link'=>null,
             'viewTitle' => null
         ]);
-        $this->initForm();
+        $this->mount();
         
     }
 }

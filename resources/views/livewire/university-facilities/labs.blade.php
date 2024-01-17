@@ -113,21 +113,28 @@
             </div>
          </div>
          <div class="row">
-            <div class="col-md-6  card bg-body-color mt-3" style="background-color: #eff1f3;">
-               <div class="card-body">
-                  <div class="h6 blue">Lab Images</div>
-                  <div class="upload-container file-upload d-flex justify-content-center ">
-                     <x-elements.file-uploader multiple="true" wire:model="lab_information.image_s" accept="image/*"/>
-                  <div class="row mt-2">
-                     <!-- <div class="h6 red">
-                        @lang('* Image Format must be .JPG, .PNG, .SVG or .WEBP')
-                     </div> -->
-                     <x-jet-input-error for="photos" class="mt-2"/>
-                  </div>
-                     <!-- <i class="fa-solid fa-cloud-arrow-up light-blue" aria-hidden="true"></i> -->
-                  </div>
-               </div>
-            </div>
+            <div class="col-md-6 card bg-body-color mt-3" style="background-color: #eff1f3;">
+    <div class="card-body">
+        <div class="h6 blue">Lab Images</div>
+        <div class="upload-container file-upload d-flex justify-content-center">
+            <x-elements.file-uploader multiple="true" wire:model="lab_information.image_s" accept="image/*"/>
+        </div>
+        <div class="row mt-2">
+            @if(!empty($lab_information['image_s']))
+                <div class="mt-2">
+                    <h6 class="blue">@lang('Uploaded Images:')</h6>
+                    <div class="d-flex justify-content-center">
+                        @foreach($lab_information['image_s'] as $image)
+                            <img src="{{ $image->temporaryUrl() }}" alt="Uploaded Image" class="mr-2 mb-2" style="max-width: 100px; max-height: 100px;">
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+            <x-jet-input-error for="lab_information.image_s" class="mt-2"/>
+        </div>
+    </div>
+</div>
+
             <div class="col-md-6 mt-3">
                <div class="col-md-12">
                   <div class="form-floating w-100">
@@ -164,179 +171,8 @@
 * @var \App\Models\University\Facility\UniversityFacilityLab $selected_item?
 **/
 @endphp
-<div>
-<div class="col-md-6 rounder-0-5-top bg-blue px-4 p-2 mt-4 h4 mb-0">@lang('Labs Detail and Gallery
-   ')
-</div>
-<div class="bg-transparent card border-none">
-   <div class="bg-light-blue p-2 px-4 d-md-flex justify-content-between align-items-center">
-      <div class=""><a href="#upload-images" class="white">@lang('Upload More Images') </a></div>
-      <div class="col-md-4 mobile-marg-2">
-         <select wire:model="item_id" wire:change="loadAlbumData" class="input-field form-control">
-            <option value="">@lang('Select Lab')</option>
-            @foreach($dataCollection ??[] as $media_album)
-            <option value="{{$media_album->id}}">{{$media_album->name}}</option>
-            @endforeach
-         </select>
-      </div>
-   </div>
-   <div class="card-body">
-      <div class="w-100">
-         <div class="row">
-            @if(!empty($selected_item))
-            <div class="d-md-flex justify-content-between mb-3 align-items-center">
-               <div class="h5 blue mb-0">{{ $selected_item?->name }} </div>
-               <div class="col-md-6 mobile-marg d-flex justify-content-between">
-                  <div class="col-4 align-items-center d-flex justify-content-between">
-                     <div class="col-4"></div>
-                     <div class="col-4"><a class="mr-25" href="{{$selected_item?->video_url ?: "javascript:void(0)"}}" target="_blank">
-                        <img src="{{AppConst::ICONS}}/sm-icons/video.svg" width="30px"></a>
-                     </div>
-                     <div class="col-4"><a 
-                        href="{{$selected_item?->panorama_url ?: "javascript:void(0)"}}" target="_blank"><img src="{{AppConst::ICONS}}/sm-icons/360.svg" width="30px"></a>
-                     </div>
-                  </div>
-                  <div class="col-8">
-                     <select wire:model="lang_key" wire:change="loaddescription" class="input-field form-control">
-                        <!-- <option value="">@lang('Select Language')</option> -->
-                        @if(!empty($selected_item))
-                        @foreach($this->selected_item->getTranslations()['translated_name'] ?? [] as $key => $translation)
-                        <option value="{{$key}}">{{ $languages->where('code' , $key)->first()->native_name ?? ''}}</option>
-                        @endforeach
-                        @endif
-                     </select>
-                  </div>
-               </div>
-            </div>
-            
-           <!--  <div class="d-md-flex justify-content-between mb-3">
-               <div class="h5 blue">{{$selected_item?->translated_name ?? ''}}</div>
-               <div class="d-flex">
-                  <div class="me-2"><a href="{{$selected_item?->video_url ?: "javascript:void(0)"}}" target="_blank">
-                     <img src="{{AppConst::ICONS}}/sm-icons/video.svg" width="30px"></a>
-                  </div>
-                  <div class=""><a  href="{{$selected_item?->panorama_url ?: "javascript:void(0)"}}" target="_blank"><img src="{{AppConst::ICONS}}/sm-icons/360.svg" width="30px"></a></div>
-               </div>
-            </div> -->
-            
-            <div class="paragraph-style2 blue">
-                @if(!empty($translated_description))
-                {{ $translated_description }}
-                @else
-               {!! $selected_item?->description  !!}
+@include('livewire.university-facilities.common-media')
 
-               @endif
-            </div>
-           <div class="blue mt-3">
-    @lang('The') {{ $selected_item?->name }} 
-    ({{ __('Category') }}: {{ $selected_item?->universityLabCategory->name }}) 
-    {{ __('consists of') }} {{ $selected_item?->no_labs }} {{ __('labs, each with a size of') }} {{ $selected_item?->size }} {{ __('square meters, capable of accommodating up to') }} {{ $selected_item?->student_capacity }} {{ __('students simultaneously. The lab was renewed on') }} 
-    {{ $selected_item?->created_date?->isoFormat('MMMM D, YYYY') }}.
-    
-</div>
-
-            
-            <div class="card mt-4" id="upload-images-div">
-               <div class="card-body" id="upload-images-card">
-                  <x-elements.file-uploader multiple="true" wire:model="photos" accept="image/*"/>
-                  <div class="row mt-2">
-                     <div class="h6 red">
-                        @lang('* Image Format must be .JPG, .PNG, .SVG or .WEBP')
-                     </div>
-                     <x-jet-input-error for="photos" class="mt-2"/>
-                  </div>
-                  @php
-                  /**
-                  * @var \Livewire\TemporaryUploadedFile $photo
-                  */
-                  @endphp
-                  @if(!empty($photos))
-                  <div class="m-4">
-                     <hr>
-                  </div>
-                  @foreach(collect($photos)->chunk(3) as $chunk)
-                  <div class="row mt-3">
-                     @foreach($chunk ?? [] as $key => $photo)
-                     <div class="col-md-4 mt-2 mt-md-0">
-                        <div class="w-100 d-flex align-items-center">
-                           <img src="{{$photo->temporaryUrl()}}" style="max-height: 200px; max-width: 80%">
-                           <div class="w-70">
-                              {{--                                            <label class="mx-2 blue">{{$photo->getClientOriginalName()}}</label>--}}
-                              <a href="javascript:void(0)" class="red ms-1 text-decoration-none"
-                                 wire:click="deleteTemp('{{$key}}')">
-                              <i class=" fa-regular fa-trash-can"
-                                 style="font-size: 1.3rem; cursor: pointer"></i>
-                              </a>
-                           </div>
-                        </div>
-                     </div>
-                     @endforeach
-                  </div>
-                  @endforeach
-                  <div class="row mt-4">
-                     <div class="col-md-6 offset-6 d-flex justify-content-md-end">
-                        <button wire:click="savePhotos"
-                           class="button-light-blue button-lg mobile-button w-35">@lang('Upload')</button>
-                     </div>
-                  </div>
-                  @endif
-               </div>
-            </div>
-            @endif
-            <div class="w-100 mt-4 px-4">
-               <hr>
-            </div>
-            @if(!empty($selected_item))
-            <div class="d-md-flex h6 blue justify-content-between">
-               <div
-                  class="">@lang('Created on') {{$selected_item?->created_at->toDayDateTimeString()}}</div>
-               <div class="">@lang('By') {{$selected_item?->createdBy?->name ?: "---"}}</div>
-               <div class="">
-                  @if($selected_item?->is_enabled)
-                  <a href="" wire:click.prevent="disable" class="red ">@lang('Disable')</a>
-                  @else
-                  <a href="" wire:click.prevent="enable" class="green ">@lang('Enable')</a>
-                  @endif
-               </div>
-               <div class=""><a href="" wire:click.prevent="edit" class="blue">@lang('Edit detail')</a>
-               </div>
-               <div class=""><a href="" class="red"
-                  wire:click.prevent="deleteAlbum">@lang('Delete')</a></div>
-            </div>
-            <div id="gallery" class="mt-3">
-               
-               @forelse($selected_item?->media?->chunk(6) as $images_chunk)
-               <div class="row">
-                  @foreach($images_chunk as $image)
-                  <div class="col-md-2">
-                     <img src="{{$image->image_url}}" style="width: 100%"/>
-                     <input wire:model.defer="selected_images" value="{{ $image->id }}"
-                        class="image-checkbox"
-                        type="checkbox">
-                  </div>
-                  @endforeach
-               </div>
-               @empty
-               <div class="h5 text-center py-4">
-                  @lang('No image uploaded yet!')
-               </div>
-               
-               @endforelse
-            </div>
-            <!--                        @if(count($selected_images))
-             
-            <div class="d-md-flex justify-content-end">
-               <div><a href="" wire:click.prevent="deleteSelected"
-                  class="h6 red ">@lang('Delete Selected Images')</a></div>
-            </div>
-            
-                                   @endif -->
-                                   @endif
-         </div>
-      </div>
-   </div>
-</div>
-</div>
 <!-- @if(empty($selected_item))
 <div class="card mt-4">
    <div class="card-body">
@@ -395,9 +231,25 @@
                   <td class="blue">{{ $lab->panorama_url }}</td>
                   <!-- <td class="blue"> {{ $lab->status }}</td> -->
                   <td>
-                     <a wire:click="editLab({{ $lab->id }})" href="javascript:void(0)" class="light-blue ms-2">Edit</a>
-                     <a wire:click="delete({{ $lab->id }})" href="javascript:void(0)" class="red ms-2">Delete</a>
-                  </td>
+                     <div class="row">
+    <div class="col-4">
+        <a wire:click="editLab({{ $lab->id }})" href="javascript:void(0)" class="light-blue ms-2">
+            <i class="material-icons-outlined">
+                <img class="header-logo d-none d-lg-inline-block pointer" style="max-width: 15px; max-height: 15px;"
+                     src="{{ asset('assets/icons/' . 'edit-blue.svg') }}" alt="Edit"/>
+            </i>
+        </a>
+    </div>
+    <div class="col-4">
+        <a wire:click="delete({{ $lab->id }})" href="javascript:void(0)" class="red ms-2">
+            <i class="material-icons-outlined">
+                <img class="header-logo d-none d-lg-inline-block pointer" style="max-width: 15px; max-height: 15px;"
+                     src="{{ asset('assets/icons/' . 'delete-red.svg') }}" alt="Delete"/>
+            </i>
+        </a>
+    </div>
+</div>
+</td>
                   <!-- Add other specific attributes as needed -->
                </tr>
                @endforeach
@@ -564,34 +416,7 @@
 @endpush
 
 @push(AppConst::PUSH_JS)
-<!-- <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-        @if(app()->getLocale() != 'en')
-            <script src="https://npmcdn.com/flatpickr/dist/l10n/{{app()->getLocale()}}.js"></script>
-        @endif
-        <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/confirmDate/confirmDate.js"></script>
 
-
-<script type="text/javascript">
-    function addDatePicker(el) {
-        return flatpickr(el, {
-            locale: "{{app()->getLocale()}}",
-            enableTime: false,
-            allowInput: true,
-            maxDate: 'today',
-            plugins: [new confirmDatePlugin({})],
-            
-            confirmIcon: '<i class="fa-solid fa-circle-check"></i>',
-            confirmText: "OK", // Use Flatpickr's confirmText option
-            showAlways: false,
-        });
-    }
-
-    document.addEventListener('livewire:load', function () {
-        $('.file-drag').removeClass('file-drag');
-    });
-
-    $('.file-drag').removeClass('file-drag');
-</script> -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         @if(app()->getLocale() != 'en')
             <script src="https://npmcdn.com/flatpickr/dist/l10n/{{app()->getLocale()}}.js"></script>
@@ -600,7 +425,6 @@
         <script>
     document.addEventListener('livewire:load', function () {
       Livewire.on('setDate', () => {
-           console.log(123);
            addPickerToElement($('.dat'));
        });
       addPickerToElement($('.dat'));
@@ -611,13 +435,13 @@
     function addPickerToElement(el, min_date = "today") {
         return flatpickr(el, {
             locale: "{{app()->getLocale()}}",
-            enableTime: true,
+            //enableTime: true,
             allowInput: true,
             maxDate: 'today',
-            plugins: [new confirmDatePlugin({})],
-            confirmIcon: ' <i class="fa-solid fa-circle-check"></i>',
-            confirmText: "OK",
-            showAlways: false,
+            // plugins: [new confirmDatePlugin({})],
+            // confirmIcon: ' <i class="fa-solid fa-circle-check"></i>',
+            // confirmText: "OK",
+            // showAlways: false,
         });
     }
 </script>

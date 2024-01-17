@@ -32,7 +32,7 @@ class PageNavigation extends Component
                     ],
                     'icon'=>'building-columns-solid.svg'
                 ],
-                 'User Profile' => [
+                 'Profile' => [
                 'sub-title'=>'Manage Account detail',
                 'links'=>[
                     'Profile'=>'admin.user.profile',
@@ -41,7 +41,7 @@ class PageNavigation extends Component
                     'Password'=>'admin.user.password',
                     'Active Sessions'=>'admin.user.sessions',
                 ],
-                'icon'=>'ur-credit.svg'
+                'icon'=>'user-profile.svg'
             ],
                 'Academia' => [
                     'sub-title'=>'Manage University Academia',
@@ -145,7 +145,7 @@ class PageNavigation extends Component
                         'Event Credits'=>'admin.account.eventCredits',
                         'Repository Credits'=>'admin.account.repositoryTransactions',
                     ],
-                    'icon'=>'ur-credit.svg'
+                    'icon'=>'transaction.svg'
                 ],
 
                 
