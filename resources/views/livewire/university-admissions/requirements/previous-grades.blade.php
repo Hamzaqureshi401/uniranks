@@ -31,14 +31,22 @@
                     <select wire:model.defer="gpa_requirments.{{$j}}.grade_scale_id"
                             id="gap_requirments_{{$j}}"
                             class="form-select input-field">
+                        @if(count($gpa_requirments) != $j + 1)
                         <option value="">@lang('Acceptable High School GPA Type')</option>
                         @foreach($gradeScales as $scale)
                             <option
                                 value="{{$scale->id}}">{{$scale->title}}</option>
                         @endforeach
+                        @else
+                        @foreach($gradeScales->whereNotIn('id' , $unselected_grade_scale_id) as $scale)
+                            <option
+                                value="{{$scale->id}}">{{$scale->title}}</option>
+                        @endforeach
+                        @endif
+
                     </select>
                     <label for="gap_requirments_{{$j}}">@lang('Acceptable High School GPA Type')
-                        <</label>
+                        </label>
                 </div>
             </div>
             <div class="col-12 col-md-5">
@@ -77,7 +85,7 @@
 
 </div>
     </div>
-    <div class="card bg-transparent mt-4">
+    <!-- <div class="card bg-transparent mt-4">
    <div class="card-body">
       <div class="h4 blue"> @lang('Grades ')</div>
       <div class="w-100 px-4 mt-3">
@@ -94,9 +102,11 @@
      </table>
       <div class="d-md-flex col-md-6 h6 blue justify-content-between">
     <div class="box-bottom-note">
-        @if(Auth::user()->selected_university && Auth::user()->selected_university->updated_at)
+        @for($j=0;$j < count($gpa_requirments);$j++)
+       
             @lang('Updated on') {{ \Carbon\Carbon::parse(Auth::user()->selected_university->updated_at)->format('D, M j, Y g:i A') }}
-        @endif
+        
+        @endfor
     </div>
     <div class="mobile-marg-2">@lang('By') {{ optional(Auth::user()->selected_university->createdBy)->name ?? 'By Dev Team Rep' }}</div>
 </div>
@@ -105,3 +115,4 @@
    </div>
 </div>
 
+ -->
