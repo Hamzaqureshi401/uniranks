@@ -17,6 +17,10 @@ class Semesters extends Component
     public $information;
     public $edit_id;
     public $edit_item;
+    public $isModalOpen = false;
+    public $edit_details_in_langs;
+    public $edit;
+
 //    protected $queryString = ['edit' => ['except' => '', 'as' => 'semester']];
 
     public function mount(){
@@ -116,12 +120,14 @@ class Semesters extends Component
     public function setupEditForm(): void
     {
         $this->edit_item = UniversitySemester::find($this->edit_id);
-        $this->information = $this->edit_item->only(['start_date','end_date']);
+        $this->edit = $this->edit_item->only(['start_date','end_date']);
         $translations = $this->edit_item->getTranslations();
         $this->names = array_values($translations['translated_name']);
         $this->translations = array_keys($translations['translated_name']);
-        $this->details_in_langs = count($this->translations);
-        $this->emit('goToTop');
+        $this->edit_details_in_langs = count($this->translations);
+        $this->isModalOpen = true;
+
+        //$this->emit('goToTop');
     }
 
     public function delete(UniversitySemester $semester): void

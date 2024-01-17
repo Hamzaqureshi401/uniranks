@@ -105,6 +105,70 @@
         @endforeach
     </div>
 </div>
+
+<x-jet-modal wire:model="isModalOpen">
+   <x-jet-validation-errors class="mt-3 mb-3 alert alert-danger"/>
+   <x-slot name="title">
+      @lang('Update Semester Record')
+   </x-slot>
+@for($i = 0; $i<$edit_details_in_langs; $i++)
+                    <div class="row mt-3">
+                        <div @class(["mobile-marg-2 col-md-8","col-md-12"=>($i == 0)])>
+                            <div class="form-floating w-100">
+                                <input wire:model.defer="names.{{$i}}" class="form-control input-field"
+                                       placeholder="@lang('Name')">
+                                <label for="floatingInput">@lang('Name')</label>
+                            </div>
+                        </div>
+                        @if($i > 0)
+                            <div class="col-md-4">
+                                <div class="form-floating w-100">
+                                    <select wire:model.defer="translations.{{$i}}" class="form-select input-field">
+                                        <option value="">@lang('Select Language')</option>
+                                        @foreach($languages as $language)
+                                            <option
+                                                value="{{$language->code}}" @disabled(in_array($language->code,$translations))>{{$language->native_name}}</option>
+                                        @endforeach
+                                    </select>
+                                    <label for="floatingSelectGrid">@lang('Select Language') </label>
+                                </div>
+
+                            </div>
+                        @endif
+                    </div>
+
+                    <div class="w-100 px-5 mt-4">
+                        <hr>
+                    </div>
+                @endfor
+                <div class=" text-place-end mt-4 mb-4">
+                    <button class="m-0 button-no-bg" wire:click="addEditDetailsInOtherLanguage" type="button">
+                        @lang('+ Add Information into different language')
+                    </button>
+                </div>
+                @php
+                    /**
+                    * @var \App\Models\University\Admissions\UniversitySemester $information
+                    **/
+                @endphp
+                <div class="row mt-3"  wire:ignore wire:key="dates">
+                    <div class="col-md-6">
+                        <div class="form-floating w-100">
+                            <input x-model="edit.start_date" x-ref="start_date" class="form-control input-field date"
+                                   placeholder="@lang('Start Date')">
+                            <label for="floatingInput">@lang('Start Date')</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating w-100">
+                            <input x-model="edit.end_date" x-ref="end_date"
+                                   class="form-control input-field date"
+                                   placeholder="@lang('End Date')">
+                            <label for="floatingInput">@lang('End Date')</label>
+                        </div>
+                    </div>
+                </div>
+</x-jet-modal>
     <x-general.loading wire:target="addDetailsInOtherLanguage, save, initForm, delete, edit" message="Processing..."/>
 
 @push(AppConst::PUSH_CSS)
