@@ -298,7 +298,7 @@
                <!-- <th>Description</th> -->
                <th>Video URL</th>
                <th>Panorama URL</th>
-               <th>Action</th>
+               <th class="text-place-end">Action</th>
             </tr>
          </thead>
          <tbody>
@@ -311,9 +311,9 @@
                <!-- <td>{{ $sport['description']['en'] ?? '' }}</td> -->
                <td>{{ $sport['video_url'] ?? '' }}</td>
                <td>{{ $sport['panorama_url'] }}</td>
-                <td>
-                      <div class="row">
-                     <div class="col-2">
+                <td class="text-place-end">
+                      <div class="row"  style="padding-left: 0;">
+                     <div class="col-9">
         <a wire:click="editSupport({{ $sport->id }})" href="javascript:void(0)" class="light-blue ms-2">
             <i class="material-icons-outlined">
                 <img class="header-logo d-none d-lg-inline-block pointer" style="max-width: 15px; max-height: 15px;"
@@ -321,9 +321,9 @@
             </i>
         </a>
     </div>
-    <div class="col-4">
-        <a wire:click="delete({{ $sport->id }})" href="javascript:void(0)" class="red ms-2">
-            <i class="material-icons-outlined">
+    <div class="col-3">
+        <a wire:click="delete({{ $sport->id }})" href="javascript:void(0)" class="red">
+            <i class="material-icons-outlined" style="margin-right: 22px;">
                 <img class="header-logo d-none d-lg-inline-block pointer" style="max-width: 15px; max-height: 15px;"
                      src="{{ asset('assets/icons/' . 'delete-red.svg') }}" alt="Delete"/>
             </i>

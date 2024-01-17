@@ -99,9 +99,9 @@
                   </div>
                </div>
                @endif
-               <div class="w-100 mt-4 px-4">
+               <!-- <div class="w-100 mt-4 px-4">
                   <hr>
-               </div>
+               </div> -->
                @if(!empty($selected_item))
                <div class="d-md-flex h6 blue justify-content-between">
                   <div
