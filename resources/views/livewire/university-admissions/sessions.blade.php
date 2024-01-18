@@ -131,10 +131,92 @@
         @endforeach
     </div>
 </div>
+
+<x-jet-modal wire:model="isModalOpen">
+   <x-jet-validation-errors class="mt-3 mb-3 alert alert-danger"/>
+   <x-slot name="title">
+      @lang('Update Semester Record')
+   </x-slot>
+<div class="row mt-3">
+                    <div @class(["mobile-marg-2 col-md-12"])>
+                        <div class="form-floating w-100">
+                            <select wire:model.defer="edit.university_semester_id" class="form-select input-field">
+                                <option value="">@lang('Select Semester')</option>
+                                @foreach($categories as $category)
+                                    <option
+                                        value="{{$category->id}}">{{$category->translated_name}}</option>
+                                @endforeach
+                            </select>
+                            <label for="floatingSelectGrid">@lang('Select Semester') </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3" wire:ignore wire:key="dates">
+                    <div class="col-md-6">
+                        <div class="form-floating w-100">
+                             <input type="date" wire:model.defer="edit.start_date" class="form-control input-field dat"
+               placeholder="@lang('Start Date')">
+                            <label for="floatingInput">@lang('Start Date')</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating w-100">
+                             <input type="date" wire:model.defer="edit.end_date" class="form-control input-field dat"
+               placeholder="@lang('End Date')">
+                            <label for="floatingInput">@lang('End Date')</label>
+                        </div>
+                    </div>
+                </div>
+
+                @for($i = 0; $i<$edit_details_in_langs; $i++)
+                    <div class="row mt-3">
+                        @if($i > 0)
+                            <div class="col-md-4">
+                                <div class="form-floating w-100">
+                                    <select wire:model.defer="translations.{{$i}}" class="form-select input-field">
+                                        <option value="">@lang('Select Language')</option>
+                                        @foreach($languages as $language)
+                                            <option
+                                                value="{{$language->code}}" @disabled(in_array($language->code,$translations))>{{$language->native_name}}</option>
+                                        @endforeach
+                                    </select>
+                                    <label for="floatingSelectGrid">@lang('Select Language') </label>
+                                </div>
+
+                            </div>
+                        @endif
+                    </div>
+                    <div class="row mt-3">
+                        <div class="mobile-marg-2 col-md-12">
+                            <div class="form-floating w-100">
+                        <textarea wire:model.defer="descriptions.{{$i}}" class="form-control input-textarea"
+                                  placeholder="@lang('Admission Notes')."
+                                  rows="3"></textarea>
+                                <label for="floatingInput">@lang('Admission Notes')</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="w-100 px-5 mt-4">
+                        <hr>
+                    </div>
+                @endfor
+                <div class=" text-place-end mt-4 mb-4">
+                    <button class="m-0 button-no-bg" wire:click="addEditDetailsInOtherLanguage" type="button">
+                        @lang('+ Add edit into different language')
+                    </button>
+                </div>
+            </x-jet-modal>
     <x-general.loading wire:target="addDetailsInOtherLanguage, save, initForm, delete, edit" message="Processing..."/>
 
 @push(AppConst::PUSH_CSS)
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+         <style type="text/css">
+            .flatpickr-calendar{
+                top : 393.271px !important;
+            }
+        </style>
     @endpush
     @push(AppConst::PUSH_JS)
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -142,6 +224,13 @@
             <script src="https://npmcdn.com/flatpickr/dist/l10n/{{app()->getLocale()}}.js"></script>
         @endif
         <script>
+                   document.addEventListener('livewire:load', function () {
+      Livewire.on('setDate', () => {
+           addPickerToElement($('.dat'));
+       });
+      
+        
+    });
             function addPickerToElement(el, min_date = "today") {
                 return flatpickr(el, {
                     locale: "{{app()->getLocale()}}",

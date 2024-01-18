@@ -5,11 +5,13 @@ namespace App\Http\Livewire\UniversityAdmissions;
 use App\Models\General\Language;
 use App\Models\University\Admissions\UniversityAdmissionSession;
 use App\Models\University\Admissions\UniversitySemester;
+use Carbon\Carbon;
 use Livewire\Component;
+use App\Http\Controllers\Admin\University\Traits\TraitCommonMediaPages;
 
 class Sessions extends Component
 {
-
+    use TraitCommonMediaPages;
     public $dataCollection;
     public $descriptions = [];
     public $translations = [];
@@ -20,6 +22,11 @@ class Sessions extends Component
     public $edit_id;
     public $edit_item;
     public $categories;
+
+    public $isModalOpen = false;
+    public $edit_details_in_langs;
+    public $edit; 
+
 //    protected $queryString = ['edit' => ['except' => '', 'as' => 'semester']];
 
     public function mount(){
@@ -114,12 +121,15 @@ class Sessions extends Component
     public function setupEditForm(): void
     {
         $this->edit_item = UniversityAdmissionSession::find($this->edit_id);
-        $this->information = $this->edit_item->only(['university_semester_id','start_date','end_date']);
+        $this->edit = $this->edit_item->only(['university_semester_id','start_date','end_date']);
+        $this->edit['start_date'] = Carbon::parse($this->edit['start_date'])->format('Y-m-d');
+        $this->edit['end_date'] = Carbon::parse($this->edit['end_date'])->format('Y-m-d');
         $translations = $this->edit_item->getTranslations();
         $this->descriptions = array_values($translations['description']);
         $this->translations = array_keys($translations['description']);
-        $this->details_in_langs = count($this->translations);
-        $this->emit('goToTop');
+        $this->edit_details_in_langs = count($this->translations);
+        $this->isModalOpen = true;
+        $this->emit('setDate');
     }
 
     public function delete(UniversityAdmissionSession $semester): void
