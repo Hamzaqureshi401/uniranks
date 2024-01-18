@@ -38,7 +38,10 @@
                                 value="{{$scale->id}}">{{$scale->title}}</option>
                         @endforeach
                         @else
+                        <option value="">@lang('Acceptable High School GPA Type')</option>
+                        
                         @foreach($gradeScales->whereNotIn('id' , $unselected_grade_scale_id) as $scale)
+
                             <option
                                 value="{{$scale->id}}">{{$scale->title}}</option>
                         @endforeach

@@ -38,8 +38,10 @@ class PreviousGrades extends Component
 
     public function addGpaRequirement()
     {
-        $this->unselected_grade_scale_id = array_column($this->gpa_requirments, 'grade_scale_id');
-        $this->gpa_requirments [] = ['degree_id' => $this->degree_id, 'grade_scale_id' => '', 'required_grades' => ''];
+        if(count(array_column($this->gpa_requirments, 'grade_scale_id')) != count($this->gradeScales)){
+            $this->unselected_grade_scale_id = array_column($this->gpa_requirments, 'grade_scale_id');
+            $this->gpa_requirments [] = ['degree_id' => $this->degree_id, 'grade_scale_id' => '', 'required_grades' => ''];
+        }
     }
 
     public function removeGpaRequirement($index)

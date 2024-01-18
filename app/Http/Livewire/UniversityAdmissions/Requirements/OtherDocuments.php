@@ -10,6 +10,8 @@ class OtherDocuments extends Component
     public $type_id;
     public $other_application_requirements = [];
     public $other_requirments_types = [];
+    public $unselected_id = [];
+
 
     public function mount()
     {
@@ -29,6 +31,8 @@ class OtherDocuments extends Component
         foreach ($app_reqs as $req) {
             $this->other_application_requirements [] = $req->only(['application_requirement_id', 'notes']);
         }
+        $this->unselected_id = array_column($this->other_application_requirements, 'application_requirement_id');
+        array_pop($this->unselected_id);
 
         if (empty($this->other_application_requirements)) {
             $this->addApplicationRequirement();
@@ -38,7 +42,10 @@ class OtherDocuments extends Component
 
     public function addApplicationRequirement()
     {
-        $this->other_application_requirements [] = ['application_requirement_id' => '', 'notes' => ''];
+        if(count(array_column($this->other_application_requirements, 'application_requirement_id')) != count($this->other_requirments_types)){
+            $this->unselected_id = array_column($this->other_application_requirements, 'application_requirement_id');
+            $this->other_application_requirements [] = ['application_requirement_id' => '', 'notes' => ''];
+        }
     }
 
 

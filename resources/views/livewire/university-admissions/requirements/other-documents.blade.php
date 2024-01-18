@@ -23,11 +23,21 @@
                         <select wire:model.defer="other_application_requirements.{{$l}}.application_requirement_id"
                                 id="requirement_type_{{$l}}"
                                 class="form-select input-field">
+                            @if(count($other_application_requirements) != $l + 1)
+                            
                             <option value="">@lang('Required Documents Type')</option>
                             @foreach($other_requirments_types as $requirmentsType)
                                 <option
                                     value="{{$requirmentsType->id}}">{{$requirmentsType->title}}</option>
                             @endforeach
+                            @else
+                            <option value="">@lang('Required Documents Type')</option>
+                            
+                            @foreach($other_requirments_types->whereNotIn('id' , $unselected_id) as $scale)
+                                <option
+                                    value="{{$scale->id}}">{{$scale->title}}</option>
+                            @endforeach
+                            @endif
                         </select>
                         <label for="requirement_type_{{$l}}">@lang('Required Documents Type')</label>
                     </div>

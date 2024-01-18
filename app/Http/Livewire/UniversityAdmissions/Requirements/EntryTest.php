@@ -12,6 +12,8 @@ class EntryTest extends Component
     public $degree_id;
     public $tests = [];
     public $testing_requirements = [];
+    public $unselected_id = [];
+
 
     public function mount()
     {
@@ -52,6 +54,9 @@ class EntryTest extends Component
                 })->toArray();
             }
         }
+        $this->unselected_id = array_column($this->testing_requirements, 'test_id');
+        array_pop($this->unselected_id);
+
 
         if (empty($this->testing_requirements)) {
             $this->addTestingRequirement();
@@ -66,15 +71,18 @@ class EntryTest extends Component
 
     public function addTestingRequirement()
     {
-        $this->testing_requirements [] = [
-            'test_id' => null,
-            'degree_id' => $this->degree_id,
-            'title' => '',
-            'required_grades' => '',
-            'required_score' => '',
-            'score_from' => '',
-            'score_to' => '',
-        ];
+        if(count(array_column($this->testing_requirements, 'test_id')) != count($this->tests)){
+            $this->unselected_id = array_column($this->testing_requirements, 'test_id');
+            $this->testing_requirements [] = [
+                'test_id' => null,
+                'degree_id' => $this->degree_id,
+                'title' => '',
+                'required_grades' => '',
+                'required_score' => '',
+                'score_from' => '',
+                'score_to' => '',
+            ];
+        }
     }
 
 
