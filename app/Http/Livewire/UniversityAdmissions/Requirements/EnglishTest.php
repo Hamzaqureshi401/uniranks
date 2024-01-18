@@ -13,6 +13,8 @@ class EnglishTest extends Component
     public $tests = [];
     public $testing_requirements = [];
     public $unselected_id = [];
+    public $record;
+    
 
 
     public function mount()
@@ -24,6 +26,9 @@ class EnglishTest extends Component
     public function initForm()
     {
         $uni = \Auth::user()->selected_university;
+        $this->record = $uni->testingRequirments()->where('degree_id', $this->degree_id)
+            ->whereRelation('requiredTest','type_id',\AppConst::ENGLISH_TEST)->select('updated_at')->first();
+        
         $this->testing_requirements = [];
         $test_reqs = $uni->testingRequirments()->where('degree_id', $this->degree_id)
             ->whereRelation('requiredTest','type_id',\AppConst::ENGLISH_TEST)

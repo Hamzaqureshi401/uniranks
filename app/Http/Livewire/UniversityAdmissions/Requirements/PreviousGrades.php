@@ -11,6 +11,7 @@ class PreviousGrades extends Component
     public $gradeScales = [];
     public $gpa_requirments = [];
     public $unselected_grade_scale_id = [];
+    public $val = false;
 
 
     public function mount()
@@ -29,7 +30,6 @@ class PreviousGrades extends Component
             $this->gpa_requirments [] = $req->only(['degree_id', 'grade_scale_id', 'required_grades' , 'updated_at']);
         }
         $this->unselected_grade_scale_id = array_column($this->gpa_requirments, 'grade_scale_id');
-        array_pop($this->unselected_grade_scale_id);
         if (empty($this->gpa_requirments)) {
             $this->addGpaRequirement();
         }
@@ -41,6 +41,7 @@ class PreviousGrades extends Component
         if(count(array_column($this->gpa_requirments, 'grade_scale_id')) != count($this->gradeScales)){
             $this->unselected_grade_scale_id = array_column($this->gpa_requirments, 'grade_scale_id');
             $this->gpa_requirments [] = ['degree_id' => $this->degree_id, 'grade_scale_id' => '', 'required_grades' => ''];
+            $this->emit('setOpion');
         }
     }
 
@@ -52,12 +53,28 @@ class PreviousGrades extends Component
 
 
     protected function rules()
-    {
-        $rules = [];
-        return array_merge([
-            'gpa_requirments' => [],
-        ], $rules);
+{
+    $rules = [];
+    
+    // Loop through each element in gpa_requirments and add validation rules
+    foreach ($this->gpa_requirments as $key => $value) {
+        $gradeScale = $this->gradeScales->where('id', $value['grade_scale_id'])->first();
+        
+        if ($gradeScale) {
+            $rules["gpa_requirments.{$key}.required_grades"] = [
+                'numeric',
+                'min:0',
+                'max:' . $gradeScale->title,
+            ];
+        }
     }
+
+    return array_merge([
+        'gpa_requirments' => [],
+    ], $rules);
+}
+
+
 
     public function save()
     {

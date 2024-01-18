@@ -30,7 +30,7 @@ class EducationDocuments extends Component
             ->get();
 
         foreach ($app_reqs as $req) {
-            $this->other_application_requirements [] = $req->only(['application_requirement_id', 'notes']);
+            $this->other_application_requirements [] = $req->only(['application_requirement_id', 'notes' , 'updated_at']);
         }
         $this->unselected_id = array_column($this->other_application_requirements, 'application_requirement_id');
         array_pop($this->unselected_id);

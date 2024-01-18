@@ -74,7 +74,7 @@
     </div>
     <div class="card bg-transparent mt-4">
    <div class="card-body">
-      <div class="h4 blue"> @lang('Admission Requirments ')</div>
+      <div class="h4 blue"> @lang('Admission Requirements ')</div>
       <div class="w-100 px-4 mt-3">
          <hr>
       </div>

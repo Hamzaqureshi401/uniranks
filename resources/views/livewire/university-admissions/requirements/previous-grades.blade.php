@@ -28,17 +28,16 @@
         <div class="row mt-3">
             <div class="col-12 col-md-5">
                 <div class="form-floating w-100">
-                    <select wire:model.defer="gpa_requirments.{{$j}}.grade_scale_id"
-                            id="gap_requirments_{{$j}}"
-                            class="form-select input-field">
-                        @if(count($gpa_requirments) != $j + 1)
+                   <select wire:model.defer="gpa_requirments.{{$j}}.grade_scale_id" id="gap_requirments_{{$j}}" class="form-select input-field">
                         <option value="">@lang('Acceptable High School GPA Type')</option>
-                        @foreach($gradeScales as $scale)
-                            <option
-                                value="{{$scale->id}}">{{$scale->title}}</option>
-                        @endforeach
-                        @else
-                        <option value="">@lang('Acceptable High School GPA Type')</option>
+                        @if($val != 'false')
+                        @foreach($gradeScales->reject(function ($scale) use ($unselected_grade_scale_id, $j) {
+    return in_array($scale->id, $unselected_grade_scale_id) && array_key_exists($j, $unselected_grade_scale_id) && $scale->id != $unselected_grade_scale_id[$j];
+}) as $scale)
+    <option value="{{$scale->id}}">{{$scale->title}}</option>
+@endforeach
+@else
+<option value="">@lang('Acceptable High School GPA Type')</option>
                         
                         @foreach($gradeScales->whereNotIn('id' , $unselected_grade_scale_id) as $scale)
 
@@ -54,9 +53,9 @@
             </div>
             <div class="col-12 col-md-5">
                 <div class="form-floating w-100">
-                    <input wire:model.defer="gpa_requirments.{{$j}}.required_grades"
+                    <input type="number" wire:model.defer="gpa_requirments.{{$j}}.required_grades"
                            class="form-control input-field"
-                           placeholder="@lang('Acceptable High School GPA')">
+                           placeholder="@lang('Acceptable High School GPA')" min="0">
                     <label for="floatingInput">@lang('Acceptable High School GPA')</label>
                 </div>
             </div>
@@ -84,13 +83,25 @@
         wire:target="testTypeSelected,addDetailsInOtherLanguage ,loadPrograms, save, initForm, delete, edit"
         message="Processing..."/>
 
-</div>
+    <script type="text/javascript">
+         document.addEventListener('livewire:load', function () {
+      Livewire.on('setOpion', () => {
+           var val = @json(count($gpa_requirments));
+           console.log(val);
+           $('#gap_requirments_' + val)
+       });
+      
+        
+    });
+    </script>
 
 </div>
+
     </div>
-    <!-- <div class="card bg-transparent mt-4">
+    </div>
+    <div class="card bg-transparent mt-4">
    <div class="card-body">
-      <div class="h4 blue"> @lang('Grades ')</div>
+      <div class="h4 blue"> @lang('Previous Grades ')</div>
       <div class="w-100 px-4 mt-3">
          <hr>
       </div>
@@ -105,11 +116,8 @@
      </table>
       <div class="d-md-flex col-md-6 h6 blue justify-content-between">
     <div class="box-bottom-note">
-        @for($j=0;$j < count($gpa_requirments);$j++)
-       
-            @lang('Updated on') {{ \Carbon\Carbon::parse(Auth::user()->selected_university->updated_at)->format('D, M j, Y g:i A') }}
+            @lang('Updated on') {{ \Carbon\Carbon::parse($gpa_requirments[0]['updated_at'])->format('D, M j, Y g:i A') }}
         
-        @endfor
     </div>
     <div class="mobile-marg-2">@lang('By') {{ optional(Auth::user()->selected_university->createdBy)->name ?? 'By Dev Team Rep' }}</div>
 </div>
@@ -117,5 +125,3 @@
       </div>
    </div>
 </div>
-
- -->

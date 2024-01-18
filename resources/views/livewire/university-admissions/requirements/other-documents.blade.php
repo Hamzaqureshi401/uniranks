@@ -79,3 +79,33 @@
         wire:target="addApplicationRequirement,removeApplicationRequirement, save, initForm, delete, edit"
         message="Processing..."/>
 </div>
+</div>
+    </div>
+    <div class="card bg-transparent mt-4">
+   <div class="card-body">
+      <div class="h4 blue"> @lang('Other Documents ')</div>
+      <div class="w-100 px-4 mt-3">
+         <hr>
+      </div>
+      <div>
+         <table class="table table-responsive">
+         <thead>
+         </thead>
+         <tbody>
+        
+            
+         </tbody>
+     </table>
+      <div class="d-md-flex col-md-6 h6 blue justify-content-between">
+    <div class="box-bottom-note">
+            @lang('Updated on') {{ \Carbon\Carbon::parse($other_application_requirements[0]['updated_at'])->format('D, M j, Y g:i A') }}
+        
+    </div>
+    <div class="mobile-marg-2">@lang('By') {{ optional(Auth::user()->selected_university->createdBy)->name ?? 'By Dev Team Rep' }}</div>
+</div>
+
+      </div>
+   </div>
+</div>
+
+

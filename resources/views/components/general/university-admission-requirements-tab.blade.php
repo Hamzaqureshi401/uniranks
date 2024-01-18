@@ -1,7 +1,7 @@
 <div>
-    <x-general.university-admissions-page-title sub-title="University General Admission Requirments"/>
+    <x-general.university-admissions-page-title sub-title="University General Admission Requirements"/>
     <div class="paragraph-style-2 blue  mb-3">
-        <p class="mb-0">@lang('Add University Admission Requirments')</p>
+        <p class="mb-0">@lang('Add University Admission Requirements')</p>
     </div>
     <div class="card mt-1">
         <div class="card-body pt-0">
