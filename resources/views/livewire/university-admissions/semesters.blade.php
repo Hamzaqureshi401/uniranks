@@ -153,17 +153,17 @@
                 @endphp
                 <div class="row mt-3"  wire:ignore wire:key="dates">
                     <div class="col-md-6">
-                        <div class="form-floating w-100">
-                            <input x-model="edit.start_date" x-ref="start_date" class="form-control input-field date"
-                                   placeholder="@lang('Start Date')">
+                        <div class="form-floating w-100"> 
+                            
+                            <input type="date" wire:model.defer="edit.start_date" class="form-control input-field dat"
+               placeholder="@lang('Start Date')">
                             <label for="floatingInput">@lang('Start Date')</label>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating w-100">
-                            <input x-model="edit.end_date" x-ref="end_date"
-                                   class="form-control input-field date"
-                                   placeholder="@lang('End Date')">
+                             <input type="date" wire:model.defer="edit.end_date" class="form-control input-field dat"
+               placeholder="@lang('End Date')">
                             <label for="floatingInput">@lang('End Date')</label>
                         </div>
                     </div>
@@ -173,13 +173,26 @@
 
 @push(AppConst::PUSH_CSS)
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+         <style type="text/css">
+            .flatpickr-calendar{
+                top : 393.271px !important;
+            }
+        </style>
     @endpush
     @push(AppConst::PUSH_JS)
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         @if(app()->getLocale() != 'en')
             <script src="https://npmcdn.com/flatpickr/dist/l10n/{{app()->getLocale()}}.js"></script>
         @endif
+
         <script>
+             document.addEventListener('livewire:load', function () {
+      Livewire.on('setDate', () => {
+           addPickerToElement($('.dat'));
+       });
+      
+        
+    });
             function addPickerToElement(el, min_date = "today") {
                 return flatpickr(el, {
                     locale: "{{app()->getLocale()}}",

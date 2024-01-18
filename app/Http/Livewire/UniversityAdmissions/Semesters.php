@@ -4,10 +4,14 @@ namespace App\Http\Livewire\UniversityAdmissions;
 
 use App\Models\General\Language;
 use App\Models\University\Admissions\UniversitySemester;
+use Carbon\Carbon;
 use Livewire\Component;
+use App\Http\Controllers\Admin\University\Traits\TraitCommonMediaPages;
+
 
 class Semesters extends Component
 {
+    use TraitCommonMediaPages;
     public $dataCollection;
     public $names = [];
     public $translations = [];
@@ -19,7 +23,7 @@ class Semesters extends Component
     public $edit_item;
     public $isModalOpen = false;
     public $edit_details_in_langs;
-    public $edit;
+    public $edit; 
 
 //    protected $queryString = ['edit' => ['except' => '', 'as' => 'semester']];
 
@@ -121,13 +125,18 @@ class Semesters extends Component
     {
         $this->edit_item = UniversitySemester::find($this->edit_id);
         $this->edit = $this->edit_item->only(['start_date','end_date']);
+        $this->edit['start_date'] = Carbon::parse($this->edit['start_date'])->format('Y-m-d');
+        $this->edit['end_date'] = Carbon::parse($this->edit['end_date'])->format('Y-m-d');
+
+        //dd($this->edit_item , $this->edit);
+
         $translations = $this->edit_item->getTranslations();
         $this->names = array_values($translations['translated_name']);
         $this->translations = array_keys($translations['translated_name']);
         $this->edit_details_in_langs = count($this->translations);
         $this->isModalOpen = true;
 
-        //$this->emit('goToTop');
+        $this->emit('setDate');
     }
 
     public function delete(UniversitySemester $semester): void
