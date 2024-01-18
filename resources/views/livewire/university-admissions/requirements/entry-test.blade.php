@@ -66,8 +66,13 @@
                 </div>
                 <div class="col-md-2 mobile-marg-2 text-place-end">
                     @if($k == count($testing_requirements)-1)
+                        @if($k + 1 == count($testing_requirements) && $showAdd == 'false')
+                        <a href="javascript:void(0)" class="red"
+                           wire:click="rfJi5GN23kBTCA6KLrWVND2B7BRERd9uE({{$k}})">- @lang('remove')</a>
+                        @else
                         <a href="javascript:void(0)" class="light-blue"
                            wire:click="addTestingRequirement">+ @lang('add new')</a>
+                        @endif
                     @else
                         <a href="javascript:void(0)" class="red"
                            wire:click="removeTestingRequirement({{$k}})">- @lang('remove')</a>

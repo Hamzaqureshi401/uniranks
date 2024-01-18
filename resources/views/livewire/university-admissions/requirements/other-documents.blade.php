@@ -44,8 +44,13 @@
                 </div>
                 <div class="col-md-2 mobile-marg-2 text-place-end">
                     @if($l == count($other_application_requirements)-1)
+                        @if($l + 1 == count($other_application_requirements) && $showAdd == 'false')
+                        <a href="javascript:void(0)" class="red"
+                           wire:click="removeApplicationRequirement({{$l}})">- @lang('remove')</a>
+                        @else
                         <a href="javascript:void(0)" class="light-blue"
                            wire:click="addApplicationRequirement">+ @lang('add new')</a>
+                        @endif
                     @else
                         <a href="javascript:void(0)" class="red"
                            wire:click="removeApplicationRequirement({{$l}})">- @lang('remove')</a>

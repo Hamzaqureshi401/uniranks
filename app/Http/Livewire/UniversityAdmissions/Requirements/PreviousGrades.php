@@ -12,6 +12,8 @@ class PreviousGrades extends Component
     public $gpa_requirments = [];
     public $unselected_grade_scale_id = [];
     public $val = false;
+    public $showAdd = true;
+
 
 
     public function mount()
@@ -33,6 +35,9 @@ class PreviousGrades extends Component
         if (empty($this->gpa_requirments)) {
             $this->addGpaRequirement();
         }
+        if(count(array_column($this->gpa_requirments, 'grade_scale_id')) != count($this->gradeScales)){
+            $this->showAdd = false;
+        }
 
     }
 
@@ -42,6 +47,8 @@ class PreviousGrades extends Component
             $this->unselected_grade_scale_id = array_column($this->gpa_requirments, 'grade_scale_id');
             $this->gpa_requirments [] = ['degree_id' => $this->degree_id, 'grade_scale_id' => '', 'required_grades' => ''];
             $this->emit('setOpion');
+        }else{
+            $this->mount();
         }
     }
 

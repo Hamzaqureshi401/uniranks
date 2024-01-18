@@ -14,6 +14,8 @@ class EntryTest extends Component
     public $testing_requirements = [];
     public $unselected_id = [];
     public $record;
+    public $showAdd = true;
+
 
 
     public function mount()
@@ -65,6 +67,9 @@ class EntryTest extends Component
         if (empty($this->testing_requirements)) {
             $this->addTestingRequirement();
         }
+        if(count(array_column($this->testing_requirements, 'test_id')) != count($this->tests)){
+            $this->showAdd = false;
+        }
 
     }
 
@@ -86,6 +91,8 @@ class EntryTest extends Component
                 'score_from' => '',
                 'score_to' => '',
             ];
+        }else{
+            $this->mount();
         }
     }
 

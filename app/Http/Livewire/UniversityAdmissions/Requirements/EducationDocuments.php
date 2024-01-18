@@ -12,6 +12,8 @@ class EducationDocuments extends Component
     public $other_application_requirements = [];
     public $other_requirments_types = [];
     public $unselected_id = [];
+    public $showAdd = true;
+
 
 
     public function mount()
@@ -38,6 +40,9 @@ class EducationDocuments extends Component
         if (empty($this->other_application_requirements)) {
             $this->addApplicationRequirement();
         }
+        if(count(array_column($this->other_application_requirements, 'application_requirement_id')) != count($this->other_requirments_types)){
+            $this->showAdd = false;
+        }
     }
 
 
@@ -46,6 +51,8 @@ class EducationDocuments extends Component
         if(count(array_column($this->other_application_requirements, 'application_requirement_id')) != count($this->other_requirments_types)){
             $this->unselected_id = array_column($this->other_application_requirements, 'application_requirement_id');
             $this->other_application_requirements [] = ['application_requirement_id' => '', 'notes' => ''];    
+        }else{
+            $this->mount();
         }
         
     }

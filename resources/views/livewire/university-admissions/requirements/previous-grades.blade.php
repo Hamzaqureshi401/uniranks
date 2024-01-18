@@ -61,8 +61,13 @@
             </div>
             <div class="col-md-2 mobile-marg-2 text-place-end">
                 @if($j == count($gpa_requirments)-1)
-                    <a href="javascript:void(0)" class="light-blue"
-                       wire:click="addGpaRequirement">+ @lang('add new')</a>
+                    @if($j + 1 == count($gpa_requirments) && $showAdd == 'false')
+                        <a href="javascript:void(0)" class="red"
+                           wire:click="removeGpaRequirement({{$j}})">- @lang('remove')</a>
+                    @else
+                        <a href="javascript:void(0)" class="light-blue"
+                           wire:click="addGpaRequirement">+ @lang('add new')</a>
+                    @endif
                 @else
                     <a href="javascript:void(0)" class="red"
                        wire:click="removeGpaRequirement({{$j}})">- @lang('remove')</a>
@@ -90,8 +95,6 @@
            console.log(val);
            $('#gap_requirments_' + val)
        });
-      
-        
     });
     </script>
 

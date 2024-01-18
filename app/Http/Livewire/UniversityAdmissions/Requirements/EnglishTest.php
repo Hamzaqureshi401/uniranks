@@ -7,6 +7,7 @@ use App\Models\General\TestScoreType;
 use App\Models\University\UniversityTestingRequirement;
 use Livewire\Component;
 
+
 class EnglishTest extends Component
 {
     public $degree_id;
@@ -14,6 +15,8 @@ class EnglishTest extends Component
     public $testing_requirements = [];
     public $unselected_id = [];
     public $record;
+    public $showAdd = true;
+
     
 
 
@@ -66,6 +69,10 @@ class EnglishTest extends Component
         if (empty($this->testing_requirements)) {
             $this->addTestingRequirement();
         }
+        if(count(array_column($this->testing_requirements, 'test_id')) != count($this->tests)){
+            $this->showAdd = false;
+        }
+
 
     }
 
@@ -87,6 +94,8 @@ class EnglishTest extends Component
                 'score_from' => '',
                 'score_to' => '',
             ];
+        }else{
+            $this->mount();
         }
     }
 
