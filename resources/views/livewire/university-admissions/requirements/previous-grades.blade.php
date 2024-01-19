@@ -30,21 +30,12 @@
                 <div class="form-floating w-100">
                    <select wire:model.defer="gpa_requirments.{{$j}}.grade_scale_id" id="gap_requirments_{{$j}}" class="form-select input-field">
                         <option value="">@lang('Acceptable High School GPA Type')</option>
-                        @if($val != 'false')
-                        @foreach($gradeScales->reject(function ($scale) use ($unselected_grade_scale_id, $j) {
-    return in_array($scale->id, $unselected_grade_scale_id) && array_key_exists($j, $unselected_grade_scale_id) && $scale->id != $unselected_grade_scale_id[$j];
-}) as $scale)
-    <option value="{{$scale->id}}">{{$scale->title}}</option>
-@endforeach
-@else
-<option value="">@lang('Acceptable High School GPA Type')</option>
                         
-                        @foreach($gradeScales->whereNotIn('id' , $unselected_grade_scale_id) as $scale)
-
-                            <option
-                                value="{{$scale->id}}">{{$scale->title}}</option>
+                        @foreach($gradeScales->reject(function ($scale) use ($unselected_grade_scale_id, $j) {
+                            return in_array($scale->id, $unselected_grade_scale_id) && array_key_exists($j, $unselected_grade_scale_id) && $scale->id != $unselected_grade_scale_id[$j];
+                        }) as $scale)
+                            <option value="{{$scale->id}}">{{$scale->title}}</option>
                         @endforeach
-                        @endif
 
                     </select>
                     <label for="gap_requirments_{{$j}}">@lang('Acceptable High School GPA Type')
@@ -90,10 +81,15 @@
 
     <script type="text/javascript">
          document.addEventListener('livewire:load', function () {
-      Livewire.on('setOpion', () => {
-           var val = @json(count($gpa_requirments));
-           console.log(val);
-           $('#gap_requirments_' + val)
+      Livewire.on('setOption', (data) =>{
+           var total = data.count - 1;
+           console.log(total);
+           var val = @json($unselected_grade_scale_id);
+           console.log(val , total);
+           $('#gap_requirments_' + val);
+           $.each(val, function(index, value) {
+                $('#gap_requirments_' + total + ' option[value="' + value + '"]').remove();
+            });
        });
     });
     </script>

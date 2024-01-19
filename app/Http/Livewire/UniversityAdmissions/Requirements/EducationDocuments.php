@@ -35,7 +35,7 @@ class EducationDocuments extends Component
             $this->other_application_requirements [] = $req->only(['application_requirement_id', 'notes' , 'updated_at']);
         }
         $this->unselected_id = array_column($this->other_application_requirements, 'application_requirement_id');
-        array_pop($this->unselected_id);
+        //array_pop($this->unselected_id);
 
         if (empty($this->other_application_requirements)) {
             $this->addApplicationRequirement();
@@ -50,11 +50,16 @@ class EducationDocuments extends Component
     {
         if(count(array_column($this->other_application_requirements, 'application_requirement_id')) != count($this->other_requirments_types)){
             $this->unselected_id = array_column($this->other_application_requirements, 'application_requirement_id');
-            $this->other_application_requirements [] = ['application_requirement_id' => '', 'notes' => ''];    
+            $this->other_application_requirements [] = ['application_requirement_id' => '', 'notes' => ''];  
+            $this->setOption();  
         }else{
             $this->mount();
         }
         
+    }
+    public function setOption(){
+
+        $this->emit('setOption', ['count' => count($this->other_application_requirements)]);
     }
 
 
@@ -66,13 +71,22 @@ class EducationDocuments extends Component
 
     protected function rules()
     {
-        return [
-            'other_application_requirements' => [],
+        $rules = [
+            'other_application_requirements' => 'array',
         ];
+
+        foreach ($this->other_application_requirements as $key => $value) {
+            $rules["other_application_requirements.{$key}.application_requirement_id"] = 'required|numeric';
+            $rules["other_application_requirements.{$key}.notes"] = 'required|string';
+        }
+
+        return $rules;
     }
+
 
     public function save()
     {
+        $this->setOption();
         $this->validate();
         $uni = \Auth::user()->selected_university;
         $uni->applicationRequirments()->whereRelation('requirement', 'type_id', $this->type_id)->delete();

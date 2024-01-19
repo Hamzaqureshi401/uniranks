@@ -61,7 +61,7 @@ class EntryTest extends Component
             }
         }
         $this->unselected_id = array_column($this->testing_requirements, 'test_id');
-        array_pop($this->unselected_id);
+        //array_pop($this->unselected_id);
 
 
         if (empty($this->testing_requirements)) {
@@ -91,9 +91,15 @@ class EntryTest extends Component
                 'score_from' => '',
                 'score_to' => '',
             ];
+            $this->setOption();
         }else{
             $this->mount();
         }
+    }
+
+    public function setOption(){
+
+        $this->emit('setOption', ['count' => count($this->testing_requirements)]);
     }
 
 
@@ -131,6 +137,7 @@ class EntryTest extends Component
                 }
             }
         }
+        $this->setOption();
     }
 
 
@@ -175,6 +182,7 @@ class EntryTest extends Component
 
     public function save()
     {
+        $this->setOption();
         $this->validate();
         $uni = \Auth::user()->selected_university;
         $uni->testingRequirments()->where('degree_id', $this->degree_id)

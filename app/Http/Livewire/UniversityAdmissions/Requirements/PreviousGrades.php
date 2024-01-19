@@ -46,10 +46,15 @@ class PreviousGrades extends Component
         if(count(array_column($this->gpa_requirments, 'grade_scale_id')) != count($this->gradeScales)){
             $this->unselected_grade_scale_id = array_column($this->gpa_requirments, 'grade_scale_id');
             $this->gpa_requirments [] = ['degree_id' => $this->degree_id, 'grade_scale_id' => '', 'required_grades' => ''];
-            $this->emit('setOpion');
+            $this->setOption();
         }else{
             $this->mount();
         }
+    }
+
+    public function setOption(){
+
+        $this->emit('setOption', ['count' => count($this->gpa_requirments)]);
     }
 
     public function removeGpaRequirement($index)
@@ -59,19 +64,23 @@ class PreviousGrades extends Component
     }
 
 
-    protected function rules()
+   protected function rules()
 {
     $rules = [];
-    
+
     // Loop through each element in gpa_requirments and add validation rules
     foreach ($this->gpa_requirments as $key => $value) {
         $gradeScale = $this->gradeScales->where('id', $value['grade_scale_id'])->first();
-        
-        if ($gradeScale) {
+
+        $rules["gpa_requirments.{$key}.grade_scale_id"] = ['required', 'numeric'];
+
+        // Add required validation only if grade_scale_id is not empty
+        if (!empty($value['grade_scale_id'])) {
             $rules["gpa_requirments.{$key}.required_grades"] = [
+                'required',
                 'numeric',
                 'min:0',
-                'max:' . $gradeScale->title,
+                'max:' . ($gradeScale ? $gradeScale->title : 0),
             ];
         }
     }
@@ -83,9 +92,13 @@ class PreviousGrades extends Component
 
 
 
+
     public function save()
     {
+        //dd($this->gpa_requirments);
+        $this->setOption();
         $this->validate();
+
         $uni = \Auth::user()->selected_university;
         $uni->gpaRequirments()->where('degree_id',$this->degree_id)->delete();
         $uni->gpaRequirments()->createMany($this->gpa_requirments);

@@ -23,22 +23,14 @@
                         <select wire:model.defer="other_application_requirements.{{$l}}.application_requirement_id"
                                 id="requirement_type_{{$l}}"
                                 class="form-select input-field">
-                            @if(count($other_application_requirements) != $l + 1)
-        
-                            <option value="">@lang('Required Documents Type')</option>
-                            @foreach($other_requirments_types as $requirmentsType)
-                                <option
-                                    value="{{$requirmentsType->id}}">{{$requirmentsType->title}}</option>
-                            @endforeach
-                            @else
-                            <option value="">@lang('Required Documents Type')</option>
                             
-                            @foreach($other_requirments_types->whereNotIn('id' , $unselected_id) as $scale)
-
-                                <option
-                                    value="{{$scale->id}}">{{$scale->title}}</option>
+                            <option value="">@lang('Required Documents Type')</option>
+                           
+                            @foreach($other_requirments_types->reject(function ($scale) use ($unselected_id, $l) {
+                                return in_array($scale->id, $unselected_id) && array_key_exists($l, $unselected_id) && $scale->id != $unselected_id[$l];
+                            }) as $scale)
+                                <option value="{{$scale->id}}">{{$scale->title}}</option>
                             @endforeach
-                            @endif
                         </select>
                         <label for="requirement_type_{{$l}}">@lang('Required Documents Type')</label>
                     </div>
@@ -84,6 +76,19 @@
     <x-general.loading
         wire:target="addApplicationRequirement,removeApplicationRequirement, save, initForm, delete, edit"
         message="Processing..."/>
+
+         <script type="text/javascript">
+         document.addEventListener('livewire:load', function () {
+      Livewire.on('setOption', (data) =>{
+           var total = data.count - 1;
+           var val = @json($unselected_id);
+           
+           $.each(val, function(index, value) {
+                $('#requirement_type_' + total + ' option[value="' + value + '"]').remove();
+            });
+       });
+    });
+    </script>
 </div>
 
 </div>

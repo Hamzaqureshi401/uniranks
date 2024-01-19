@@ -30,21 +30,13 @@
                         <select wire:model="testing_requirements.{{$k}}.test_id"
                                 id="test_type_{{$k}}"
                                 class="form-select input-field" wire:change="testTypeSelected({{$k}})">
-                            @if(count($testing_requirements) != $k + 1)
                             <option value="">@lang('Acceptable Test Type')</option>
-                            @foreach($tests as $test)
-                                <option value="{{$test->id}}">{{$test->title}}
-                                </option>
-                            @endforeach
-                            @else
-                             <option value="">@lang('Acceptable Test Type')</option>
                             
-                             @foreach($tests->whereNotIn('id' , $unselected_id) as $scale)
-
-                            <option
-                                value="{{$scale->id}}">{{$scale->title}}</option>
+                            @foreach($tests->reject(function ($scale) use ($unselected_id, $k) {
+                                return in_array($scale->id, $unselected_id) && array_key_exists($k, $unselected_id) && $scale->id != $unselected_id[$k];
+                            }) as $scale)
+                                <option value="{{$scale->id}}">{{$scale->title}}</option>
                             @endforeach
-                            @endif
                         </select>
                         <label for="test_type_{{$k}}">@lang('Acceptable Test Type')</label>
                     </div>
@@ -118,6 +110,18 @@
         <x-general.loading
             wire:target="testTypeSelected,addDetailsInOtherLanguage ,loadPrograms, save, initForm, delete, edit"
             message="Processing..."/>
+             <script type="text/javascript">
+         document.addEventListener('livewire:load', function () {
+      Livewire.on('setOption', (data) =>{
+           var total = data.count - 1;
+           var val = @json($unselected_id);
+           
+           $.each(val, function(index, value) {
+                $('#test_type_' + total + ' option[value="' + value + '"]').remove();
+            });
+       });
+    });
+    </script>
     </div>
 
 </div>
