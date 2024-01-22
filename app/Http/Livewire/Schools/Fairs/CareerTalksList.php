@@ -35,6 +35,7 @@ class CareerTalksList extends Component
     public $cities = [];
     public $curriculums = [];
     public $students = [];
+    public $view_horizontal = true;
 
     protected $queryString = ['query' => ['except' => ''], 'filter_by_country' => ['except' => ''], 'filter_by_school_fee' => ['except' => ''],
         'filter_by_curriculum' => ['except' => ''], 'filter_by_no_students' => ['except' => ''], 'period' => ['except' => '']];
@@ -45,14 +46,19 @@ class CareerTalksList extends Component
         $this->loadEventsCredit();
     }
 
+    public function setView(){
+        if($this->view_horizontal == true){
+            $this->view_horizontal = false;
+        }else{
+            $this->view_horizontal = true;
+        }
+    }
+
     public function loadFairs(): LengthAwarePaginator
     {
         $period = explode(' to ', $this->period);
-        return Fair::careerTalk()->upcoming()->with(['school' => ['country', 'city', 'curriculum', 'g_12_fee_range']])
-            ->withCount(['sessions', 'sessions as confirmed_universities_count'=>fn($q)=>$q->whereNotNull('university_id')->orWhereNotNull('agent_id'),             ])
-            ->whereIn('school_id',$this->schoolsBaseQuery()->select('id'))
-            ->when(count($period) > 1, fn($q) => $q->whereBetween('start_date', $period))
-            ->paginate(30);
+        return Fair::with(['school' => ['country', 'city', 'curriculum', 'g_12_fee_range']])
+            ->take(5)->paginate(5);
     }
 
     private function loadCities()
@@ -107,6 +113,7 @@ class CareerTalksList extends Component
     public function render()
     {
         $fairs = $this->loadFairs();
+        //dd($fairs->first());
         $this->emit('goToTop');
         return view('livewire.schools.fairs.career-talks-list', compact('fairs'));
     }

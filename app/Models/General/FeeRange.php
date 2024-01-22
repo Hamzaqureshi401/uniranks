@@ -66,7 +66,7 @@ class FeeRange extends Model
             $high = $range[1] * $rate;
             $glue = "-";
         }
-        return $currency->code." {$low} {$glue} {$high}";
+        return " {$low} {$currency->code} {$glue} {$high} {$currency->code}";
     }
     public function currency(){
         return $this->belongsTo(Currency::class,'currency_id');
