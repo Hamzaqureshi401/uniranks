@@ -7,6 +7,7 @@ use App\Models\General\Cities;
 use App\Models\General\Countries;
 use App\Models\General\Curriculum;
 use App\Models\General\FeeRange;
+use App\Models\General\Major;
 use App\Models\Institutes\School;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -27,6 +28,8 @@ class CareerTalksList extends Component
     public $filter_by_curriculum = '';
     public $filter_by_no_students = '';
     public $filter_by_school_fee = '';
+    public $filter_by_majors = '';
+
 
     public $period = '';
 
@@ -34,6 +37,7 @@ class CareerTalksList extends Component
     public $countries = [];
     public $cities = [];
     public $curriculums = [];
+    public $majors = [];
     public $students = [];
     public $view_horizontal = true;
 
@@ -74,11 +78,13 @@ class CareerTalksList extends Component
     private function schoolsBaseQuery(): School|Builder|HigherOrderWhenProxy
     {
         //whereRelation('fairInvitations', 'university_id', \Auth::user()->selected_university->id)
+        //dd($this->filter_by_majors);
         return School::query()
             ->whereIn('id',Fair::careerTalk()->upcoming()->select('school_id'))
             ->when(!empty($this->filter_by_country), fn($q) => $q->where('country_id', $this->filter_by_country))
             ->when(!empty($this->filter_by_city), fn($q) => $q->where('city_id', $this->filter_by_city))
             ->when(!empty($this->filter_by_curriculum), fn($q) => $q->where('curriculum_id', $this->filter_by_curriculum))
+            ->when(!empty($this->filter_by_majors), fn($q) => $q->where('major_id', $this->filter_by_majors))
             ->when(!empty($this->filter_by_school_fee), fn($q) => $q->where('fees_grade12', $this->filter_by_school_fee));
 
     }
@@ -100,6 +106,12 @@ class CareerTalksList extends Component
         }
         if (empty($this->filter_by_curriculum)) {
             $this->curriculums = Curriculum::whereIn('id', $this->schoolsBaseQuery()->select('curriculum_id'))->orderBy('title')->get();
+        }
+        if (empty($this->filter_by_majors)) {
+            $this->majors = Major::orderBy('title')->get();
+        }
+        if (empty($this->filter_by_no_students)) {
+            $this->students = Major::orderBy('title')->get();
         }
         if (empty($this->filter_by_city)) {
             $this->cities = Cities::whereIn('id', $this->schoolsBaseQuery()->select('city_id'))
