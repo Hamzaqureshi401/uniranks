@@ -92,7 +92,7 @@ class CareerTalksList extends Component
             })
             ->when(!empty($this->filter_by_no_students), function ($q) {
                 $q->whereHas('fairs', function ($subquery) {
-                    $subquery->where('max', $this->filter_by_no_students);
+                    $subquery->where('max','>=', $this->filter_by_no_students);
                 });
             })
             ->when(!empty($this->filter_by_school_fee), fn($q) => $q->where('fees_grade12', $this->filter_by_school_fee));
@@ -121,7 +121,9 @@ class CareerTalksList extends Component
             $this->majors = Major::orderBy('title')->get();
         }
         if (empty($this->filter_by_no_students)) {
-            $this->students = ['50' , '100' , '200']; //array_unique(Fair::whereNotNull('max')->pluck('max')->toArray());
+            $this->students = ['50' => '> 50' , 
+            '100' => '> 100' , 
+            '200' => '> 200']; //array_unique(Fair::whereNotNull('max')->pluck('max')->toArray());
         }
         //dd($this->schoolsBaseQuery()->first());
         if (empty($this->filter_by_city)) {

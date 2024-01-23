@@ -102,8 +102,8 @@
             <select wire:model="filter_by_no_students" class="input-field form-control" aria-label=""
                wire:change="loadFilteredData">
                <option value="">@lang('Number of Students')</option>
-               @foreach($students ?? [] as $student)
-               <option value="{{$student}}">{{$student}}</option>
+               @foreach($students ?? [] as $key => $student)
+               <option value="{{$key}}">{{$student}}</option>
                @endforeach
             </select>
          </div>
