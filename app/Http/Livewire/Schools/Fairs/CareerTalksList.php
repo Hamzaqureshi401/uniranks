@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Schools\Fairs;
 
 use App\Models\Fairs\Fair;
+use App\Models\Fairs\FairSession;
 use App\Models\General\Cities;
 use App\Models\General\Countries;
 use App\Models\General\Curriculum;
@@ -42,7 +43,7 @@ class CareerTalksList extends Component
     public $view_horizontal = true;
 
     protected $queryString = ['query' => ['except' => ''], 'filter_by_country' => ['except' => ''], 'filter_by_school_fee' => ['except' => ''],
-        'filter_by_curriculum' => ['except' => ''], 'filter_by_no_students' => ['except' => ''], 'period' => ['except' => '']];
+        'filter_by_curriculum' => ['except' => ''], 'filter_by_no_students' => ['except' => ''],'filter_by_majors' => ['except' => ''], 'period' => ['except' => '']];
 
     public function mount()
     {
@@ -84,7 +85,16 @@ class CareerTalksList extends Component
             ->when(!empty($this->filter_by_country), fn($q) => $q->where('country_id', $this->filter_by_country))
             ->when(!empty($this->filter_by_city), fn($q) => $q->where('city_id', $this->filter_by_city))
             ->when(!empty($this->filter_by_curriculum), fn($q) => $q->where('curriculum_id', $this->filter_by_curriculum))
-            ->when(!empty($this->filter_by_majors), fn($q) => $q->where('major_id', $this->filter_by_majors))
+            ->when(!empty($this->filter_by_majors), function ($q) {
+                $q->whereHas('fairs.majors', function ($subquery) {
+                    $subquery->where('major_id', $this->filter_by_majors);
+                });
+            })
+            ->when(!empty($this->filter_by_no_students), function ($q) {
+                $q->whereHas('fairs', function ($subquery) {
+                    $subquery->where('max', $this->filter_by_no_students);
+                });
+            })
             ->when(!empty($this->filter_by_school_fee), fn($q) => $q->where('fees_grade12', $this->filter_by_school_fee));
 
     }
@@ -111,8 +121,9 @@ class CareerTalksList extends Component
             $this->majors = Major::orderBy('title')->get();
         }
         if (empty($this->filter_by_no_students)) {
-            $this->students = Major::orderBy('title')->get();
+            $this->students = ['50' , '100' , '200']; //array_unique(Fair::whereNotNull('max')->pluck('max')->toArray());
         }
+        //dd($this->schoolsBaseQuery()->first());
         if (empty($this->filter_by_city)) {
             $this->cities = Cities::whereIn('id', $this->schoolsBaseQuery()->select('city_id'))
                 ->when(!empty($this->filter_by_country), fn($q) => $q->where('country_id', $this->filter_by_country))

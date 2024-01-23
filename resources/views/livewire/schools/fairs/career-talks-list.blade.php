@@ -99,11 +99,11 @@
             </select>
          </div>
          <div class="col mobile-marg-2 col-marg mx-1">
-            <select wire:model="filter_by_curriculum" class="input-field form-control" aria-label=""
+            <select wire:model="filter_by_no_students" class="input-field form-control" aria-label=""
                wire:change="loadFilteredData">
                <option value="">@lang('Number of Students')</option>
-               @foreach($curriculums ?? [] as $curriculum)
-               <option value="{{$curriculum->id}}">{{$curriculum->title}}</option>
+               @foreach($students ?? [] as $student)
+               <option value="{{$student}}">{{$student}}</option>
                @endforeach
             </select>
          </div>
