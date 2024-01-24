@@ -115,12 +115,12 @@
          <div class="row">
             <div class="col-md-2" style="width: 9.666667% !important;">
                <div class="row">
-                  <div class="col-12">
+                  <div class="col-12 mt-2">
                      <a href="{{route('admin.schoolFairs.careerTalks.view',$fair->id)}}" class="university-img-div">
                      <img src="{{$fair->school->logo_url ?? ''}}" class="" width="93px">
                      </a>
                   </div>
-                  <div class="col-12 mt-3">
+                  <!-- <div class="col-12 mt-3">
                      @if(empty($fair->active_status))
                      <span style="color: green; margin-left: 23px;">{{ 'Active' }}</span>
                      @else
@@ -132,7 +132,7 @@
                         @endif
                      </span>
                      @endif
-                  </div>
+                  </div> -->
                </div>
             </div>
             <div class="col-md-7" style="
@@ -140,28 +140,45 @@
                margin-left: -7px;
                 /* Choose your desired border color */
                ">
-               <div class="row mt-4" >
-                  <div class="col-lg-12">
+               <div class="row mt-2" >
+                  <div class="col-lg-12 mt-2">
                      <a href="{{route('admin.schoolFairs.fair.view',$fair->id)}}" style="font-weight: normal !important;" class="h5 blue text-decoration-none">{{$fair->school->school_name ?? ''}}</a>
                   </div>
-                  <div class="col-lg-12 light-blue smallh  d-md-flex mt-2">
+                  <div class="col-lg-12 light-blue smallh  d-md-flex mt-1">
                      <div
                         class="">{{$fair->school?->country?->country_name.', '. $fair->school?->city?->city_name}} | @lang('Sessions: '){{ $fair->sessions->first()->id ?? '' }} | {{ $fair->start_date->format('n/j/Y gA') }} | @lang('Capacity: '){{ $fair->max }}@lang(' Universities')
                      </div>
                   </div>
-                   <div class="row">
-                  <div class="col-12">&nbsp</div>
-                  <div class="col-md-1"></div>
-                  <div class="col-md-4">
+                   <div class="row mt-1">
+                  <!-- <div class="col-12">&nbsp</div> -->
+                  <!-- <div class="col-md-1"></div> -->
+                  <div class="col-md-3 mt-1">
                      <span style="color: #ae1414;">{{ 'Deadline: ' }}{{ $fair->end_date->format('n/j/Y') }}</span>
                   </div>
-                  <div class="col-md-4 light-blue">
+                  <div class="col-md-3 light-blue mt-1">
                      @lang('Remaining Seats') {{intVal($fair->max) - $fair->confirmed_universities_count}}
                      / {{$fair->max}}
                   </div>
+                   <div class="col-md-3 text-center mt-1">
+                     
+                      @if(now() < $fair->end_date)
+                      <button class="m-0 button-no-bg show_btn" style="width:108% !important; border: 1px solid green !important;">
+                                <span style="color: green;">{{ 'Active' }}</span>
+                                </button>
+                            @elseif(now() > $fair->end_date)
+                             <button class="m-0 button-no-bg show_btn" style="width:108% !important; border: 1px solid #ae1414 !important;">
+                                <span style="color: #ae1414;">@lang('Expired')</span>
+                                </button>
+                            @else
+                             <button class="m-0 button-no-bg show_btn" style="width:108% !important; border: 1px solid #ae1414 !important;">
+                                <span style="color: #ae1414;">@lang('Closed')</span>
+                                </button>
+                            @endif
+                            
+                  </div>
                   <div class="col-md-3">
                      <div class="d-flex justify-content-end">
-                        @if(empty($fair->active_status))
+                        @if((now() < $fair->end_date))
                         <a href="{{ route('admin.schoolFairs.careerTalks.view', $fair->id) }}" style="" class="button-sm button-blue m-0 w-100 text-decoration-none"
                            wire:click="acceptFair('{{$fair->id}}')"> @lang('Book')</a>
                         @else
@@ -172,7 +189,7 @@
                </div>
                </div>
             </div>
-            <div class="col-md-3 mt-4" style=" width: 20% !important;  border-left: 1px solid #ccc; margin-left: -22px;">
+            <div class="col-md-3 mt-2" style=" width: 20% !important;  border-left: 1px solid #ccc; margin-left: -22px;">
                <div class="h6 mb-0 gray">
                    <div class="row">
                      <div class="col-md-12">@lang('Fees') {{$fair->school?->g_12_fee_range?->currency_range}}</div>

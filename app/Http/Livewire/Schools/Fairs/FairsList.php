@@ -29,6 +29,8 @@ class FairsList extends Component
     public $filter_by_curriculum = '';
     public $filter_by_no_students = '';
     public $filter_by_school_fee = '';
+    public $filter = false;
+
 
     public $period = '';
 
@@ -61,20 +63,26 @@ class FairsList extends Component
         }
     }
 
-    public function loadFairs(): LengthAwarePaginator
-    {
-        $period = explode(' to ', $this->period);
-        return Fair::simpleFair()->upcoming()->with(['school' => ['country', 'city', 'curriculum', 'g_12_fee_range']])
-            ->withCount('confirmedUniversities')
-            ->with('invitation', fn($q) => $q->where('university_id', \Auth::user()->selected_university->id))
-            ->whereIn('school_id',$this->schoolsBaseQuery()->select('id'))
-//            ->when(!empty($this->filter_by_country), fn($q) => $q->whereRelation('school', 'country_id', $this->filter_by_country))
-//            ->when(!empty($this->filter_by_city), fn($q) => $q->whereRelation('school', 'city_id', $this->filter_by_city))
-//            ->when(!empty($this->filter_by_curriculum), fn($q) => $q->whereRelation('school', 'curriculum_id', $this->filter_by_curriculum))
-//            ->when(!empty($this->filter_by_school_fee), fn($q) => $q->whereRelation('school', 'fees_grade12', $this->filter_by_school_fee))
-            ->when(count($period) > 1, fn($q) => $q->whereBetween('start_date', $period))
-            ->paginate(30);
-    }
+   public function loadFairs(): LengthAwarePaginator
+{
+    $period = explode(' to ', $this->period);
+
+    //dd($this->schoolsBaseQuery()->pluck('id')->toArray());
+    
+    return Fair::simpleFair()
+        ->with(['school' => ['country', 'city', 'curriculum', 'g_12_fee_range']])
+        ->withCount('confirmedUniversities')
+        ->with('invitation', fn($q) => $q->where('university_id', \Auth::user()->selected_university->id))
+        ->when(
+            ($this->filter == true), 
+            fn($q) => $q->whereIn('school_id', $this->schoolsBaseQuery()->pluck('id')->toArray())
+        )
+        ->when(count($period) > 1, fn($q) => $q->whereBetween('start_date', $period))
+        ->orderBy('end_date', 'asc') // Upcoming fairs first
+        ->orderByDesc('end_date')   // Past fairs, closest date first
+        ->paginate(12);
+}
+
 
     private function loadCities()
     {
@@ -105,8 +113,10 @@ class FairsList extends Component
         $this->loadFilteredData();
     }
 
-    public function loadFilteredData($without = "")
+    public function loadFilteredData($without = false)
     {
+        $this->filter = $without;
+        //dd($this->filter);
         if (empty($this->filter_by_school_fee)) {
             $this->fee_ranges = FeeRange::whereIn('id', $this->schoolsBaseQuery()->select('fees_grade12'))->orderBy('id')->get();
         }

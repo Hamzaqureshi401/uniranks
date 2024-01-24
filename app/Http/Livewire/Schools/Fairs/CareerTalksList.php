@@ -63,6 +63,8 @@ class CareerTalksList extends Component
     {
         $period = explode(' to ', $this->period);
         return Fair::with(['school' => ['country', 'city', 'curriculum', 'g_12_fee_range']])
+        ->orderBy('end_date', 'desc')
+        
             ->take(5)->paginate(5);
     }
 

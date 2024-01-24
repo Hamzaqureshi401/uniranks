@@ -20,7 +20,16 @@
       }
       .imageflex { display: flex; }
       .imageflexcontent { margin-left: 5px; margin-top: 0; }
-      }
+      /* Add this CSS to your stylesheet or in a style tag in your HTML */
+
+.button-no-bg:hover {
+    background-color: transparent; /* Set the background-color to transparent on hover */
+    color: inherit; /* Inherit the color from the parent, or you can set a specific color */
+    text-decoration: none; /* Remove any text decoration on hover */
+    cursor: default; /* Set the cursor to default to remove the pointer cursor on hover */
+}
+
+
 
    </style>
    @endpush
@@ -52,7 +61,7 @@
       <div class="align-items-center my-3 d-md-flex mr-l small5" :class="showFilters ? '':'d-none' ">
          <div class="col mobile-marg-2 col-marg mx-1">
             <select wire:model="filter_by_country" class="input-field form-control" aria-label=""
-               wire:change="loadFilteredData">
+               wire:change="loadFilteredData(true)">
                <option value="">@lang('Select Country')</option>
                @foreach($countries ?? [] as $country)
                <option value="{{$country->id}}">{{$country->country_name}}</option>
@@ -62,7 +71,7 @@
          <div class="w-100 d-block d-md-none my-1"></div>
          <div class="col mobile-marg-2 col-marg mx-1">
             <select wire:model="filter_by_city" class="input-field form-control" aria-label=""
-               wire:change="loadFilteredData">
+               wire:change="loadFilteredData(true)">
                <option value="">@lang('Select City')</option>
                @foreach($cities ?? [] as $city)
                <option value="{{$city->id}}">{{$city->city_name}}</option>
@@ -72,14 +81,14 @@
          <div class="w-100 d-block d-md-none my-1"></div>
          <!--to force new line-->
          <div class="col mobile-marg-2 col-marg mx-1 ">
-            <x-elements.date-range-picker wire:model="period" wire:change="loadFilteredData"
+            <x-elements.date-range-picker wire:model="period" wire:change="loadFilteredData(true)"
                placeholder="Select Period"/>
          </div>
          <div class="w-100 d-block d-md-none my-1"></div>
          <!--to force new line-->
          <div class="col mobile-marg-2 col-marg mx-1">
             <select wire:model="filter_by_school_fee" class="input-field form-control" aria-label=""
-               wire:change="loadFilteredData">
+               wire:change="loadFilteredData(true)">
                <option value="">@lang('Select Fee Range')</option>
                @foreach($fee_ranges ?? [] as $fee_range)
                <option value="{{$fee_range->id}}">{{$fee_range->currency_range}}</option>
@@ -90,7 +99,7 @@
          <!--to force new line-->
          <div class="col mobile-marg-2 col-marg mx-1">
             <select wire:model="filter_by_curriculum" class="input-field form-control" aria-label=""
-               wire:change="loadFilteredData">
+               wire:change="loadFilteredData(true)">
                <option value="">@lang('Select Curriculum')</option>
                @foreach($curriculums ?? [] as $curriculum)
                <option value="{{$curriculum->id}}">{{$curriculum->title}}</option>
@@ -207,13 +216,19 @@
                         <div class="w-100 px-4 mt-3">
                            <hr>
                         </div>
-                        <div class="col-md-12 text-center">
-                            @if(now() < $fair->end_date)
+                        <div class="col-md-12 text-center mt-2">
+                           @if(now() < $fair->end_date)
+                      <button class="m-0 button-no-bg w-40 show_btn" style="border: 1px solid green !important;">
                                 <span style="color: green;">{{ 'Active' }}</span>
+                                </button>
                             @elseif(now() > $fair->end_date)
+                             <button class="m-0 button-no-bg w-40 show_btn" style="border: 1px solid #ae1414 !important;">
                                 <span style="color: #ae1414;">@lang('Expired')</span>
+                                </button>
                             @else
+                             <button class="m-0 button-no-bg w-40 show_btn" style="border: 1px solid #ae1414 !important;">
                                 <span style="color: #ae1414;">@lang('Closed')</span>
+                                </button>
                             @endif
                         </div>
 
@@ -226,7 +241,7 @@
                         </div>
                         <div class="col-md-12 text-center mt-2">
                             <div class="d-flex justify-content-end">
-
+                              @if(now() < $fair->end_date)
                         @if($fair->invitation->isEmpty())
                      @if($events_credit > 0)
                         <button class="button-sm button-red m-0 w-100 regsiter-button-div"
@@ -268,6 +283,12 @@
                      </div>
                      @endif
                      @endif
+                     @endif
+
+                     @else
+                      <button disabled class="button-sm button-red m-0 w-100 regsiter-button-div" style="cursor: not-allowed;  background-color: #ced4da;"
+                           >@lang('Reject')</button>
+                        <button disabled class="button-sm button-blue m-0 w-100 regsiter-button-div ms-2" style="cursor: not-allowed;  background-color: #ced4da;">@lang('Accept')</button>
                      @endif
                   
                      </div>
@@ -395,7 +416,7 @@
                      <img src="{{$fair->school->logo_url ?? ''}}" class="" width="93px">
                      </a>
                   </div>
-                  <div class="col-12 mt-3">
+                  <!-- <div class="col-12 mt-3">
 
                      @if(now() < $fair->end_date)
                                 <span style="color: green; margin-left: 23px;">{{ 'Active' }}</span>
@@ -406,27 +427,16 @@
                             @endif
 
 
-                     <!-- @if(empty($fair->active_status))
-                     <span style="color: green; margin-left: 23px;">{{ 'Active' }}</span>
-                     @else
-                     <span style="color: #ae1414; margin-left: 17px;">
-                        @if(now() > $fair->end_date)
-                        @lang('Expired')
-                        @else
-                        
-                        <span style="color: green; margin-left: 23px;">{{ 'Active' }}</span>
-                        @endif
-                     </span>
-                     @endif -->
-                  </div>
+                    
+                  </div> -->
                </div>
             </div>
-            <div class="col-md-7" style="
+            <div class="col-md-7 mt-2" style="
                width: 70% !important;
                margin-left: -7px;
                 /* Choose your desired border color */
                ">
-               <div class="row mt-4" >
+               <div class="row" >
                   <div class="col-lg-12">
                      <a href="{{route('admin.schoolFairs.fair.view',$fair->id)}}" style="font-weight: normal !important;" class="h5 blue text-decoration-none">{{$fair->school->school_name ?? ''}}</a>
                   </div>
@@ -435,20 +445,39 @@
                         class="">{{$fair->school?->country?->country_name.', '. $fair->school?->city?->city_name}}  | {{ $fair->start_date->format('n/j/Y gA') }} | @lang('Capacity: '){{ $fair->max }}@lang(' Universities')
                      </div>
                   </div>
-                   <div class="row">
-                  <div class="col-12">&nbsp</div>
-                  <div class="col-md-1"></div>
-                  <!-- <div class="col-md-4">
+                   <div class="row mt-2">
+                  <!-- <div class="col-md-1"></div>
+                  --> <!-- <div class="col-md-4">
                      <span style="color: #ae1414;">{{ 'Deadline: ' }}{{ $fair->end_date->format('n/j/Y') }}</span>
                   </div> -->
-                  <div class="col-md-5 light-blue">
+                  <div class="col-md-3 light-blue mt-1">
                      @lang('Remaining Seats') {{intVal($fair->max) - $fair->confirmed_universities_count}}
                      / {{$fair->max}}
                   </div>
 
+                  <div class="col-md-3 text-center mt-1">
+                     
+                      @if(now() < $fair->end_date)
+                      <button class="m-0 button-no-bg show_btn" style="width:108% !important; border: 1px solid green !important;">
+                                <span style="color: green;">{{ 'Active' }}</span>
+                                </button>
+                            @elseif(now() > $fair->end_date)
+                             <button class="m-0 button-no-bg show_btn" style="width:108% !important; border: 1px solid #ae1414 !important;">
+                                <span style="color: #ae1414;">@lang('Expired')</span>
+                                </button>
+                            @else
+                             <button class="m-0 button-no-bg show_btn" style="width:108% !important; border: 1px solid #ae1414 !important;">
+                                <span style="color: #ae1414;">@lang('Closed')</span>
+                                </button>
+                            @endif
+                            
+                  </div>
+                 
+
                   <div class="col-md-6">
                      <div class="d-flex justify-content-end">
-
+                        @if(now() < $fair->end_date)
+                      
                         @if($fair->invitation->isEmpty())
                      @if($events_credit > 0)
                         <button class="button-sm button-red m-0 w-100 regsiter-button-div"
@@ -491,6 +520,12 @@
                      @endif
                      @endif
                      @endif
+
+                     @else
+                      <button disabled class="button-sm button-red m-0 w-100 regsiter-button-div" style="cursor: not-allowed;  background-color: #ced4da;"
+                           >@lang('Reject')</button>
+                        <button disabled class="button-sm button-blue m-0 w-100 regsiter-button-div ms-2" style="cursor: not-allowed;  background-color: #ced4da;">@lang('Accept')</button>
+                     @endif
                   
                      </div>
                   </div>
@@ -498,7 +533,7 @@
                </div>
                </div>
             </div>
-            <div class="col-md-3 mt-4" style=" width: 20% !important;  border-left: 1px solid #ccc; margin-left: -22px;">
+            <div class="col-md-3 mt-2" style=" width: 20% !important;  border-left: 1px solid #ccc; margin-left: -22px;">
                <div class="h6 mb-0 gray">
                    <div class="row">
                      <div class="col-md-12">@lang('Fees') {{$fair->school?->g_12_fee_range?->currency_range}}</div>

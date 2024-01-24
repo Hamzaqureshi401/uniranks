@@ -221,22 +221,22 @@
                            <hr>
                         </div>
                         <div class="col-md-12 text-center">
-                           @if(empty($fair->active_status))
-                           <span style="color: green;">{{ 'Active' }}</span>
-                           @else
-                           <span style="color: #ae1414;">
-
-                           
-                           @if(now() > $fair->end_date)
-                           @lang('Expired')
-                           @else
-                           @lang('Closed')
-                           @endif
-
-                        </span>
-                           @endif
+                            @if(now() < $fair->end_date)
+                      <button class="m-0 button-no-bg w-40 show_btn" style="border: 1px solid green !important;">
+                                <span style="color: green;">{{ 'Active' }}</span>
+                                </button>
+                            @elseif(now() > $fair->end_date)
+                             <button class="m-0 button-no-bg w-40 show_btn" style="border: 1px solid #ae1414 !important;">
+                                <span style="color: #ae1414;">@lang('Expired')</span>
+                                </button>
+                            @else
+                             <button class="m-0 button-no-bg w-40 show_btn" style="border: 1px solid #ae1414 !important;">
+                                <span style="color: #ae1414;">@lang('Closed')</span>
+                                </button>
+                            @endif
+                        
                         </div>
-                        <div class="col-md-12 text-center">
+                        <div class="col-md-12 text-center mt-2">
                            <span style="color: #ae1414;">{{ 'Deadline: ' }}{{ $fair->end_date->format('n/j/Y') }}</span>
                         </div>
                         <div class="col-md-12 text-center" style="color: #039be5;">
