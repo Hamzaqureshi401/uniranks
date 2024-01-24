@@ -20,7 +20,13 @@
       }
       .imageflex { display: flex; }
       .imageflexcontent { margin-left: 5px; margin-top: 0; }
-      }
+      .button-no-bg:hover {
+    background-color: transparent; /* Set the background-color to transparent on hover */
+    color: inherit; /* Inherit the color from the parent, or you can set a specific color */
+    text-decoration: none; /* Remove any text decoration on hover */
+    cursor: default; /* Set the cursor to default to remove the pointer cursor on hover */
+}
+      
 
    </style>
    @endpush
@@ -52,7 +58,7 @@
       <div class="align-items-center my-3 d-md-flex small5" :class="showFilters ? '':'d-none' ">
          <div class="col mobile-marg-2 col-marg mx-1">
             <select wire:model="filter_by_country" class="input-field form-control" aria-label=""
-               wire:change="loadFilteredData">
+               wire:change="loadFilteredData(true)">
                <option value="">@lang('Select Country')</option>
                @foreach($countries ?? [] as $country)
                <option value="{{$country->id}}">{{$country->country_name}}</option>
@@ -62,13 +68,13 @@
          <div class="w-100 d-block d-md-none my-1"></div>
          <!--to force new line-->
          <div class="col mobile-marg-2 col-marg mx-1 ">
-            <x-elements.date-range-picker wire:model="period" wire:change="loadFilteredData"
+            <x-elements.date-range-picker wire:model="period" wire:change="loadFilteredData(true)"
                placeholder="Select Date"/>
          </div>
          <div class="w-100 d-block d-md-none my-1"></div>
          <div class="col mobile-marg-2 col-marg mx-1">
             <select wire:model="filter_by_majors" class="input-field form-control" aria-label=""
-               wire:change="loadFilteredData">
+               wire:change="loadFilteredData(true)">
                <option value="">@lang('Select Majors')</option>
                @foreach($majors ?? [] as $city)
                <option value="{{$city->id}}">{{$city->title}}</option>
@@ -80,7 +86,7 @@
          <!--to force new line-->
          <div class="col mobile-marg-2 col-marg mx-1">
             <select wire:model="filter_by_school_fee" class="input-field form-control" aria-label=""
-               wire:change="loadFilteredData">
+               wire:change="loadFilteredData(true)">
                <option value="">@lang('Fees')</option>
                @foreach($fee_ranges ?? [] as $fee_range)
                <option value="{{$fee_range->id}}">{{$fee_range->currency_range}}</option>
@@ -91,7 +97,7 @@
          <!--to force new line-->
          <div class="col mobile-marg-2 col-marg mx-1">
             <select wire:model="filter_by_curriculum" class="input-field form-control" aria-label=""
-               wire:change="loadFilteredData">
+               wire:change="loadFilteredData(true)">
                <option value="">@lang('Curriculum')</option>
                @foreach($curriculums ?? [] as $curriculum)
                <option value="{{$curriculum->id}}">{{$curriculum->title}}</option>
@@ -100,7 +106,7 @@
          </div>
          <div class="col mobile-marg-2 col-marg mx-1">
             <select wire:model="filter_by_no_students" class="input-field form-control" aria-label=""
-               wire:change="loadFilteredData">
+               wire:change="loadFilteredData(true)">
                <option value="">@lang('Number of Students')</option>
                @foreach($students ?? [] as $key => $student)
                <option value="{{$key}}">{{$student}}</option>
@@ -300,7 +306,13 @@
               left: 15,
               behaviour: 'smooth'
           })
-      })
+      });
+      $(document).ready(function () {
+        Livewire.on('creditsUpdated', function (ev_cr) {
+            // Update the content of the span with the new value
+            $('#events-credit').text('@lang('Events Credit'): ' + ev_cr + ' |');
+        });
+    });
    </script>
    @endpush
 </div>

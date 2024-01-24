@@ -78,9 +78,9 @@ class FairsList extends Component
             fn($q) => $q->whereIn('school_id', $this->schoolsBaseQuery()->pluck('id')->toArray())
         )
         ->when(count($period) > 1, fn($q) => $q->whereBetween('start_date', $period))
-        ->orderBy('end_date', 'asc') // Upcoming fairs first
-        ->orderByDesc('end_date')   // Past fairs, closest date first
-        ->paginate(12);
+        ->orderBy('end_date', 'desc') // Upcoming fairs first
+        //->orderByDesc('end_date')   // Past fairs, closest date first
+        ->paginate(6);
 }
 
 

@@ -601,7 +601,13 @@
               left: 15,
               behaviour: 'smooth'
           })
-      })
+      });
+      $(document).ready(function () {
+        Livewire.on('creditsUpdated', function (ev_cr) {
+            // Update the content of the span with the new value
+            $('#events-credit').text('@lang('Events Credit'): ' + ev_cr + ' |');
+        });
+    });
    </script>
    @endpush
 </div>

@@ -24,8 +24,9 @@
          <span class="non-hover-blue-color">@lang('Admission Credit'): {{$ad_cr}} |</span>
 
           <a href="{{ route('admin.account.eventCredits')}}">
-            <span class="hover-blue-color">@lang('Events Credit'): {{$ev_cr}} |</span>
-          </a>
+    <span id="events-credit" class="hover-blue-color">@lang('Events Credit'): {{$ev_cr}} |</span>
+</a>
+
           <a href="">
             <span class="hover-blue-color">Velidity: 2024-11-21</span>
           </a>

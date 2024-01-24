@@ -14,11 +14,13 @@ use SendGrid\Mail\TypeException;
 trait ProcessFairInvitation
 {
     public $events_credit = 0;
+    public $ev_cr;
 
     public function acceptFair($fair_id)
     {
         Invitation::updateOrCreate(['fair_id' => $fair_id, 'university_id' => \Auth::user()->selected_university?->id], ['status' => \AppConst::INVITATION_ACCEPTED]);
         $this->removeCredit($fair_id);
+        $this->setCredit();
         $this->emit('returnResponseModal',[ 
         'title'=>'Joining Fair',
             'message'=>'Fair has been join.',
@@ -28,12 +30,20 @@ trait ProcessFairInvitation
         ]);
     }
 
+    public function setCredit(){
+        $campus = \Auth::user()->selected_university->fresh();
+        $this->ev_cr = $campus->event_credit;
+        $this->emit('creditsUpdated', $this->ev_cr);
+       
+    }
+
     private function removeCredit($fair_id=null,$description=null): void
     {
         $campus = \Auth::user()->selected_university;
         $this->events_credit--;
         $campus->event_credit = $this->events_credit;
         $campus->save();
+        
         $this->refreshCredits();
         EventCreditTransaction::create(['university_id' => $campus->id, 'event_id' => $fair_id,'event_name'=>$description, 'credit_out' => 1, 'by_user_id' => \Auth::id()]);
         $this->emit('returnResponseModal',[
@@ -70,6 +80,7 @@ trait ProcessFairInvitation
         }else{
             Invitation::create(['fair_id' => $fair_id, 'university_id' => \Auth::user()->selected_university->id,'status' => \AppConst::INVITATION_REJECTED]);
         }
+        $this->setCredit();
         $this->emit('returnResponseModal',[
         'title'=>'Fair Rejected',
             'message'=>'Fair has been rejected.',

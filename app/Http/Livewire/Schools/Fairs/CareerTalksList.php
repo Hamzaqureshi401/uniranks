@@ -30,6 +30,8 @@ class CareerTalksList extends Component
     public $filter_by_no_students = '';
     public $filter_by_school_fee = '';
     public $filter_by_majors = '';
+    public $filter = false;
+
 
 
     public $period = '';
@@ -62,10 +64,21 @@ class CareerTalksList extends Component
     public function loadFairs(): LengthAwarePaginator
     {
         $period = explode(' to ', $this->period);
-        return Fair::with(['school' => ['country', 'city', 'curriculum', 'g_12_fee_range']])
-        ->orderBy('end_date', 'desc')
+        // return Fair::with(['school' => ['country', 'city', 'curriculum', 'g_12_fee_range']])
+        // ->orderBy('end_date', 'desc')
         
-            ->take(5)->paginate(5);
+        //     ->take(5)->paginate(5);
+        return Fair::careerTalk()->with(['school' => ['country', 'city', 'curriculum', 'g_12_fee_range']])
+            ->withCount(['sessions', 'sessions as confirmed_universities_count'=>fn($q)=>$q->whereNotNull('university_id')->orWhereNotNull('agent_id'),             ])
+            //->whereIn('school_id',$this->schoolsBaseQuery()->select('id'))
+            ->when(
+            ($this->filter == true), 
+            fn($q) => $q->whereIn('school_id', $this->schoolsBaseQuery()->pluck('id')->toArray())
+            )
+            ->when(count($period) > 1, fn($q) => $q->whereBetween('start_date', $period))
+            ->orderBy('end_date', 'desc') // Upcoming fairs first
+            //->orderByDesc('end_date')   // Past fairs, closest date first
+            ->paginate(6);
     }
 
     private function loadCities()
@@ -83,7 +96,7 @@ class CareerTalksList extends Component
         //whereRelation('fairInvitations', 'university_id', \Auth::user()->selected_university->id)
         //dd($this->filter_by_majors);
         return School::query()
-            ->whereIn('id',Fair::careerTalk()->upcoming()->select('school_id'))
+            ->whereIn('id',Fair::careerTalk()->select('school_id'))
             ->when(!empty($this->filter_by_country), fn($q) => $q->where('country_id', $this->filter_by_country))
             ->when(!empty($this->filter_by_city), fn($q) => $q->where('city_id', $this->filter_by_city))
             ->when(!empty($this->filter_by_curriculum), fn($q) => $q->where('curriculum_id', $this->filter_by_curriculum))
@@ -108,8 +121,10 @@ class CareerTalksList extends Component
         $this->loadFilteredData();
     }
 
-    public function loadFilteredData($without = "")
+    public function loadFilteredData($without = false)
     {
+        $this->filter = $without;
+       
         if (empty($this->filter_by_school_fee)) {
             $this->fee_ranges = FeeRange::whereIn('id', $this->schoolsBaseQuery()->select('fees_grade12'))->orderBy('id')->get();
         }
