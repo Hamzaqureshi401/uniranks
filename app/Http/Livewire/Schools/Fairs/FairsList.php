@@ -37,6 +37,8 @@ class FairsList extends Component
     public $cities = [];
     public $curriculums = [];
     public $students = [];
+    public $view_horizontal = true;
+
 
     protected $queryString = ['query' => ['except' => ''], 'filter_by_country' => ['except' => ''], 'filter_by_school_fee' => ['except' => ''],
         'filter_by_curriculum' => ['except' => ''], 'filter_by_no_students' => ['except' => ''], 'period' => ['except' => '']];
@@ -49,6 +51,14 @@ class FairsList extends Component
 //        $this->loadCities();
         $this->loadFilteredData();
         $this->loadEventsCredit();
+    }
+
+    public function setView(){
+        if($this->view_horizontal == true){
+            $this->view_horizontal = false;
+        }else{
+            $this->view_horizontal = true;
+        }
     }
 
     public function loadFairs(): LengthAwarePaginator

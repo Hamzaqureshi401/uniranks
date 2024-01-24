@@ -156,8 +156,8 @@
                      <span style="color: #ae1414;">{{ 'Deadline: ' }}{{ $fair->end_date->format('n/j/Y') }}</span>
                   </div>
                   <div class="col-md-4 light-blue">
-                     @lang('Remaining Seats') {{intVal($fair->sessions_count) - $fair->confirmed_universities_count}}
-                     / {{$fair->sessions_count}}
+                     @lang('Remaining Seats') {{intVal($fair->max) - $fair->confirmed_universities_count}}
+                     / {{$fair->max}}
                   </div>
                   <div class="col-md-3">
                      <div class="d-flex justify-content-end">

@@ -64,7 +64,7 @@ class FeeRange extends Model
         $glue = ">";
         if (!empty($range[1])){
             $high = $range[1] * $rate;
-            $glue = "-";
+            $glue = "~";
         }
         return " {$low} {$currency->code} {$glue} {$high} {$currency->code}";
     }
