@@ -8,6 +8,8 @@
         <div class="card-body">
             <div class="blue">@lang('Create a new album')</div>
             <x-general.status-alert/>
+               <x-jet-validation-errors class="mt-3 mb-3 alert alert-danger"/>
+
             <form>
                 @for($i = 0; $i < $details_in_langs; $i++)
                     <div>
@@ -53,13 +55,20 @@
                     <button class="m-0 button-no-bg" id="show" type="button" wire:click="addDetailsInOtherLanguage">
                         @lang('+ Add details in other language')</button>
                 </div>
-                <div class="d-flex justify-content-end h6">
+                <!-- <div class="d-flex justify-content-end h6">
                     <div class=""><a href="javascript:void(0)" wire:click.prevent="save"
                                      class="light-blue">@lang('Create')</a></div>
                     <div class="ms-3"><a href="javascript:void(0)" wire:click.prevent="initForm" class="red">@lang('Cancel')</a></div>
-                </div>
+                </div> -->
             </form>
         </div>
     </div>
+    <div class="row mt-4">
+   <div class="col-md-6 offset-6 d-flex justify-content-md-end">
+      <button wire:click="save" class="button-blue button-sm mobile-button w-35">@lang('Save')</button>
+      <button wire:click="initForm" class="button-red button-sm mobile-button w-35">@lang('Cancel')</button>
+   </div>
+</div>
+
     <x-general.loading message="Saving..." wire:target="save"/>
 </div>

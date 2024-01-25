@@ -7,7 +7,7 @@
         * @var \App\Models\Multimedia\MediaAlbum $selected_album
         **/
     @endphp
-    <div class="h4 blue mt-3" id="upload-images">@lang('Upload Materials to Albums')
+<!--     <div class="h4 blue mt-3" id="upload-images">@lang('Upload Materials to Albums')
     @include('about-icon')</div>
     <div class="row align-items-baseline">
         <div class="col-md-8">
@@ -152,6 +152,145 @@
                 </div>
             </div>
         </div>
+    @endif -->
+
+        @include('livewire.university-facilities.common-media')
+
+          <x-jet-modal wire:model="isModalOpen">
+    
+    
+   <x-jet-validation-errors class="mt-3 mb-3 alert alert-danger"/>
+  
+      <x-slot name="title">
+         @lang('Update Album')
+      </x-slot>
+
+                @for($i = 0; $i < $details_in_langs; $i++)
+                    <div>
+                        <div class="row mt-2" wire:key="name-field-{{ $i }}">
+                            <div class="col-md-8">
+                                <div class="form-floating w-100">
+                                    <input wire:model.defer="names.{{$i}}" class="form-control input-field"
+                                           placeholder="@lang('New Album Name')">
+                                    <label for="floatingInput">@lang('New Album Name')</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mobile-marg-2">
+                                <div class="form-floating w-100">
+                                    <select wire:model.defer="translations.{{$i}}" class="form-select input-field">
+                                        <option value="">@lang('Select Language')</option>
+                                        @foreach($languages as $language)
+                                            <option
+                                                value="{{$language->code}}" @disabled(in_array($language->code,$translations))>{{$language->native_name}}</option>
+                                        @endforeach
+                                    </select>
+                                    <label for="floatingSelectGrid">@lang('Select Language') </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2" wire:key="details-field-{{ $i }}">
+                            <div class="col-12 ">
+                                <div class="form-floating w-100">
+                            <textarea wire:model.defer="description.{{$i}}" class="form-control input-textarea"
+                                      placeholder="@lang('Description')" rows="3"></textarea>
+                                    <label for="floatingInput">@lang('Description')</label>
+                                </div>
+                            </div>
+                        </div>
+                        @if($i < $details_in_langs - 1)
+                            <div class="w-100 px-5 mt-4">
+                                <hr>
+                            </div>
+                        @endif
+                    </div>
+                @endfor
+
+                <div class=" text-place-end mt-4 mb-4">
+                    <button class="m-0 button-no-bg" id="show" type="button" wire:click="addDetailsInOtherLanguage">
+                        @lang('+ Add details in other language')</button>
+                </div>
+
+                <div class="col-md-12 mt-3">
+      <a href="javascript:void(0)" wire:click="updateGallery()" class="btn btn-primary">@lang('Update')</a>
+   </div>
+</x-jet-modal>
+
+
+<div class="card bg-transparent mt-4">
+   <div class="card-body">
+      <div class="h4 blue">@lang('Photo Album')</div>
+      <div class="w-100 px-4 mt-3">
+         <hr>
+      </div>
+      <div>
+         <table class="table">
+            <thead>
+               <tr class="blue">
+                  <th>Name</th>
+                  <th>Descripion</th>
+                  <th>Update</th>
+                  <th>Action</th>
+                  <!-- Add other table headers as needed -->
+               </tr>
+            </thead>
+            <tbody>
+               @foreach($albums as $lab)
+               <tr>
+                  <td class="blue">
+    @if($lab->hasTranslation('title', 'en'))
+        {{ $lab->getTranslation('title', 'en') }}
+    @else
+        @foreach($lab->getTranslations('title') as $locale => $translation)
+            {{ $translation }}
+            @break
+        @endforeach
     @endif
-    <x-general.loading message="Please Wait..."/>
+</td>
+
+<td class="blue">
+    @if($lab->hasTranslation('description', 'en'))
+        {{ $lab->getTranslation('description', 'en') }}
+    @else
+        @foreach($lab->getTranslations('description') as $locale => $translation)
+            {{ $translation }}
+            @break
+        @endforeach
+    @endif
+</td>
+
+
+                  <!-- <td class="blue"> {{ $lab->status }}</td> -->
+                  <td> @lang('Updated on') {{ \Carbon\Carbon::parse($lab['updated_at'])->format('D, M j, Y g:i A') }}
+        </td>
+                  <td>
+                     <div class="row">
+    <div class="col-4">
+        <a wire:click="editGallery({{ $lab->id }})" href="javascript:void(0)" class="light-blue ms-2">
+            <i class="material-icons-outlined">
+                <img class="header-logo d-none d-lg-inline-block pointer" style="max-width: 15px; max-height: 15px;"
+                     src="{{ asset('assets/icons/' . 'edit-blue.svg') }}" alt="Edit"/>
+            </i>
+        </a>
+    </div>
+    <div class="col-4">
+        <a wire:click="delete({{ $lab->id }})" href="javascript:void(0)" class="red ms-2">
+            <i class="material-icons-outlined">
+                <img class="header-logo d-none d-lg-inline-block pointer" style="max-width: 15px; max-height: 15px;"
+                     src="{{ asset('assets/icons/' . 'delete-red.svg') }}" alt="Delete"/>
+            </i>
+        </a>
+    </div>
 </div>
+</td>
+                  <!-- Add other specific attributes as needed -->
+               </tr>
+               @endforeach
+            </tbody>
+         </table>
+      </div>
+   </div>
+</div>
+
+
+    <x-general.loading message="Please Wait..."/>
+</div> 

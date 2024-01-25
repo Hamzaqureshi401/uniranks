@@ -22,18 +22,25 @@
                   <div class="col-md-6 mobile-marg d-flex justify-content-between">
                      <div class="col-4 align-items-center d-flex justify-content-between">
                         <div class="col-4"></div>
-                        <div class="col-4"><a class="mr-25" href="{{$selected_item?->video_url ?: "javascript:void(0)"}}" target="_blank">
+                        <div class="col-4">
+                           @if(!empty($selected_item?->video_url))
+                           <a class="mr-25" href="{{$selected_item?->video_url ?: "javascript:void(0)"}}" target="_blank">
                            <img src="{{AppConst::ICONS}}/sm-icons/video.svg" width="30px"></a>
+                           @endif
                         </div>
-                        <div class="col-4"><a 
+                        <div class="col-4">
+                           @if(!empty($selected_item?->panorama_url))
+                           <a 
                            href="{{$selected_item?->panorama_url ?: "javascript:void(0)"}}" target="_blank"><img src="{{AppConst::ICONS}}/sm-icons/360.svg" width="30px"></a>
+                           @endif
                         </div>
                      </div>
                      <div class="col-8">
                        <select wire:model="lang_key" wire:change="loaddescription" class="input-field form-control">
+                        <!-- <option value="">Select language</option> -->
                         <!-- <option value="">@lang('Select Language')</option> -->
                         @if(!empty($selected_item))
-                        @foreach($this->selected_item->getTranslations()['translated_name'] ?? [] as $key => $translation)
+                        @foreach($this->selected_item->getTranslations()['translated_name'] ?? $this->selected_item->getTranslations()['description'] ?? [] as $key => $translation)
                         <option value="{{$key}}">{{ $languages->where('code' , $key)->first()->native_name ?? ''}}</option>
                         @endforeach
                         @endif
