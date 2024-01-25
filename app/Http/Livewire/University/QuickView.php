@@ -29,7 +29,7 @@ class QuickView extends Component
     public function initForm()
     {
         $university = \Auth::user()->selected_university;
-        $this->quick_view = $university->quickView()->firstOrCreate()->makeHidden(['created_at', 'updated_at', 'updated_by'])->toArray();
+        $this->quick_view = $university->quickView()->firstOrCreate()->makeHidden([])->toArray();
         $this->university_languages = $university->languages()->pluck('languages.id')->toArray();
     }
 
