@@ -16,7 +16,7 @@ class SocialMedia extends Component
     public function initForm()
     {
         $university = \Auth::user()->selected_university;
-        $this->sm_columns = $university->socialMedia()->firstOrCreate()->makeHidden(['id', 'google', 'university_id', 'created_at', 'updated_at', 'updated_by'])->toArray();
+        $this->sm_columns = $university->socialMedia()->firstOrCreate()->makeHidden(['id', 'google', 'university_id', 'created_at'])->toArray();
     }
 
     public function rules()

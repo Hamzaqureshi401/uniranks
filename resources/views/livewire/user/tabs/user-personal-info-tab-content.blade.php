@@ -164,5 +164,41 @@
             </div>
         </div>
     </div>
+
+
+
+        <div class="card bg-transparent mt-4">
+        <div class="card-body">
+            <div class="h4 blue" id="upload-images">@lang('Persional info')   
+             <div class="w-100 px-4 mt-3">
+        <hr>
+    </div> 
+    <!-- @include('about-icon') -->
+
+ </div>
+       <table class="table">
+   <!--  <thead>
+        <tr>
+            <th scope="col">URL</th>
+            <th scope="col">Type</th>
+            <th scope="col">Created On</th>
+            <th scope="col">By</th>
+            <th scope="col" class="text-place-end">Actions</th>
+        </tr>
+    </thead> -->
+    <tbody>
+       
+        </tbody>
+</table>
+ <div class="d-md-flex col-md-6 h6 blue justify-content-between">
+    <div class="box-bottom-note">
+            @lang('Updated on') {{ \Carbon\Carbon::parse($this->user['updated_at'])->format('D, M j, Y g:i A') }}
+        
+    </div>
+    <div class="mobile-marg-2">@lang('By') {{ $this->user['updated_by'] ?? 'By Dev Team Rep' }}</div>
+</div>
+
+    </div>
+    </div>
     <x-general.loading wire:target="save" message="Saving Data" />
 </div>
