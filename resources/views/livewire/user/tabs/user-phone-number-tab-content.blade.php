@@ -21,7 +21,7 @@
                             <div class="col-2 pe-0">
                                 <select x-model="code"
                                         class="text-start form-control input-field">
-                                    <option disabled>@lang('Code')</option>
+                                    <option disabled>@lang('Code')</option> 
                                     @foreach($countries as $country)
                                         <option value="{{$country->country_code}}"><img src="{{$country->flag_url}}">
                                             +{{$country->country_code}}</option>
@@ -51,5 +51,40 @@
                 </div>
             </form>
         </div>
+    </div>
+
+
+     <div class="card bg-transparent mt-4">
+        <div class="card-body">
+            <div class="h4 blue" id="upload-images">@lang('Phone')   
+             <div class="w-100 px-4 mt-3">
+        <hr>
+    </div> 
+    <!-- @include('about-icon') -->
+
+ </div>
+       <table class="table">
+   <!--  <thead>
+        <tr>
+            <th scope="col">URL</th>
+            <th scope="col">Type</th>
+            <th scope="col">Created On</th>
+            <th scope="col">By</th>
+            <th scope="col" class="text-place-end">Actions</th>
+        </tr>
+    </thead> -->
+    <tbody>
+       
+        </tbody>
+</table>
+ <div class="d-md-flex col-md-6 h6 blue justify-content-between">
+    <div class="box-bottom-note">
+            @lang('Updated on') {{ \Carbon\Carbon::parse(\Auth::user()['updated_at'])->format('D, M j, Y g:i A') }}
+        
+    </div>
+    <div class="mobile-marg-2">@lang('By') {{ \Auth::user()['updated_by'] ?? 'By Dev Team Rep' }}</div>
+</div>
+
+    </div>
     </div>
 </div>

@@ -176,7 +176,7 @@ class EnglishTest extends Component
 
             if (!empty($requirement['sub_scores'])) {
                 foreach ($requirement['sub_scores'] as $sub_key => $sub_score) {
-                    $rules["testing_requirements.$key.sub_scores.$sub_key.required_grades"] = $requirement['title'] . "->" . $sub_score['title'] . " required grades";
+                    $rules["testing_requirements.$key.sub_scores.$sub_key.required_grades"] = $requirement['title'] . " " . $sub_score['title'] . " required grades";
                 }
             }
         }
