@@ -91,19 +91,39 @@
                 <td class="blue">{{$contact->full_phone_number}} {{!empty($contact->ext) ? '/'.__('ext')." $contact->ext":""}}</td>
                 <td class="font-light blue">{{$contact->created_at?->toDayDateTimeString()}}</td>
                 <!-- <td class="font-light blue">{{$contact->createdBy?->name ?:"---"}}</td> -->
-                <td class="text-end blue">
-                    <a href="javascript:void(0)" wire:click="edit('{{$contact->id}}')" class="light-blue">@lang('Edit')</a>
-                </td>
+                <td class="text-end blue justify-content-end">
+                    <!-- <a href="javascript:void(0)" wire:click="edit('{{$contact->id}}')" class="light-blue">@lang('Edit')</a> -->
+
+                       <div class="row">
+                        <div class="col-7"></div>
+                                    <div class="col-3">
+                                       <a wire:click="edit({{ $contact->id }})" href="javascript:void(0)" class="light-blue ms-2">
+                                       <i class="material-icons-outlined">
+                                       <img class="header-logo d-none d-lg-inline-block pointer" style="max-width: 15px; max-height: 15px;"
+                                          src="{{ asset('assets/icons/' . 'edit-blue.svg') }}" alt="Edit"/>
+                                       </i>
+                                       </a>
+                                    </div>
+                                   
+                                 
+                
                 @if($loop->index != 0)
-                <td class="text-end blue">
                     
-                     
-                    <a href="javascript:void(0)" wire:click="deleteContact('{{$contact->id}}')" class="red">@lang('Delete')</a>
+                      <div class="col-2">
+                                       <a wire:click="deleteContact({{ $contact->id }})" href="javascript:void(0)" class="red ms-2">
+                                       <i class="material-icons-outlined">
+                                       <img class="header-logo d-none d-lg-inline-block pointer" style="max-width: 15px; max-height: 15px;"
+                                          src="{{ asset('assets/icons/' . 'delete-red.svg') }}" alt="Delete"/>
+                                       </i>
+                                       </a>
+                                    </div>
+                    <!-- <a href="javascript:void(0)" wire:click="deleteContact('{{$contact->id}}')" class="red">@lang('Delete')</a> -->
 
                    
-
+                    @endif
+                    </div>
                 </td>
-                 @endif
+                 
             </tr>
         @empty
             <tr>
