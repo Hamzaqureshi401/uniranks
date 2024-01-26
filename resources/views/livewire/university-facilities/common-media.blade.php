@@ -110,7 +110,7 @@
                   <hr>
                </div> -->
                @if(!empty($selected_item))
-               <div class="d-md-flex h6 blue justify-content-between">
+               <div class="d-md-flex h6 blue justify-content-between mt-3">
                   <div
                      class="">@lang('Created on') {{$selected_item?->created_at->toDayDateTimeString()}}</div>
                   <div class="">@lang('By') {{$selected_item?->createdBy?->name ?: "---"}}</div>

@@ -128,7 +128,8 @@
                   <th>Type</th>
                   <th>Update In</th>
                   <th>Update By</th>
-                  <th>Action</th>
+                  <th></th>
+                  <th class="text-center">Action</th>
                   <!-- Add other table headers as needed -->
                </tr>
             </thead>
@@ -140,11 +141,14 @@
                   <td class="blue">{{ \Carbon\Carbon::parse($account['updated_at'])->format('D, M j, Y g:i A') }}
         </td>
                   <td class="blue">{{ $account['updated_by'] ?? 'By Dev Team Rep' }}</td>
-                  <td>
+                  <td>&nbsp;</td>
+
+                  <td >
                                  <!-- <a href="javascript:void(0)" wire:click="deleteSubAccount('{{$account->id}}')"
                                     class="primary-text text-decoration-none"> {{__('Remove')}}</a> -->
                                  <div class="row">
-                                    <div class="col-2">
+                                    <div class="col-4"></div>
+                                    <div class="col-2" style="margin-left: -10px;">
                                        <a wire:click="edit({{ $account->id }})" href="javascript:void(0)" class="light-blue ms-2">
                                        <i class="material-icons-outlined">
                                        <img class="header-logo d-none d-lg-inline-block pointer" style="max-width: 15px; max-height: 15px;"
