@@ -106,6 +106,8 @@ class UniversityPhotoAlbums extends Component
             'link'=>null,
             'viewTitle' => null
         ]);
+        $this->mount();
+
     }
 
     public function deleteSelected(){
