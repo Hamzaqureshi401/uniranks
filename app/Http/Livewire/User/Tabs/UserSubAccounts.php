@@ -6,6 +6,10 @@ use App\Actions\User\AddNewUser;
 use App\Models\User;
 use Illuminate\Support\Facades\Password;
 use Livewire\Component;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
+
+
 
 class UserSubAccounts extends Component
 {
@@ -17,6 +21,8 @@ class UserSubAccounts extends Component
     public $confirmingUserDeletion = false;
     public $user_account_state = [];
     public $openAddUserModal = false;
+    public $edit = false;
+    public $edit_user;
     protected $listeners = ['onModelClose' => 'initUserForm'];
 
     public function mount()
@@ -47,6 +53,7 @@ class UserSubAccounts extends Component
 
     public function saveNewUser()
     {
+
         $this->resetErrorBag();
         AddNewUser::run(['user_account_state' => $this->user_account_state]);
         $this->loadSubAccounts();
@@ -55,6 +62,62 @@ class UserSubAccounts extends Component
         $this->openAddUserModal = false;
     }
 
+
+    public function edit(User $user){
+        list($first_name, $last_name) = explode(' ', $user->name, 2);
+        
+        // Set the user_account_state values
+        $this->user_account_state = [
+            'first_name' => $first_name ?? '',
+            'last_name' => $last_name ?? '',
+            'email' => $user->email ?? '',
+        ];
+        $this->edit = true;
+        $this->edit_user = $user;
+        $this->openAddUserModal = true;
+    }
+
+    protected function rules()
+    {
+        return [
+            'user_account_state.email' => [
+                'required',
+                'email',
+                Rule::unique('users', 'email')->ignore($this->edit_user->id ?? null),
+            ],
+            'user_account_state.first_name' => 'required|string',
+            'user_account_state.last_name' => 'required|string',
+            'user_account_state.password' => 'required_if:edit,true|confirmed|min:8',
+        ];
+    }
+
+    public function update()
+    {
+        $this->validate();
+
+        $data = [
+            'name' => $this->user_account_state['first_name'] . ' ' . $this->user_account_state['last_name'],
+            'email' => $this->user_account_state['email'],
+        ];
+
+        if (!empty($this->user_account_state['password'])) {
+            $data['password'] = Hash::make($this->user_account_state['password']);
+        }
+
+        $this->edit_user->update($data);
+
+        $this->reset(['openAddUserModal', 'user_account_state', 'edit', 'edit_user']);
+        $this->edit = false;
+        $this->user_account_state = '';
+
+        $this->emit('returnResponseModal', [
+            'title' => 'Update Secondary Email/Sub account',
+            'message' => 'User has been updated successfully.',
+            'btn' => 'Okay',
+            'link' => null,
+            'viewTitle' => null,
+        ]);
+    }
     public function sendResetPassword($email)
     {
         Password::broker(config('fortify.passwords'))->sendResetLink(['email' => $email]);
