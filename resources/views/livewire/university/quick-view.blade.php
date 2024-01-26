@@ -1,6 +1,17 @@
 <div>
     <x-general.university-media-page-title sub-title="Quick View"/>
 
+    @push('styles')
+    <style type="text/css">
+        .small{
+            font-size: 1em !important;
+        }
+        .select2-selection__choice__display{
+             font-size: 1.5em !important;
+        }
+    </style>
+    @endpush
+
     <div class="mt-3 h5 blue">@lang('Quick View')</div>
     <div class="blue paragraph-style2">
         @lang('Provide quick view information')
@@ -238,11 +249,11 @@
  <div class="w-100 mt-4 px-4">
                 <hr>
             </div>
-            <div class="d-md-flex h6 mt-4 text-place-end blue justify-content-end">
+           <!--  <div class="d-md-flex h6 mt-4 text-place-end blue justify-content-end">
                 <div class="col-md-3">Created on 15 Jan 2022</div>
                 <div class="col-md-3 mobile-marg-2">By David Scott</div>
                 <div class="col-md-2 mobile-marg-2"><a href="javascript:void(0)" wire:click="delete" class="red ">Delete</a></div>
-            </div>
+            </div> -->
         </div>
     </div>
     <div class="d-flex justify-content-end mt-4">
